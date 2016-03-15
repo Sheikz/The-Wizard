@@ -6,6 +6,7 @@ public class ExperienceReceiver : MonoBehaviour
     public float levelMultiplier = 1;
 	public int XPForFirstLevel;
     public int additionalXPPerLevel = 50;
+    public GameObject levelUpAnimation;
 
 	private int level;
 	private int currentXP;
@@ -44,6 +45,12 @@ public class ExperienceReceiver : MonoBehaviour
 		XPToNextLevel = Mathf.RoundToInt((XPToNextLevel +additionalXPPerLevel) * levelMultiplier);
 		currentXP = 0;
         GameManager.instance.levelUp();
+
+        if (levelUpAnimation)
+        {
+            GameObject levelUp = Instantiate(levelUpAnimation, transform.position, Quaternion.identity) as GameObject;
+            levelUp.transform.SetParent(transform);
+        }
 		
         if (characterStats)
             characterStats.levelUp();
