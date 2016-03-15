@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &183658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 478534}
+  - 114: {fileID: 11463752}
+  m_Layer: 0
+  m_Name: SpellManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &478534
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 147.88782, y: 120.43576, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11463752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f879f178741b4934d92bdd6f2ff8afc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellList:
+  - {fileID: 159222, guid: 4c47f98fb808e09469911a5db83b6942, type: 2}
+  - {fileID: 176030, guid: d873f62441c33c2489301d732a1ef56c, type: 2}
+  - {fileID: 101768, guid: 042fd9b0a9e791045a722faa909b971c, type: 2}
+  - {fileID: 156810, guid: 4f10d9f19f2835548a3341acd531fbcf, type: 2}
+  - {fileID: 163050, guid: f04032decc657e24b8bc18cebb306db9, type: 2}
+  - {fileID: 121488, guid: a2413465161f0ed4b8f9d13ba07648f7, type: 2}
+  - {fileID: 147840, guid: 1fdcf6b6729bdd4469b624e8d7958953, type: 2}
+  - {fileID: 176030, guid: ea2482cf0f2fd34418b8d1a51ccbb428, type: 2}
+  - {fileID: 141134, guid: bd1714b9a5fa94d00b3bf8c10ad48ce5, type: 2}
+  - {fileID: 158654, guid: d6fd3011dd49ef745b39985d38a6365d, type: 2}
+  - {fileID: 158654, guid: db14bbb8fdea469449796f858077570d, type: 2}
+  - {fileID: 142178, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
+  - {fileID: 101476, guid: 4fcfa7716d79e6f478470df880770359, type: 2}
+  - {fileID: 110606, guid: da10079c46e17d941833673863317e1d, type: 2}
+  - {fileID: 161968, guid: 2e0bea58b0e28c148bb0e32e913149c9, type: 2}
+  - {fileID: 106624, guid: 6dbdddf9b6c27fd4cbc4dbaa870099ef, type: 2}
+  - {fileID: 161200, guid: 0ddff5fadebc747c598becc1c279e398, type: 2}
+  - {fileID: 133222, guid: 430fd47f594c1664aa800c66518057e2, type: 2}
+  - {fileID: 160356, guid: 4a78e23cba1d30340ad55c02df449083, type: 2}
+  - {fileID: 110434, guid: af7fe0293495c3d408d4c7e515834bc6, type: 2}
+  - {fileID: 172148, guid: 42997917505706746ae56899c2ac309c, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[0]
+      value: 
+      objectReference: {fileID: 159222, guid: 4c47f98fb808e09469911a5db83b6942, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[1]
+      value: 
+      objectReference: {fileID: 176030, guid: d873f62441c33c2489301d732a1ef56c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[2]
+      value: 
+      objectReference: {fileID: 101768, guid: 042fd9b0a9e791045a722faa909b971c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[3]
+      value: 
+      objectReference: {fileID: 156810, guid: 4f10d9f19f2835548a3341acd531fbcf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[4]
+      value: 
+      objectReference: {fileID: 163050, guid: f04032decc657e24b8bc18cebb306db9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[5]
+      value: 
+      objectReference: {fileID: 121488, guid: a2413465161f0ed4b8f9d13ba07648f7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[6]
+      value: 
+      objectReference: {fileID: 147840, guid: 1fdcf6b6729bdd4469b624e8d7958953, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[7]
+      value: 
+      objectReference: {fileID: 176030, guid: ea2482cf0f2fd34418b8d1a51ccbb428, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[8]
+      value: 
+      objectReference: {fileID: 141134, guid: bd1714b9a5fa94d00b3bf8c10ad48ce5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[9]
+      value: 
+      objectReference: {fileID: 158654, guid: d6fd3011dd49ef745b39985d38a6365d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[10]
+      value: 
+      objectReference: {fileID: 158654, guid: db14bbb8fdea469449796f858077570d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[11]
+      value: 
+      objectReference: {fileID: 142178, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[12]
+      value: 
+      objectReference: {fileID: 101476, guid: 4fcfa7716d79e6f478470df880770359, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[13]
+      value: 
+      objectReference: {fileID: 110606, guid: da10079c46e17d941833673863317e1d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[14]
+      value: 
+      objectReference: {fileID: 161968, guid: 2e0bea58b0e28c148bb0e32e913149c9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[15]
+      value: 
+      objectReference: {fileID: 106624, guid: 6dbdddf9b6c27fd4cbc4dbaa870099ef, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[16]
+      value: 
+      objectReference: {fileID: 161200, guid: 0ddff5fadebc747c598becc1c279e398, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[17]
+      value: 
+      objectReference: {fileID: 133222, guid: 430fd47f594c1664aa800c66518057e2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[18]
+      value: 
+      objectReference: {fileID: 160356, guid: 4a78e23cba1d30340ad55c02df449083, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[19]
+      value: 
+      objectReference: {fileID: 110434, guid: af7fe0293495c3d408d4c7e515834bc6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[20]
+      value: 
+      objectReference: {fileID: 172148, guid: 42997917505706746ae56899c2ac309c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[21]
+      value: 
+      objectReference: {fileID: 158654, guid: db14bbb8fdea469449796f858077570d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[22]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[23]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[24]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[25]
+      value: 
+      objectReference: {fileID: 172148, guid: 42997917505706746ae56899c2ac309c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[26]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[27]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[28]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[29]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[30]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[31]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[32]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[33]
+      value: 
+      objectReference: {fileID: 110434, guid: af7fe0293495c3d408d4c7e515834bc6, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[34]
+      value: 
+      objectReference: {fileID: 160356, guid: 4a78e23cba1d30340ad55c02df449083, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[35]
+      value: 
+      objectReference: {fileID: 133222, guid: 430fd47f594c1664aa800c66518057e2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[36]
+      value: 
+      objectReference: {fileID: 106624, guid: 6dbdddf9b6c27fd4cbc4dbaa870099ef, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[37]
+      value: 
+      objectReference: {fileID: 161968, guid: 2e0bea58b0e28c148bb0e32e913149c9, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[38]
+      value: 
+      objectReference: {fileID: 101476, guid: 4fcfa7716d79e6f478470df880770359, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[39]
+      value: 
+      objectReference: {fileID: 158654, guid: d6fd3011dd49ef745b39985d38a6365d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[40]
+      value: 
+      objectReference: {fileID: 156810, guid: 4f10d9f19f2835548a3341acd531fbcf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[41]
+      value: 
+      objectReference: {fileID: 101768, guid: 042fd9b0a9e791045a722faa909b971c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[42]
+      value: 
+      objectReference: {fileID: 176030, guid: d873f62441c33c2489301d732a1ef56c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[43]
+      value: 
+      objectReference: {fileID: 158654, guid: 49dfe3e5a9f682a46a9b008fc41202bb, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 183658}
+  m_IsPrefabParent: 1

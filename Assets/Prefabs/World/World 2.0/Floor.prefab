@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &153158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 443040}
+  - 114: {fileID: 11481924}
+  m_Layer: 0
+  m_Name: Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443040
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.021112, y: 3.5798674, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11481924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fbe70f607c669449aac19ad7ba0c5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floors:
+  - {fileID: 190962, guid: 70cb704d55c5f434d89cb31b14b79b27, type: 2}
+  - {fileID: 116936, guid: 3072cb8daa6bd014e919b695d84339f4, type: 2}
+  floorsPlain:
+  - {fileID: 165188, guid: fd9a8f61830f8974693e543bac4c21ab, type: 2}
+  - {fileID: 197616, guid: 5162ecddc0c44c643980c06a679821dd, type: 2}
+  width: 0
+  height: 0
+  typeOfFloor: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: floors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: floorsPlain.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: floors.Array.data[0]
+      value: 
+      objectReference: {fileID: 190962, guid: 70cb704d55c5f434d89cb31b14b79b27, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floors.Array.data[1]
+      value: 
+      objectReference: {fileID: 116936, guid: 3072cb8daa6bd014e919b695d84339f4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floorsPlain.Array.data[0]
+      value: 
+      objectReference: {fileID: 165188, guid: fd9a8f61830f8974693e543bac4c21ab, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floorsPlain.Array.data[1]
+      value: 
+      objectReference: {fileID: 197616, guid: 5162ecddc0c44c643980c06a679821dd, type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 153158}
+  m_IsPrefabParent: 1

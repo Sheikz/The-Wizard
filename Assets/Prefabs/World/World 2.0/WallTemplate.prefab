@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &112468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479536}
+  - 114: {fileID: 11430876}
+  m_Layer: 0
+  m_Name: WallTemplate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479536
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11430876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7b9c2f65d844e340810b73bddb60b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallPrefabs:
+  - item: {fileID: 180690, guid: 56518298129bbed47ab4a99acf082046, type: 2}
+    lootChance: 1
+  - item: {fileID: 187744, guid: d27454c2a17fabd48bde30cbcc4c9e3a, type: 2}
+    lootChance: 1
+  - item: {fileID: 191832, guid: dc89dfd7b4a2f234cabb7640f4e10b3b, type: 2}
+    lootChance: 0.5
+  - item: {fileID: 134964, guid: 91b254ebef2499d44b7ad452d2befb71, type: 2}
+    lootChance: 0.5
+  - item: {fileID: 134036, guid: f2aa9720309c77640b1c4f03409d3df5, type: 2}
+    lootChance: 1
+  - item: {fileID: 147712, guid: aa3edf180793c834ab842486b16dc459, type: 2}
+    lootChance: 0.25
+  exteriorCornerPrefabsNorthWest:
+  - {fileID: 128948, guid: efb7ba6e39f21904e953753f55c3d349, type: 2}
+  exteriorCornerPrefabsNorthEast:
+  - {fileID: 176990, guid: 7015755279a116a4eaffb1dd13e885a1, type: 2}
+  interiorCornerPrefabsSouthEast:
+  - {fileID: 132034, guid: bef0c17e328f1224eaa2c059249a129b, type: 2}
+  interiorCornerPrefabsSouthWest:
+  - {fileID: 129470, guid: 653872bdc9f07d64487eff395945d400, type: 2}
+  door:
+  - {fileID: 100980, guid: 7054967e5f5850844a564b8ce973eec4, type: 2}
+  - {fileID: 195204, guid: 467437cc7c57153499bc1027349c963a, type: 2}
+  floorPrefabs:
+  - item: {fileID: 190962, guid: 70cb704d55c5f434d89cb31b14b79b27, type: 2}
+    lootChance: 1
+  - item: {fileID: 116936, guid: 3072cb8daa6bd014e919b695d84339f4, type: 2}
+    lootChance: 1
+  wallDecos:
+  - item: {fileID: 0}
+    lootChance: 2
+  - item: {fileID: 186338, guid: e4d1824106abdab4da684eec631f57dc, type: 2}
+    lootChance: 0.2
+  - item: {fileID: 172636, guid: f65e7ea37bbfd384ca414fa86fe73377, type: 2}
+    lootChance: 0.2
+  - item: {fileID: 158216, guid: 13d2899629b33be41a88e97ba47f02a3, type: 2}
+    lootChance: 0.2
+  - item: {fileID: 172184, guid: ff0bc83bf506e614c8d065f35518b6f7, type: 2}
+    lootChance: 0.2
+  - item: {fileID: 142080, guid: 6ad9d2e340293e14cbe084be4cab749f, type: 2}
+    lootChance: 0.3
+  meshCreator: {fileID: 11437410, guid: 7dbd863202003cb4996b8ab2822c8ad2, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: door.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: floorPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: interiorCornerPrefabsSouthWest.Array.data[0]
+      value: 
+      objectReference: {fileID: 129470, guid: 653872bdc9f07d64487eff395945d400, type: 2}
+    - target: {fileID: 0}
+      propertyPath: interiorCornerPrefabsSouthEast.Array.data[0]
+      value: 
+      objectReference: {fileID: 132034, guid: bef0c17e328f1224eaa2c059249a129b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[1].item
+      value: 
+      objectReference: {fileID: 186338, guid: e4d1824106abdab4da684eec631f57dc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[2].item
+      value: 
+      objectReference: {fileID: 172636, guid: f65e7ea37bbfd384ca414fa86fe73377, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[3].item
+      value: 
+      objectReference: {fileID: 158216, guid: 13d2899629b33be41a88e97ba47f02a3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[0].lootChance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[1].lootChance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[2].lootChance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[3].lootChance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[4].item
+      value: 
+      objectReference: {fileID: 142080, guid: 6ad9d2e340293e14cbe084be4cab749f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[5].item
+      value: 
+      objectReference: {fileID: 142080, guid: 6ad9d2e340293e14cbe084be4cab749f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floorPrefabs.Array.data[0].item
+      value: 
+      objectReference: {fileID: 190962, guid: 70cb704d55c5f434d89cb31b14b79b27, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floorPrefabs.Array.data[1].item
+      value: 
+      objectReference: {fileID: 116936, guid: 3072cb8daa6bd014e919b695d84339f4, type: 2}
+    - target: {fileID: 0}
+      propertyPath: floorPrefabs.Array.data[0].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: floorPrefabs.Array.data[1].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: door.Array.data[1]
+      value: 
+      objectReference: {fileID: 195204, guid: 467437cc7c57153499bc1027349c963a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[5].lootChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallPrefabs.Array.data[5].item
+      value: 
+      objectReference: {fileID: 147712, guid: aa3edf180793c834ab842486b16dc459, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallPrefabs.Array.data[5].lootChance
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[6].item
+      value: 
+      objectReference: {fileID: 147712, guid: aa3edf180793c834ab842486b16dc459, type: 2}
+    - target: {fileID: 0}
+      propertyPath: wallDecos.Array.data[6].lootChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: meshCreator
+      value: 
+      objectReference: {fileID: 11437410, guid: 7dbd863202003cb4996b8ab2822c8ad2,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 112468}
+  m_IsPrefabParent: 1

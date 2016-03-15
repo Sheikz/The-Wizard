@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &152574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402778}
+  - 114: {fileID: 11457332}
+  m_Layer: 0
+  m_Name: LayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402778
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 123.32154, y: 67.0454, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11457332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388129f23d1a564dac81eddeb1a6f63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nothing:
+    serializedVersion: 2
+    m_Bits: 0
+  heroLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  heroVisionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  monsterVisionLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  spellBlockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  monsterLayer:
+    serializedVersion: 2
+    m_Bits: 33280
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1114368
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 65792
+  highBlockingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  heroSpells:
+    serializedVersion: 2
+    m_Bits: 4096
+  monsterSpells:
+    serializedVersion: 2
+    m_Bits: 8192
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: spellBlockingLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsterSpell.m_Bits
+      value: 131072
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsterVisionLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsterAimingLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsterLayer.m_Bits
+      value: 33280
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellBlockingLayerWithMonster.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: heroVisionLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: obstacleLayer.m_Bits
+      value: 1114368
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blockingLayer.m_Bits
+      value: 65792
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: highBlockingLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: heroLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: heroSpells.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsterSpells.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 152574}
+  m_IsPrefabParent: 1

@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &110316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402694}
+  - 114: {fileID: 11417882}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402694
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11417882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c51c81e00a7a1419d1fe6c938772f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallTemplate: {fileID: 11430876, guid: 612c5308ee2d3724386d466a54f7126c, type: 2}
+  startingRoom: {fileID: 123830, guid: 27ddd3fee873c7a4bb0a59f07159127d, type: 2}
+  roomLiaison: {fileID: 125394, guid: bc321350d51c4d1498ee3583787f64fe, type: 2}
+  roomPrefabs:
+  - item: {fileID: 144846, guid: f022d715980052742a20e9e175b0d005, type: 2}
+    lootChance: 0.25
+  - item: {fileID: 103554, guid: 4b8c0533d4b19af4e8a3155abdae17d8, type: 2}
+    lootChance: 0.25
+  - item: {fileID: 185130, guid: e05773fa4a6cf2949b770bf330bfafed, type: 2}
+    lootChance: 1
+  - item: {fileID: 144378, guid: ed6185e1f27b2044e869dfb5dadc9190, type: 2}
+    lootChance: 1
+  - item: {fileID: 102576, guid: 4f6bd4f78d61b4049815e35c6cbd1942, type: 2}
+    lootChance: 1
+  - item: {fileID: 157840, guid: 0a10b5c538fed4e40ab721224762300e, type: 2}
+    lootChance: 0.5
+  bossRoomPrefabs:
+  - item: {fileID: 114406, guid: 1f0fc4dc00e2c304bbd0a3e252b17209, type: 2}
+    lootChance: 1
+  bossRoom: 1
+  allowedGenerationTime: 3
+  roomNumber: 10
+  distanceBetweenRoom: 4
+  monsters:
+  - item: {fileID: 132528, guid: 1531406b618c2ec479185cfe0db938c2, type: 2}
+    lootChance: 1
+  - item: {fileID: 149020, guid: 7ae5464ff731cbf428aa3415ade0026a, type: 2}
+    lootChance: 1
+  - item: {fileID: 190100, guid: e185a943d880de047ab141c8ebf1fcaf, type: 2}
+    lootChance: 1
+  - item: {fileID: 174542, guid: d33211470e2d92141bf89a6e5ae81bd7, type: 2}
+    lootChance: 1
+  - item: {fileID: 150918, guid: 1b5bb66c74331934d8723124b9408375, type: 2}
+    lootChance: 1
+  - item: {fileID: 150918, guid: 1782120d2a0e0c64395f3d3769104e23, type: 2}
+    lootChance: 1
+  monsterNumber: 30
+  mergingChance: 0.3
+  proxyObjects: []
+  monsterList: []
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bossRoomPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomNumber
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[0]
+      value: 
+      objectReference: {fileID: 132528, guid: 1531406b618c2ec479185cfe0db938c2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[1]
+      value: 
+      objectReference: {fileID: 149020, guid: 7ae5464ff731cbf428aa3415ade0026a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[2]
+      value: 
+      objectReference: {fileID: 190100, guid: e185a943d880de047ab141c8ebf1fcaf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[3]
+      value: 
+      objectReference: {fileID: 174542, guid: d33211470e2d92141bf89a6e5ae81bd7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[4]
+      value: 
+      objectReference: {fileID: 150918, guid: 1b5bb66c74331934d8723124b9408375, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsterNumber
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 102576, guid: 4f6bd4f78d61b4049815e35c6cbd1942, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[0].item
+      value: 
+      objectReference: {fileID: 144846, guid: f022d715980052742a20e9e175b0d005, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[1].item
+      value: 
+      objectReference: {fileID: 103554, guid: 4b8c0533d4b19af4e8a3155abdae17d8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[2].item
+      value: 
+      objectReference: {fileID: 185130, guid: e05773fa4a6cf2949b770bf330bfafed, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[3].item
+      value: 
+      objectReference: {fileID: 144378, guid: ed6185e1f27b2044e869dfb5dadc9190, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[4].item
+      value: 
+      objectReference: {fileID: 102576, guid: 4f6bd4f78d61b4049815e35c6cbd1942, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[5].item
+      value: 
+      objectReference: {fileID: 157840, guid: 0a10b5c538fed4e40ab721224762300e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[6].item
+      value: 
+      objectReference: {fileID: 157840, guid: 0a10b5c538fed4e40ab721224762300e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[6].lootChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[5].lootChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[4].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[3].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[2].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[0].lootChance
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[1].lootChance
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mergingChance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomLiaison
+      value: 
+      objectReference: {fileID: 125394, guid: bc321350d51c4d1498ee3583787f64fe, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[7].item
+      value: 
+      objectReference: {fileID: 157840, guid: 0a10b5c538fed4e40ab721224762300e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[7].lootChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[8].item
+      value: 
+      objectReference: {fileID: 114406, guid: 1f0fc4dc00e2c304bbd0a3e252b17209, type: 2}
+    - target: {fileID: 0}
+      propertyPath: roomPrefabs.Array.data[8].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[5]
+      value: 
+      objectReference: {fileID: 108374, guid: 858782f95d4004123a9dc139db33404f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[0].item
+      value: 
+      objectReference: {fileID: 132528, guid: 1531406b618c2ec479185cfe0db938c2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[1].item
+      value: 
+      objectReference: {fileID: 149020, guid: 7ae5464ff731cbf428aa3415ade0026a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[2].item
+      value: 
+      objectReference: {fileID: 190100, guid: e185a943d880de047ab141c8ebf1fcaf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[3].item
+      value: 
+      objectReference: {fileID: 174542, guid: d33211470e2d92141bf89a6e5ae81bd7, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[4].item
+      value: 
+      objectReference: {fileID: 150918, guid: 1b5bb66c74331934d8723124b9408375, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[5].item
+      value: 
+      objectReference: {fileID: 150918, guid: 1782120d2a0e0c64395f3d3769104e23, type: 2}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[5].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[0].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[1].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[2].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[3].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: monsters.Array.data[4].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bossRoomPrefabs.Array.data[0].item
+      value: 
+      objectReference: {fileID: 114406, guid: 1f0fc4dc00e2c304bbd0a3e252b17209, type: 2}
+    - target: {fileID: 0}
+      propertyPath: bossRoomPrefabs.Array.data[0].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bossRoom
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 110316}
+  m_IsPrefabParent: 1
