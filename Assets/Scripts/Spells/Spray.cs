@@ -15,7 +15,7 @@ public class Spray : SpellController
 	}
 	
 	// Update is called once per frame
-	void LateUpdate ()
+	void LateUpdate()
 	{
         if (!isCasted)
             stopSpray();

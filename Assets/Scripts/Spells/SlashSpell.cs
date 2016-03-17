@@ -42,7 +42,7 @@ public class SlashSpell : SpellController
         return true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (transform.childCount == 0)
             Destroy(gameObject);

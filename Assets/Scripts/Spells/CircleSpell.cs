@@ -12,12 +12,13 @@ public class CircleSpell : SpellController
 
     private List<RotatingSpell> spellCreated;
     private bool isCreatingSpell = true;
-    private ShootType shootType = (ShootType)Random.Range(0, 3);
+    private ShootType shootType = ShootType.AllDirection;
 
     new void Awake()
     {
         base.Awake();
         spellCreated = new List<RotatingSpell>();
+        shootType = (ShootType)Random.Range(0, 3);
     }
    
     new void Start()

@@ -13,20 +13,22 @@ public class PullForceSpell : MonoBehaviour
     {
         spell = GetComponent<StaticSpell>();
     }
-
-    void FixedUpdate()
+    
+    void OnTriggerStay2D(Collider2D collision)
     {
-        foreach (Damageable dmg in spell.affectedObjects)
+        Damageable dmg = collision.GetComponent<Damageable>();
+        if (!dmg)
+            return;
+
+        if (spell.emitter == dmg.gameObject)  // If the emitter is the same as the receiver, there is no pull
+            return;
+
+        Rigidbody2D otherRB = dmg.GetComponent<Rigidbody2D>();
+        if (otherRB)
         {
-            if (!dmg)
-                continue;
-
-            if (spell.emitter == dmg.gameObject)  // If the emitter is the same as the receiver, there is no pull
-                return;
-
-            Rigidbody2D otherRB = dmg.GetComponent<Rigidbody2D>();
-            if (otherRB)
-                otherRB.AddForce((transform.position - dmg.transform.position) * pullStrength);
+            Vector3 forceToCenter = (transform.position - dmg.transform.position).normalized * 0.5f;
+            Vector3 rotationForce = Vector3.Cross(forceToCenter, Vector3.forward) * 0.8f;
+            otherRB.AddForce((forceToCenter + rotationForce)*pullStrength);
         }
     }
 }

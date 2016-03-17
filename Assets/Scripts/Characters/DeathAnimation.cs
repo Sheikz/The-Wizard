@@ -17,9 +17,9 @@ public class DeathAnimation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Vector3.up * speed / Screen.height;
+        transform.position += Vector3.up * speed;
     }
 
     IEnumerator fadeAfterSeconds(float duration)

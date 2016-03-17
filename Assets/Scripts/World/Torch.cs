@@ -28,12 +28,14 @@ public class Torch : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        Debug.Log(name = " here");
         if (hero == null)
         {
             Debug.Log("Here");
             hero = GameManager.instance.hero.gameObject;
             return;
         }
+
         
 		RaycastHit2D hit = Physics2D.Linecast(lightPoint, hero.transform.position, visionLayer);
 		if (hit.collider.gameObject == hero)

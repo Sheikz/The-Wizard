@@ -53,7 +53,7 @@ public class Explosion : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
 	{
         if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
             return; // Legacy Particle System can be defined as one-shot and dont need to be destroyed manually

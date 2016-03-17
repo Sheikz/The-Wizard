@@ -30,12 +30,12 @@ public class FloatingText : MonoBehaviour
 	}
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate()
 	{
 		if (parent)
 			parentPosition = parent.transform.position;
 
-        speedOffset += Vector3.up * speed / Screen.height;
+        speedOffset += Vector3.up * speed;
 		rectTransform.position = Camera.main.WorldToScreenPoint
 			(parentPosition
 			+ Vector3.up * parentRadius
