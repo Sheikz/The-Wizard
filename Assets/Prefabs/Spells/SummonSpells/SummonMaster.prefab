@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11472202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +40,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16540cf85bf30b04a84cc2d3204d75e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: Summon Master
+  spellTypeDescription: Summoning
+  damageString: 
+  description: Summon your almigthy master to aid you in battle
   cooldown: 60
   icon: {fileID: 21300116, guid: 9646bfb7e1b8dc14980ce44543564fc9, type: 3}
   spellType: 4
-  magicSchool: 0
+  magicElement: 0
+  spellSet: 0
   damage: 10
   lightIntensity: 0
+  duration: 15
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}
@@ -54,7 +61,6 @@ MonoBehaviour:
   collidesWithWalls: 1
   ignoredColliders: []
   NPC: {fileID: 11492130, guid: 1c47fffcc67cc4346b91f416d847287f, type: 2}
-  duration: 15
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

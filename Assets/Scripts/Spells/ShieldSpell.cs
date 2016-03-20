@@ -5,7 +5,6 @@ using System;
 [RequireComponent(typeof(CircleCollider2D))]
 public class ShieldSpell : SpellController
 {
-    public float duration;
     public bool collidesWithSpells = true;
 
     new void Start()

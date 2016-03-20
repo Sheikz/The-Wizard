@@ -5,18 +5,29 @@ using System.Collections.Generic;
 
 public enum SpellIntensity { Tiny, Small, Normal, Mega };
 
-public abstract class SpellController : MonoBehaviour
+public abstract class SpellController : MonoBehaviour, IComparable<SpellController>
 {
-	public float cooldown = 0.2f;
-	public Sprite icon;
+    public string spellName;
+    public string spellTypeDescription;
+    public string damageString;
+    [Tooltip("Description of the spell appearing in tooltips")]
+    public string description;
+    public int manaCost;
+    public float cooldown = 0.2f;
+    public Sprite icon;
 	public SpellType spellType = SpellType.Primary;
 	public MagicElement magicElement;
+	public SpellSet spellSet = SpellSet.SpellSet1;
 	public int damage = 10;
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
+    public float duration = 0f;
+    
 
 	[Tooltip("The list of spells required to unlock this one")]
 	public GameObject[] prerequisites;
-	[Tooltip("Should the prerequisites be removed when the spell is learned?")]
+
+
+    [Tooltip("Should the prerequisites be removed when the spell is learned?")]
 	public bool removePrerequisites = false;
 
 	protected Rigidbody2D rb;
@@ -32,7 +43,7 @@ public abstract class SpellController : MonoBehaviour
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
 
-	protected void Awake()
+    protected void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		circleCollider = GetComponent<CircleCollider2D>();
@@ -46,8 +57,8 @@ public abstract class SpellController : MonoBehaviour
 	{
 		setupLights();
 		applyStats();
-        applyLayer();
-    }
+		applyLayer();
+	}
 
 	public abstract SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target);
 
@@ -98,10 +109,15 @@ public abstract class SpellController : MonoBehaviour
 			Debug.Log("No stats found for " + name);
 			return;
 		}
-		damage = Mathf.RoundToInt(damage* stats.getDamageMultiplier(magicElement));
+        damage = getDamage(stats);
 	}
 
-	protected IEnumerator enableForSecondsAfterDelay(Collider2D collider, float delay, float duration)
+    public int getDamage(CharacterStats stats)
+    {
+        return Mathf.RoundToInt(damage * stats.getDamageMultiplier(magicElement));
+    }
+
+    protected IEnumerator enableForSecondsAfterDelay(Collider2D collider, float delay, float duration)
 	{
 		collider.enabled = false;
 		yield return new WaitForSeconds(delay);
@@ -142,7 +158,7 @@ public abstract class SpellController : MonoBehaviour
 		}
 		else
 		{
-            gameObject.layer = LayerMask.NameToLayer("Spells");
+			gameObject.layer = LayerMask.NameToLayer("Spells");
 			enemyLayer = GameManager.instance.layerManager.monsterLayer;
 		}
 	}
@@ -187,4 +203,8 @@ public abstract class SpellController : MonoBehaviour
 		Destroy(gameObject);
 	}
 
+	public int CompareTo(SpellController other)
+	{
+        return (int)spellSet - (int)other.spellSet;
+	}
 }

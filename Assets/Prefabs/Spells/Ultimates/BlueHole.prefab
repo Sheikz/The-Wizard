@@ -238,12 +238,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3659a7599b2fb6b40aca199147787f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  spellName: Black Hole
+  spellTypeDescription: Area of Effect
+  damageString: <dmg> damage/second
+  description: Damage and pushes enemies to the center of the hole
+  manaCost: 50
+  cooldown: 5
   icon: {fileID: 21300000, guid: b791f7ce75f1e48d79838517bcaab626, type: 3}
   spellType: 3
   magicElement: 6
-  damage: 3
+  spellSet: 0
+  damage: 40
   lightIntensity: 0
+  duration: 3
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}
@@ -253,7 +260,6 @@ MonoBehaviour:
   collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0.5
-  duration: 3
   damageOverTime: 1
   affectedObjects: []
 --- !u!198 &19831552
@@ -2059,4 +2065,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 1
-  delayBetweenDamage: 0
+  delayBetweenDamage: 0.25

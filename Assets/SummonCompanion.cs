@@ -11,6 +11,7 @@ public class SummonCompanion : SpellController
         Companion newCompanion = Instantiate(companion);
         newCompanion.transform.SetParent(emitter.transform);
         emitter.addCompanion(newCompanion);
+        newCompanion.initialize(duration);
 
         CharacterStats companionStats = newCompanion.GetComponent<CharacterStats>();
         if (companionStats)

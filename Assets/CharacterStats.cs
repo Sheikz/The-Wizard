@@ -5,7 +5,7 @@ using System;
 public abstract class CharacterStats : MonoBehaviour
 {
     public int level = 1;
-    public float progressionRatio = 1.25f;
+    public float progressionRatio = 1.05f;
     [Tooltip("Cooldown modifier")]
     public float cooldownModifier = 1f;
 
@@ -26,10 +26,10 @@ public abstract class CharacterStats : MonoBehaviour
             damageable.multiplyMaxHP(levelDamageMultiplier());
     }
 
-    public void levelUp()
+    public virtual void levelUp()
     {
         level++;
-        damageable.multiplyMaxHP(1.25f);
+        damageable.multiplyMaxHP(1.05f);
         if (caster)
             caster.levelUpFollowers();
     }
@@ -43,6 +43,4 @@ public abstract class CharacterStats : MonoBehaviour
     {
         return Mathf.Pow(progressionRatio, level-1);
     }
-
-
 }

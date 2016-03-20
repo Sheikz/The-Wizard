@@ -6,6 +6,9 @@ using System;
 
 public class SpellCaster : MonoBehaviour
 {
+    public bool useMana = false;
+    public int maxMana;
+    public float manaRegenPerSecond;
 	public GameObject[] spellList;
 
     protected bool[] isOnCoolDown;
@@ -13,6 +16,9 @@ public class SpellCaster : MonoBehaviour
     private HashSet<Spray> activeSprays;
     private bool isHero = false;
     private SpellBook spellBook;
+
+
+
     private CharacterStats characterStats;
     [HideInInspector]
     public bool isMonster;
@@ -21,6 +27,7 @@ public class SpellCaster : MonoBehaviour
     [HideInInspector]
     public List<CircleSpell> activeCircleSpells;
     private int maxNumberOfActiveCompanions = 3;
+    private float mana;
 
     void Awake()
     {
@@ -36,6 +43,7 @@ public class SpellCaster : MonoBehaviour
         activeSprays = new HashSet<Spray>();
         companionList = new List<Companion>();
         followerList = new List<CompanionController>();
+        mana = maxMana;
 
         if (tag == "Hero")
         {
@@ -54,6 +62,13 @@ public class SpellCaster : MonoBehaviour
             spellBook.addSpell(spellList);
         }
 	}
+
+    void FixedUpdate()
+    {
+        mana += manaRegenPerSecond * Time.fixedDeltaTime;
+        if (mana >= maxMana)
+            mana = maxMana;
+    }
 
     public void levelUpFollowers()
     {
@@ -142,12 +157,25 @@ public class SpellCaster : MonoBehaviour
 			return;
 		if (!GameManager.instance.isPaused && !isOnCoolDown[spellIndex])
 		{
-            if (spellList[spellIndex].GetComponent<SpellController>().castSpell(this, initialPos, target))
+            SpellController spell = spellList[spellIndex].GetComponent<SpellController>();
+            if (useMana && mana < spell.manaCost)
+                return;
+
+            if (spell.castSpell(this, initialPos, target))
+            {
                 StartCoroutine(startCooldown(spellIndex));  // Start the cooldown only if the spell has been launched
+                removeMana(spell.manaCost);
+            }
         }
 	}
 
-	public void castAvailableSpells(Vector3 initialPosition, Vector3 target)
+    private void removeMana(int manaCost)
+    {
+        mana -= manaCost;
+        mana = Mathf.Clamp(mana, 0, maxMana);
+    }
+
+    public void castAvailableSpells(Vector3 initialPosition, Vector3 target)
 	{
 		for (int i = 0; i < spellList.Length; i++)
 		{
@@ -251,5 +279,15 @@ public class SpellCaster : MonoBehaviour
     public void removeFollower(CompanionController companion)
     {
         followerList.Remove(companion);
+    }
+
+    public float getMana()
+    {
+        return mana;
+    }
+
+    public float getManaRatio()
+    {
+        return mana / maxMana;
     }
 }

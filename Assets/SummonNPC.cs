@@ -5,7 +5,6 @@ using System;
 public class SummonNPC : SpellController
 {
     public CompanionController NPC;
-    public float duration = 10;
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
     {

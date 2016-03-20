@@ -7,7 +7,6 @@ using UnityEngine;
 public class StaticSpell : SpellController
 {
     public float delayBeforeDamage;
-    public float duration = 3f;
     public bool damageOverTime = true;
 
     [HideInInspector]

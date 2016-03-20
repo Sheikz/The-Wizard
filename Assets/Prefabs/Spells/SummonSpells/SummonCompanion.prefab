@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11468034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +40,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2601aae8561aba943b064fbbbf57d050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: Arcane Familiar
+  spellTypeDescription: Buff
+  damageString: 
+  description: Summon a familiar that attack nearby enemies
   cooldown: 30
   icon: {fileID: 21300050, guid: 8a6e157a9205c8645ab01eb3dbcc78e6, type: 3}
   spellType: 3
   magicElement: 3
+  spellSet: 0
   damage: 0
   lightIntensity: 0
+  duration: 10
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}

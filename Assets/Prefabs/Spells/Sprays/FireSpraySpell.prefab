@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11453120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +40,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4731af4903f224982ef32ddfdec0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: Dragon Breath
+  spellTypeDescription: Canalized spell
+  damageString: <dmg> damage/second
+  description: Breathes fire upon enemies
+  manaCost: 5
   cooldown: 0
   icon: {fileID: 21300000, guid: 8a6e157a9205c8645ab01eb3dbcc78e6, type: 3}
   spellType: 1
   magicElement: 2
-  damage: 10
+  spellSet: 0
+  damage: 50
   lightIntensity: 0
+  duration: 0
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}

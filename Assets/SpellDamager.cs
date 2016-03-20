@@ -52,15 +52,15 @@ public class SpellDamager : MonoBehaviour
             effect.inflictStatus(dmg);
         }
 
-        if (damageType == DamageType.DamageOnce)
-            return;
-        else if (damageType == DamageType.DamageOverTime)
-            damageObject(dmg);
+        StartCoroutine(damageObject(dmg));
     }
 
     IEnumerator damageObject(Damageable dmg)
     {
         damagedObjects.Add(dmg);
+        if (damageType == DamageType.DamageOnce)
+            yield break;
+
         yield return new WaitForSeconds(delayBetweenDamage);
         damagedObjects.Remove(dmg);
     }

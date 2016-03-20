@@ -38,6 +38,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &5077470
 Rigidbody2D:
   serializedVersion: 2
@@ -130,6 +131,8 @@ MonoBehaviour:
   spellList:
   - {fileID: 184154, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
   - {fileID: 142178, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
+  isMonster: 0
+  activeCircleSpells: []
 --- !u!114 &11463836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,8 +157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  progressionRatio: 1.25
+  progressionRatio: 1.1
   cooldownModifier: 2
+  dungeonLevelMultiplier: 1.2
+  monsterDamageMultiplier: 0.5
 --- !u!114 &11477938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,13 +208,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0

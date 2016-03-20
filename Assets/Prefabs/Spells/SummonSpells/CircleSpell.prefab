@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11404826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +40,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8285126acd046104aba1ecfee2abeb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: Fire Frenzy
+  spellTypeDescription: Summon projectiles
+  damageString: <dmg> damage
+  description: Summon 4 fireballs around the caster
+  manaCost: 35
   cooldown: 5
   icon: {fileID: 21300006, guid: 8a6e157a9205c8645ab01eb3dbcc78e6, type: 3}
   spellType: 4
   magicElement: 2
-  damage: 10
+  spellSet: 0
+  damage: 100
   lightIntensity: 0
+  duration: 0
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}

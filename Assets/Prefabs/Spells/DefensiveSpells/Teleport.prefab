@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11494182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,12 +40,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5644a003f178f4f82bf939d1bdeebd6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: Teleport
+  spellTypeDescription: Utility
+  damageString: 
+  description: Teleport to the location
+  manaCost: 30
   cooldown: 3
   icon: {fileID: 21300000, guid: 860dabd4907b1ed468a142cd1be7c905, type: 3}
   spellType: 3
   magicElement: 3
+  spellSet: 1
   damage: 10
   lightIntensity: 0
+  duration: 0
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}

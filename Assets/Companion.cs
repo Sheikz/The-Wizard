@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class Companion : MonoBehaviour
 {
@@ -8,14 +9,15 @@ public class Companion : MonoBehaviour
     public float distanceToMaster = 0.5f;
     public float rotationSpeed = 1f;
     public float visionRadius = 5f;
-    public float duration = 10f;
 
     private LayerMask enemyLayer;
     private enum CompanionState { Searching, Locked };
     private CompanionState state = CompanionState.Searching;
+
     private Damageable target;
     private Collider2D[] potentialTargets;
     private SpellCaster spellCaster;
+    private float duration;
 
     void Awake()
     {
@@ -36,6 +38,11 @@ public class Companion : MonoBehaviour
 
         StartCoroutine(destroyAfterSeconds(duration));
 
+    }
+
+    internal void initialize(float duration)
+    {
+        this.duration = duration;
     }
 
     private IEnumerator destroyAfterSeconds(float time)

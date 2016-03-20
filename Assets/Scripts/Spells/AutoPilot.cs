@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AutoPilot : MonoBehaviour 
 {
+    public bool activated = true;
     private enum PilotState { DoNothing, Searching, LockedToObject, LockedToPosition };    // LockedToDamageable lock to a damageable entity. Lock to position lock to a fixed position in space
     public float detectionRadius = 3f;
     public float detectionDistance = 3f;
@@ -36,6 +37,9 @@ public class AutoPilot : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!activated)
+            return;
+
         switch (state)
         {
             case PilotState.DoNothing:

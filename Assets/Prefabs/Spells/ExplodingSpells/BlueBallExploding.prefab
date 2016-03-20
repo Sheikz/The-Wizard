@@ -101,6 +101,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452900}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &435382
 Transform:
   m_ObjectHideFlags: 1
@@ -113,6 +114,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452900}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &452900
 Transform:
   m_ObjectHideFlags: 1
@@ -129,6 +131,7 @@ Transform:
   - {fileID: 419896}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &485708
 Transform:
   m_ObjectHideFlags: 1
@@ -141,6 +144,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452900}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &490070
 Transform:
   m_ObjectHideFlags: 1
@@ -153,6 +157,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452900}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!12 &1252324
 ParticleAnimator:
   m_ObjectHideFlags: 1
@@ -333,13 +338,14 @@ ParticleRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: c061c555d0180d54d8d4a51514f0d2d5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -369,13 +375,14 @@ ParticleRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 9d59fd0bb2aa4e248b8cd728c1241ae9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -405,13 +412,14 @@ ParticleRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 9d59fd0bb2aa4e248b8cd728c1241ae9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -470,7 +478,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141278}
   m_Enabled: 1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Type: 2
   m_Color: {r: 0.54901963, g: 1, b: 1, a: 1}
   m_Intensity: 1
@@ -492,10 +500,10 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 1
+  m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11406542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -508,6 +516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 11420408, guid: 93c919d5c5f9a8246a65fde253f907be, type: 2}
+  destroyWhenExplodes: 1
+  explodeOnTouch: 0
+  delayBetweenExplosions: 0.5
 --- !u!114 &11419384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -519,15 +530,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5480bc06e4301014ca91fb324790b7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spellName: 
+  spellTypeDescription: 
+  damageString: 
+  description: 
   cooldown: 1.5
   icon: {fileID: 21300000, guid: f44daa6f3f8d96a4492277370073497d, type: 3}
   spellType: 0
-  magicSchool: 0
-  damage: 15
-  intensity: 0
+  magicElement: 0
+  spellSet: 0
+  damage: 100
+  lightIntensity: 0
+  duration: 0
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  collidesWithWalls: 1
+  ignoredColliders: []
   speed: 3.5
 --- !u!1001 &100100000
 Prefab:

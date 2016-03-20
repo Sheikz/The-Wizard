@@ -131,6 +131,7 @@ public enum Direction { NORTH, WEST, SOUTH, EAST, NORTHEAST, SOUTHEAST, SOUTHWES
 [SerializeField]
 public enum SpellType { Primary, Secondary, Defensive, Ultimate1, Ultimate2};
 public enum MagicElement { Light, Air , Fire, Arcane, Ice, Earth, Shadow };
+public enum SpellSet { SpellSet1, SpellSet2 };
 
 static class SpellTypeMethods
 {
