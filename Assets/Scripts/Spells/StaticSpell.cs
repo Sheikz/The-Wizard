@@ -7,6 +7,7 @@ using UnityEngine;
 public class StaticSpell : SpellController
 {
     public float delayBeforeDamage;
+    public float colliderDuration;
     public bool damageOverTime = true;
 
     [HideInInspector]
@@ -43,24 +44,12 @@ public class StaticSpell : SpellController
     {
         base.Start();
         StartCoroutine(enableAfterSeconds(delayBeforeDamage));
+        StartCoroutine(disableAfterSeconds(colliderDuration));
     }
 
     protected void FixedUpdate()
     {
         checkIfAlive();
-        /*
-        if (!damageOverTime)
-            return;
-
-        for (int i = affectedObjects.Count - 1; i >= 0; i --)
-        {
-            if (affectedObjects[i] == null)
-            {
-                affectedObjects.RemoveAt(i);
-                continue;
-            }
-            affectedObjects[i].doDamage(emitter, damage);
-        }*/
     }
 
     protected IEnumerator enableAfterSeconds(float seconds)
@@ -74,39 +63,13 @@ public class StaticSpell : SpellController
         foreach (Light light in lights)
             light.enabled = true;
     }
-    /*
-    // Weird fix because OnTriggerStay2D randomly doesn't work. Need to keep a list of objects triggering
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!damageOverTime)
-            return;
 
-        Damageable dmg = other.GetComponent<Damageable>(); ;
-        if (dmg)
-        {
-            affectedObjects.Add(dmg);
-        }
+    protected IEnumerator disableAfterSeconds(float seconds)
+    {
+        if (seconds == 0)
+            yield break;
+
+        yield return new WaitForSeconds(seconds);
+        circleCollider.enabled = false;
     }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (!damageOverTime)
-            return;
-
-        Damageable dmg = other.GetComponent<Damageable>();
-        if (dmg)
-        {
-            affectedObjects.Remove(dmg);
-        }
-    }
-    */
-
-    /*  Should work, does not work
-    void OnTriggerStay2D(Collider2D other)
-    {
-        Debug.Log("Ontriggerstay: " + other.gameObject.name);
-        Damageable dmg = other.gameObject.GetComponent<Damageable>();
-        if (dmg)
-            dmg.doDamage(emitter, damage);
-    }*/
 }

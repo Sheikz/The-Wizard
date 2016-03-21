@@ -43,7 +43,7 @@ public class PiercingSpell : MovingSpell
 
         GameObject newExplosion = Instantiate(explosion) as GameObject;
         newExplosion.transform.position = transform.position;
-        newExplosion.GetComponent<Explosion>().initialize(emitter, damage, lightIntensity);
+        newExplosion.GetComponent<Explosion>().initialize(this);
         newExplosion.layer = gameObject.layer;
         if (destroyed)
             Destroy(gameObject);

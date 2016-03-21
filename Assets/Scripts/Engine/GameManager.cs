@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 	public bool isPaused = false;
     [HideInInspector]
     public RoomBasedMapGenerator map;
+    private float savedTimeScale = 1.0f;
 	
 	void Awake ()
 	{
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
     {
         UIManager.instance.levelUpManager.levelUp();
         map.levelUpMonsters();
+    }
+
+    public void levelUpHero()
+    {
+        hero.GetComponent<ExperienceReceiver>().levelUp();
     }
 
     public void createHero()
@@ -95,9 +101,14 @@ public class GameManager : MonoBehaviour
     public void setPause(bool value)
     {
         if (value)
+        {
+            savedTimeScale = Time.timeScale;
             Time.timeScale = 0.0f;
+        }
         else
-            Time.timeScale = 1.0f;
+        {
+            Time.timeScale = savedTimeScale;
+        }
     }
 
     public void tryAgain()

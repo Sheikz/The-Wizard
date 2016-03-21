@@ -75,7 +75,7 @@ public class SpellWindowByType : MonoBehaviour
         GameManager.instance.setPause(false);
     }
 
-    internal void open()
+    public void open()
     {
         if (gameObject.activeSelf)
         {

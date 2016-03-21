@@ -16,8 +16,7 @@ public class SpellCaster : MonoBehaviour
     private HashSet<Spray> activeSprays;
     private bool isHero = false;
     private SpellBook spellBook;
-
-
+    private bool isCasting = false;
 
     private CharacterStats characterStats;
     [HideInInspector]
@@ -28,10 +27,13 @@ public class SpellCaster : MonoBehaviour
     public List<CircleSpell> activeCircleSpells;
     private int maxNumberOfActiveCompanions = 3;
     private float mana;
+    private CastingBar castingBar;
+    private MovingCharacter movingCharacter;
 
     void Awake()
     {
         characterStats = GetComponent<CharacterStats>();
+        movingCharacter = GetComponent<MovingCharacter>();
     }
 
     // Use this for initialization
@@ -150,6 +152,9 @@ public class SpellCaster : MonoBehaviour
 
 	public void castSpell(int spellIndex, Vector3 initialPos, Vector3 target)
 	{
+        if (isCasting)
+            return;
+
         if (spellList.Length == 0)
             return;
 
@@ -161,17 +166,77 @@ public class SpellCaster : MonoBehaviour
             if (useMana && mana < spell.manaCost)
                 return;
 
-            if (spell.castSpell(this, initialPos, target))
-            {
-                StartCoroutine(startCooldown(spellIndex));  // Start the cooldown only if the spell has been launched
-                removeMana(spell.manaCost);
-            }
+            if (spell.canCastSpell(this, initialPos, target))
+                StartCoroutine(castingSpellRoutine(spell, this, spellIndex, initialPos, target));
         }
 	}
 
-    private void removeMana(int manaCost)
+    /// <summary>
+    /// Cast the spell if a casting time is specified. Then, cast the spell and start cooldown. Hide castbar after.
+    /// </summary>
+    /// <param name="spell"></param>
+    /// <param name="emitter"></param>
+    /// <param name="index"></param>
+    /// <param name="pos"></param>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    private IEnumerator castingSpellRoutine(SpellController spell, SpellCaster emitter, int index, Vector3 pos, Vector3 target)
     {
+        if (spell.castTime > 0)
+        {
+            isCasting = true;
+            float startingTime = Time.realtimeSinceStartup;
+            movingCharacter.enableMovement(false);
+            while (Time.realtimeSinceStartup - startingTime < spell.castTime)
+            {
+                setCastBarRatio((Time.realtimeSinceStartup - startingTime) / spell.castTime);
+                yield return null;
+            }
+            setCastBarRatio(1f);
+
+            movingCharacter.enableMovement(true);
+        }
+
+        if (spell.castSpell(this, pos, target))
+        {
+            StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
+            payMana(spell.manaCost);
+        }
+        isCasting = false;
+        if (!castingBar)
+            yield break;
+
+        yield return new WaitForSeconds(0.25f);
+        castingBar.gameObject.SetActive(false);
+    }
+
+    private void setCastBarRatio(float ratio)
+    {
+        if (castingBar == null)
+        {
+            castingBar = Instantiate(UIManager.instance.castingBar);
+            castingBar.transform.SetParent(transform);
+            castingBar.transform.localPosition = new Vector3(0, -0.8f, 0);
+        }
+        castingBar.gameObject.SetActive(true);
+        castingBar.setRatio(ratio);
+    }
+
+    private void payMana(int manaCost)
+    {
+        if (manaCost <= 0)
+            return;
+
         mana -= manaCost;
+        mana = Mathf.Clamp(mana, 0, maxMana);
+    }
+
+    internal void giveMana(int manaCost)
+    {
+        if (manaCost <= 0)
+            return;
+
+        mana += manaCost;
         mana = Mathf.Clamp(mana, 0, maxMana);
     }
 

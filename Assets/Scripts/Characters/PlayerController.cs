@@ -11,7 +11,8 @@ public class PlayerController : MovingCharacter
 	public GameObject dyingLight;
 
 	private SpellCaster spellCaster;
-	private Damageable damageable;
+    [HideInInspector]
+	public Damageable damageable;
 	private Vector3 wayPoint;           // Position to respawn after falling into a hole
 	private Vector3 target;
 	private List<int> spellCasted;
@@ -77,26 +78,17 @@ public class PlayerController : MovingCharacter
 		{
 			UIManager.instance.switchMenu();
 		}
-		if (Input.GetKeyDown(KeyCode.Y))
-		{
-			GameManager.instance.revealMap();
-		}
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
             UIManager.instance.spellWindowByType.open();
-            //UIManager.instance.spellBook.open();
         }
-        if (Input.GetKeyDown(KeyCode.P))
-		{
-			UIManager.instance.spellBook.addAllSpells();
-		}
 		if (Input.GetKeyDown(KeyCode.M))
 		{
 			circleCollider.enabled = !circleCollider.enabled;
 		}
         if (Input.GetKeyDown(KeyCode.O))
         {
-            damageable.isInvincible = !damageable.isInvincible;
+            damageable.onDamageCooldown = !damageable.onDamageCooldown;
         }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
 		{

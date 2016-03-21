@@ -13,6 +13,7 @@ public class Damageable : MonoBehaviour
 
     private GameObject floatingText;
     private int HP;
+    public bool onDamageCooldown = false;
     public bool isInvincible = false;
     private GameObject healingAnimation;
     private SpriteRenderer spriteRenderer;
@@ -42,10 +43,13 @@ public class Damageable : MonoBehaviour
         if (isDead)
             return;
 
+        if (isInvincible)
+            return;
+
         if (!isDamageable(emitter))  // Am I damaging myself?
             return;
 
-        if (isInvincible)               // Invincible?
+        if (onDamageCooldown)               // Invincible?
             return;
 
         if (damage <= 0)
@@ -76,7 +80,7 @@ public class Damageable : MonoBehaviour
             return;
         }
 
-        StartCoroutine(makeInvincible(invincibilityTime)); // Make invincible
+        StartCoroutine(damageCooldown(invincibilityTime)); // Make invincible
     }
 
     public void inflictDamageRatio(float ratio)
@@ -140,10 +144,10 @@ public class Damageable : MonoBehaviour
     /// </summary>
     /// <param name="duration"></param>
     /// <returns></returns>
-    IEnumerator makeInvincible(float duration)
+    IEnumerator damageCooldown(float duration)
     {
         float startingTime = Time.time;
-        isInvincible = true;
+        onDamageCooldown = true;
         while (Time.time - startingTime < duration)
         {
             if (spriteRenderer.material == originalMaterial)
@@ -155,7 +159,7 @@ public class Damageable : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
 
         }
-        isInvincible = false;
+        onDamageCooldown = false;
         spriteRenderer.material = originalMaterial;
     }
 
@@ -233,7 +237,7 @@ public class Damageable : MonoBehaviour
         Color originalColor = sp.color;
         sp.color = color;
         yield return new WaitForSeconds(duration);
-        if (sp)
+        if (!sp)
             yield break;
         sp.color = originalColor;
         isSlowed = false;

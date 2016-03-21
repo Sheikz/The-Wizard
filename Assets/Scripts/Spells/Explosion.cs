@@ -9,16 +9,16 @@ public class Explosion : MonoBehaviour
 	public float delayBeforeExplosion;
 	[Tooltip("Time the explosion does damage")]
 	public float explosionTime;
-	public float knockbackForce;
-	public float knockbackDuration;
     public float lightFadeDuration = 0.5f;
 
     [HideInInspector]
     public int damage;
     [HideInInspector]
     public SpellCaster emitter;
+
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
+    private int manaCost;
 
     void Awake()
     {
@@ -94,11 +94,12 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-	public void initialize(SpellCaster emitter, int damage, SpellIntensity intensity)
+	public void initialize(SpellController spell)
 	{
-		this.emitter = emitter;
-        this.damage = damage;
-        this.intensity = intensity;
+		emitter = spell.emitter;
+        damage = spell.damage;
+        intensity = spell.lightIntensity;
+        manaCost = spell.manaCost;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
@@ -112,15 +113,11 @@ public class Explosion : MonoBehaviour
 		if (dmg)
 		{
 			dmg.doDamage(emitter, damage);
+            giveMana();
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {
                 effect.inflictStatus(dmg);
             }
-		}
-		if (kb && knockbackForce != 0)
-		{
-			Vector2 force = (collider.transform.position - transform.position).normalized * knockbackForce;
-			kb.knockback(force, knockbackDuration);
 		}
 	}
 
@@ -140,4 +137,13 @@ public class Explosion : MonoBehaviour
 			yield return new WaitForSeconds(delay);
 		circleCollider.enabled = false;
 	}
+
+    private void giveMana()
+    {
+        if (manaCost >= 0)
+            return;
+
+        if (emitter)
+            emitter.giveMana(-1 * manaCost);
+    }
 }

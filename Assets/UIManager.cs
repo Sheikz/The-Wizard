@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public SpellBook spellBook;
     public SpellWindowByType spellWindowByType;
     public FPSDisplay fpsDisplay;
+    public CastingBar castingBar;
 
     [HideInInspector]
     public Image[] coolDownImages;

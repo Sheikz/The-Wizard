@@ -63,7 +63,7 @@ public class ExplodingSpell : MonoBehaviour
             else
                 newExplosion.transform.position = collider.transform.position; 
 
-            newExplosion.initialize(spell.emitter, spell.damage, spell.lightIntensity);
+            newExplosion.initialize(spell);
             newExplosion.gameObject.layer = gameObject.layer;
         }
         Damageable dmg = collider.GetComponent<Damageable>();

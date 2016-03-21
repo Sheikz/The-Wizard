@@ -3,15 +3,6 @@ using System.Collections;
 
 public class ElectricBall2 : MovingSpell
 {
-    public float duration;
-
-    new void Start()
-    {
-        base.Start();
-        if (duration > 0)
-            StartCoroutine(destroyAfterSeconds(duration));
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         Damageable dmg = other.gameObject.GetComponent<Damageable>();

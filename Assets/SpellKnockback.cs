@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class SpellKnockback : MonoBehaviour
 {
+    public enum KnockbackDirection { FromCenter, ParallelToVelocity };
+
+    public KnockbackDirection knockbackDirection = KnockbackDirection.ParallelToVelocity;
+    public float knockbackForce = 100;
+    public float stunDuration = 0.5f;
     private Rigidbody2D rb;
 
     void Awake()
@@ -19,7 +24,16 @@ public class SpellKnockback : MonoBehaviour
 
     void applyKnockback(Knockbackable kb)
     {
-        kb.knockback(rb.velocity*100, 1);
+        switch(knockbackDirection)
+        {
+            case KnockbackDirection.ParallelToVelocity:
+                kb.knockback(rb.velocity * knockbackForce, stunDuration);
+                break;
+            case KnockbackDirection.FromCenter:
+                Vector2 force = (kb.transform.position - transform.position).normalized * knockbackForce;
+                kb.knockback(force, stunDuration);
+                break;
+        }
     }
 
 

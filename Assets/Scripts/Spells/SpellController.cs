@@ -13,6 +13,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     [Tooltip("Description of the spell appearing in tooltips")]
     public string description;
     public int manaCost;
+    public float castTime = 0f;
     public float cooldown = 0.2f;
     public Sprite icon;
 	public SpellType spellType = SpellType.Primary;
@@ -163,7 +164,12 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		}
 	}
 
-	protected void checkIfAlive()
+    public virtual bool canCastSpell(SpellCaster spellCaster, Vector3 initialPos, Vector3 target)
+    {
+        return true;
+    }
+
+    protected void checkIfAlive()
 	{
 		if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
 			return; // Legacy Particle System can be defined as one-shot and dont need to be destroyed manually

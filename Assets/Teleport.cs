@@ -19,4 +19,14 @@ public class Teleport : SpellController
             Instantiate(teleportAnimation, target, Quaternion.identity);
         return this;
     }
+
+    public override bool canCastSpell(SpellCaster spellCaster, Vector3 initialPos, Vector3 target)
+    {
+        if (Physics2D.OverlapCircle(target, 0.5f, GameManager.instance.layerManager.blockingLayer))
+        {
+            Debug.Log("Impossible to teleport there");
+            return false;
+        }
+        return true;
+    }
 }

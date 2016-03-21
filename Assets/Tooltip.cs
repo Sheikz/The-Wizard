@@ -22,6 +22,12 @@ public class Tooltip : MonoBehaviour
             name = "#Undefined#";
 
         result += "<size=18>"+name+"</size>" + "\n";
+
+        if (spell.manaCost >= 0)
+            result += "Cost: <color=magenta>" + spell.manaCost + "</color> mana\n";
+        else
+            result += "Build up <color=magenta>" + (-spell.manaCost) + "</color> mana per hit\n";
+
         if (spell.cooldown >0)
             result += "Cooldown: <color=orange>"+spell.cooldown +"</color> sec\n";
         if (spell.duration > 0)
