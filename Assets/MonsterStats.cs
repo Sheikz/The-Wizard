@@ -7,13 +7,11 @@ public class MonsterStats : CharacterStats
     protected float dungeonLevel = 1;
     public float dungeonLevelMultiplier = 1.2f;
     public float monsterDamageMultiplier = 0.5f;
-    private NPCController monster;
     public float difficultyModifier = 1.5f;
 
     new void Awake()
     {
         base.Awake();
-        monster = GetComponent<NPCController>();
     }
 
     new void Start()

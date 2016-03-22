@@ -203,6 +203,8 @@ MonoBehaviour:
   description: Places a fire trap on the ground that explodes when a enemy passes
     by
   manaCost: 30
+  manaCostInterval: 1
+  castTime: 0.5
   cooldown: 2
   icon: {fileID: 21300000, guid: a5d9d7fef5fd2194ea14ff1561195c64, type: 3}
   spellType: 3
@@ -220,6 +222,7 @@ MonoBehaviour:
   collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 1
+  colliderDuration: 0
   damageOverTime: 0
   affectedObjects: []
 --- !u!198 &19837070

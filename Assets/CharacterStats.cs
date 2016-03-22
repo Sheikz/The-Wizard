@@ -32,6 +32,7 @@ public abstract class CharacterStats : MonoBehaviour
         damageable.multiplyMaxHP(1.05f);
         if (caster)
             caster.levelUpFollowers();
+
     }
 
     public void setLevel(int level)

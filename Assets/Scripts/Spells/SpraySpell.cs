@@ -8,10 +8,10 @@ public class SpraySpell : SpellController
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
     {
-        SpraySpell newSpell = Instantiate(this);
-        if (!newSpell.initialize(emitter, position, target))
+        if (!initialize(emitter, position, target))
             return null;
-        return newSpell;
+        else
+            return this;
     }
 
     private bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
@@ -20,18 +20,19 @@ public class SpraySpell : SpellController
         if (currentSpray != null)
         {
             currentSpray.initialize(emitter, position, target);
+            currentSpray.manaCostInterval = manaCostInterval;
             currentSpray.damage = damage;
         }
         else
         {
-            Spray newSpray = Instantiate(spray, position, Quaternion.identity) as Spray;
-            newSpray.transform.SetParent(emitter.transform);
-            newSpray.name = spray.name;
-            newSpray.emitter = emitter;
-            newSpray.damage = damage;
-            emitter.addSpray(newSpray);
+            currentSpray = Instantiate(spray, position, Quaternion.identity) as Spray;
+            currentSpray.transform.SetParent(emitter.transform);
+            currentSpray.name = spray.name;
+            currentSpray.emitter = emitter;
+            currentSpray.damage = damage;
+            currentSpray.manaCostInterval = manaCostInterval;
+            emitter.addSpray(currentSpray);
         }
-        Destroy(gameObject);
-        return true;
+        return currentSpray.shouldPayMana();
     }
 }

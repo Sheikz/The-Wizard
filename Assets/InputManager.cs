@@ -1,0 +1,99 @@
+﻿using UnityEngine;
+using System.Collections;
+using System;
+
+public class InputManager : MonoBehaviour
+{
+    public static InputManager instance;
+
+    public enum Command { PrimarySpell, SecondarySpell, DefensiveSpell, Ultimate1, Ultimate2,
+                            MoveUp, MoveRight, MoveLeft, MoveDown};
+
+    private KeyCode[] keys;
+
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        keys = new KeyCode[Enum.GetNames(typeof(Command)).Length];
+    }
+
+    void Start()
+    {
+        setupDefaults();
+    }
+
+    /// <summary>
+    /// Setup default keys
+    /// </summary>
+    public void setupDefaults()
+    {
+        keys[(int)Command.PrimarySpell] = KeyCode.Mouse0;
+        keys[(int)Command.SecondarySpell] = KeyCode.Mouse1;
+        keys[(int)Command.DefensiveSpell] = KeyCode.Space;
+        keys[(int)Command.Ultimate1] = KeyCode.A;
+        keys[(int)Command.Ultimate2] = KeyCode.E;
+        keys[(int)Command.MoveUp] = KeyCode.Z;
+        keys[(int)Command.MoveDown] = KeyCode.S;
+        keys[(int)Command.MoveLeft] = KeyCode.Q;
+        keys[(int)Command.MoveRight] = KeyCode.D;
+        UIManager.instance.refreshIconsDescription();
+        UIManager.instance.refreshControlWindow();
+    }
+
+    public float getVerticalInput()
+    {
+        float result = 0f;
+        if (Input.GetKey(getKey(Command.MoveUp)))
+            result += 1f;
+        if (Input.GetKey(getKey(Command.MoveDown)))
+            result -= 1f;
+
+        return result;
+    }
+
+    public float getHorizontalInput()
+    {
+        float result = 0f;
+        if (Input.GetKey(getKey(Command.MoveRight)))
+            result += 1f;
+        if (Input.GetKey(getKey(Command.MoveLeft)))
+            result -= 1f;
+
+        return result;
+    }
+
+    public KeyCode getKey(Command cmd)
+    {
+        return keys[(int)cmd];
+    }
+
+    public bool IsKeyPressed(Command cmd)
+    {
+        return Input.GetKey(keys[(int)cmd]);
+    }
+
+    internal void setCommand(Command cmd, KeyCode key)
+    {
+        keys[(int)cmd] = key;
+        UIManager.instance.setIconDescription(cmd);
+    }
+
+    internal string getIconDescription(Command cmd)
+    {
+        KeyCode key = getKey(cmd);
+        switch (key)
+        {
+            case KeyCode.Mouse0: return "M1";
+            case KeyCode.Mouse1: return "M2";
+            case KeyCode.Mouse2: return "M3";
+            case KeyCode.Mouse3: return "M4";
+            case KeyCode.Mouse4: return "M5";
+            default: return key.ToString();
+        }
+    }
+}

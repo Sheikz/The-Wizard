@@ -22,7 +22,7 @@ public class ExperienceHolder : MonoBehaviour {
             xpReceiver.addXP(experience);
             FloatingText xpText = (Instantiate(floatingText) as GameObject).GetComponent<FloatingText>();
             xpText.initialize(gameObject, "+" + experience + "xp");
-            xpText.setColor(Color.yellow);
+            xpText.setColor(Color.cyan);
         }
     }
 }

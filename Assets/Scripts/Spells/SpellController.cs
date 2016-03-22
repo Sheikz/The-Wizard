@@ -12,7 +12,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public string damageString;
     [Tooltip("Description of the spell appearing in tooltips")]
     public string description;
-    public int manaCost;
+    public float manaCost;
+    public float manaCostInterval = 1f;
     public float castTime = 0f;
     public float cooldown = 0.2f;
     public Sprite icon;

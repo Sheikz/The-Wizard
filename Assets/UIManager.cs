@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     public SpellWindowByType spellWindowByType;
     public FPSDisplay fpsDisplay;
     public CastingBar castingBar;
+    public GameObject controlsWindow;
+    public GameObject[] spellIcons;
 
     [HideInInspector]
     public Image[] coolDownImages;
@@ -55,6 +57,10 @@ public class UIManager : MonoBehaviour
 
     public void showMenu(bool value)
     {
+        closeWindows();
+        if (!value)
+            controlsWindow.SetActive(false);
+
         exitMenu.SetActive(value);
         GameManager.instance.setPause(value);
     }
@@ -70,40 +76,32 @@ public class UIManager : MonoBehaviour
     {
         spellBook.close();
         spellWindowByType.close();
+        controlsWindow.SetActive(false);
+        exitMenu.SetActive(false);
     }
 
     private void linkIcons()
     {
-        coolDownImages = new Image[5];
-        coolDownImages[2] = GameObject.Find("SpellIconDefensive").transform.Find("CooldownFill").GetComponent<Image>();
-        if (!coolDownImages[2])
+        coolDownImages = new Image[spellIcons.Length];
+        for (int i = 0; i < spellIcons.Length; i++)
         {
-            Debug.LogError("Defensive Spell cooldown image not found!");
-            Debug.Break();
+            coolDownImages[i] = spellIcons[i].transform.Find("CooldownFill").GetComponent<Image>();
         }
-        coolDownImages[0] = GameObject.Find("SpellIconPrimarySpell").transform.Find("CooldownFill").GetComponent<Image>();
-        if (!coolDownImages[0])
+    }
+
+    internal void setIconDescription(InputManager.Command cmd)
+    {
+        if ((int)cmd > 4)
+            return;
+
+        spellIcons[(int)cmd].transform.Find("Description").GetComponent<Text>().text = InputManager.instance.getIconDescription(cmd);
+    }
+
+    public void refreshIconsDescription()
+    {
+        for (int i = 0; i < spellIcons.Length; i++)
         {
-            Debug.LogError("Primary Spell cooldown image not found!");
-            Debug.Break();
-        }
-        coolDownImages[1] = GameObject.Find("SpellIconSecondarySpell").transform.Find("CooldownFill").GetComponent<Image>();
-        if (!coolDownImages[1])
-        {
-            Debug.LogError("Secondary Spell cooldown image not found!");
-            Debug.Break();
-        }
-        coolDownImages[3] = GameObject.Find("SpellIconUltimate1").transform.Find("CooldownFill").GetComponent<Image>();
-        if (!coolDownImages[3])
-        {
-            Debug.LogError("Secondary Spell cooldown image not found!");
-            Debug.Break();
-        }
-        coolDownImages[4] = GameObject.Find("SpellIconUltimate2").transform.Find("CooldownFill").GetComponent<Image>();
-        if (!coolDownImages[4])
-        {
-            Debug.LogError("Secondary Spell cooldown image not found!");
-            Debug.Break();
+            spellIcons[i].transform.Find("Description").GetComponent<Text>().text = InputManager.instance.getIconDescription((InputManager.Command)i);
         }
     }
 
@@ -123,5 +121,18 @@ public class UIManager : MonoBehaviour
     public float getFPS()
     {
         return fpsDisplay.getFPS();
+    }
+
+    public void openControlsWindow(bool value)
+    {
+        controlsWindow.SetActive(value);
+    }
+
+    public void refreshControlWindow()
+    {
+        foreach (ConfigControlButton button in controlsWindow.GetComponentsInChildren<ConfigControlButton>())
+        {
+            button.refresh();
+        }
     }
 }

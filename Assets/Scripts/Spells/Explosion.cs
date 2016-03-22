@@ -18,7 +18,7 @@ public class Explosion : MonoBehaviour
 
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
-    private int manaCost;
+    private float manaCost;
 
     void Awake()
     {
@@ -109,7 +109,6 @@ public class Explosion : MonoBehaviour
 			return;
 
 		Damageable dmg = other.gameObject.GetComponent<Damageable>();
-		Knockbackable kb = other.gameObject.GetComponent<Knockbackable>();
 		if (dmg)
 		{
 			dmg.doDamage(emitter, damage);

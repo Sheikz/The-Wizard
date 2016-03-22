@@ -23,10 +23,17 @@ public class Tooltip : MonoBehaviour
 
         result += "<size=18>"+name+"</size>" + "\n";
 
-        if (spell.manaCost >= 0)
+        if ((spell.manaCost >= 0) && spell.manaCostInterval == 1f)
             result += "Cost: <color=magenta>" + spell.manaCost + "</color> mana\n";
+        else if ((spell.manaCost >= 0) && spell.manaCostInterval != 1f)
+            result += "Cost: <color=magenta>" + Mathf.RoundToInt(spell.manaCost/spell.manaCostInterval) + "</color> mana/sec\n";
         else
             result += "Build up <color=magenta>" + (-spell.manaCost) + "</color> mana per hit\n";
+
+        if (spell.castTime <= 0)
+            result += "Instant cast\n";
+        else
+            result += "Cast time: <color=lime>" + spell.castTime + "</color> sec\n";
 
         if (spell.cooldown >0)
             result += "Cooldown: <color=orange>"+spell.cooldown +"</color> sec\n";

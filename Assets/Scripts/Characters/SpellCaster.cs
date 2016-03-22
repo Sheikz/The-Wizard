@@ -186,7 +186,8 @@ public class SpellCaster : MonoBehaviour
         {
             isCasting = true;
             float startingTime = Time.realtimeSinceStartup;
-            movingCharacter.enableMovement(false);
+            if (movingCharacter)
+                movingCharacter.enableMovement(false);
             while (Time.realtimeSinceStartup - startingTime < spell.castTime)
             {
                 setCastBarRatio((Time.realtimeSinceStartup - startingTime) / spell.castTime);
@@ -194,7 +195,8 @@ public class SpellCaster : MonoBehaviour
             }
             setCastBarRatio(1f);
 
-            movingCharacter.enableMovement(true);
+            if (movingCharacter)
+                movingCharacter.enableMovement(true);
         }
 
         if (spell.castSpell(this, pos, target))
@@ -222,7 +224,7 @@ public class SpellCaster : MonoBehaviour
         castingBar.setRatio(ratio);
     }
 
-    private void payMana(int manaCost)
+    private void payMana(float manaCost)
     {
         if (manaCost <= 0)
             return;
@@ -231,7 +233,7 @@ public class SpellCaster : MonoBehaviour
         mana = Mathf.Clamp(mana, 0, maxMana);
     }
 
-    internal void giveMana(int manaCost)
+    internal void giveMana(float manaCost)
     {
         if (manaCost <= 0)
             return;

@@ -243,6 +243,8 @@ MonoBehaviour:
   damageString: <dmg> damage/second
   description: Damage and pushes enemies to the center of the hole
   manaCost: 50
+  manaCostInterval: 1
+  castTime: 1
   cooldown: 5
   icon: {fileID: 21300000, guid: b791f7ce75f1e48d79838517bcaab626, type: 3}
   spellType: 3
@@ -260,6 +262,7 @@ MonoBehaviour:
   collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0.5
+  colliderDuration: 0
   damageOverTime: 1
   affectedObjects: []
 --- !u!198 &19831552

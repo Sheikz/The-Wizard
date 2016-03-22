@@ -7,6 +7,8 @@ public class Spray : SpellController
 	private bool isEmitting = true;
     private bool isCasted = true;
 
+    private bool isOnManaCooldown = false;
+
 	// Use this for initialization
 	new void Start ()
 	{
@@ -63,6 +65,23 @@ public class Spray : SpellController
         isEmitting = false;
     }
 
+    internal bool shouldPayMana()
+    {
+        if (isOnManaCooldown)
+            return false;
+        else
+            StartCoroutine(manaCostCooldown(manaCostInterval));
+        return true;
+
+    }
+
+    private IEnumerator manaCostCooldown(float manaCostInterval)
+    {
+        isOnManaCooldown = true;
+        yield return new WaitForSeconds(manaCostInterval);
+        isOnManaCooldown = false;
+    }
+
     void OnParticleCollision(GameObject other)
     {
         Debug.Log("Collision with: " + other.name);
@@ -77,6 +96,7 @@ public class Spray : SpellController
     public bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
     {
         isCasted = true;
+        this.emitter = emitter;
         emitSpray();
 
         rotateAroundX(target - position, Quaternion.Euler(90, -90, 0));

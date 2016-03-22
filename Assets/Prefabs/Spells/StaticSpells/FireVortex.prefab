@@ -261,6 +261,8 @@ MonoBehaviour:
   damageString: <dmg> damage/sec
   description: Puts an area on fire
   manaCost: 30
+  manaCostInterval: 1
+  castTime: 0.2
   cooldown: 1.5
   icon: {fileID: 21300000, guid: e9526b5a1c3ab4277afeae47618ce701, type: 3}
   spellType: 1
@@ -278,6 +280,7 @@ MonoBehaviour:
   collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0.5
+  colliderDuration: 0
   damageOverTime: 1
   affectedObjects: []
 --- !u!114 &11496780

@@ -84,5 +84,7 @@ public class PlayerStats : CharacterStats
             pointsToAllocate[(int)SpellType.Ultimate1]++;
         if ((level + 1) % 5 == 0)
             pointsToAllocate[(int)SpellType.Ultimate2]++;
+
+        UIManager.instance.spellWindowByType.refresh();
     }
 }

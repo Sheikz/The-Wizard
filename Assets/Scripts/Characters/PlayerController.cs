@@ -36,9 +36,11 @@ public class PlayerController : MovingCharacter
 	}
 
 	void FixedUpdate()
-	{
+	{/*
 		float inputX = Input.GetAxisRaw("Horizontal");
-		float inputY = Input.GetAxisRaw("Vertical");
+		float inputY = Input.GetAxisRaw("Vertical");*/
+        float inputX = InputManager.instance.getHorizontalInput();
+        float inputY = InputManager.instance.getVerticalInput();
 		movement = new Vector2(inputX, inputY).normalized * speed;
 		if (movement != Vector2.zero)
 			direction = movement;
@@ -53,24 +55,24 @@ public class PlayerController : MovingCharacter
 	void Update()
 	{
 		spellCasted.Clear();
-		if (Input.GetButton("PrimarySpell"))
-		{
+		if (InputManager.instance.IsKeyPressed(InputManager.Command.PrimarySpell))
+        {
 			if (!EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
 				spellCasted.Add(0);
 		}
-		if (Input.GetButton("SecondarySpell"))
-		{
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.SecondarySpell))
+        {
 			spellCasted.Add(1);
 		}
-		if (Input.GetButton("DefensiveSpell"))
-		{
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.DefensiveSpell))
+        {
 			spellCasted.Add(2);
 		}
-		if (Input.GetButton("Ultimate1"))
-		{
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate1))
+        {
 			spellCasted.Add(3);
 		}
-        if (Input.GetButton("Ultimate2"))
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate2))
         {
             spellCasted.Add(4);
         }

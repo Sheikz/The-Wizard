@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
         if (value)
         {
             savedTimeScale = Time.timeScale;
+            if (savedTimeScale == 0f)
+                savedTimeScale = 1f;
             Time.timeScale = 0.0f;
         }
         else
