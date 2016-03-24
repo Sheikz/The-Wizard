@@ -228,6 +228,7 @@ MonoBehaviour:
   circleCollider: {fileID: 0}
   isFlying: 0
   dyingLight: {fileID: 197130, guid: 7d7de3d0709066e419f0e487753ae850, type: 2}
+  damageable: {fileID: 0}
 --- !u!114 &11494004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,6 +246,8 @@ MonoBehaviour:
   deathAnimation: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
   healAnimation: {fileID: 114734, guid: fbbb80afd96d200448f97f045e9d15eb, type: 2}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
+  showHPBar: 0
+  onDamageCooldown: 0
   isInvincible: 0
 --- !u!212 &21284262
 SpriteRenderer:

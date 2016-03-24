@@ -103,11 +103,11 @@ public class Door : MonoBehaviour
         if (doorShadow)
             doorShadow.SetActive(true);
         showDoor(true);
-        float startingTime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - startingTime <= duration)
+        float startingTime = Time.time;
+        while (Time.time - startingTime <= duration)
         {
             Vector3 tmp = door.transform.localPosition;
-            tmp.y = Mathf.Lerp(0f, 1f, (Time.realtimeSinceStartup - startingTime) / duration);
+            tmp.y = Mathf.Lerp(0f, 1f, (Time.time - startingTime) / duration);
             door.transform.localPosition = tmp;
             yield return null;
         }
@@ -123,11 +123,11 @@ public class Door : MonoBehaviour
         if (doorShadow)
             doorShadow.SetActive(true);
         showDoor(true);
-        float startingTime = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - startingTime <= duration)
+        float startingTime = Time.time;
+        while (Time.time - startingTime <= duration)
         {
             Vector3 tmp = door.transform.localPosition;
-            tmp.y = Mathf.Lerp(1f, 0f, (Time.realtimeSinceStartup - startingTime) / duration);
+            tmp.y = Mathf.Lerp(1f, 0f, (Time.time - startingTime) / duration);
             door.transform.localPosition = tmp;
             yield return null;
         }

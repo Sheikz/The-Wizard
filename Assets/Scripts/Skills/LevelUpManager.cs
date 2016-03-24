@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class LevelUpManager : MonoBehaviour
 {
+    public SkillButton[] skillButtons;
     public List<ItemWithDropChance> possibleSkillList;  // All the possible skills
 
     private GameObject hero;
@@ -28,10 +29,11 @@ public class LevelUpManager : MonoBehaviour
     {
         levelUpText = transform.Find("LevelUpText").gameObject;
 
-        skillIcons = new Image[3];
-        skillIcons[0] = transform.Find("Skill1").GetComponent<Image>();
-        skillIcons[1] = transform.Find("Skill2").GetComponent<Image>();
-        skillIcons[2] = transform.Find("Skill3").GetComponent<Image>();
+        skillIcons = new Image[skillButtons.Length];
+        for (int i = 0;i < skillIcons.Length; i++)
+        {
+            skillIcons[i] = skillButtons[i].GetComponent<Image>();
+        }
 
         setIconsActive(false);
     }
@@ -41,6 +43,7 @@ public class LevelUpManager : MonoBehaviour
         for (int i=0; i < skillIcons.Length; i ++)
         {
             skillIcons[i].gameObject.SetActive(a);
+            skillButtons[i].activateToolTip(false);
         }
         levelUpText.SetActive(a);
     }
@@ -78,6 +81,7 @@ public class LevelUpManager : MonoBehaviour
             remainingSkills.Remove(chosenSkill);
             skillChoices[i].GetComponent<Skill>().initializeSkill();
             skillIcons[i].sprite = skillChoices[i].GetComponent<SpriteRenderer>().sprite;
+            skillButtons[i].containedSkill = chosenSkill.item.GetComponent<Skill>();
         }
     }
 

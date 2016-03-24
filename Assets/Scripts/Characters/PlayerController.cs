@@ -11,11 +11,12 @@ public class PlayerController : MovingCharacter
 	public GameObject dyingLight;
 
 	private SpellCaster spellCaster;
-    [HideInInspector]
+	[HideInInspector]
 	public Damageable damageable;
 	private Vector3 wayPoint;           // Position to respawn after falling into a hole
 	private Vector3 target;
 	private List<int> spellCasted;
+    private List<int> spellReleased;
 
 	new void Awake()
 	{
@@ -23,8 +24,9 @@ public class PlayerController : MovingCharacter
 		spellCaster = GetComponent<SpellCaster>();
 		damageable = GetComponent<Damageable>();
 		spellCasted = new List<int>();
+        spellReleased = new List<int>();
 	}
-			
+
 	void Start()
 	{
 		setWayPoint(transform.position);
@@ -36,11 +38,9 @@ public class PlayerController : MovingCharacter
 	}
 
 	void FixedUpdate()
-	{/*
-		float inputX = Input.GetAxisRaw("Horizontal");
-		float inputY = Input.GetAxisRaw("Vertical");*/
-        float inputX = InputManager.instance.getHorizontalInput();
-        float inputY = InputManager.instance.getVerticalInput();
+	{
+		float inputX = InputManager.instance.getHorizontalInput();
+		float inputY = InputManager.instance.getVerticalInput();
 		movement = new Vector2(inputX, inputY).normalized * speed;
 		if (movement != Vector2.zero)
 			direction = movement;
@@ -56,55 +56,58 @@ public class PlayerController : MovingCharacter
 	{
 		spellCasted.Clear();
 		if (InputManager.instance.IsKeyPressed(InputManager.Command.PrimarySpell))
-        {
+		{
 			if (!EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
 				spellCasted.Add(0);
 		}
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.SecondarySpell))
+        else if (InputManager.instance.IsKeyUp(InputManager.Command.PrimarySpell))
         {
+            spellReleased.Add(0);
+        }
+
+		if (InputManager.instance.IsKeyPressed(InputManager.Command.SecondarySpell))
+		{
 			spellCasted.Add(1);
 		}
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.DefensiveSpell))
+        else if (InputManager.instance.IsKeyUp(InputManager.Command.SecondarySpell))
         {
+            spellReleased.Add(1);
+        }
+
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.DefensiveSpell))
+		{
 			spellCasted.Add(2);
 		}
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate1))
+        else if (InputManager.instance.IsKeyUp(InputManager.Command.DefensiveSpell))
         {
+            spellReleased.Add(2);
+        }
+
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate1))
+		{
 			spellCasted.Add(3);
 		}
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate2))
+        else if (InputManager.instance.IsKeyUp(InputManager.Command.Ultimate1))
         {
-            spellCasted.Add(4);
+            spellReleased.Add(3);
         }
+
+        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate2))
+		{
+			spellCasted.Add(4);
+		}
+        else if (InputManager.instance.IsKeyUp(InputManager.Command.Ultimate2))
+        {
+            spellReleased.Add(4);
+        }
+
         if (Input.GetButtonDown("Cancel"))
 		{
 			UIManager.instance.switchMenu();
 		}
-		if (Input.GetKeyDown(KeyCode.Tab))
+		if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
 		{
-            UIManager.instance.spellWindowByType.open();
-        }
-		if (Input.GetKeyDown(KeyCode.M))
-		{
-			circleCollider.enabled = !circleCollider.enabled;
-		}
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            damageable.onDamageCooldown = !damageable.onDamageCooldown;
-        }
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
-		{
-			if (Time.timeScale < 1)
-				Time.timeScale *= 2;
-			else
-				Time.timeScale += 1;
-		}
-		if (Input.GetKeyDown(KeyCode.KeypadMinus))
-		{
-			if (Time.timeScale <= 1)
-				Time.timeScale /= 2;
-			else
-				Time.timeScale -= 1;
+			UIManager.instance.spellWindowByType.open();
 		}
 
 		foreach (int spell in spellCasted)
@@ -114,7 +117,15 @@ public class PlayerController : MovingCharacter
 			if (spellCaster)
 				spellCaster.castSpell(spell, transform.position, target);
 		}
-	}
+
+        foreach (int spell in spellReleased)
+        {
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target.z = 0;    // fix because camera see point at z = -5
+            if (spellCaster)
+                spellCaster.releaseSpell(spell, transform.position, target);
+        }
+    }
 
 	public override void receivesDamage()
 	{
@@ -134,7 +145,7 @@ public class PlayerController : MovingCharacter
 		transform.position = wayPoint;
 		damageable.inflictDamageRatio(damageRatio);
 		isFalling = false;
-        enableAction(true);
+		enableAction(true);
 		transform.rotation = Quaternion.identity;
 		transform.localScale = new Vector3(1, 1, 1);
 	}
@@ -172,7 +183,7 @@ public class PlayerController : MovingCharacter
 		{
 			layers[i] = 0;
 		}
-		GameObject[] result = GameObject.FindObjectsOfType<GameObject>() as GameObject[];
+		GameObject[] result = FindObjectsOfType<GameObject>() as GameObject[];
 		foreach (GameObject obj in result)
 		{
 			layers[obj.layer]++;

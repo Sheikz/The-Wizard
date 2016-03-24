@@ -78,7 +78,6 @@ GameObject:
   - 4: {fileID: 467776}
   - 198: {fileID: 19848524}
   - 199: {fileID: 19980340}
-  - 114: {fileID: 11458170}
   m_Layer: 12
   m_Name: FireSprayFlame
   m_TagString: Untagged
@@ -252,17 +251,6 @@ MonoBehaviour:
     m_Bits: 0
   collidesWithWalls: 1
   ignoredColliders: []
---- !u!114 &11458170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be40e71d36920849b0dbc363ea5dab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!198 &19800954
 ParticleSystem:
   m_ObjectHideFlags: 1

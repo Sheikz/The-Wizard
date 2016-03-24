@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
+    public Canvas canvas;
     public GameObject floatingText;
     public GameObject floatingTextHolder;
     public ScreenMaskController screenMask;
@@ -17,7 +18,11 @@ public class UIManager : MonoBehaviour
     public SpellWindowByType spellWindowByType;
     public FPSDisplay fpsDisplay;
     public CastingBar castingBar;
+    public FloatingHPBar floatingHPBar;
+    public ToAllocateReminder toAllocateReminder;
     public GameObject controlsWindow;
+    public GameObject graphicsWindow;
+    public Tooltip tooltipPrefab;
     public GameObject[] spellIcons;
 
     [HideInInspector]
@@ -36,7 +41,6 @@ public class UIManager : MonoBehaviour
 
     public void setupUI()
     {
-        Awake();
         screenMask.gameObject.SetActive(false);
         Color newColor = screenMask.GetComponent<Image>().color;
         newColor.a = (float)120 / 255;
@@ -48,6 +52,7 @@ public class UIManager : MonoBehaviour
         spellWindowByType.initialize();
         spellWindowByType.close();
         linkIcons();
+        refreshIconsDescription();
     }
 
     public void switchMenu()
@@ -77,6 +82,7 @@ public class UIManager : MonoBehaviour
         spellBook.close();
         spellWindowByType.close();
         controlsWindow.SetActive(false);
+        graphicsWindow.SetActive(false);
         exitMenu.SetActive(false);
     }
 
@@ -128,11 +134,21 @@ public class UIManager : MonoBehaviour
         controlsWindow.SetActive(value);
     }
 
+    public void openGraphicsWindow(bool value)
+    {
+        graphicsWindow.SetActive(value);
+    }
+
     public void refreshControlWindow()
     {
         foreach (ConfigControlButton button in controlsWindow.GetComponentsInChildren<ConfigControlButton>())
         {
             button.refresh();
         }
+    }
+
+    public void refreshUI()
+    {
+        toAllocateReminder.refresh();
     }
 }

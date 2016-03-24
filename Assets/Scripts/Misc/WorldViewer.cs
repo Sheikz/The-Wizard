@@ -24,6 +24,9 @@ public class WorldViewer : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (closeMonsters == null)
+            return;
+
         foreach (Collider2D collider in closeMonsters)
         {
             if (!collider)

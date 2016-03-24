@@ -16,7 +16,7 @@ public class RotatingSpell : SpellController
 
     new void Start()
     {
-        startTime = Time.realtimeSinceStartup;
+        startTime = Time.time;
         collidesWithWalls = false;
         base.Start();
     }
@@ -87,7 +87,7 @@ public class RotatingSpell : SpellController
 
     void rotateAroundParent()
     {
-        float time = Time.realtimeSinceStartup - startTime;
+        float time = Time.time - startTime;
         transform.localPosition = new Vector3(Mathf.Sin(time * rotationSpeed) * distanceToParent, 
                                               Mathf.Cos(time * rotationSpeed) * distanceToParent, 
                                               0);

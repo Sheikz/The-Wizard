@@ -4,7 +4,6 @@ using System;
 
 public class PlayerStats : CharacterStats
 {
-    // In order: Fire, Ice, Lightning, Arcane, Other
     protected float[] masteries;
     public int[,,] spellLevels; // In order: set, element, type
     public int[] pointsToAllocate;
@@ -65,6 +64,7 @@ public class PlayerStats : CharacterStats
         }
 
         UIManager.instance.spellWindowByType.refresh();
+        UIManager.instance.refreshUI();
         return true;
     }
 
@@ -82,9 +82,20 @@ public class PlayerStats : CharacterStats
 
         if (level % 5 == 0)
             pointsToAllocate[(int)SpellType.Ultimate1]++;
-        if ((level + 1) % 5 == 0)
+        if (level != 1 && (level - 1) % 5 == 0)
             pointsToAllocate[(int)SpellType.Ultimate2]++;
 
         UIManager.instance.spellWindowByType.refresh();
+        UIManager.instance.refreshUI();
+    }
+
+    public int getTotalToAllocate()
+    {
+        int result = 0;
+        for (int i = 0; i < pointsToAllocate.Length; i++)
+        {
+            result += pointsToAllocate[i];
+        }
+        return result;
     }
 }

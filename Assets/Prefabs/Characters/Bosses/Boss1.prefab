@@ -116,6 +116,8 @@ MonoBehaviour:
   deathAnimation: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
+  showHPBar: 1
+  onDamageCooldown: 0
   isInvincible: 0
 --- !u!114 &11453140
 MonoBehaviour:
@@ -128,9 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef24803d4a9806478b2370fa8c5e631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useMana: 0
+  maxMana: 0
+  manaRegenPerSecond: 0
   spellList:
-  - {fileID: 184154, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
-  - {fileID: 142178, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
+  - {fileID: 11436048, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
+  - {fileID: 11427560, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
   isMonster: 0
   activeCircleSpells: []
 --- !u!114 &11463836
@@ -161,6 +166,7 @@ MonoBehaviour:
   cooldownModifier: 2
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 0.5
+  difficultyModifier: 1.5
 --- !u!114 &11477938
 MonoBehaviour:
   m_ObjectHideFlags: 1

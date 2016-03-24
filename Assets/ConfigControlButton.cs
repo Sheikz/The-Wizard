@@ -43,7 +43,8 @@ public class ConfigControlButton : MonoBehaviour
 
     public void refresh()
     {
-        text.text = command.ToString() + " : " + InputManager.instance.getIconDescription(command);
+        if (text)
+            text.text = command.ToString() + " : " + InputManager.instance.getIconDescription(command);
     }
 
     public void onClick()

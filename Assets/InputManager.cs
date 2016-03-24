@@ -7,7 +7,8 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
 
     public enum Command { PrimarySpell, SecondarySpell, DefensiveSpell, Ultimate1, Ultimate2,
-                            MoveUp, MoveRight, MoveLeft, MoveDown};
+                            MoveUp, MoveRight, MoveLeft, MoveDown,
+                            SpellBook};
 
     private KeyCode[] keys;
 
@@ -17,9 +18,15 @@ public class InputManager : MonoBehaviour
         if (instance == null)
             instance = this;
         else if (instance != this)
+        {
             Destroy(gameObject);
+            return;
+        }
 
-        keys = new KeyCode[Enum.GetNames(typeof(Command)).Length];
+        DontDestroyOnLoad(gameObject);
+
+        if (keys == null)
+            keys = new KeyCode[Enum.GetNames(typeof(Command)).Length];
     }
 
     void Start()
@@ -41,6 +48,7 @@ public class InputManager : MonoBehaviour
         keys[(int)Command.MoveDown] = KeyCode.S;
         keys[(int)Command.MoveLeft] = KeyCode.Q;
         keys[(int)Command.MoveRight] = KeyCode.D;
+        keys[(int)Command.SpellBook] = KeyCode.Tab;
         UIManager.instance.refreshIconsDescription();
         UIManager.instance.refreshControlWindow();
     }
@@ -72,9 +80,34 @@ public class InputManager : MonoBehaviour
         return keys[(int)cmd];
     }
 
+    /// <summary>
+    /// Return true all frames the key is pressed
+    /// </summary>
+    /// <param name="cmd"></param>
+    /// <returns></returns>
     public bool IsKeyPressed(Command cmd)
     {
         return Input.GetKey(keys[(int)cmd]);
+    }
+
+    /// <summary>
+    /// Return true only the frame the key was released
+    /// </summary>
+    /// <param name="cmd"></param>
+    /// <returns></returns>
+    internal bool IsKeyUp(Command cmd)
+    {
+        return Input.GetKeyUp(keys[(int)cmd]);
+    }
+
+    /// <summary>
+    /// Return true only the frame the key was pressed
+    /// </summary>
+    /// <param name="cmd"></param>
+    /// <returns></returns>
+    internal bool IsKeyDown(Command cmd)
+    {
+        return Input.GetKeyDown(keys[(int)cmd]);
     }
 
     internal void setCommand(Command cmd, KeyCode key)

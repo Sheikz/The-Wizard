@@ -6,12 +6,16 @@ using System;
 public class Tooltip : MonoBehaviour
 {
     public Text tooltipText;
+    public int horizontalPadding = 10;
+    public int verticalPadding = 10;
+    private RectTransform rectTransform;
 
     void Awake()
     {
         Canvas canvas = GetComponent<Canvas>();
         canvas.overrideSorting = true;
         canvas.sortingOrder = 10;
+        rectTransform = GetComponent<RectTransform>();
     }
 
     private string parseDescription(SpellController spell, int damage)
@@ -46,10 +50,49 @@ public class Tooltip : MonoBehaviour
         return result;
     }
 
+    private string parseSkillDescription(Skill containedSkill)
+    {
+        if (containedSkill)
+            return containedSkill.getDescription();
+
+        return null;
+    }
+
+    /// <summary>
+    /// Refresh with skill info
+    /// </summary>
+    /// <param name="containedSkill"></param>
+    public void refresh(Skill containedSkill)
+    {
+        tooltipText.text = parseSkillDescription(containedSkill);
+        if (gameObject.activeSelf) 
+            StartCoroutine(fixPosition());
+    }
+
+    /// <summary>
+    /// Refresh with spell info
+    /// </summary>
+    /// <param name="heroStats"></param>
+    /// <param name="containedSpell"></param>
     public void refresh(PlayerStats heroStats, SpellController containedSpell)
     {
         int damage = containedSpell.getDamage(heroStats);
         tooltipText.text = parseDescription(containedSpell, damage);
+        StartCoroutine(fixPosition());
+    }
 
+    IEnumerator fixPosition()
+    {
+        yield return new WaitForEndOfFrame();
+        float widthExcess = (transform.position.x + rectTransform.rect.width) - Screen.width;
+        if (widthExcess >= horizontalPadding)
+        {
+            transform.position += Vector3.left * (widthExcess + horizontalPadding);
+        }
+        float heightExcess = (transform.position.y + rectTransform.rect.height) - Screen.height;
+        if (heightExcess >= verticalPadding)
+        {
+            transform.position += Vector3.up * (heightExcess + verticalPadding);
+        }
     }
 }

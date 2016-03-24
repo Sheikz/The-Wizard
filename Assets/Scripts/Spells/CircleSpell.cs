@@ -18,7 +18,7 @@ public class CircleSpell : SpellController
     {
         base.Awake();
         spellCreated = new List<RotatingSpell>();
-        shootType = (ShootType)Random.Range(0, 3);
+        shootType = (ShootType)Random.Range(1, 3);
     }
    
     new void Start()

@@ -5,6 +5,9 @@ using System;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Skill : MonoBehaviour
 {
+    public string skillName;
+    public string description;
+
     protected SpriteRenderer spr;
 
     public abstract void applySkill(GameObject hero);
@@ -22,5 +25,18 @@ public abstract class Skill : MonoBehaviour
     public virtual void initialize()
     {
         return;
+    }
+
+    public virtual string getDescription()
+    {
+        string result = "";
+        string name = skillName;
+        if (name == "")
+            name = "#Undefined#";
+
+        result += "<size=18>" + name + "</size>" + "\n";
+        result += description;
+
+        return result;
     }
 }

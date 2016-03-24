@@ -12,4 +12,12 @@ public class HPUpSkill : Skill
             return;
         hero.GetComponent<Damageable>().multiplyMaxHP(ratioHP);
     }
+
+    public override string getDescription()
+    {
+        string result = base.getDescription();
+        int ratioInPercents = Mathf.RoundToInt((ratioHP - 1.0f) * 100f);
+        result = result.Replace("<multiplier>", "<color=orange>" + ratioInPercents + "%</color>");
+        return result;
+    }
 }

@@ -23,8 +23,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public int damage = 10;
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
     public float duration = 0f;
+    public bool chargingSpell = false; // Can this spell be charged?
     
-
 	[Tooltip("The list of spells required to unlock this one")]
 	public GameObject[] prerequisites;
 

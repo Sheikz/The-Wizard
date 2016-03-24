@@ -14,6 +14,7 @@ public class SpellWindowByType : MonoBehaviour
     private PlayerStats heroStats;
     private int activatedPanel = 0;
     private List<SpellBookSpell> spellIcons;
+    private ToAllocateReminder[] reminders;
 
     void Awake()
     {
@@ -21,6 +22,8 @@ public class SpellWindowByType : MonoBehaviour
         spellIcons = new List<SpellBookSpell>();
         if (!heroStats)
             Debug.LogWarning("Hero stats not found");
+
+        reminders = GetComponentsInChildren<ToAllocateReminder>();
     }
 
     public void initialize()
@@ -125,6 +128,10 @@ public class SpellWindowByType : MonoBehaviour
                 spellIcon.showButton(true);
             else
                 spellIcon.showButton(false);
+        }
+        foreach (ToAllocateReminder reminder in reminders)
+        {
+            reminder.refresh();
         }
     }
 

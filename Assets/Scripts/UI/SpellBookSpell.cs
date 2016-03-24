@@ -63,6 +63,7 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         refreshSpellLevel();
         UIManager.instance.spellWindowByType.activateHelpMessage(false);
         UIManager.instance.spellWindowByType.refresh();
+        UIManager.instance.refreshUI();
     }
 
     private void refreshSpellLevel()
@@ -88,15 +89,15 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (tooltip)
         {
-            tooltip.refresh(heroStats, containedSpell);
             tooltip.gameObject.SetActive(true);
+            tooltip.refresh(heroStats, containedSpell);
         }
         else
         {
             tooltip = Instantiate(tooltipPrefab);
-            tooltip.refresh(heroStats, containedSpell);
             tooltip.transform.SetParent(transform);
             tooltip.transform.position = transform.position + new Vector3(25, -10, 0);
+            tooltip.refresh(heroStats, containedSpell);
         }
     }
 

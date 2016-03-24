@@ -404,8 +404,10 @@ MonoBehaviour:
   damageString: <dmg> damage
   description: Pierces and pushes enemies
   manaCost: 25
+  manaCostInterval: 1
+  castTime: 0
   cooldown: 0.5
-  icon: {fileID: 21300052, guid: 8a6e157a9205c8645ab01eb3dbcc78e6, type: 3}
+  icon: {fileID: 21300480, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 1
   magicElement: 1
   spellSet: 0
@@ -447,6 +449,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda035b1077fe8c408fab0b9f5638575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDirection: 1
+  knockbackForce: 100
+  stunDuration: 0.5
 --- !u!198 &19802102
 ParticleSystem:
   m_ObjectHideFlags: 1

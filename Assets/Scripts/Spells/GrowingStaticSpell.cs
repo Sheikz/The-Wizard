@@ -35,8 +35,8 @@ public class GrowingStaticSpell : MonoBehaviour
 
     private IEnumerator growingRoutine(ParticleSystem partSystem)
     {
-        float startingTime = Time.realtimeSinceStartup;
-        while ((Time.realtimeSinceStartup - startingTime)*Time.timeScale < spell.duration)
+        float startingTime = Time.time;
+        while (Time.time - startingTime < spell.duration)
         {
             yield return new WaitForSeconds(0.1f);
             partSystem.startSize += growingRate * 0.1f * radiusToParticleSize;
@@ -47,9 +47,9 @@ public class GrowingStaticSpell : MonoBehaviour
 
     private IEnumerator growingRoutine()
     {
-        float startingTime = Time.realtimeSinceStartup;
+        float startingTime = Time.time;
         circleCollider.radius = startingRadius;
-        while ((Time.realtimeSinceStartup - startingTime) * Time.timeScale < spell.duration)
+        while (Time.time - startingTime < spell.duration)
         {
             yield return new WaitForSeconds(0.1f);
             circleCollider.radius += growingRate * 0.1f;

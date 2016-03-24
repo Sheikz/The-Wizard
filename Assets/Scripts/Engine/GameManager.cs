@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         UIManager.instance.levelUpManager.levelUp();
         map.levelUpMonsters();
+        UIManager.instance.refreshUI();
     }
 
     public void levelUpHero()

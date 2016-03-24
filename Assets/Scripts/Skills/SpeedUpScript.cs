@@ -12,4 +12,11 @@ public class SpeedUpScript : Skill
         hero.GetComponent<PlayerController>().speed += additionalSpeed;
         hero.GetComponent<PlayerController>().speed *= multiplicativeSpeed;
     }
+
+    public override string getDescription()
+    {
+        string result = base.getDescription();
+        result = result.Replace("<multiplier>", "<color=orange>" + additionalSpeed + "</color>");
+        return result;
+    }
 }

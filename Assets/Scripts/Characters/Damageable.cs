@@ -10,6 +10,7 @@ public class Damageable : MonoBehaviour
     public GameObject deathAnimation;
     public GameObject healAnimation;
     public Material flashingMaterial;
+    public bool showHPBar = true;
 
     private GameObject floatingText;
     private int HP;
@@ -22,6 +23,7 @@ public class Damageable : MonoBehaviour
     private int healEffects = 0;
     private Material originalMaterial;
     private bool isSlowed = false;
+    private FloatingHPBar floatingHPBar;
 
     void Start()
     {
@@ -79,8 +81,32 @@ public class Damageable : MonoBehaviour
             die();
             return;
         }
+        refreshHPBar();
 
         StartCoroutine(damageCooldown(invincibilityTime)); // Make invincible
+    }
+
+    /// <summary>
+    /// Update the floating HP Bar. Create an new one if there is none
+    /// </summary>
+    private void refreshHPBar()
+    {
+        if (!showHPBar)
+        {
+            if (floatingHPBar)
+                floatingHPBar.gameObject.SetActive(false);
+
+            return;
+        }
+
+        if (floatingHPBar == null)
+        {
+            floatingHPBar = Instantiate(UIManager.instance.floatingHPBar);
+            floatingHPBar.transform.SetParent(transform);
+            floatingHPBar.transform.localPosition = new Vector3(0, 0.8f, 0);
+        }
+
+        floatingHPBar.setRatio((float)HP / (float)maxHP);
     }
 
     public void inflictDamageRatio(float ratio)
@@ -113,6 +139,7 @@ public class Damageable : MonoBehaviour
         if (HP >= maxHP)
             HP = maxHP;
 
+        refreshHPBar();
         GameObject healText = Instantiate(floatingText) as GameObject;
         healText.GetComponent<FloatingText>().initialize(gameObject,  life);
         healText.GetComponent<FloatingText>().setColor(Color.green);

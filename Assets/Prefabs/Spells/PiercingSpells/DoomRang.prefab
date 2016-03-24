@@ -282,8 +282,10 @@ MonoBehaviour:
   damageString: <dmg> damage
   description: Pierces enemies back and forth
   manaCost: -5
+  manaCostInterval: 1
+  castTime: 0
   cooldown: 0.5
-  icon: {fileID: 21300030, guid: 8a6e157a9205c8645ab01eb3dbcc78e6, type: 3}
+  icon: {fileID: 21300338, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
   magicElement: 6
   spellSet: 0
@@ -4001,7 +4003,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294908526
+        rgba: 4282234388
       minMaxState: 0
     startSize:
       scalar: 1.5
@@ -5742,7 +5744,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294921577
+        rgba: 4289535302
       minMaxState: 0
     startSize:
       scalar: 0.35
