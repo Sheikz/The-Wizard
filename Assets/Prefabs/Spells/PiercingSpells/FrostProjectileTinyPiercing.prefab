@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11407344}
   - 114: {fileID: 11427006}
   - 114: {fileID: 11488778}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: FrostProjectileTinyPiercing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 463220}
   - 108: {fileID: 10823930}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 198: {fileID: 19831106}
   - 199: {fileID: 19927414}
   - 96: {fileID: 9644124}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: FrostTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 4: {fileID: 467424}
   - 198: {fileID: 19865412}
   - 199: {fileID: 19956550}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: FrostTwinkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,6 +358,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 10

@@ -100,6 +100,7 @@ public class Explosion : MonoBehaviour
         damage = spell.damage;
         intensity = spell.lightIntensity;
         manaCost = spell.manaCost;
+        gameObject.layer = spell.gameObject.layer;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)

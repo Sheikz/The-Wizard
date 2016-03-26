@@ -10,17 +10,11 @@ public class MovingSpell : SpellController
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
     {
-        MovingSpell newSpell = Instantiate(this, position, Quaternion.identity) as MovingSpell;
-        if (!newSpell.initialize(emitter, position, target))
+        MoveSpellCaster moveCaster = GetComponent<MoveSpellCaster>();
+        if (moveCaster && !moveCaster.canCastSpell(emitter, position, target))
             return null;
 
-        return newSpell;
-    }
-
-    public SpellController castSpellWithReturn(SpellCaster emitter, Vector3 position, Vector3 target)
-    {
-        MovingSpell newSpell = Instantiate(this);
-
+        MovingSpell newSpell = Instantiate(this, position, Quaternion.identity) as MovingSpell;
         if (!newSpell.initialize(emitter, position, target))
             return null;
 
@@ -36,7 +30,7 @@ public class MovingSpell : SpellController
 	{
         transform.position = position;
 		this.emitter = emitter;
-
+        this.target = target;
 		rb.velocity = (target - position).normalized * speed;
         applyLayer();
         return true;

@@ -47,20 +47,22 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 30
+  cooldown: 20
   icon: {fileID: 21300278, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 3
   magicElement: 3
   spellSet: 0
   damage: 0
   lightIntensity: 0
-  duration: 10
+  duration: 20
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   companion: {fileID: 11422000, guid: d8c04df6ae8f84d4c883d304f37be07f, type: 2}

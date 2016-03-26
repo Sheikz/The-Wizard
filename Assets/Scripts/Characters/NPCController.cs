@@ -161,7 +161,7 @@ public class NPCController : MovingCharacter
         float distanceToTarget = lineToTarget.magnitude;
 
         if (spellCaster && hasClearShot(targetOpponent))    // If this hero is a spell caster
-            spellCaster.castAvailableSpells(transform.position, targetOpponent.transform.position);
+            spellCaster.castAvailableSpells(targetOpponent.transform.position);
 
         if (!canMove)
             return;
@@ -296,7 +296,7 @@ public class NPCController : MovingCharacter
         path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(goal), getRadius(), isFlying, isGhost);
         if (path == null)
         {
-            Debug.Log("no path found");
+            Debug.Log(name + " no path found");
             setRandomTarget();
             Invoke("setNewGoal", 3f);
             return false;

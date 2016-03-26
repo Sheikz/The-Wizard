@@ -323,20 +323,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5480bc06e4301014ca91fb324790b7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: 
-  spellTypeDescription: 
-  damageString: 
-  description: 
-  manaCost: 0
+  spellName: Energy Bolt
+  spellTypeDescription: Projectile
+  damageString: <dmg> damage
+  description: Shoots a pure energy bolt
+  manaCost: -5
   manaCostInterval: 1
-  castTime: 0
-  cooldown: 0.2
-  icon: {fileID: 21300000, guid: 10e1453c231887544824dc466ab9b71b, type: 3}
+  castTime: 0.2
+  cooldown: 0.5
+  icon: {fileID: 21300304, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
-  magicElement: 0
+  magicElement: 3
   spellSet: 0
-  damage: 10
-  lightIntensity: 0
+  damage: 200
+  lightIntensity: 1
   duration: 0
   prerequisites: []
   removePrerequisites: 0
@@ -344,6 +344,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 5

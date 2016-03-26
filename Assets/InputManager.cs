@@ -91,6 +91,16 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Return true all frames the key is pressed
+    /// </summary>
+    /// <param name="cmd"></param>
+    /// <returns></returns>
+    public bool IsKeyPressed(SpellType type)
+    {
+        return Input.GetKey(keys[(int)type]);
+    }
+
+    /// <summary>
     /// Return true only the frame the key was released
     /// </summary>
     /// <param name="cmd"></param>

@@ -30,7 +30,8 @@ public class Hole : MonoBehaviour
             {
                 if (col.bounds.Contains(charactersInside[i].transform.position))
                 {
-                    charactersInside[i].startFalling(damageRatio);
+                    if (!charactersInside[i].isFlying)
+                        charactersInside[i].startFalling(damageRatio);
                     break;
                 }
             }

@@ -45,6 +45,7 @@ public class StaticSpell : SpellController
         base.Start();
         StartCoroutine(enableAfterSeconds(delayBeforeDamage));
         StartCoroutine(disableAfterSeconds(colliderDuration));
+        StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
     }
 
     protected void FixedUpdate()

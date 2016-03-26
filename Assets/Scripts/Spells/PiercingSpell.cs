@@ -9,6 +9,14 @@ public class PiercingSpell : MovingSpell
     private bool isOnExplosionCoolDown = false;
     private float timeBetweenExplosions = 0.5f;
 
+    public override bool canCastSpell(SpellCaster spellCaster, Vector3 initialPos, Vector3 target)
+    {
+        if (spellCaster.spellList[(int)spellType].moveSpellCaster != null)    // Forbid casting a move spell caster while one is already alive
+            return false;
+
+        return base.canCastSpell(spellCaster, initialPos, target);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Damageable dmg = other.gameObject.GetComponent<Damageable>();
@@ -44,7 +52,6 @@ public class PiercingSpell : MovingSpell
         GameObject newExplosion = Instantiate(explosion) as GameObject;
         newExplosion.transform.position = transform.position;
         newExplosion.GetComponent<Explosion>().initialize(this);
-        newExplosion.layer = gameObject.layer;
         if (destroyed)
             Destroy(gameObject);
     }

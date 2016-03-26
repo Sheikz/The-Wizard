@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Teleport : SpellController 
+public class Teleport : SpellController
 {
     public GameObject teleportAnimation;
 

@@ -39,14 +39,22 @@ public class Tooltip : MonoBehaviour
         else
             result += "Cast time: <color=lime>" + spell.castTime + "</color> sec\n";
 
-        if (spell.cooldown >0)
+        if (spell.cooldown > 0)
             result += "Cooldown: <color=orange>"+spell.cooldown +"</color> sec\n";
         if (spell.duration > 0)
             result += "Duration: <color=orange>" + spell.duration + "</color> sec\n";
         result += spell.spellTypeDescription + "\n";
         if (damage > 0)
+        {
+            SpellDamager spellDamager = spell.GetComponent<SpellDamager>();
+            if (spellDamager && spellDamager.delayBetweenDamage > 0)
+                damage = Mathf.RoundToInt(damage / spellDamager.delayBetweenDamage);
+
             result += spell.damageString.Replace("<dmg>", "<color=orange>" + damage + "</color>") + "\n";
+        }
         result += spell.description;
+
+        result = result.Replace("<n>", "\n");
         return result;
     }
 

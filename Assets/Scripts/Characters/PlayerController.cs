@@ -110,21 +110,25 @@ public class PlayerController : MovingCharacter
 			UIManager.instance.spellWindowByType.open();
 		}
 
+        if (spellCasted.Count > 0)
+        {
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target.z = 0;    // fix because camera see point at z = -5
+        }
+
 		foreach (int spell in spellCasted)
 		{
-			target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			target.z = 0;    // fix because camera see point at z = -5
 			if (spellCaster)
-				spellCaster.castSpell(spell, transform.position, target);
+				spellCaster.castSpell(spell, target);
 		}
-
+        /*
         foreach (int spell in spellReleased)
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.z = 0;    // fix because camera see point at z = -5
             if (spellCaster)
                 spellCaster.releaseSpell(spell, transform.position, target);
-        }
+        }*/
     }
 
 	public override void receivesDamage()

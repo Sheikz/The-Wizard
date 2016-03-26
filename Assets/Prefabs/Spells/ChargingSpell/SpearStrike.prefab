@@ -51,27 +51,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eb973cd7a7ae44fa7d5e8aab5dd115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: 
-  spellTypeDescription: 
-  damageString: 
-  description: 
+  spellName: Spear Strike
+  spellTypeDescription: Charged projectile
+  damageString: <dmg> damage/charge
+  description: Launches a flaming rock. Can be charged
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 0.2
-  icon: {fileID: 0}
+  cooldown: 0.5
+  icon: {fileID: 21300802, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
-  magicElement: 0
+  magicElement: 5
   spellSet: 0
-  damage: 10
+  damage: 75
   lightIntensity: 0
   duration: 0
-  chargingSpell: 0
   prerequisites: []
   removePrerequisites: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
   collidesWithWalls: 1
   ignoredColliders: []
+  spellStages:
+  - spell: {fileID: 114000014184389178, guid: b70adf23a47366a4e8fe414558bf2e46, type: 2}
+    chargingTime: 0.5
+  - spell: {fileID: 114000010709762964, guid: e45330b6df99cd342bc2838646689075, type: 2}
+    chargingTime: 0.5
+  - spell: {fileID: 114000013641431382, guid: 7df10f960ca52364cb475bf348f69c6b, type: 2}
+    chargingTime: 1

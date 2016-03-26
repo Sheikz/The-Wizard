@@ -23,7 +23,6 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public int damage = 10;
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
     public float duration = 0f;
-    public bool chargingSpell = false; // Can this spell be charged?
     
 	[Tooltip("The list of spells required to unlock this one")]
 	public GameObject[] prerequisites;
@@ -40,8 +39,12 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	[HideInInspector]
 	public LayerMask enemyLayer;     // The enemy layer
 	private float fadeLightsDuration = 0.5f;
+    [HideInInspector]
+    public Vector3 target;
+    [HideInInspector]
+    public MoveSpellCaster moveSpellCaster;
 
-	public bool collidesWithWalls = true;
+    public bool collidesWithWalls = true;
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
 
@@ -183,8 +186,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
 		foreach (ParticleSystem ps in partSystems)
 		{
-			if (!ps.IsAlive())
-				Destroy(ps.gameObject);
+            if (!ps.IsAlive())
+                Destroy(ps.gameObject);
 		}
 	}
 

@@ -16,7 +16,7 @@ public class SpellCaster : MonoBehaviour
     private HashSet<Spray> activeSprays;
     private bool isHero = false;
     private SpellBook spellBook;
-    private SpellController isCasting = null;   // Represent the spell that the caster is currently casting
+    private bool isCasting = false;
 
     private CharacterStats characterStats;
     [HideInInspector]
@@ -105,6 +105,8 @@ public class SpellCaster : MonoBehaviour
 		return true;
 	}
 
+    
+
     public bool equipSpell(SpellController spell)
     {
         if (spellList[spell.spellType.getInt()] == spell)
@@ -115,16 +117,22 @@ public class SpellCaster : MonoBehaviour
         return true;
     }
 
-	/// <summary>
-	/// Start a cooldown
-	/// </summary>
-	/// <param name="spellIndex"></param>
-	/// <returns></returns>
-	private IEnumerator startCooldown(int spellIndex)
+    internal void startCooldown(SpellType spellType, float cooldown)
+    {
+        StartCoroutine(startCooldown((int)spellType, cooldown));
+    }
+
+    /// <summary>
+    /// Start a cooldown
+    /// </summary>
+    /// <param name="spellIndex"></param>
+    /// <returns></returns>
+    private IEnumerator startCooldown(int spellIndex, float cooldown = 0)
 	{
 		isOnCoolDown[spellIndex] = true;
         float cdModifier = characterStats ? characterStats.cooldownModifier : 1;
-        float cooldown = spellList[spellIndex].GetComponent<SpellController>().cooldown * cdModifier;
+        if (cooldown == 0)
+        cooldown = spellList[spellIndex].GetComponent<SpellController>().cooldown * cdModifier;
 		if (isHero)
 		{
 			float startingTime = Time.time;
@@ -154,7 +162,7 @@ public class SpellCaster : MonoBehaviour
 		}
 	}
 
-	public void castSpell(int spellIndex, Vector3 initialPos, Vector3 target)
+	public void castSpell(int spellIndex, Vector3 target)
 	{
         if (GameManager.instance.isPaused || isOnCoolDown[spellIndex])
             return;
@@ -173,12 +181,13 @@ public class SpellCaster : MonoBehaviour
         if (useMana && mana < spell.manaCost)
             return;
 
-        if (spell.canCastSpell(this, initialPos, target))
+        if (spell.canCastSpell(this, transform.position, target))
         {
-            if (!spell.chargingSpell)
-                StartCoroutine(castingSpellRoutine(spell, this, spellIndex, initialPos, target));
+            ChargingSpell chargingSpell = spell.GetComponent<ChargingSpell>();
+            if (chargingSpell)
+                StartCoroutine(chargingSpellRoutine(chargingSpell, spellIndex));
             else
-                StartCoroutine(chargingSpellRoutine(spell, this, spellIndex, initialPos, target));
+                StartCoroutine(castingSpellRoutine(spell, spellIndex, target));
         }
 
     }
@@ -192,11 +201,11 @@ public class SpellCaster : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    private IEnumerator castingSpellRoutine(SpellController spell, SpellCaster emitter, int index, Vector3 pos, Vector3 target)
+    private IEnumerator castingSpellRoutine(SpellController spell, int index, Vector3 target)
     {
         if (spell.castTime > 0)
         {
-            isCasting = spell;
+            isCasting = true;
             float startingTime = Time.time;
             if (movingCharacter)
                 movingCharacter.enableMovement(false);
@@ -210,16 +219,19 @@ public class SpellCaster : MonoBehaviour
             if (movingCharacter)
                 movingCharacter.enableMovement(true);
 
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = 0;    // fix because camera see point at z = -5
+            if (!isMonster) // Only do that if we are the player, else we will change the target of monsters
+            {
+                target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                target.z = 0;    // fix because camera see point at z = -5
+            }
         }
 
-        if (spell.castSpell(this, pos, target))
+        if (spell.castSpell(this, transform.position, target))
         {
             StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
             payMana(spell.manaCost);
         }
-        isCasting = null;
+        isCasting = false;
         if (!castingBar)
             yield break;
 
@@ -227,10 +239,46 @@ public class SpellCaster : MonoBehaviour
         castingBar.gameObject.SetActive(false);
     }
 
-    private IEnumerator chargingSpellRoutine(SpellController spell, SpellCaster spellCaster, int spellIndex, Vector3 initialPos, Vector3 target)
+    private IEnumerator chargingSpellRoutine(ChargingSpell spell, int index)
     {
-        float startTime = Time.time;
-        yield break;
+        int stage = 0;
+        int maxStage = spell.spellStages.Length - 1;
+        float chargingTime = 0;
+        isCasting = true;
+        if (movingCharacter)
+            movingCharacter.enableMovement(false);
+        while (InputManager.instance.IsKeyPressed(spell.spellType))
+        {
+            if (stage < maxStage)
+            {
+                setCastBarRatio(chargingTime / spell.spellStages[stage].chargingTime);
+                if (chargingTime >= spell.spellStages[stage].chargingTime)
+                {
+                    stage++;
+                    chargingTime = 0;
+                    setCastBarRatio(1f);
+                }
+                else
+                    chargingTime += Time.deltaTime;
+            }
+            yield return null;
+        }
+        // If it was not charged enough, return without paying mana
+        isCasting = false;
+        if (movingCharacter)
+            movingCharacter.enableMovement(true);
+
+        if (spell.castChargingSpell(this, transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), stage))
+        {
+            StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
+            payMana(spell.manaCost);
+        }
+
+        if (!castingBar)
+            yield break;
+
+        yield return new WaitForSeconds(0.25f);
+        castingBar.gameObject.SetActive(false);
     }
 
     private void setCastBarRatio(float ratio)
@@ -263,11 +311,11 @@ public class SpellCaster : MonoBehaviour
         mana = Mathf.Clamp(mana, 0, maxMana);
     }
 
-    public void castAvailableSpells(Vector3 initialPosition, Vector3 target)
+    public void castAvailableSpells(Vector3 target)
 	{
 		for (int i = 0; i < spellList.Length; i++)
 		{
-			castSpell(i, initialPosition, target);
+			castSpell(i, target);
 		}
 	}
 

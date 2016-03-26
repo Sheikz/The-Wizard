@@ -49,7 +49,7 @@ MonoBehaviour:
   castTime: 0
   cooldown: 3
   icon: {fileID: 21300496, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 3
+  spellType: 2
   magicElement: 3
   spellSet: 1
   damage: 10
@@ -61,6 +61,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   teleportAnimation: {fileID: 164774, guid: 989e92436e7776a40a336daab46e6e50, type: 2}

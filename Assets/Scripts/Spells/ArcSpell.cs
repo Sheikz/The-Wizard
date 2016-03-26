@@ -11,7 +11,6 @@ public class ArcSpell : SpellController
     public Count angleOffset;
 
     private Vector3 position;
-    private Vector3 target;
     private float offset;
 
     private void createSpells(SpellCaster emitter, Vector3 position, Vector3 target)

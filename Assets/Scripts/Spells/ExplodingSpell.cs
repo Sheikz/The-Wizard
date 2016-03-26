@@ -64,7 +64,6 @@ public class ExplodingSpell : MonoBehaviour
                 newExplosion.transform.position = collider.transform.position; 
 
             newExplosion.initialize(spell);
-            newExplosion.gameObject.layer = gameObject.layer;
         }
         Damageable dmg = collider.GetComponent<Damageable>();
         if (dmg && chainSpell)

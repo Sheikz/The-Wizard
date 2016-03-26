@@ -4,36 +4,28 @@ using System;
 
 public class ChargingSpell : SpellController
 {
-    private bool isCharging = false;
-    private ChargingSpell charginSpell;
-
-
+    [Serializable]
     public struct ChargingSpellStages
     {
-        SpellController spell;
-        float chargingTime;
+        public SpellController spell;
+        public float chargingTime;
     }
 
     public ChargingSpellStages[] spellStages;
 
-    new void Start()
-    {
-        base.Start();
-    }
-
     public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
     {
-        if (!charginSpell)
-        {
-            ChargingSpell newSpell = Instantiate(this);
-            newSpell.emitter = emitter;
-            newSpell.transform.SetParent(emitter.transform);
-        }
-        else
-        {
-            charginSpell.isCharging = true;
-        }
         return null;
     }
 
+    public bool castChargingSpell(SpellCaster emitter, Vector3 position, Vector3 target, int stage)
+    {
+        if (spellStages[stage].spell)
+        {
+            spellStages[stage].spell.castSpell(emitter, position, target);
+            return true;
+        }
+
+        return false;
+    }
 }
