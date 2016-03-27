@@ -30,6 +30,7 @@ public class Explosion : MonoBehaviour
 	{
 		StartCoroutine(enableAfterSeconds(delayBeforeExplosion));
         setupLights();
+        transform.SetParent(GameManager.instance.map.spellHolder);
 	}
 
     void setupLights()

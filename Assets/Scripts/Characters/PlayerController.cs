@@ -60,55 +60,24 @@ public class PlayerController : MovingCharacter
 			if (!EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
 				spellCasted.Add(0);
 		}
-        else if (InputManager.instance.IsKeyUp(InputManager.Command.PrimarySpell))
-        {
-            spellReleased.Add(0);
-        }
 
 		if (InputManager.instance.IsKeyPressed(InputManager.Command.SecondarySpell))
-		{
 			spellCasted.Add(1);
-		}
-        else if (InputManager.instance.IsKeyUp(InputManager.Command.SecondarySpell))
-        {
-            spellReleased.Add(1);
-        }
 
         if (InputManager.instance.IsKeyPressed(InputManager.Command.DefensiveSpell))
-		{
 			spellCasted.Add(2);
-		}
-        else if (InputManager.instance.IsKeyUp(InputManager.Command.DefensiveSpell))
-        {
-            spellReleased.Add(2);
-        }
 
         if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate1))
-		{
 			spellCasted.Add(3);
-		}
-        else if (InputManager.instance.IsKeyUp(InputManager.Command.Ultimate1))
-        {
-            spellReleased.Add(3);
-        }
 
         if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate2))
-		{
 			spellCasted.Add(4);
-		}
-        else if (InputManager.instance.IsKeyUp(InputManager.Command.Ultimate2))
-        {
-            spellReleased.Add(4);
-        }
 
         if (Input.GetButtonDown("Cancel"))
-		{
 			UIManager.instance.switchMenu();
-		}
-		if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
-		{
-			UIManager.instance.spellWindowByType.open();
-		}
+
+        if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
+            UIManager.instance.spellWindowByType.open();
 
         if (spellCasted.Count > 0)
         {

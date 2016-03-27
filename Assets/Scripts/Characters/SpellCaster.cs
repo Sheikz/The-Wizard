@@ -105,10 +105,11 @@ public class SpellCaster : MonoBehaviour
 		return true;
 	}
 
-    
-
     public bool equipSpell(SpellController spell)
     {
+        if (!spell)
+            return false;
+
         if (spellList[spell.spellType.getInt()] == spell)
             return false;
 

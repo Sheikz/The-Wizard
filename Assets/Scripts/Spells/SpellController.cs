@@ -63,6 +63,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		setupLights();
 		applyStats();
 		applyLayer();
+        if (transform.parent == null)
+            transform.SetParent(GameManager.instance.map.spellHolder);
 	}
 
 	public abstract SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target);

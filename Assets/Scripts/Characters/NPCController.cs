@@ -6,11 +6,17 @@ using System;
 
 public class NPCController : MovingCharacter
 {
-    public float goalDistance;
-    public float visionDistance;
-    public Count preferedDistance;
-    public Countf strafeFrequency;
+    [Range(0f, 1f)]
+    [Tooltip("The chance that the NPC will be idle after having reach his goal")]
+    public float idleChance = 0.3f;
+    [Tooltip("The min and max time the NPC will stay idle")]
+    public Countf idleTime = new Countf(1, 3);
+    public float goalDistance = 10f;
+    public float visionDistance = 10f;
+    public Count preferedDistance = new Count(3, 5);
+    public Countf strafeFrequency = new Countf(0.2f, 0.5f);
     public bool isGhost = false;
+    public float deathAnimationTime = 0f;
 
     protected Vector3 target;     // short-term target
     protected Vector3 goal;       // long-term target
@@ -29,8 +35,9 @@ public class NPCController : MovingCharacter
     private LayerMask obstacleLayer;
     private LayerMask visionLayer;
     private Collider2D[] potentialTargets;
+    private bool isDead = false;
 
-    private enum NPCState { DoNothing, Wander, Chase };
+    private enum NPCState { Idle, Wander, Chase };
 
     void Start()
     {
@@ -82,6 +89,8 @@ public class NPCController : MovingCharacter
 
     void actAccordingToState()
     {
+        if (isDead)
+            return;
         switch (state)
         {
             case NPCState.Wander:
@@ -90,7 +99,15 @@ public class NPCController : MovingCharacter
             case NPCState.Chase:
                 doChase();
                 break;
+            case NPCState.Idle:
+                doIdle();
+                break;
         }
+    }
+
+    private void doIdle()
+    {
+        searchTarget();
     }
 
     protected virtual void doWander()
@@ -98,13 +115,14 @@ public class NPCController : MovingCharacter
         if (searchTarget())
             return;
 
+        if (!canMove)
+            return;
+
         if (hasReached(goal))
             setNewGoal();
         if (hasReached(target))
             setNewTarget();
 
-        if (!canMove)
-            return;
         updateMovementToReachTarget();
         moveToTarget();
     }
@@ -129,6 +147,7 @@ public class NPCController : MovingCharacter
             {
                 targetOpponent = dmg;
                 state = NPCState.Chase;
+                anim.SetBool("Attacking", true);
                 return true;
             }
         }
@@ -150,9 +169,11 @@ public class NPCController : MovingCharacter
 
     void doChase()
     {
+        
         if (!targetOpponent || !inLineOfSight(targetOpponent))
         {
             state = NPCState.Wander;
+            anim.SetBool("Attacking", false);
             computePathToGoal();
             return;
         }
@@ -279,6 +300,12 @@ public class NPCController : MovingCharacter
 
     void setNewGoal()
     {
+        if (Random.Range(0f, 1f) <= idleChance)
+        {
+            StartCoroutine(startIdle());
+            return;
+        }
+
         float maxMobRadius = getRadius();
         if (maxMobRadius > 0.5f)
         {
@@ -289,6 +316,22 @@ public class NPCController : MovingCharacter
             goal = gridMap.findRandomTileWithinRadius(transform.position, goalDistance, TileType.Floor).position();
         }
         computePathToGoal();
+    }
+
+    private IEnumerator startIdle()
+    {
+        state = NPCState.Idle;
+        //anim.SetBool("Moving", false);
+        movement = Vector2.zero;
+        float duration = idleTime.getRandom();
+        float startTime = Time.time;
+        while (Time.time - startTime <= duration)
+        {
+            if (state != NPCState.Idle)
+                yield break;
+            yield return new WaitForFixedUpdate();
+        }
+        state = NPCState.Wander;
     }
 
     protected bool computePathToGoal()
@@ -316,10 +359,35 @@ public class NPCController : MovingCharacter
         
     public override void die()
     {
+        circleCollider.enabled = false;
+        isDead = true;
+        movement = Vector2.zero;
         if (room)
         {
             room.monsterDied(this);
         }
+        StartCoroutine(dieAfterSeconds(deathAnimationTime));
+    }
+
+    private IEnumerator dieAfterSeconds(float deathAnimationTime)
+    {
+        anim.SetTrigger("Dying");
+        yield return new WaitForSeconds(deathAnimationTime);
+        Instantiate(UIManager.instance.deathAnimation, transform.position, Quaternion.identity);
+        StartCoroutine(fadeAfterSeconds(deathAnimationTime));
+    }
+
+    IEnumerator fadeAfterSeconds(float duration)
+    {
+        float startingTime = Time.time;
+        while (Time.time - startingTime < duration)
+        {
+            Color newColor = spriteRenderer.color;
+            newColor.a = Mathf.Lerp(1, 0, (Time.time - startingTime) / duration);
+            spriteRenderer.color = newColor;
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 
     public override void receivesDamage()

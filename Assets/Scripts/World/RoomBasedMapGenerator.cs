@@ -29,6 +29,8 @@ public class RoomBasedMapGenerator : MonoBehaviour
     private PlayerController hero;
     [HideInInspector]
     public List<NPCController> monsterList;
+    [HideInInspector]
+    public Transform spellHolder;
 
     public void Start()
     {
@@ -45,6 +47,8 @@ public class RoomBasedMapGenerator : MonoBehaviour
         liaisonHolder = new GameObject();
         liaisonHolder.name = "Liaison Holder";
         liaisonHolder.transform.SetParent(transform);
+
+        spellHolder = new GameObject("Spells").transform;
 
         hero = GameManager.instance.hero;
         createMap();

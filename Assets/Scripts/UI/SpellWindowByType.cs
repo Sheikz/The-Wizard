@@ -77,7 +77,6 @@ public class SpellWindowByType : MonoBehaviour
         foreach (Tooltip tooltip in GetComponentsInChildren<Tooltip>())
             tooltip.gameObject.SetActive(false);
         gameObject.SetActive(false);
-        GameManager.instance.setPause(false);
     }
 
     public void open()

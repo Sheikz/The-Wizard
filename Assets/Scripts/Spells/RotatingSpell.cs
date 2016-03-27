@@ -41,6 +41,8 @@ public class RotatingSpell : SpellController
 
     void FixedUpdate()
 	{
+        if (!emitter)
+            shootImmediate();
         switch (state)
         {
             case RotatingSpellState.Rotating:

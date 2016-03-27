@@ -7,7 +7,6 @@ public class Damageable : MonoBehaviour
     public int maxHP;
     public float invincibilityTime = 0.1f;
     public bool isHealable;
-    public GameObject deathAnimation;
     public GameObject healAnimation;
     public Material flashingMaterial;
     public bool showHPBar = true;
@@ -74,12 +73,12 @@ public class Damageable : MonoBehaviour
         HP -= damage;
         if (HP <= 0)
         {
+            HP = 0;
             ExperienceHolder xpHolder = GetComponent<ExperienceHolder>();
             if (xpHolder && emitter) // If I have experience, give it
                 xpHolder.die(emitter.gameObject);
 
             die();
-            return;
         }
         refreshHPBar();
 
@@ -121,8 +120,9 @@ public class Damageable : MonoBehaviour
     {
         if (movingChar)
             movingChar.die();
-        Instantiate(deathAnimation, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        else
+            Destroy(gameObject);
+            
         isDead = true;
     }
 

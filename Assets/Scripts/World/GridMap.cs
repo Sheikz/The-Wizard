@@ -228,7 +228,7 @@ public class GridMap
                 {
                     if (tile.distanceToClosestHighBlocking > space)
                         result.Add(tile);
-                }        
+                }
             }
         }
         return Utils.pickRandom(result);

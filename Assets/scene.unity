@@ -332,6 +332,10 @@ Prefab:
       propertyPath: toAllocateReminder
       value: 
       objectReference: {fileID: 2022914628}
+    - target: {fileID: 11498424, guid: 1462216addc1b2d449c68a78820471e1, type: 2}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1462216addc1b2d449c68a78820471e1, type: 2}
   m_IsPrefabParent: 0
@@ -407,6 +411,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 22443568, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1366,6 +1374,50 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[6].item
+      value: 
+      objectReference: {fileID: 119740, guid: 0919934a5bf51ac4384aba4a23a09ac9, type: 2}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[6].lootChance
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[7].item
+      value: 
+      objectReference: {fileID: 119740, guid: 4195df2b656e72e44a39bfe1c9e0c722, type: 2}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[7].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[8].item
+      value: 
+      objectReference: {fileID: 119740, guid: a7f3bf0c72492094c87b2bfe325b3b60, type: 2}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[8].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[0].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[1].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[2].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[4].lootChance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478660, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}
+      propertyPath: possibleSkillList.Array.data[5].lootChance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c9edea9c61bc9144830bfe653f2c64e, type: 2}

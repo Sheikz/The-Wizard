@@ -31,11 +31,11 @@ public class Unit : MonoBehaviour {
     // Load Sprite Images based on name
     void Start () {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        for (int i = 0; i < 64; i++)
-        {
+        //for (int i = 0; i < 64; i++)
+       // {
             sprites = Resources.LoadAll<Sprite>("Units/" + spritename);
-        }
-        //Debug.Log(sprites.Length);
+        //}
+        Debug.Log("sprites length: "+sprites.Length);
 
         //move code
         target = transform.position;

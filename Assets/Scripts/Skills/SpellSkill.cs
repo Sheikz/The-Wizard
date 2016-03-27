@@ -21,7 +21,7 @@ public class SpellSkill : Skill
         if (chosenSpell == null)
             return;
 
-        hero.GetComponent<SpellCaster>().addSpell(chosenSpell);
+        //hero.GetComponent<SpellCaster>().addSpell(chosenSpell);
     }
 
     /// <summary>

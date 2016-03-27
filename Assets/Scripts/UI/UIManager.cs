@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     [HideInInspector]
     public Image[] coolDownImages;
     private Color originalScreenMaskColor;
+    public GameObject deathAnimation;
 
     void Awake()
     {

@@ -42,6 +42,7 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (heroStats.spellLevels[(int)containedSpell.spellSet, (int)containedSpell.magicElement, (int)containedSpell.spellType] <= 0)
             return; // If the spell is lvl 0, don't equip it
 
+        Debug.Log(name + "here3");
         hero.equipSpell(containedSpell);
         spellBook.close();
     }

@@ -361,9 +361,9 @@ MonoBehaviour:
   cooldown: 0.5
   icon: {fileID: 21300000, guid: 4dd0d474a078b2e4b9d21fc26241a6ff, type: 3}
   spellType: 0
-  magicElement: 0
+  magicElement: 1
   spellSet: 0
-  damage: 15
+  damage: 50
   lightIntensity: 0
   duration: 0
   prerequisites: []
@@ -372,6 +372,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 7

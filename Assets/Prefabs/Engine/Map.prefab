@@ -61,7 +61,7 @@ MonoBehaviour:
     lootChance: 1
   bossRoom: 1
   allowedGenerationTime: 3
-  roomNumber: 6
+  roomNumber: 8
   distanceBetweenRoom: 4
   monsters:
   - item: {fileID: 132528, guid: 1531406b618c2ec479185cfe0db938c2, type: 2}
@@ -76,10 +76,13 @@ MonoBehaviour:
     lootChance: 1
   - item: {fileID: 150918, guid: 1782120d2a0e0c64395f3d3769104e23, type: 2}
     lootChance: 1
-  monsterNumber: 20
+  - item: {fileID: 1000010950718568, guid: f5a24d87d2a86224a8f606a100eac1f8, type: 2}
+    lootChance: 1
+  monsterNumber: 16
   mergingChance: 0.3
   proxyObjects: []
   monsterList: []
+  spellHolder: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

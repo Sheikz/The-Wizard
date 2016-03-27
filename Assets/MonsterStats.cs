@@ -7,7 +7,7 @@ public class MonsterStats : CharacterStats
     protected float dungeonLevel = 1;
     public float dungeonLevelMultiplier = 1.2f;
     public float monsterDamageMultiplier = 0.5f;
-    public float difficultyModifier = 1.5f;
+    public float difficultyModifier = 1.0f;
 
     new void Awake()
     {
@@ -24,6 +24,6 @@ public class MonsterStats : CharacterStats
 
     public override float getDamageMultiplier(MagicElement school)
     {
-        return (levelDamageMultiplier() + (dungeonLevel - 1) * (dungeonLevelMultiplier - 1)) * monsterDamageMultiplier;
+        return (levelDamageMultiplier() + (dungeonLevel - 1) * (dungeonLevelMultiplier - 1)) * monsterDamageMultiplier * difficultyModifier;
     }
 }
