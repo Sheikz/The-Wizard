@@ -29,11 +29,13 @@ public class SpellCaster : MonoBehaviour
     private float mana;
     private CastingBar castingBar;
     private MovingCharacter movingCharacter;
+    private Animator anim;
 
     void Awake()
     {
         characterStats = GetComponent<CharacterStats>();
         movingCharacter = GetComponent<MovingCharacter>();
+        anim = GetComponent<Animator>(); 
     }
 
     // Use this for initialization
@@ -130,6 +132,8 @@ public class SpellCaster : MonoBehaviour
     /// <returns></returns>
     private IEnumerator startCooldown(int spellIndex, float cooldown = 0)
 	{
+        if (anim)
+            anim.SetTrigger("Attacking");
 		isOnCoolDown[spellIndex] = true;
         float cdModifier = characterStats ? characterStats.cooldownModifier : 1;
         if (cooldown == 0)
@@ -149,11 +153,6 @@ public class SpellCaster : MonoBehaviour
 			yield return new WaitForSeconds(cooldown);
 		isOnCoolDown[spellIndex] = false;
 	}
-
-    internal void releaseSpell(int spell, Vector3 position, Vector3 target)
-    {
-        
-    }
 
     public void resetCooldowns()
 	{

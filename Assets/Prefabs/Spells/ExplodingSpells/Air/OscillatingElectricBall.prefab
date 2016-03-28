@@ -188,7 +188,7 @@ MonoBehaviour:
   spellTypeDescription: Projectile
   damageString: <dmg> damage
   description: Shoots an oscillating ball of thunder
-  manaCost: 20
+  manaCost: 10
   manaCostInterval: 1
   castTime: 0
   cooldown: 1
@@ -196,7 +196,7 @@ MonoBehaviour:
   spellType: 1
   magicElement: 1
   spellSet: 1
-  damage: 100
+  damage: 120
   lightIntensity: 0
   duration: 0
   prerequisites: []
@@ -205,6 +205,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 5

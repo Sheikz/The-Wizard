@@ -21,6 +21,8 @@ public abstract class MovingCharacter : MonoBehaviour
 
     protected bool isFalling = false;
     public bool isFlying = false;
+    private float spinningSpeed = 10f;
+    private float fallingDuration = 3f;
 
     // Use this for initialization
     protected void Awake()
@@ -72,7 +74,7 @@ public abstract class MovingCharacter : MonoBehaviour
             return;
         if (!isFalling)
         {
-            StartCoroutine(fallAnimation(3, 3, damageRatio));
+            StartCoroutine(fallAnimation(spinningSpeed, fallingDuration, damageRatio));
             enableAction(false);
         }
         isFalling = true;
@@ -111,7 +113,7 @@ public abstract class MovingCharacter : MonoBehaviour
             transform.Rotate(0, 0, spinningSpeed);
             float scale = Mathf.Lerp(1f, 0f, (Time.time - startingTime)/duration);
             transform.localScale = new Vector3(scale, scale, scale);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         circleCollider.enabled = true;
         PlayerController pc = GetComponent<PlayerController>();

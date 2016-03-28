@@ -29,6 +29,7 @@ GameObject:
   - 114: {fileID: 114000012872911076}
   - 114: {fileID: 114000010509289424}
   - 114: {fileID: 114000010593406400}
+  - 114: {fileID: 114000010537133402}
   m_Layer: 9
   m_Name: Monster03
   m_TagString: Enemy
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 50
+--- !u!114 &114000010537133402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010950718568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8de672193058b408731f13b6e52bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressiveApparitionTime: 0.5
 --- !u!114 &114000010593406400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,6 +138,8 @@ MonoBehaviour:
     lootChance: 0.6
   - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
     lootChance: 0.4
+  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
+    lootChance: 1
   shouldDropItems: 1
 --- !u!114 &114000011271166952
 MonoBehaviour:

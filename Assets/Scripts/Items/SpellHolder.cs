@@ -26,7 +26,7 @@ public class SpellHolder : Item
         spr.sprite = controller.icon;
     }
 
-    protected override void isPickedUpBy(Collider2D other)
+    public override void isPickedUpBy(Inventory other)
     {
         if (!hero)
             return;

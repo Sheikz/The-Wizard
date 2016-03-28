@@ -41,7 +41,7 @@ public class ChainSpell : MonoBehaviour
         if (dmg && autoPilot)
         {
             // If autopilot is available and target is a damageable, lock on it
-            autoPilot.LockToObject(dmg.gameObject);
+            autoPilot.lockToObject(dmg.gameObject);
         }
 
     }

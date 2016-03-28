@@ -131,6 +131,10 @@ MonoBehaviour:
   speed: 2
   circleCollider: {fileID: 0}
   isFlying: 0
+  idleChance: 0.3
+  idleTime:
+    minimum: 1
+    maximum: 3
   goalDistance: 10
   visionDistance: 10
   preferedDistance:
@@ -140,6 +144,7 @@ MonoBehaviour:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
+  deathAnimationTime: 0
 --- !u!114 &11459752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +173,8 @@ MonoBehaviour:
     lootChance: 0.6
   - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
     lootChance: 0.4
+  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
+    lootChance: 1
   shouldDropItems: 1
 --- !u!114 &11463268
 MonoBehaviour:
@@ -183,7 +190,6 @@ MonoBehaviour:
   maxHP: 450
   invincibilityTime: 0.1
   isHealable: 0
-  deathAnimation: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1

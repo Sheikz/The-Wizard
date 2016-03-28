@@ -71,7 +71,7 @@ public class BoomerangSpell : MovingSpell
         if (!emitter)
             Destroy(gameObject);
 
-        autoPilot.LockToObject(emitter.gameObject);
+        autoPilot.lockToObject(emitter.gameObject);
         state = BoomerangState.ComingBack;
     }
 

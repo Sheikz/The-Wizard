@@ -6,7 +6,7 @@ public class HealthRegen : Item
     public float lifeRatio;
     public float duration;
 
-    override protected void isPickedUpBy(Collider2D other)
+    override public void isPickedUpBy(Inventory other)
     {
         Damageable dmg = other.GetComponent<Damageable>();
         if (dmg && dmg.isHealable)

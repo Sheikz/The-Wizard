@@ -51,6 +51,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
         spellHolder = new GameObject("Spells").transform;
 
         hero = GameManager.instance.hero;
+        hero.transform.position = new Vector3(0, 5f, 0f);
         createMap();
         createDecos();
         createMonsters();

@@ -147,7 +147,6 @@ public class NPCController : MovingCharacter
             {
                 targetOpponent = dmg;
                 state = NPCState.Chase;
-                anim.SetBool("Attacking", true);
                 return true;
             }
         }
@@ -173,7 +172,6 @@ public class NPCController : MovingCharacter
         if (!targetOpponent || !inLineOfSight(targetOpponent))
         {
             state = NPCState.Wander;
-            anim.SetBool("Attacking", false);
             computePathToGoal();
             return;
         }
