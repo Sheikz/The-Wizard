@@ -49,10 +49,7 @@ public class Tile
             case TileType.Wall:
                 return !isGhost;
             case TileType.Hole:
-                if (isGhost)
-                    return false;
-                else
-                    return !isFlying;
+                return !isFlying;
             default:
                 return false;
         }
