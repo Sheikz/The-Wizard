@@ -35,6 +35,7 @@ GameObject:
   - 114: {fileID: 11408418}
   - 114: {fileID: 11443016}
   - 114: {fileID: 114000011002847520}
+  - 114: {fileID: 114000011873066926}
   m_Layer: 10
   m_Name: Hero
   m_TagString: Hero
@@ -215,6 +216,7 @@ MonoBehaviour:
   - {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
+  targetObject: {fileID: 0}
 --- !u!114 &11489054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,7 +517,6 @@ GameObject:
   - 4: {fileID: 4000013105189706}
   - 114: {fileID: 114000010938125460}
   - 58: {fileID: 58000012620621954}
-  - 50: {fileID: 50000012292118608}
   m_Layer: 21
   m_Name: ItemVacuumLooter
   m_TagString: Untagged
@@ -536,23 +537,6 @@ Transform:
   m_Father: {fileID: 483616}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50000012292118608
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010134569320}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &58000012620621954
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -578,6 +562,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32aadc1c47f4a0498fcaac6ca72f58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sqrDistanceLoot: 0.25
+  inventory: {fileID: 0}
 --- !u!114 &114000011002847520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,4 +575,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013184e1e45b1b649a269d2478155fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sqrDistanceLoot: 0.09
   goldAmount: 0
+--- !u!114 &114000011873066926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e5ff01a4f566144a02389dfb9c6a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackImmuneTime: 0.5

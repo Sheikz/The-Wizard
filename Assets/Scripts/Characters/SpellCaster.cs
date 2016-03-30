@@ -30,6 +30,8 @@ public class SpellCaster : MonoBehaviour
     private CastingBar castingBar;
     private MovingCharacter movingCharacter;
     private Animator anim;
+    [HideInInspector]
+    public GameObject targetObject;
 
     void Awake()
     {
@@ -132,8 +134,6 @@ public class SpellCaster : MonoBehaviour
     /// <returns></returns>
     private IEnumerator startCooldown(int spellIndex, float cooldown = 0)
 	{
-        if (anim)
-            anim.SetTrigger("Attacking");
 		isOnCoolDown[spellIndex] = true;
         float cdModifier = characterStats ? characterStats.cooldownModifier : 1;
         if (cooldown == 0)
@@ -205,6 +205,8 @@ public class SpellCaster : MonoBehaviour
     {
         if (spell.castTime > 0)
         {
+            if (anim)
+                anim.SetTrigger("PrepareAttack");
             isCasting = true;
             float startingTime = Time.time;
             if (movingCharacter)
@@ -224,12 +226,21 @@ public class SpellCaster : MonoBehaviour
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.z = 0;    // fix because camera see point at z = -5
             }
+            else if (targetObject)
+                target = targetObject.transform.position;
         }
 
         if (spell.castSpell(this, transform.position, target))
         {
             StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
             payMana(spell.manaCost);
+            if (anim)
+                anim.SetTrigger("Attack");
+        }
+        else
+        {
+            if (anim)
+                anim.SetTrigger("CancelAttack");
         }
         isCasting = false;
         if (!castingBar)
@@ -273,6 +284,11 @@ public class SpellCaster : MonoBehaviour
             StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
             payMana(spell.manaCost);
         }
+        else
+        {
+            if (anim)
+                anim.SetTrigger("CancelAttack");
+        }
 
         if (!castingBar)
             yield break;
@@ -311,11 +327,12 @@ public class SpellCaster : MonoBehaviour
         mana = Mathf.Clamp(mana, 0, maxMana);
     }
 
-    public void castAvailableSpells(Vector3 target)
+    public void castAvailableSpells(Damageable target)
 	{
+        targetObject = target.gameObject;
 		for (int i = 0; i < spellList.Length; i++)
 		{
-			castSpell(i, target);
+			castSpell(i, target.transform.position);
 		}
 	}
 

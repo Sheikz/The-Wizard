@@ -117,7 +117,7 @@ public class Companion : MonoBehaviour
             return;
 
         if (inLineOfSight(target))   // If it has a clear shot
-            spellCaster.castAvailableSpells(target.transform.position);
+            spellCaster.castAvailableSpells(target);
         else
             state = CompanionState.Searching;
     }

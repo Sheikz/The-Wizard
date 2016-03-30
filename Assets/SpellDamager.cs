@@ -90,49 +90,4 @@ public class SpellDamager : MonoBehaviour
         yield return new WaitForSeconds(delayBetweenDamage);
         damagedObjects.Remove(dmg);
     }
-
-
-    /*
-    protected void FixedUpdate()
-    {
-        if (!damageOverTime)
-            return;
-
-        for (int i = affectedObjects.Count - 1; i >= 0; i--)
-        {
-            if (affectedObjects[i] == null)
-            {
-                affectedObjects.RemoveAt(i);
-                continue;
-            }
-            affectedObjects[i].doDamage(emitter, damage);
-        }
-    }*/
-
-    // Weird fix because OnTriggerStay2D randomly doesn't work. Need to keep a list of objects triggering
-    /*void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!damageOverTime)
-            return;
-
-        Damageable dmg = other.GetComponent<Damageable>(); ;
-        if (dmg)
-        {
-            affectedObjects.Add(dmg);
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (!damageOverTime)
-            return;
-
-        Damageable dmg = other.GetComponent<Damageable>();
-        if (dmg)
-        {
-            affectedObjects.Remove(dmg);
-        }
-    }*/
-
-
 }

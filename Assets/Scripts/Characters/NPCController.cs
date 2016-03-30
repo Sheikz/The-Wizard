@@ -146,6 +146,7 @@ public class NPCController : MovingCharacter
             if (inLineOfSight(dmg))
             {
                 targetOpponent = dmg;
+                spellCaster.targetObject = dmg.gameObject;
                 state = NPCState.Chase;
                 return true;
             }
@@ -171,6 +172,7 @@ public class NPCController : MovingCharacter
         
         if (!targetOpponent || !inLineOfSight(targetOpponent))
         {
+            spellCaster.targetObject = null;
             state = NPCState.Wander;
             computePathToGoal();
             return;
@@ -180,8 +182,9 @@ public class NPCController : MovingCharacter
         float distanceToTarget = lineToTarget.magnitude;
 
         if (spellCaster && hasClearShot(targetOpponent))    // If this hero is a spell caster
-            spellCaster.castAvailableSpells(targetOpponent.transform.position);
+            spellCaster.castAvailableSpells(targetOpponent);
 
+        direction = lineToTarget;   // Face the target
         if (!canMove)
             return;
 
@@ -220,8 +223,7 @@ public class NPCController : MovingCharacter
             target = targetOpponent.transform.position;
 
         movement = (target - transform.position).normalized * speed;
-        direction = lineToTarget;   // Face the target
-
+        
         if (isFlying)   // if it is flying, it does not need to avoid obstacles
             return;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, movement, circleCollider.radius, obstacleLayer);
@@ -319,7 +321,6 @@ public class NPCController : MovingCharacter
     private IEnumerator startIdle()
     {
         state = NPCState.Idle;
-        //anim.SetBool("Moving", false);
         movement = Vector2.zero;
         float duration = idleTime.getRandom();
         float startTime = Time.time;

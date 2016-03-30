@@ -40,11 +40,12 @@ public abstract class MovingCharacter : MonoBehaviour
             if (movement != Vector2.zero)
             {
                 anim.SetBool("Moving", true);
-                anim.SetFloat("DirectionX", direction.x);
-                anim.SetFloat("DirectionY", direction.y);
             }
             else
                 anim.SetBool("Moving", false);
+
+            anim.SetFloat("DirectionX", direction.x);
+            anim.SetFloat("DirectionY", direction.y);
         }
     }
 
@@ -90,7 +91,7 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!value)
         {
             rb.velocity = Vector3.zero;
-            movement = Vector2.zero;
+            //movement = Vector2.zero;
         }
     }
 

@@ -1,0 +1,499 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &132528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 433584}
+  - 212: {fileID: 21230990}
+  - 114: {fileID: 11414474}
+  - 114: {fileID: 11436272}
+  - 114: {fileID: 11449252}
+  - 114: {fileID: 11423614}
+  - 58: {fileID: 5807330}
+  - 50: {fileID: 5080148}
+  - 95: {fileID: 9506440}
+  - 114: {fileID: 11485512}
+  - 114: {fileID: 11461582}
+  - 114: {fileID: 11410728}
+  - 114: {fileID: 11428846}
+  m_Layer: 9
+  m_Name: Monster1
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &433584
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &5080148
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &5807330
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.45
+--- !u!95 &9506440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 24bc4e65d4d01b7479c7128c26dd7861, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11410728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8de672193058b408731f13b6e52bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressiveApparitionTime: 0.5
+--- !u!114 &11414474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a014df5fb9619294695ba5d784a2d8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
+  circleCollider: {fileID: 0}
+  isFlying: 0
+  idleChance: 0.3
+  idleTime:
+    minimum: 1
+    maximum: 3
+  goalDistance: 10
+  visionDistance: 10
+  preferedDistance:
+    minimum: 1
+    maximum: 5
+  strafeFrequency:
+    minimum: 0.2
+    maximum: 0.5
+  isGhost: 0
+  deathAnimationTime: 0
+--- !u!114 &11423614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af756f9abb55afd4ba3a6eeaea00521c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - item: {fileID: 0}
+    lootChance: 0.6
+  - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
+    lootChance: 0.4
+  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
+    lootChance: 1
+  shouldDropItems: 1
+--- !u!114 &11428846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638c76e59a77f714bb90df70ca88ed31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  progressionRatio: 1.1
+  cooldownModifier: 5
+  dungeonLevelMultiplier: 1.2
+  monsterDamageMultiplier: 0.5
+  difficultyModifier: 1.5
+--- !u!114 &11436272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 500
+  invincibilityTime: 0.1
+  isHealable: 0
+  healAnimation: {fileID: 0}
+  flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
+  showHPBar: 1
+  onDamageCooldown: 0
+  isInvincible: 0
+--- !u!114 &11449252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e5ff01a4f566144a02389dfb9c6a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackImmuneTime: 1
+--- !u!114 &11461582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef24803d4a9806478b2370fa8c5e631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMana: 0
+  maxMana: 0
+  manaRegenPerSecond: 0
+  spellList:
+  - {fileID: 11464990, guid: 225935e86ffdc4c45b55ad6fa4857a8e, type: 2}
+  isMonster: 0
+  activeCircleSpells: []
+  targetObject: {fileID: 0}
+--- !u!114 &11485512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f60ca7e18d43e4ab14de05f130fdf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 40
+--- !u!212 &21230990
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132528}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -635551827
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300110, guid: d1df7466e55a27f4f93587e51d392289, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lootChance.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: .449999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: distanceThreshold
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: goalDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: aggroDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: visionDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300110, guid: d1df7466e55a27f4f93587e51d392289,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: heroAndBlockingLayer.m_Bits
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: invincibilityTime
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damageText
+      value: 
+      objectReference: {fileID: 146472, guid: a3999b8c8f783de4492975649ed7ce34, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_SortingLayerID
+      value: -635551827
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockbackImmuneTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: primarySpell
+      value: 
+      objectReference: {fileID: 190040, guid: 633e2b6b85fbc64479c9504d579b9898, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: lootChance.Array.data[0]
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flashingMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: visionLayer.m_Bits
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: aimingLayer.m_Bits
+      value: 1792
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: preferedDistance.minimum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: preferedDistance.maximum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: experience
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 106488, guid: 112c9effd27654a44a0bd60a64062287, type: 2}
+    - target: {fileID: 0}
+      propertyPath: lootChance.Array.data[1]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[3]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[4]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[5]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[6]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[7]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[8]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[9]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[10]
+      value: 
+      objectReference: {fileID: 191952, guid: 897456c745e376f41b00bc6ede24e4f5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spellList.Array.data[0]
+      value: 
+      objectReference: {fileID: 101768, guid: 3d97a28449e1db6419d5cdca5ca7c276, type: 2}
+    - target: {fileID: 0}
+      propertyPath: blockUnitVision
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: strafeFrequency.minimum
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: strafeFrequency.maximum
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0].item
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: items.Array.data[0].lootChance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LinearDrag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: progressiveApparitionTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cooldownModifier
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 132528}
+  m_IsPrefabParent: 1

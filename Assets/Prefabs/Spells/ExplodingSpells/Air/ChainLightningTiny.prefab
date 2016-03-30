@@ -372,11 +372,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
+  slowMode: 0
+  rotatingStep: 0.5
+  velocityIfStopped: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
   detectionRadius: 3
   detectionDistance: 3
-  rotatingStep: 0.5
-  slowMode: 0
-  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11483698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,7 +394,7 @@ MonoBehaviour:
   spellTypeDescription: Projectile
   damageString: <dmg> damage per bounce
   description: Bounces between enemies
-  manaCost: 50
+  manaCost: 30
   manaCostInterval: 1
   castTime: 0.2
   cooldown: 1
@@ -400,7 +402,7 @@ MonoBehaviour:
   spellType: 3
   magicElement: 1
   spellSet: 0
-  damage: 75
+  damage: 60
   lightIntensity: 0
   duration: 0
   prerequisites: []
@@ -409,6 +411,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 10
@@ -424,7 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chainRadius: 3
-  numberOfBounces: 10
+  numberOfBounces: 5
 --- !u!198 &19819052
 ParticleSystem:
   m_ObjectHideFlags: 1

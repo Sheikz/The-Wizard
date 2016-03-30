@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &141134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 415800}
+  - 114: {fileID: 114000012935239900}
+  m_Layer: 0
+  m_Name: TeleportBehindTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &415800
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.408164, y: 4.1684895, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: spellType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: teleportAnimation
+      value: 
+      objectReference: {fileID: 164774, guid: 989e92436e7776a40a336daab46e6e50, type: 2}
+    - target: {fileID: 0}
+      propertyPath: magicSchool
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: magicElement
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 141134}
+  m_IsPrefabParent: 1
+--- !u!114 &114000012935239900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4849c85d80310344bae00cf74e85a1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellName: AggressiveTeleport
+  spellTypeDescription: 
+  damageString: 
+  description: 
+  manaCost: 0
+  manaCostInterval: 1
+  castTime: 0
+  cooldown: 3
+  icon: {fileID: 0}
+  spellType: 0
+  magicElement: 0
+  spellSet: 0
+  damage: 10
+  lightIntensity: 0
+  duration: 0
+  prerequisites: []
+  removePrerequisites: 0
+  emitter: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
+  collidesWithWalls: 1
+  ignoredColliders: []
+  teleport: {fileID: 11494182, guid: bd1714b9a5fa94d00b3bf8c10ad48ce5, type: 2}
+  distanceToTarget: 1

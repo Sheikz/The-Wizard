@@ -9,11 +9,14 @@ public class Teleport : SpellController
     public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
     {
         // Check if there is enough space where to go
-        if (Physics2D.OverlapCircle(target, 0.5f, GameManager.instance.layerManager.blockingLayer))
-        {
-            Debug.Log("Impossible to teleport there");
+        float emitterRadius = 0.5f;
+        CircleCollider2D cc = emitter.GetComponent<CircleCollider2D>();
+        if (cc)
+            emitterRadius = cc.radius;
+
+        if (Physics2D.OverlapCircle(target, emitterRadius, GameManager.instance.layerManager.blockingLayer))
             return null;
-        }
+
         emitter.transform.position = target;
         if (teleportAnimation)
             Instantiate(teleportAnimation, target, Quaternion.identity);

@@ -90,7 +90,7 @@ Animator:
   m_GameObject: {fileID: 1000010950718568}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7d98829102d0f6b47b519acd61775d9a, type: 2}
+  m_Controller: {fileID: 22100000, guid: e40f3c12e0a9dbb4cb8501467d43246d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -156,9 +156,10 @@ MonoBehaviour:
   maxMana: 0
   manaRegenPerSecond: 0
   spellList:
-  - {fileID: 11425068, guid: 6b827a839c3568344b5d9fc0f09a3d31, type: 2}
+  - {fileID: 11464990, guid: 225935e86ffdc4c45b55ad6fa4857a8e, type: 2}
   isMonster: 0
   activeCircleSpells: []
+  targetObject: {fileID: 0}
 --- !u!114 &114000012403203056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +223,7 @@ MonoBehaviour:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
-  deathAnimationTime: 2
+  deathAnimationTime: 3
 --- !u!212 &212000011444044222
 SpriteRenderer:
   m_ObjectHideFlags: 1
