@@ -19,6 +19,11 @@ public static class Utils
 		return objects[Random.Range(0, objects.Length)];
 	}
 
+	public static Sprite pickRandom(params Sprite[] objects)
+	{
+		return objects [Random.Range (0, objects.Length)];
+	}
+
 	public static T pickRandom<T>(List<T> list)
 	{
 		if (list.Count == 0)

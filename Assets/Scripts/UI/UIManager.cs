@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject exitMenu;
     public SpellBook spellBook;
     public SpellWindowByType spellWindowByType;
+	public CharacterWindow characterWindow;
     public FPSDisplay fpsDisplay;
     public CastingBar castingBar;
     public FloatingHPBar floatingHPBar;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject graphicsWindow;
     public Tooltip tooltipPrefab;
     public GameObject[] spellIcons;
+	public InventoryItemIcon inventoryItemIcon;
 
     [HideInInspector]
     public Image[] coolDownImages;

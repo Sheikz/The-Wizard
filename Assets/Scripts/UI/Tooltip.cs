@@ -66,6 +66,17 @@ public class Tooltip : MonoBehaviour
         return null;
     }
 
+	private string parseItemDescription(EquipableItemStats itemStats)
+	{
+		string result = "";
+		result += "<size=18>" + itemStats.name + "</size>\n";
+		result += "Power: +<color=magenta>" + itemStats.power + "</color>\n";
+		result += "HP: +<color=green>" + itemStats.hp + "</color>\n";
+		result += "Move speed: +<color=yellow>" + itemStats.moveSpeed + "</color>";
+
+		return result;
+	}
+		
     /// <summary>
     /// Refresh with skill info
     /// </summary>
@@ -88,6 +99,14 @@ public class Tooltip : MonoBehaviour
         tooltipText.text = parseDescription(containedSpell, damage);
         StartCoroutine(fixPosition());
     }
+
+	public void refresh(EquipableItemStats itemStats)
+	{
+		tooltipText.text = parseItemDescription (itemStats);
+		if (gameObject.activeSelf) 
+			StartCoroutine(fixPosition());
+	}
+
 
     IEnumerator fixPosition()
     {
