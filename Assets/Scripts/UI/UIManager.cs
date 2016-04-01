@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
     public GameObject graphicsWindow;
     public Tooltip tooltipPrefab;
     public GameObject[] spellIcons;
+    public Sprite emptyIcon;
 	public InventoryItemIcon inventoryItemIcon;
 
     [HideInInspector]
@@ -56,6 +57,7 @@ public class UIManager : MonoBehaviour
         spellWindowByType.close();
         linkIcons();
         refreshIconsDescription();
+        characterWindow.initialize();
     }
 
     public void switchMenu()

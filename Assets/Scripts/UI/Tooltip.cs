@@ -68,11 +68,27 @@ public class Tooltip : MonoBehaviour
 
 	private string parseItemDescription(EquipableItemStats itemStats)
 	{
+        if (itemStats == null)
+            return "";
+        
 		string result = "";
-		result += "<size=18>" + itemStats.name + "</size>\n";
-		result += "Power: +<color=magenta>" + itemStats.power + "</color>\n";
-		result += "HP: +<color=green>" + itemStats.hp + "</color>\n";
-		result += "Move speed: +<color=yellow>" + itemStats.moveSpeed + "</color>";
+		result += "<size=18>" + itemStats.name + "</size>";
+        if (itemStats.power > 0)
+		    result += "\nPower: +<color=magenta>" + itemStats.power + "</color>";
+        for (int i = 0; i < itemStats.magicModifiers.Length; i++)
+        {
+            if (itemStats.magicModifiers[i] != 1f)
+            {
+                result += "\n"+Enum.GetNames(typeof(MagicElement))[i];
+                int modValue = Mathf.RoundToInt((itemStats.magicModifiers[i] - 1f) * 100f);
+                result += ": +<color=magenta>" + modValue + "%</color>";
+            }
+        }
+        if (itemStats.hp > 0)
+		    result += "\nHP: +<color=green>" + itemStats.hp + "</color>";
+
+        if (itemStats.moveSpeed > 0)
+		    result += "\nMove speed: +<color=yellow>" + itemStats.moveSpeed + "</color>";
 
 		return result;
 	}
@@ -93,9 +109,9 @@ public class Tooltip : MonoBehaviour
     /// </summary>
     /// <param name="heroStats"></param>
     /// <param name="containedSpell"></param>
-    public void refresh(PlayerStats heroStats, SpellController containedSpell)
+    public void refresh(SpellCaster hero, SpellController containedSpell)
     {
-        int damage = containedSpell.getDamage(heroStats);
+        int damage = containedSpell.getDamage(hero);
         tooltipText.text = parseDescription(containedSpell, damage);
         StartCoroutine(fixPosition());
     }
@@ -103,6 +119,9 @@ public class Tooltip : MonoBehaviour
 	public void refresh(EquipableItemStats itemStats)
 	{
 		tooltipText.text = parseItemDescription (itemStats);
+        if (tooltipText.text == "")
+            gameObject.SetActive(false);
+        
 		if (gameObject.activeSelf) 
 			StartCoroutine(fixPosition());
 	}

@@ -103,25 +103,27 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		collider.enabled = true;
 	}
 
-	public void applyStats()
+	void applyStats()
 	{
-		if (emitter == null)
-		{
-			Debug.Log("Emitter not defined for " + name);
-			return;
-		}
-		CharacterStats stats = emitter.GetComponent<CharacterStats>();
-		if (stats == null)
-		{
-			Debug.Log("No stats found for " + name);
-			return;
-		}
-        damage = getDamage(stats);
+        damage = getDamage(emitter);
 	}
 
-    public int getDamage(CharacterStats stats)
+    public int getDamage(SpellCaster emitter)
     {
-        return Mathf.RoundToInt(damage * stats.getDamageMultiplier(magicElement));
+        int result = damage;
+        if (emitter == null)
+        {
+            Debug.LogError("Emitter not defined for " + name);
+            return result;
+        }
+        CharacterStats charStats = emitter.GetComponent<CharacterStats>();
+        if (charStats)
+            result = Mathf.RoundToInt(result * charStats.getDamageMultiplier(magicElement));
+        Inventory inventory = emitter.GetComponent<Inventory>();
+        if (inventory)
+            result = Mathf.RoundToInt(result * inventory.getDamageMultiplier(magicElement));
+
+        return result;
     }
 
     protected IEnumerator enableForSecondsAfterDelay(Collider2D collider, float delay, float duration)

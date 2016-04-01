@@ -8,6 +8,9 @@ public abstract class Item : MonoBehaviour
     public bool canBePickedUp = true;
     public float speed = 5;
 
+    [HideInInspector]
+    public int level = 1;
+
     private Inventory looter;
     private enum ItemState { DoNothing, MoveToLooter};
     private ItemState state = ItemState.DoNothing;

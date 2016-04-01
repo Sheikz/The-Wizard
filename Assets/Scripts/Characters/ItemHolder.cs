@@ -21,8 +21,11 @@ public class ItemHolder : MonoBehaviour
     {
         if (itemToDrop == null)
             return;
-        GameObject newItem = Instantiate(itemToDrop, transform.position, Quaternion.identity) as GameObject;
+        Item newItem = (Instantiate(itemToDrop, transform.position, Quaternion.identity) as GameObject).GetComponent<Item>();
         newItem.transform.SetParent(GameManager.instance.map.transform);
+        CharacterStats stats = GetComponent<CharacterStats>();
+        if (stats)
+            newItem.level = stats.level;
     }
 
 }

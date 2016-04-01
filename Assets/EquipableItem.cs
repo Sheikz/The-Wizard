@@ -21,7 +21,7 @@ public class EquipableItem : Item
 
 	void Start()
 	{
-		itemStats = new EquipableItemStats ();
+		itemStats = new EquipableItemStats(level);
 		spriteRenderer.sprite = itemStats.sprite;
 		spriteRenderer.enabled = true;
 	}

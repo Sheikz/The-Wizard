@@ -91,14 +91,14 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (tooltip)
         {
             tooltip.gameObject.SetActive(true);
-            tooltip.refresh(heroStats, containedSpell);
+            tooltip.refresh(hero, containedSpell);
         }
         else
         {
             tooltip = Instantiate(tooltipPrefab);
             tooltip.transform.SetParent(transform);
             tooltip.transform.position = transform.position + new Vector3(25, -10, 0);
-            tooltip.refresh(heroStats, containedSpell);
+            tooltip.refresh(hero, containedSpell);
         }
     }
 

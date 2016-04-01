@@ -31,6 +31,13 @@ public static class Utils
 		return list[Random.Range(0, list.Count)];
 	}
 
+    public static float pickRandom(params float[] input)
+    {
+        if (input.Length == 0)
+            return 0.0f;
+        return input[Random.Range(0, input.Length)];
+    }
+
     public static Color[] pickRandom(params Color[][] objects)
     {
         return objects[Random.Range(0, 2)];
