@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 
 public class GoldPile : Item
 {
     public int amount;
+
+    void Start()
+    {
+        amount = (100 * level) + Random.Range(-75 * level, 75 * level);
+    }
 
     public override void isPickedUpBy(Inventory looter)
     {

@@ -10,7 +10,7 @@ public class HPUpSkill : Skill
     {
         if (!hero)
             return;
-        hero.GetComponent<Damageable>().multiplyMaxHP(ratioHP);
+        hero.GetComponent<PlayerStats>().HPSkillBonus += (ratioHP - 1.0f);
     }
 
     public override string getDescription()

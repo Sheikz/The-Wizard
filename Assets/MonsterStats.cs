@@ -19,11 +19,28 @@ public class MonsterStats : CharacterStats
         dungeonLevel = GameManager.instance.levelNumber;
         level = GameManager.instance.hero.GetComponent<CharacterStats>().level;
         base.Start();
-        damageable.multiplyMaxHP(difficultyModifier);
+        refreshHP(true);
     }
 
     public override float getDamageMultiplier(MagicElement school)
     {
-        return (levelDamageMultiplier() + (dungeonLevel - 1) * (dungeonLevelMultiplier - 1)) * monsterDamageMultiplier * difficultyModifier;
+        return (getDamageMultiplier() + (dungeonLevel - 1) * (dungeonLevelMultiplier - 1)) * monsterDamageMultiplier * difficultyModifier;
+    }
+
+    protected float getDungeonLevelMultiplier()
+    {
+        return Mathf.Pow(dungeonLevelMultiplier, dungeonLevel - 1);
+    }
+
+    public override void refreshHP(bool updateCurrentHP)
+    {
+        if (!damageable)
+            return;
+
+        float mult = 1.0f;
+        mult *= getHPMultiplier();
+        mult *= getDungeonLevelMultiplier();
+        mult *= difficultyModifier;
+        damageable.multiplyBaseHP(mult, 0, updateCurrentHP);
     }
 }

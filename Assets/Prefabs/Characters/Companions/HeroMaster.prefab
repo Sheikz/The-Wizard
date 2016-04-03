@@ -96,13 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 1000
+  baseHP: 0
   invincibilityTime: 0.1
   isHealable: 0
-  deathAnimation: {fileID: 175566, guid: de42499f730fb35408b284f12ebfb71f, type: 2}
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  maxHP: 1000
+  currentHP: 0
   onDamageCooldown: 0
   isInvincible: 1
 --- !u!114 &11458246
@@ -117,9 +118,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  progressionRatio: 1.1
+  DamageMultiplierPerLevel: 1.1
+  HPMultiplierPerLevel: 1.1
   cooldownModifier: 1
   pointsToAllocate: 
+  HPSkillBonus: 1
+  speedSkillBonus: 0
 --- !u!114 &11488976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,9 +147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2bb886ad8bab04d871c17223a02e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 3
   speed: 3
   circleCollider: {fileID: 0}
+  canAct: 1
+  isRooted: 0
+  isStunned: 0
   isFlying: 0
+  idleChance: 0.3
+  idleTime:
+    minimum: 1
+    maximum: 3
   goalDistance: 10
   visionDistance: 10
   preferedDistance:
@@ -155,6 +167,7 @@ MonoBehaviour:
     minimum: 1
     maximum: 2
   isGhost: 0
+  deathAnimationTime: 0
   minimumDistanceToMaster: 1.5
 --- !u!114 &11497716
 MonoBehaviour:
@@ -174,6 +187,7 @@ MonoBehaviour:
   - {fileID: 11477692, guid: 5ad435e4f9ff71d449736d017df61d4a, type: 2}
   isMonster: 0
   activeCircleSpells: []
+  targetObject: {fileID: 0}
 --- !u!212 &21272846
 SpriteRenderer:
   m_ObjectHideFlags: 1

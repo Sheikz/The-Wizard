@@ -4,7 +4,7 @@ using System;
 
 public class Damageable : MonoBehaviour
 {
-    public int maxHP;
+    public int baseHP;
     public float invincibilityTime = 0.1f;
     public bool isHealable;
     public GameObject healAnimation;
@@ -12,7 +12,8 @@ public class Damageable : MonoBehaviour
     public bool showHPBar = true;
 
     private GameObject floatingText;
-    private int HP;
+    public int maxHP;
+    public int currentHP;
     public bool onDamageCooldown = false;
     public bool isInvincible = false;
     private GameObject healingAnimation;
@@ -27,7 +28,8 @@ public class Damageable : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        HP = maxHP;
+        maxHP = baseHP;
+        currentHP = maxHP;
         movingChar = GetComponent<MovingCharacter>();
         floatingText = UIManager.instance.floatingText;
         originalMaterial = spriteRenderer.material;
@@ -36,7 +38,7 @@ public class Damageable : MonoBehaviour
     
     public int getHP()
     {
-        return HP;
+        return currentHP;
     }
 
     public void doDamage(SpellCaster emitter, int damage)
@@ -62,6 +64,18 @@ public class Damageable : MonoBehaviour
         inflictDamage(emitter, damage);
     }
 
+    internal void multiplyBaseHP(float mult, int hpFromItems, bool updateCurrentHP)
+    {
+        float ratio = 1.0f;
+        if (updateCurrentHP)
+            ratio = (float)currentHP / maxHP;
+        maxHP = Mathf.RoundToInt(baseHP * mult);
+        if (updateCurrentHP)
+            currentHP = Mathf.RoundToInt(maxHP * ratio);
+        maxHP += hpFromItems;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+    }
+
     public void inflictDamage(SpellCaster emitter, int damage)
     {
         GameObject dmgText = Instantiate(floatingText) as GameObject;
@@ -70,10 +84,10 @@ public class Damageable : MonoBehaviour
         if (movingChar)
             movingChar.receivesDamage();
 
-        HP -= damage;
-        if (HP <= 0)
+        currentHP -= damage;
+        if (currentHP <= 0)
         {
-            HP = 0;
+            currentHP = 0;
             ExperienceHolder xpHolder = GetComponent<ExperienceHolder>();
             if (xpHolder && emitter) // If I have experience, give it
                 xpHolder.die(emitter.gameObject);
@@ -105,7 +119,7 @@ public class Damageable : MonoBehaviour
             floatingHPBar.transform.localPosition = new Vector3(0, 0.8f, 0);
         }
 
-        floatingHPBar.setRatio((float)HP / (float)maxHP);
+        floatingHPBar.setRatio((float)currentHP / (float)maxHP);
     }
 
     public void inflictDamageRatio(float ratio)
@@ -122,9 +136,15 @@ public class Damageable : MonoBehaviour
             movingChar.die();
         else
             Destroy(gameObject);
+
+        ItemHolder holder = GetComponent<ItemHolder>();
+        if (holder)
+            holder.die();
             
         isDead = true;
     }
+
+
 
     /// <summary>
     /// Heal for a certain amount, and create a green floating text
@@ -135,9 +155,9 @@ public class Damageable : MonoBehaviour
         if (life <= 0)
             return;
 
-        HP += life;
-        if (HP >= maxHP)
-            HP = maxHP;
+        currentHP += life;
+        if (currentHP >= maxHP)
+            currentHP = maxHP;
 
         refreshHPBar();
         GameObject healText = Instantiate(floatingText) as GameObject;
@@ -147,7 +167,7 @@ public class Damageable : MonoBehaviour
 
     public float getHPRatio()
     {
-        return (float)HP / (float)maxHP;
+        return (float)currentHP / (float)maxHP;
     }
 
     /// <summary>
@@ -232,19 +252,8 @@ public class Damageable : MonoBehaviour
 
     public void increaseMaxHP(int additionalHP)
     {
+        Debug.Log("Added " + additionalHP+" hp");
         maxHP += additionalHP;
-        HP += additionalHP;
-        if (HP >= maxHP)
-            HP = maxHP;
-    }
-
-    public void multiplyMaxHP(float value)
-    {
-        maxHP = Mathf.RoundToInt(maxHP * value);
-        HP = Mathf.RoundToInt(HP * value);
-
-        if (HP >= maxHP)
-            HP = maxHP;
     }
 
     public void applyColorMask(Color color, float duration)

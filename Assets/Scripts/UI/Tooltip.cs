@@ -58,6 +58,16 @@ public class Tooltip : MonoBehaviour
         return result;
     }
 
+    internal void refresh(ItemStats stats, int value)
+    {
+        switch (stats)
+        {
+            case ItemStats.Power:
+                tooltipText.text = "Increase Magic Damage by <color=magenta>" + value / 10f + "%</color>";
+                break;
+        }
+    }
+
     private string parseSkillDescription(Skill containedSkill)
     {
         if (containedSkill)

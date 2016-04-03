@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
 
     public enum Command { PrimarySpell, SecondarySpell, DefensiveSpell, Ultimate1, Ultimate2,
                             MoveUp, MoveRight, MoveLeft, MoveDown,
-                            SpellBook};
+                            SpellBook, CharacterWindow};
 
     private KeyCode[] keys;
 
@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
         keys[(int)Command.MoveLeft] = KeyCode.Q;
         keys[(int)Command.MoveRight] = KeyCode.D;
         keys[(int)Command.SpellBook] = KeyCode.Tab;
+        keys[(int)Command.CharacterWindow] = KeyCode.C;
         UIManager.instance.refreshIconsDescription();
         UIManager.instance.refreshControlWindow();
     }

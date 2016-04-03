@@ -150,7 +150,7 @@ MonoBehaviour:
     lootChance: 0.4
   - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
     lootChance: 1
-  - item: {fileID: 1000011438046484, guid: f103c6a84f2124d758185922397f39ad, type: 2}
+  - item: {fileID: 1000011438046484, guid: ac35b16a1e1fc5545a8afbc1ca01473e, type: 2}
     lootChance: 10
   shouldDropItems: 1
 --- !u!114 &11439676
@@ -176,12 +176,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 500
+  baseHP: 500
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  maxHP: 500
+  currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
 --- !u!114 &11455534
@@ -195,8 +197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a014df5fb9619294695ba5d784a2d8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 2.5
   speed: 2.5
   circleCollider: {fileID: 0}
+  canAct: 1
+  isRooted: 0
+  isStunned: 0
   isFlying: 0
   idleChance: 0.3
   idleTime:
@@ -224,7 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
-  progressionRatio: 1.1
+  DamageMultiplierPerLevel: 1.1
+  HPMultiplierPerLevel: 1.1
   cooldownModifier: 2
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 0.5

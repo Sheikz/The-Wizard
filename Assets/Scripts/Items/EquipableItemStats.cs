@@ -4,6 +4,7 @@ using System;
 using Random = UnityEngine.Random;
 
 public enum ItemSlot { Weapon, OffHand, Armor, Gloves, Boots };
+public enum ItemStats { Power, HP, MoveSpeed, Gold };
 
 public class EquipableItemStats
 {

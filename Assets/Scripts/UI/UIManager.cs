@@ -89,6 +89,7 @@ public class UIManager : MonoBehaviour
         controlsWindow.SetActive(false);
         graphicsWindow.SetActive(false);
         exitMenu.SetActive(false);
+        characterWindow.gameObject.SetActive(false);
     }
 
     private void linkIcons()

@@ -6,14 +6,22 @@ public class Inventory : MonoBehaviour
 {
     public float sqrDistanceLoot = 0.3f * 0.3f;
     public int goldAmount = 0;
-	public EquipableItemStats[] equippedItems;
-	private List<EquipableItemStats> inventoryItems;
-	private CharacterWindow characterWindow;
+    public EquipableItemStats[] equippedItems;
+    private List<EquipableItemStats> inventoryItems;
+    private CharacterWindow characterWindow;
+    private CharacterStats characterStats;
+    private MovingCharacter movingChar;
+
+    private float[] elementMultiplier;
 
 	void Awake()
 	{
+        characterStats = GetComponent<CharacterStats>();
 		equippedItems = new EquipableItemStats[Enum.GetNames(typeof(ItemSlot)).Length];
 		inventoryItems = new List<EquipableItemStats> ();
+        elementMultiplier = new float[Enum.GetNames(typeof(MagicElement)).Length];
+        for (int i = 0; i < elementMultiplier.Length; i++)
+            elementMultiplier[i] = 1.0f;
 	}
 
 	void Start()
@@ -44,6 +52,7 @@ public class Inventory : MonoBehaviour
 
         equippedItems[(int)itemStats.slot] = itemStats;
         characterWindow.equippedItemIcons[(int)itemStats.slot].refresh(itemStats);
+        refreshStats();
         return true;
 	}
 
@@ -56,19 +65,95 @@ public class Inventory : MonoBehaviour
             
         equippedItems[slot] = null;
         characterWindow.equippedItemIcons[slot].refresh(null);
+        refreshStats();
     }
 
-    public float getDamageMultiplier(MagicElement element)
+    /// <summary>
+    /// Refresh the pre-computed stats
+    /// </summary>
+    void refreshStats()
     {
-        float result = 1.0f;
-        float multiplier = 1.0f;
+        refreshMultipliers();
+        refreshHP();
+        refreshMoveSpeed();
+        characterWindow.refresh();
+    }
+
+    public void refreshMoveSpeed()
+    {
+        if (!movingChar)
+            movingChar = GameManager.instance.hero.GetComponent<MovingCharacter>();
+
+        movingChar.speed = movingChar.baseSpeed + getMoveSpeed();
+        PlayerStats pStats = characterStats.GetComponent<PlayerStats>();
+        if (pStats)
+            movingChar.speed += pStats.speedSkillBonus;
+
+    }
+
+    void refreshHP()
+    {
+        characterStats.refreshHP(false);
+    }
+
+    public int getAdditionalHPFromItems()
+    {
+        int addHP = 0;
         foreach (EquipableItemStats itemStats in equippedItems)
         {
             if (itemStats == null)
                 continue;
-            result += itemStats.power / 100f;
-            multiplier += (itemStats.magicModifiers[(int)element] -1.0f);
+            addHP += itemStats.hp;
         }
-        return result * multiplier;
+        return addHP;
+    }
+
+    public int getPower()
+    {
+        int power = 0;
+        foreach (EquipableItemStats itemStats in equippedItems)
+        {
+            if (itemStats == null)
+                continue;
+            power += itemStats.power;
+        }
+        return power;
+    }
+
+    public int getMoveSpeed()
+    {
+        int moveSpeed = 0;
+        foreach (EquipableItemStats itemStats in equippedItems)
+        {
+            if (itemStats == null)
+                continue;
+            moveSpeed += itemStats.moveSpeed;
+        }
+        return moveSpeed;
+    }
+
+    /// <summary>
+    /// Refresh the damage multipliers according to power and %elemental damage
+    /// </summary>
+    void refreshMultipliers()
+    {
+        for (int i = 0; i < elementMultiplier.Length; i++)
+        {
+            float result = 1.0f;
+            float multiplier = 1.0f;
+            foreach (EquipableItemStats itemStats in equippedItems)
+            {
+                if (itemStats == null)
+                    continue;
+                result += itemStats.power / ItemManager.instance.powerToDamage;
+                multiplier += (itemStats.magicModifiers[i] - 1.0f);
+            }
+            elementMultiplier[i] = result * multiplier;
+        }
+    }
+
+    public float getDamageMultiplier(MagicElement element)
+    {
+        return elementMultiplier[(int)element];
     }
 }

@@ -8,10 +8,16 @@ public class PlayerStats : CharacterStats
     public int[,,] spellLevels; // In order: set, element, type
     public int[] pointsToAllocate;
 
+
+
     private int numberOfTypes;
     private int numberOfElements;
     private int numberOfSets;
     private SpellCaster hero;
+    [HideInInspector]
+    public float HPSkillBonus = 1.0f;
+    public float speedSkillBonus = 0f;
+    private Inventory inventory;
 
     new void Awake()
     {
@@ -20,6 +26,7 @@ public class PlayerStats : CharacterStats
         numberOfTypes = Enum.GetNames(typeof(SpellType)).Length;
         numberOfSets = Enum.GetNames(typeof(SpellSet)).Length;
         masteries = new float[numberOfElements];
+        inventory = GetComponent<Inventory>();
         for (int i = 0; i < masteries.Length; i++)
             masteries[i] = 1f;
 
@@ -36,12 +43,21 @@ public class PlayerStats : CharacterStats
 
     public override float getDamageMultiplier(MagicElement school)
     {
-        return getMastery(school) * levelDamageMultiplier();
+        return getMastery(school) * getDamageMultiplier();
     }
 
     public void multiplyMastery(float value, MagicElement magicSchool)
     {
         masteries[(int)magicSchool] *= value;
+    }
+
+    internal void addSpeed(float additionalSpeed)
+    {
+        speedSkillBonus += additionalSpeed;
+        Inventory inv = GetComponent<Inventory>();
+        if (inv)
+            inv.refreshMoveSpeed();
+
     }
 
     /// <summary>
@@ -55,7 +71,7 @@ public class PlayerStats : CharacterStats
         int spellElement = (int)containedSpell.magicElement;
         int spellSet = (int)containedSpell.spellSet;
         if (spellLevels[spellSet, spellElement, spellType] >= 1)    // If the spell is already lvl 1, we cannot upgrade it
-            return false;   
+            return false;
         else
         {
             spellLevels[spellSet, spellElement, spellType]++;
@@ -97,5 +113,21 @@ public class PlayerStats : CharacterStats
             result += pointsToAllocate[i];
         }
         return result;
+    }
+
+    public override void refreshHP(bool updateCurrentHP)
+    {
+        if (!damageable)
+            return;
+
+        float mult = 1.0f;
+        int hpFromItems = 0;
+        mult *= getHPMultiplier();
+        mult *= HPSkillBonus;
+        
+        if (inventory)
+            hpFromItems = inventory.getAdditionalHPFromItems();
+
+        damageable.multiplyBaseHP(mult, hpFromItems, updateCurrentHP);
     }
 }

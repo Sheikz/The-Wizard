@@ -170,6 +170,9 @@ public class SpellCaster : MonoBehaviour
         if (spellList.Length == 0)
             return;
 
+        if (!movingCharacter.canAct || movingCharacter.isStunned)
+            return;
+
         if (!spellList[spellIndex])
             return;
 
@@ -213,6 +216,17 @@ public class SpellCaster : MonoBehaviour
                 movingCharacter.enableMovement(false);
             while (Time.time - startingTime < spell.castTime)
             {
+                if (movingCharacter.isStunned)  // If the character is stunned while casting, it should stop the cast
+                {
+                    isCasting = false;
+                    if (!castingBar)
+                        yield break;
+
+                    yield return new WaitForSeconds(0.25f);
+                    castingBar.gameObject.SetActive(false);
+                    yield break;
+                }
+
                 setCastBarRatio((Time.time - startingTime) / spell.castTime);
                 yield return null;
             }

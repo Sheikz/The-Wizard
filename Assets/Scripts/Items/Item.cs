@@ -15,6 +15,11 @@ public abstract class Item : MonoBehaviour
     private enum ItemState { DoNothing, MoveToLooter};
     private ItemState state = ItemState.DoNothing;
 
+    public virtual void initialize(CharacterStats looter)
+    {
+        level = looter.level;
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         canBePickedUp = true;

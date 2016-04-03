@@ -79,6 +79,9 @@ public class PlayerController : MovingCharacter
         if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
             UIManager.instance.spellWindowByType.open();
 
+        if (InputManager.instance.IsKeyDown(InputManager.Command.CharacterWindow))
+            UIManager.instance.characterWindow.open();
+
         if (spellCasted.Count > 0)
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -90,14 +93,6 @@ public class PlayerController : MovingCharacter
 			if (spellCaster)
 				spellCaster.castSpell(spell, target);
 		}
-        /*
-        foreach (int spell in spellReleased)
-        {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = 0;    // fix because camera see point at z = -5
-            if (spellCaster)
-                spellCaster.releaseSpell(spell, transform.position, target);
-        }*/
     }
 
 	public override void receivesDamage()
@@ -118,7 +113,7 @@ public class PlayerController : MovingCharacter
 		transform.position = wayPoint;
 		damageable.inflictDamageRatio(damageRatio);
 		isFalling = false;
-		enableAction(true);
+        isStunned = false;
 		transform.rotation = Quaternion.identity;
 		transform.localScale = new Vector3(1, 1, 1);
 	}

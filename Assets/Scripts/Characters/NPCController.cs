@@ -115,7 +115,7 @@ public class NPCController : MovingCharacter
         if (searchTarget())
             return;
 
-        if (!canMove)
+        if (!canMove || isRooted || isStunned)
             return;
 
         if (hasReached(goal))
@@ -185,7 +185,7 @@ public class NPCController : MovingCharacter
             spellCaster.castAvailableSpells(targetOpponent);
 
         direction = lineToTarget;   // Face the target
-        if (!canMove)
+        if (!canMove || isRooted || isStunned)
             return;
 
         doStrafe(distanceToTarget, lineToTarget);

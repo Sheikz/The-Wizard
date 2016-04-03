@@ -49,6 +49,7 @@ public class InventoryItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerEx
 			tooltip = Instantiate(UIManager.instance.tooltipPrefab);
 			tooltip.transform.SetParent(transform);
 			tooltip.transform.position = transform.position + new Vector3(25, -10, 0);
+            UIManager.instance.characterWindow.registerTooltip(tooltip);
 			tooltip.refresh(itemStats);
 		}
 	}

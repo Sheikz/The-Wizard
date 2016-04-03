@@ -5,7 +5,8 @@ using System;
 public abstract class CharacterStats : MonoBehaviour
 {
     public int level = 1;
-    public float progressionRatio = 1.05f;
+    public float DamageMultiplierPerLevel = 1.1f;
+    public float HPMultiplierPerLevel = 1.1f;
     [Tooltip("Cooldown modifier")]
     public float cooldownModifier = 1f;
 
@@ -22,14 +23,15 @@ public abstract class CharacterStats : MonoBehaviour
 
     protected void Start()
     {
-        if (damageable)
-            damageable.multiplyMaxHP(levelDamageMultiplier());
+        refreshHP(true);
     }
+
+    public abstract void refreshHP(bool updateCurrentHP);
 
     public virtual void levelUp()
     {
         level++;
-        damageable.multiplyMaxHP(1.05f);
+        refreshHP(true);
         if (caster)
             caster.levelUpFollowers();
 
@@ -40,8 +42,14 @@ public abstract class CharacterStats : MonoBehaviour
         this.level = level;
     }
 
-    protected float levelDamageMultiplier()
+    protected float getDamageMultiplier()
     {
-        return Mathf.Pow(progressionRatio, level-1);
+        return Mathf.Pow(DamageMultiplierPerLevel, level-1);
     }
+
+    protected float getHPMultiplier()
+    {
+        return Mathf.Pow(HPMultiplierPerLevel, level - 1);
+    }
+
 }

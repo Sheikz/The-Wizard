@@ -372,7 +372,7 @@ MonoBehaviour:
   spellName: Spark
   spellTypeDescription: Projectile
   damageString: <dmg> damage
-  description: Hurls a ball of lightning
+  description: Hurls a ball of lightning.<n>Apply a mini-stun on the target
   manaCost: -5
   manaCostInterval: 1
   castTime: 0
@@ -390,6 +390,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 7

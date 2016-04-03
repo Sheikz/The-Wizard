@@ -6,9 +6,11 @@ using System;
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class MovingCharacter : MonoBehaviour
 {
+    public float baseSpeed;
     public float speed;
 
     protected Vector2 movement;     // Direction in which the character moves
+
     protected Vector2 direction;    // Direction in which he is facing
     protected Rigidbody2D rb;
     protected Animator anim;
@@ -17,7 +19,10 @@ public abstract class MovingCharacter : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     private bool isSlowed = false;
     protected bool canMove = true;      // Can he move?
-    protected bool canAct = true;       // Can he do anything at all?
+    [HideInInspector]
+    public bool canAct = true;       // Can he do anything at all?
+    public bool isRooted = false;
+    public bool isStunned = false;
 
     protected bool isFalling = false;
     public bool isFlying = false;
@@ -35,6 +40,9 @@ public abstract class MovingCharacter : MonoBehaviour
 
     protected void updateAnimations()
     {
+        if (isStunned)
+            return;
+
         if (anim)
         {
             if (movement != Vector2.zero)
@@ -76,7 +84,7 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!isFalling)
         {
             StartCoroutine(fallAnimation(spinningSpeed, fallingDuration, damageRatio));
-            enableAction(false);
+            isStunned = true;
         }
         isFalling = true;
     }
@@ -149,6 +157,28 @@ public abstract class MovingCharacter : MonoBehaviour
         yield return new WaitForSeconds(duration);
         die();
         Destroy(gameObject);
+    }
+
+    public void stunFor(float stunDuration)
+    {
+        if (isStunned)
+            return;
+
+        StartCoroutine(stunForSeconds(stunDuration));
+    }
+
+    IEnumerator stunForSeconds(float duration)
+    {
+        Debug.Log(name + " start stun");
+        isStunned = true;
+        spriteRenderer.color = Color.grey;
+        float savedAnimSpeed = anim.speed;
+        anim.speed = 0;
+        yield return new WaitForSeconds(duration);
+        spriteRenderer.color = Color.white;
+        anim.speed = savedAnimSpeed;
+        isStunned = false;
+        Debug.Log(name + " end stun");
     }
 
     public abstract void die();

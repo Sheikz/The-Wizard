@@ -21,8 +21,8 @@ GameObject:
   - 224: {fileID: 224000011793456024}
   - 222: {fileID: 222000012926690622}
   - 114: {fileID: 114000010547791322}
-  - 114: {fileID: 114000012158322234}
   - 114: {fileID: 114000011440113914}
+  - 114: {fileID: 114000013348938890}
   m_Layer: 0
   m_Name: InventoryItemIcon
   m_TagString: Untagged
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012158322234}
+      - m_Target: {fileID: 114000013348938890}
         m_MethodName: onClickInventory
         m_Mode: 1
         m_Arguments:
@@ -109,7 +109,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114000012158322234
+--- !u!114 &114000013348938890
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013280548758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f0fd5a1745d42e59123e9147fdd60c, type: 3}
+  m_Script: {fileID: 11500000, guid: fcc70e3d48b80cd4787d13fa2f082e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!222 &222000012926690622

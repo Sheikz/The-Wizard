@@ -78,6 +78,7 @@ GameObject:
   - 82: {fileID: 8202590}
   - 58: {fileID: 5850398}
   - 114: {fileID: 11432064}
+  - 114: {fileID: 114000013930091014}
   m_Layer: 12
   m_Name: LightningImpactTiny
   m_TagString: Untagged
@@ -5528,3 +5529,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190290}
   m_IsPrefabParent: 1
+--- !u!114 &114000013930091014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e891c11b4f6a93e4ba49be49ed2a7f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunDuration: 0.1
