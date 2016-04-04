@@ -267,7 +267,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013031261060}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ebaac8916ca330499de297670a684cf, type: 3}
@@ -454,7 +454,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   spellType: 0
   magicElement: 5
-  spellSet: 0
+  spellSet: 1
   damage: 75
   lightIntensity: 0
   duration: 0
@@ -464,6 +464,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 5

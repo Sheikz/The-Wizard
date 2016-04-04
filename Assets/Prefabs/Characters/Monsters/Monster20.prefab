@@ -146,13 +146,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - item: {fileID: 0}
-    lootChance: 0.6
-  - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
-    lootChance: 0.4
-  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
     lootChance: 1
+  - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
+    lootChance: 0.5
   - item: {fileID: 1000011438046484, guid: ac35b16a1e1fc5545a8afbc1ca01473e, type: 2}
-    lootChance: 10
+    lootChance: 1
   shouldDropItems: 1
 --- !u!114 &11458092
 MonoBehaviour:
@@ -187,6 +187,7 @@ MonoBehaviour:
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
+  isDead: 0
 --- !u!114 &11470894
 MonoBehaviour:
   m_ObjectHideFlags: 1

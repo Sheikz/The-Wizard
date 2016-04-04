@@ -170,7 +170,7 @@ public class SpellCaster : MonoBehaviour
         if (spellList.Length == 0)
             return;
 
-        if (!movingCharacter.canAct || movingCharacter.isStunned)
+        if (movingCharacter && (!movingCharacter.canAct || movingCharacter.isStunned))
             return;
 
         if (!spellList[spellIndex])
@@ -216,7 +216,7 @@ public class SpellCaster : MonoBehaviour
                 movingCharacter.enableMovement(false);
             while (Time.time - startingTime < spell.castTime)
             {
-                if (movingCharacter.isStunned)  // If the character is stunned while casting, it should stop the cast
+                if (movingCharacter && movingCharacter.isStunned)  // If the character is stunned while casting, it should stop the cast
                 {
                     isCasting = false;
                     if (!castingBar)
@@ -234,14 +234,15 @@ public class SpellCaster : MonoBehaviour
 
             if (movingCharacter)
                 movingCharacter.enableMovement(true);
-
-            if (!isMonster) // Only do that if we are the player, else we will change the target of monsters
+            
+            if (targetObject)
+                target = targetObject.transform.position;
+            else
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.z = 0;    // fix because camera see point at z = -5
             }
-            else if (targetObject)
-                target = targetObject.transform.position;
+
         }
 
         if (spell.castSpell(this, transform.position, target))
@@ -288,11 +289,12 @@ public class SpellCaster : MonoBehaviour
             }
             yield return null;
         }
-        // If it was not charged enough, return without paying mana
+        
         isCasting = false;
         if (movingCharacter)
             movingCharacter.enableMovement(true);
 
+        // If it was not charged enough, return without paying mana
         if (spell.castChargingSpell(this, transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), stage))
         {
             StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched

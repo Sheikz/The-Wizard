@@ -26,12 +26,12 @@ public class MovingSpell : SpellController
     /// </summary>
     /// <param name="emitter Tag"></param>
     /// <param name="direction"></param>
-    public virtual bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
+    public virtual bool initialize(SpellCaster emitter, Vector2 position, Vector2 target)
 	{
         transform.position = position;
 		this.emitter = emitter;
         this.target = target;
-		rb.velocity = (target - position).normalized * speed;
+        rb.velocity = (target - position).normalized * speed;
         applyLayer();
         return true;
 	}

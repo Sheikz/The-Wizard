@@ -38,17 +38,22 @@ public class EquipableItemStats
             case ItemSlot.Weapon:
                 setRandomPower();
                 setRandomMastery();
+                name = "Wand";
                 break;
             case ItemSlot.OffHand:
                 setRandomPower();
+                name = "Book";
                 break;
             case ItemSlot.Armor:
                 setRandomHP();
+                name = "Armor";
                 break;
             case ItemSlot.Gloves:
                 setRandomHP();
+                name = "Gloves";
                 break;
             case ItemSlot.Boots:
+                name = "Boots";
                 moveSpeed = Random.Range(0, 3);
                 break;
         }

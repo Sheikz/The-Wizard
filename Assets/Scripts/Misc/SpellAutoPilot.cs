@@ -14,11 +14,11 @@ public class SpellAutoPilot : AutoPilot
     {
         base.Awake();
         spell = GetComponent<SpellController>();
+        state = PilotState.Searching;
     }
 
     void Start()
     {
-        state = PilotState.Searching;
         // if the spell is emitted by the hero, it needs to lock on monsters
         if (spell.emitter.gameObject.CompareTag("Hero") || spell.emitter.gameObject.CompareTag("HeroCompanion"))
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
@@ -39,7 +39,10 @@ public class SpellAutoPilot : AutoPilot
                 searchTarget();
                 break;
             case PilotState.LockedToObject:
-                steerToTarget(targetObject, PilotState.Searching);
+                if (searchNewTargetIfDead)
+                    steerToTarget(targetObject, PilotState.Searching);
+                else
+                    steerToTarget(targetObject, PilotState.DoNothing);
                 break;
             case PilotState.LockedToPosition:
                 steerToTarget();

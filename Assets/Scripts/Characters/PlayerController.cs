@@ -39,6 +39,9 @@ public class PlayerController : MovingCharacter
 
 	void FixedUpdate()
 	{
+        if (damageable.isDead)
+            return;
+
 		float inputX = InputManager.instance.getHorizontalInput();
 		float inputY = InputManager.instance.getVerticalInput();
 		movement = new Vector2(inputX, inputY).normalized * speed;
@@ -54,7 +57,10 @@ public class PlayerController : MovingCharacter
 	// Update is called once per frame
 	void Update()
 	{
-		spellCasted.Clear();
+        if (damageable.isDead)
+            return;
+
+        spellCasted.Clear();
 		if (InputManager.instance.IsKeyPressed(InputManager.Command.PrimarySpell))
 		{
 			if (!EventSystem.current.IsPointerOverGameObject()) // If clicking on UI

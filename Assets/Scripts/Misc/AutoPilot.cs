@@ -5,6 +5,7 @@ using System.Collections;
 public abstract class AutoPilot : MonoBehaviour
 {
     public bool activated = true;
+    public bool searchNewTargetIfDead = true;
     public bool slowMode = false;
 
     public float rotatingStep = 0.1f;
@@ -15,9 +16,10 @@ public abstract class AutoPilot : MonoBehaviour
     public Vector3 targetPosition;
     [HideInInspector]
     public GameObject targetObject;
-    protected enum PilotState { DoNothing, Searching, LockedToObject, LockedToPosition };    // LockedToDamageable lock to a damageable entity. Lock to position lock to a fixed position in space
+    public enum PilotState { DoNothing, Searching, LockedToObject, LockedToPosition };    // LockedToDamageable lock to a damageable entity. Lock to position lock to a fixed position in space
     protected Rigidbody2D rigidBody;
-    protected PilotState state;
+    [HideInInspector]
+    public PilotState state;
     
 
     protected void Awake()

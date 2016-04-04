@@ -23,7 +23,7 @@ public class BoomerangSpell : MovingSpell
     new void Start()
     {
         base.Start();
-        //rb.velocity = Quaternion.Euler(0, 0, 60) * rb.velocity;
+        autoPilot.searchNewTargetIfDead = false;
         autoPilot.lockToTargetPosition(targetPosition);
         autoPilot.rotatingStep = 0.1f;
         state = BoomerangState.Going;
@@ -36,7 +36,7 @@ public class BoomerangSpell : MovingSpell
         return newSpell;
     }
 
-    new void initialize(SpellCaster emitter, Vector3 position, Vector3 target)
+    void initialize(SpellCaster emitter, Vector3 position, Vector3 target)
     {
         transform.position = position;
         this.emitter = emitter;
@@ -47,6 +47,9 @@ public class BoomerangSpell : MovingSpell
 
     void FixedUpdate()
     {
+        if (autoPilot.state == AutoPilot.PilotState.DoNothing)
+            goBackToEmitter();
+
         switch (state)
         {
             case BoomerangState.Going:

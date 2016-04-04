@@ -14,7 +14,8 @@ public class Companion : MonoBehaviour
     private enum CompanionState { Searching, Locked };
     private CompanionState state = CompanionState.Searching;
 
-    private Damageable target;
+    [HideInInspector]
+    public Damageable target;
     private Collider2D[] potentialTargets;
     private SpellCaster spellCaster;
     private float duration;
@@ -91,6 +92,7 @@ public class Companion : MonoBehaviour
             if (inLineOfSight(dmg))
             {
                 target = dmg;
+                spellCaster.targetObject = dmg.gameObject;
                 state = CompanionState.Locked;
                 return;
             }

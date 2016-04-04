@@ -169,7 +169,6 @@ public abstract class MovingCharacter : MonoBehaviour
 
     IEnumerator stunForSeconds(float duration)
     {
-        Debug.Log(name + " start stun");
         isStunned = true;
         spriteRenderer.color = Color.grey;
         float savedAnimSpeed = anim.speed;
@@ -178,7 +177,6 @@ public abstract class MovingCharacter : MonoBehaviour
         spriteRenderer.color = Color.white;
         anim.speed = savedAnimSpeed;
         isStunned = false;
-        Debug.Log(name + " end stun");
     }
 
     public abstract void die();

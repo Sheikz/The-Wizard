@@ -19,7 +19,8 @@ public class Damageable : MonoBehaviour
     private GameObject healingAnimation;
     private SpriteRenderer spriteRenderer;
     private MovingCharacter movingChar;
-    private bool isDead = false;
+    [HideInInspector]
+    public bool isDead = false;
     private int healEffects = 0;
     private Material originalMaterial;
     private bool isSlowed = false;

@@ -6,10 +6,19 @@ public class VisibleUnit : VisibleObject
 {
     private bool isVisible = false;
 	private bool hasBeenSeenThisFrame = false;
+    private Damageable dmg;
+
+    void Awake()
+    {
+        dmg = GetComponent<Damageable>();
+    }
 
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+        if (dmg && dmg.isDead)
+            return;
+
 		if (!isVisible && hasBeenSeenThisFrame)
 		{
 			setEnabled(true);

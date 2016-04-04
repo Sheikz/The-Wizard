@@ -54,7 +54,7 @@ MonoBehaviour:
   spellName: Spear Strike
   spellTypeDescription: Charged projectile
   damageString: <dmg> damage/charge
-  description: Launches a flaming rock. Can be charged
+  description: Launches a flaming rock.<n>Can be charged
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   spellStages:
