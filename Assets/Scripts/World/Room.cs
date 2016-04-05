@@ -134,6 +134,16 @@ public class Room : MonoBehaviour, IComparable<Room>
         }
     }
 
+    internal void initialize(RoomBasedMapGenerator map)
+    {
+        this.map = map;
+        RoomEvent[] events = GetComponents<RoomEvent>();
+        foreach (RoomEvent ev in events)
+        {
+            ev.initialize();
+        }
+    }
+
     public void openEntrance(bool open)
     {
         if (entranceWall && entranceWall.door)

@@ -31,6 +31,10 @@ public class RoomBasedMapGenerator : MonoBehaviour
     public List<NPCController> monsterList;
     [HideInInspector]
     public Transform spellHolder;
+    [HideInInspector]
+    public List<Tile> floorTiles;
+    [HideInInspector]
+    public Transform monsterHolder;
 
     public void Start()
     {
@@ -54,7 +58,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
         hero.transform.position = new Vector3(0, 5f, 0f);
         createMap();
         createDecos();
-        createMonsters();
+        //createMonsters();
     }
 
     public void createMap()
@@ -95,9 +99,20 @@ public class RoomBasedMapGenerator : MonoBehaviour
         }
         createBossRoom();
         gridMap = new GridMap(this); // Create a grid representation of the map
+        initializeRooms();
         Debug.Log("Created map in: " + (Time.realtimeSinceStartup - startingTime) + " seconds");
         Debug.Log("Number of steps: " + stepCount);
         Debug.Log("Number of rooms created " + roomCount);
+    }
+
+    private void initializeRooms()
+    {
+        floorTiles = gridMap.getTilesOfType(TileType.Floor);
+        monsterHolder = new GameObject("Monsters").transform;
+        foreach (Room room in roomList)
+        {
+            room.initialize(this);
+        }
     }
 
     public void createDecos()
@@ -155,8 +170,6 @@ public class RoomBasedMapGenerator : MonoBehaviour
             Debug.LogError("No monsters defined!");
             return;
         }
-
-        List<Tile> floorTiles = gridMap.getTilesOfType(TileType.Floor);
 
         // Only take the tiles that are far enough from the hero
         List<Tile> floorTilesToPutMonster = new List<Tile>();

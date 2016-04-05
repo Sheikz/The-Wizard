@@ -5,7 +5,7 @@ public class ItemManager : MonoBehaviour
 {
 	public static ItemManager instance;
 	public SpriteArray[] itemSprites;
-    internal float powerToDamage = 1000f;
+    internal float powerToDamage = 100f;
 
     [System.Serializable]
 	public class SpriteArray

@@ -27,6 +27,7 @@ GameObject:
   - 114: {fileID: 11473304}
   - 61: {fileID: 6124562}
   - 61: {fileID: 6164144}
+  - 114: {fileID: 114000013909599318}
   m_Layer: 8
   m_Name: RoomLiaison
   m_TagString: Untagged
@@ -112,6 +113,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452978}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &452978
 Transform:
   m_ObjectHideFlags: 1
@@ -125,6 +127,7 @@ Transform:
   - {fileID: 449280}
   m_Father: {fileID: 476898}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &456298
 Transform:
   m_ObjectHideFlags: 1
@@ -137,6 +140,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 476898}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &463606
 Transform:
   m_ObjectHideFlags: 1
@@ -150,6 +154,7 @@ Transform:
   - {fileID: 494906}
   m_Father: {fileID: 476898}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &476898
 Transform:
   m_ObjectHideFlags: 1
@@ -165,6 +170,7 @@ Transform:
   - {fileID: 456298}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &494906
 Transform:
   m_ObjectHideFlags: 1
@@ -177,6 +183,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 463606}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2353472
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -186,13 +193,14 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -279,13 +287,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -309,13 +318,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -339,13 +349,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -369,13 +380,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
@@ -401,3 +413,30 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 125394}
   m_IsPrefabParent: 1
+--- !u!114 &114000013909599318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71a626aa2b0aa14eacf1c330caa2633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefabs:
+  - item: {fileID: 1000013481156612, guid: ed09a5f853f4732408913ba86f21a931, type: 2}
+    lootChance: 0
+  - item: {fileID: 1000010950718568, guid: f5a24d87d2a86224a8f606a100eac1f8, type: 2}
+    lootChance: 0
+  - item: {fileID: 150918, guid: a9347b6cc6a01244cb46803300801332, type: 2}
+    lootChance: 0
+  - item: {fileID: 150918, guid: 4341cf68b1aeb264bb99ffafbd77ec59, type: 2}
+    lootChance: 0
+  - item: {fileID: 149020, guid: 609d6836d5557884abff6ab722eb26bf, type: 2}
+    lootChance: 0
+  - item: {fileID: 150918, guid: 73704b9386729964ea4ad5cea47d1438, type: 2}
+    lootChance: 0
+  - item: {fileID: 190100, guid: 6a9a4a3e281e68c49a5a018af0ffaf7c, type: 2}
+    lootChance: 0
+  monsterNumber: 2

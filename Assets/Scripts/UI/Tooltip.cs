@@ -63,7 +63,7 @@ public class Tooltip : MonoBehaviour
         switch (stats)
         {
             case ItemStats.Power:
-                tooltipText.text = "Increase Magic Damage by <color=magenta>" + value / 10f + "%</color>";
+                tooltipText.text = "Increase Magic Damage by <color=magenta>" + value / ItemManager.instance.powerToDamage *100f  + "%</color>";
                 break;
         }
     }
