@@ -15,6 +15,12 @@ public abstract class Item : MonoBehaviour
     private enum ItemState { DoNothing, MoveToLooter};
     private ItemState state = ItemState.DoNothing;
 
+    void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Item");
+        GetComponent<Collider2D>().isTrigger = true;
+    }
+
     public virtual void initialize(CharacterStats looter)
     {
         level = looter.level;

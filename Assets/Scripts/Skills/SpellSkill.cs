@@ -75,20 +75,7 @@ public class SpellSkill : Skill
         // Does the hero already know the spell?
         if (!hero.getKnownSpells().Contains(spController))
         {
-            // Loop through each prerequisite and check if it is known
-            bool hasPrerequisites = true;
-            foreach (GameObject prerequisite in spController.prerequisites)
-            {
-                if (prerequisite == null)
-                    continue;
-                if (!hero.getKnownSpells().Contains(prerequisite.GetComponent<SpellController>()))
-                {
-                    hasPrerequisites = false;
-                    break;
-                }
-            }
-            if (hasPrerequisites)
-                return true;
+            return true;
         }
         return false;
     }

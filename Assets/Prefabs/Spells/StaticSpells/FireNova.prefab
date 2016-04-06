@@ -74,18 +74,17 @@ MonoBehaviour:
   spellSet: 0
   damage: 200
   lightIntensity: 0
-  duration: 3
-  prerequisites: []
-  removePrerequisites: 0
+  duration: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0
   colliderDuration: 0.5
-  damageOverTime: 1
   affectedObjects: []
 --- !u!114 &11460750
 MonoBehaviour:

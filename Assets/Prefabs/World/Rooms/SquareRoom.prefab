@@ -365,6 +365,7 @@ GameObject:
   - 4: {fileID: 437764}
   - 61: {fileID: 6124422}
   - 114: {fileID: 11484058}
+  - 114: {fileID: 114000013608110192}
   m_Layer: 8
   m_Name: PillarWithTorch
   m_TagString: Obstacle
@@ -1234,6 +1235,7 @@ GameObject:
   - 4: {fileID: 451056}
   - 61: {fileID: 6156836}
   - 114: {fileID: 11404276}
+  - 114: {fileID: 114000012694375306}
   m_Layer: 19
   m_Name: WallEdges
   m_TagString: Untagged
@@ -1283,6 +1285,7 @@ GameObject:
   - 4: {fileID: 449212}
   - 61: {fileID: 6152786}
   - 114: {fileID: 11432128}
+  - 114: {fileID: 114000012133692798}
   m_Layer: 8
   m_Name: PillarWithTorch (3)
   m_TagString: Obstacle
@@ -2214,6 +2217,7 @@ GameObject:
   - 4: {fileID: 406462}
   - 61: {fileID: 6129378}
   - 114: {fileID: 11468618}
+  - 114: {fileID: 114000012703122614}
   m_Layer: 8
   m_Name: PillarWithTorch (2)
   m_TagString: Obstacle
@@ -2587,6 +2591,7 @@ GameObject:
   - 4: {fileID: 455664}
   - 61: {fileID: 6175816}
   - 114: {fileID: 11494446}
+  - 114: {fileID: 114000012882021358}
   m_Layer: 8
   m_Name: PillarWithTorch (1)
   m_TagString: Obstacle
@@ -6380,11 +6385,6 @@ MonoBehaviour:
   canBeMergedAtExit: 1
   hasCarpet: 1
   hasPillars: 1
-  pillars:
-  - {fileID: 151086}
-  - {fileID: 178698}
-  - {fileID: 189980}
-  - {fileID: 114954}
   carpets:
   - {fileID: 184578}
   roomDepth: 0
@@ -11172,17 +11172,72 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefabs:
   - item: {fileID: 1000013481156612, guid: ed09a5f853f4732408913ba86f21a931, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 1000010950718568, guid: f5a24d87d2a86224a8f606a100eac1f8, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: a9347b6cc6a01244cb46803300801332, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 4341cf68b1aeb264bb99ffafbd77ec59, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 149020, guid: 609d6836d5557884abff6ab722eb26bf, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 73704b9386729964ea4ad5cea47d1438, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 190100, guid: 6a9a4a3e281e68c49a5a018af0ffaf7c, type: 2}
-    lootChance: 0
+    lootChance: 1
   monsterNumber: 2
+--- !u!114 &114000012133692798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012694375306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3241c16847ebcc7428d428bb631afcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012703122614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012882021358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013608110192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

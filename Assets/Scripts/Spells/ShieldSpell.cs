@@ -5,8 +5,6 @@ using System;
 [RequireComponent(typeof(CircleCollider2D))]
 public class ShieldSpell : SpellController
 {
-    public bool collidesWithSpells = true;
-
     new void Start()
     {
         base.Start();
@@ -16,22 +14,7 @@ public class ShieldSpell : SpellController
         applyLayer();
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
-    {
-        ShieldSpell newSpell = Instantiate(this);
-        newSpell.initialize(emitter, position, target);
-        return newSpell;
-    }
-
-    private bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
-    {
-        transform.position = position;
-        this.emitter = emitter;
-        transform.SetParent(emitter.transform);
-        return true;
-    }
-
-    new private void applyLayer()
+    new void applyLayer()
     {
         if (emitter == null)
         {
@@ -54,5 +37,20 @@ public class ShieldSpell : SpellController
                 gameObject.layer = LayerMask.NameToLayer("Spells");
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
         }
+    }
+
+    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    {
+        ShieldSpell newSpell = Instantiate(this);
+        newSpell.initialize(emitter, position, target);
+        return newSpell;
+    }
+
+    private bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
+    {
+        transform.position = position;
+        this.emitter = emitter;
+        transform.SetParent(emitter.transform);
+        return true;
     }
 }

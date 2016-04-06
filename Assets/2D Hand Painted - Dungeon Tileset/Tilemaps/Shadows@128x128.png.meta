@@ -26,7 +26,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -46,14 +46,16 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 128
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
@@ -68,6 +70,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 64, y: -64}
+        - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Shadows@128x128_1
       rect:
         serializedVersion: 2
@@ -78,6 +86,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: -64}
+        - {x: 10, y: 64}
+        - {x: -64, y: 64}
+        - {x: -64, y: -64}
+      tessellationDetail: -1
     - name: Shadows@128x128_2
       rect:
         serializedVersion: 2
@@ -88,6 +102,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: -57}
+        - {x: -64, y: -64}
+        - {x: -51, y: -64}
+        - {x: -51, y: -63}
+        - {x: -56, y: -58}
+        - {x: -59, y: -57}
+      tessellationDetail: -1
     - name: Shadows@128x128_3
       rect:
         serializedVersion: 2
@@ -98,6 +120,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: 45}
+        - {x: -6, y: -10}
+        - {x: 64, y: -10}
+        - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Shadows@128x128_4
       rect:
         serializedVersion: 2
@@ -108,6 +137,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -10}
+        - {x: 4, y: -10}
+        - {x: 10, y: 0}
+        - {x: 10, y: 64}
+      - - {x: 61, y: 58}
+        - {x: 63, y: 56}
+        - {x: 64, y: 56}
+        - {x: 64, y: 62}
+        - {x: 61, y: 61}
+      tessellationDetail: -1
     - name: Shadows@128x128_5
       rect:
         serializedVersion: 2
@@ -118,6 +159,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 10, y: -64}
+        - {x: 10, y: 4}
+        - {x: -49, y: 64}
+      tessellationDetail: -1
     - name: Shadows@128x128_6
       rect:
         serializedVersion: 2
@@ -128,6 +176,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -64}
+        - {x: 10, y: -64}
+        - {x: 10, y: -10}
+        - {x: 64, y: -10}
+        - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Shadows@128x128_7
       rect:
         serializedVersion: 2
@@ -138,6 +194,12 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -10}
+        - {x: 64, y: -10}
+        - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Shadows@128x128_8
       rect:
         serializedVersion: 2
@@ -148,6 +210,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 64}
+        - {x: -64, y: -10}
+        - {x: 2, y: -10}
+        - {x: 10, y: -3}
+        - {x: 10, y: 64}
+      tessellationDetail: -1
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -92,6 +92,10 @@ public class ExplodingSpell : MonoBehaviour
         if (!spell.collidesWithWalls && other.gameObject.layer == LayerMask.NameToLayer("BlockingLayer"))
             return;
 
+        if (spell.collidesWithSpells &&
+            (other.gameObject.layer == LayerMask.NameToLayer("Spells") || other.gameObject.layer == LayerMask.NameToLayer("MonsterSpells")))
+            return;
+
         if (other)
         {
             affectedObjects.Add(other);

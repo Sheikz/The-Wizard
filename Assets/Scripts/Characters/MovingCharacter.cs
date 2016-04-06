@@ -61,7 +61,10 @@ public abstract class MovingCharacter : MonoBehaviour
     {
         if (isSlowed)
             return;
-        StartCoroutine(slowForSeconds(slowPercent, duration));
+        if (slowPercent == 1)
+            StartCoroutine(stunForSeconds(duration));
+        else
+            StartCoroutine(slowForSeconds(slowPercent, duration));
     }
 
     private IEnumerator slowForSeconds(float slowPercent, float duration)
@@ -170,11 +173,9 @@ public abstract class MovingCharacter : MonoBehaviour
     IEnumerator stunForSeconds(float duration)
     {
         isStunned = true;
-        spriteRenderer.color = Color.grey;
         float savedAnimSpeed = anim.speed;
         anim.speed = 0;
         yield return new WaitForSeconds(duration);
-        spriteRenderer.color = Color.white;
         anim.speed = savedAnimSpeed;
         isStunned = false;
     }

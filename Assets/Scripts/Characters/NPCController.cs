@@ -58,6 +58,17 @@ public class NPCController : MovingCharacter
             visionLayer = GameManager.instance.layerManager.monsterVisionLayer;
     }
 
+    internal void activate(bool v)
+    {
+        foreach (Behaviour beh in GetComponents<Behaviour>())
+        {
+            if (beh)
+                beh.enabled = v;
+        }
+
+        gameObject.SetActive(v);
+    }
+
     public void initialize(RoomBasedMapGenerator map)
     {
         gridMap = map.gridMap;
@@ -302,7 +313,8 @@ public class NPCController : MovingCharacter
     {
         if (Random.Range(0f, 1f) <= idleChance)
         {
-            StartCoroutine(startIdle());
+            if (gameObject.activeSelf)
+                StartCoroutine(startIdle());
             return;
         }
 

@@ -15,7 +15,6 @@ public class Room : MonoBehaviour, IComparable<Room>
     public bool canBeMergedAtExit = true;
     public bool hasCarpet = false;
     public bool hasPillars = false;
-    public List<GameObject> pillars;
     public List<GameObject> carpets;
 
     [HideInInspector]
@@ -28,12 +27,14 @@ public class Room : MonoBehaviour, IComparable<Room>
     public int depth = 0;
     private MeshCreator[] meshCreators;
     public Material prefabMaterial;
+    private List<Room> linkedRooms; // Room that have been merged with this one (events should shoot simultaneously)
 
     void OnEnable()
     {
         visibleRoom = roomEdge.GetComponent<VisibleRoom>();
         roomEvents = GetComponents<RoomEvent>();
         meshCreators = GetComponentsInChildren<MeshCreator>();
+        linkedRooms = new List<Room>();
     }
 
     void Start()
@@ -50,6 +51,7 @@ public class Room : MonoBehaviour, IComparable<Room>
 
     public void refreshWalls()
     {
+        Pillar[] pillars = GetComponentsInChildren<Pillar>();
         foreach (WallCreator wc in exitWalls)
         {
             wc.refreshContents();
@@ -62,8 +64,8 @@ public class Room : MonoBehaviour, IComparable<Room>
         }
         foreach (GameObject obj in carpets)
             obj.SetActive(hasCarpet);
-        foreach (GameObject obj in pillars)
-            obj.SetActive(hasPillars);
+        foreach (Pillar pillar in pillars)
+            pillar.initialize(hasPillars, this);
 
         //combineMeshes();
     }
@@ -110,12 +112,21 @@ public class Room : MonoBehaviour, IComparable<Room>
         visibleRoom.setVisible(v);
     }
 
+    internal void linkRoom(Room newRoom)
+    {
+        linkedRooms.Add(newRoom);
+    }
+
     /// <summary>
     /// Event coming from the RoomBounds stating that the player entered the room
     /// </summary>
     /// <param name="player"></param>
     public void playerEnteredRoom(PlayerController player)
     {
+        foreach (Room room in linkedRooms)
+        {
+            room.playerEnteredRoom(player);
+        }
         foreach (RoomEvent ev in roomEvents)
         {
             ev.playerEnteredRoom(player);
@@ -128,6 +139,10 @@ public class Room : MonoBehaviour, IComparable<Room>
     /// <param name="player"></param>
     public void playerExitedRoom(PlayerController player)
     {
+        foreach (Room room in linkedRooms)
+        {
+            room.playerExitedRoom(player);
+        }
         foreach (RoomEvent ev in roomEvents)
         {
             ev.playerExitedRoom(player);

@@ -10,6 +10,7 @@ public class Explosion : MonoBehaviour
 	[Tooltip("Time the explosion does damage")]
 	public float explosionTime;
     public float lightFadeDuration = 0.5f;
+    public bool damageOnce = false;
 
     [HideInInspector]
     public int damage;
@@ -19,6 +20,7 @@ public class Explosion : MonoBehaviour
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
     private float manaCost;
+    private bool appliedDamage = false;
 
     void Awake()
     {
@@ -106,6 +108,9 @@ public class Explosion : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
+        if (damageOnce && appliedDamage)
+            return;
+
 		GameObject other = collider.gameObject;
 		if (other == emitter)
 			return;
@@ -114,6 +119,7 @@ public class Explosion : MonoBehaviour
 		if (dmg)
 		{
 			dmg.doDamage(emitter, damage);
+            appliedDamage = true;
             giveMana();
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {

@@ -1847,6 +1847,7 @@ GameObject:
   - 4: {fileID: 466510}
   - 61: {fileID: 6116884}
   - 114: {fileID: 11482524}
+  - 114: {fileID: 114000010446806310}
   m_Layer: 19
   m_Name: WallEdges
   m_TagString: Untagged
@@ -9817,6 +9818,17 @@ BoxCollider2D:
   m_Offset: {x: 2.5, y: 4.5}
   serializedVersion: 2
   m_Size: {x: 5, y: 9}
+--- !u!114 &114000010446806310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3241c16847ebcc7428d428bb631afcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010864111372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9830,17 +9842,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefabs:
   - item: {fileID: 1000013481156612, guid: ed09a5f853f4732408913ba86f21a931, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 1000010950718568, guid: f5a24d87d2a86224a8f606a100eac1f8, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: a9347b6cc6a01244cb46803300801332, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 4341cf68b1aeb264bb99ffafbd77ec59, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 149020, guid: 609d6836d5557884abff6ab722eb26bf, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 73704b9386729964ea4ad5cea47d1438, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 190100, guid: 6a9a4a3e281e68c49a5a018af0ffaf7c, type: 2}
-    lootChance: 0
+    lootChance: 1
   monsterNumber: 2

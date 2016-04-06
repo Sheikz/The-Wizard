@@ -7,4 +7,7 @@ using System.Collections.Generic;
 public class SpellManager : MonoBehaviour
 {
     public List<GameObject> spellList;
+    public GameObject[] auraPrefabs;
+    public GameObject[] auraActivatePrefabs;
+    public GameObject[] auraDisablePrefabs;
 }

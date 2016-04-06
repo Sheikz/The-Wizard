@@ -16,6 +16,9 @@ public class SpellCaster : MonoBehaviour
     private HashSet<Spray> activeSprays;
     private bool isHero = false;
     private SpellBook spellBook;
+
+
+
     private bool isCasting = false;
 
     private CharacterStats characterStats;
@@ -32,12 +35,13 @@ public class SpellCaster : MonoBehaviour
     private Animator anim;
     [HideInInspector]
     public GameObject targetObject;
+    private List<PowerUpBuff> activeBuffs;
 
     void Awake()
     {
         characterStats = GetComponent<CharacterStats>();
         movingCharacter = GetComponent<MovingCharacter>();
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
     }
 
     // Use this for initialization
@@ -49,6 +53,7 @@ public class SpellCaster : MonoBehaviour
         activeSprays = new HashSet<Spray>();
         companionList = new List<Companion>();
         followerList = new List<CompanionController>();
+        activeBuffs = new List<PowerUpBuff>();
         mana = maxMana;
 
         if (tag == "Hero")
@@ -99,13 +104,6 @@ public class SpellCaster : MonoBehaviour
 	{
         equipSpell(spell);
         spellBook.addSpell(spell);
-        if (spell.removePrerequisites) // Need to remove the prerequisites from the book
-        {
-            foreach (GameObject prerequisite in spell.prerequisites)
-            {
-                spellBook.removeSpell(prerequisite.GetComponent<SpellController>());
-            }
-        } 
 		return true;
 	}
 
@@ -153,6 +151,19 @@ public class SpellCaster : MonoBehaviour
 			yield return new WaitForSeconds(cooldown);
 		isOnCoolDown[spellIndex] = false;
 	}
+
+    internal float getActiveBuff(MagicElement magicElement)
+    {
+        float result = 1.0f;
+        foreach (PowerUpBuff buff in activeBuffs)
+        {
+            if (buff.element == magicElement)
+            {
+                result *= buff.multiplier;
+            }
+        }
+        return result;
+    }
 
     public void resetCooldowns()
 	{
@@ -453,5 +464,17 @@ public class SpellCaster : MonoBehaviour
     public float getManaRatio()
     {
         return mana / maxMana;
+    }
+
+    internal void addBuff(PowerUpBuff buff)
+    {
+        StartCoroutine(addBuffRoutine(buff));
+    }
+
+    IEnumerator addBuffRoutine(PowerUpBuff buff)
+    {
+        activeBuffs.Add(buff);
+        yield return new WaitForSeconds(buff.duration);
+        activeBuffs.Remove(buff);
     }
 }

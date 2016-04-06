@@ -8,7 +8,6 @@ public class StaticSpell : SpellController
 {
     public float delayBeforeDamage;
     public float colliderDuration;
-    public bool damageOverTime = true;
 
     [HideInInspector]
     public List<Damageable> affectedObjects;
@@ -36,6 +35,8 @@ public class StaticSpell : SpellController
 
     IEnumerator stopLoopingAfterSeconds(ParticleSystem system, float time)
     {
+        if (time == 0)
+            yield break;
         yield return new WaitForSeconds(time);
         system.loop = false;
     }

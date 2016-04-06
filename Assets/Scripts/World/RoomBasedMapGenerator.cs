@@ -87,6 +87,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
                 newLiaison.transform.SetParent(liaisonHolder.transform);
                 wall.parentRoom.visibleRoom.linkTo(newLiaison);
                 wall.parentRoom.visibleRoom.linkTo(newRoom.visibleRoom);
+                wall.parentRoom.linkRoom(newRoom);
             }
             else
                 wall.doorStatus = WallCreator.DoorStatus.Door;

@@ -42,7 +42,7 @@ public class MonsterEvent : RoomEvent
             NPCController newMonster = Instantiate(newMonsterPrefab, tileToPutMonster.position(), Quaternion.identity) as NPCController;
             newMonster.transform.SetParent(room.map.monsterHolder);
             newMonster.initialize(room.map);
-            newMonster.gameObject.SetActive(false);
+            newMonster.activate(false);
             monsters.Add(newMonster);
         }
     }
@@ -51,12 +51,13 @@ public class MonsterEvent : RoomEvent
     {
         foreach (NPCController monster in monsters)
         {
-            monster.gameObject.SetActive(true);
+            if (monster)
+                monster.activate(true);
         }
     }
 
     public override void playerExitedRoom(PlayerController player)
     {
-        throw new NotImplementedException();
+        return;
     }
 }

@@ -42,6 +42,7 @@ GameObject:
   - 4: {fileID: 463820}
   - 61: {fileID: 6162840}
   - 114: {fileID: 11463344}
+  - 114: {fileID: 114000012626737054}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -349,6 +350,7 @@ GameObject:
   - 4: {fileID: 473454}
   - 61: {fileID: 6192796}
   - 114: {fileID: 11420526}
+  - 114: {fileID: 114000013311628456}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -526,6 +528,7 @@ GameObject:
   - 4: {fileID: 468248}
   - 61: {fileID: 6180556}
   - 114: {fileID: 11418398}
+  - 114: {fileID: 114000014188789558}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -1112,6 +1115,7 @@ GameObject:
   - 4: {fileID: 450754}
   - 61: {fileID: 6114884}
   - 114: {fileID: 11456808}
+  - 114: {fileID: 114000014129654366}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -1533,6 +1537,7 @@ GameObject:
   - 4: {fileID: 499390}
   - 61: {fileID: 6186660}
   - 114: {fileID: 11443652}
+  - 114: {fileID: 114000010549952988}
   m_Layer: 0
   m_Name: WallEdges
   m_TagString: Untagged
@@ -1697,6 +1702,7 @@ GameObject:
   - 4: {fileID: 406856}
   - 61: {fileID: 6188158}
   - 114: {fileID: 11433378}
+  - 114: {fileID: 114000013125774154}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -1943,6 +1949,7 @@ GameObject:
   - 4: {fileID: 427582}
   - 61: {fileID: 6143154}
   - 114: {fileID: 11486224}
+  - 114: {fileID: 114000010682591512}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -2205,6 +2212,7 @@ GameObject:
   - 4: {fileID: 415792}
   - 61: {fileID: 6106924}
   - 114: {fileID: 11436988}
+  - 114: {fileID: 114000014000514496}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -2436,6 +2444,7 @@ GameObject:
   - 4: {fileID: 492616}
   - 61: {fileID: 6175622}
   - 114: {fileID: 11456408}
+  - 114: {fileID: 114000012664997850}
   m_Layer: 8
   m_Name: Pillar
   m_TagString: Obstacle
@@ -5358,7 +5367,6 @@ MonoBehaviour:
   canBeMergedAtExit: 1
   hasCarpet: 0
   hasPillars: 0
-  pillars: []
   carpets: []
   roomDepth: 0
   visibleRoom: {fileID: 0}
@@ -9694,6 +9702,105 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157840}
   m_IsPrefabParent: 1
+--- !u!114 &114000010549952988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3241c16847ebcc7428d428bb631afcae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000010682591512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012626737054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012664997850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013125774154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013311628456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014000514496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014129654366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000014188789558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e906d74cf1715f4088ffb27af443e66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000014271213230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9707,17 +9814,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterPrefabs:
   - item: {fileID: 1000013481156612, guid: ed09a5f853f4732408913ba86f21a931, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 1000010950718568, guid: f5a24d87d2a86224a8f606a100eac1f8, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: a9347b6cc6a01244cb46803300801332, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 4341cf68b1aeb264bb99ffafbd77ec59, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 149020, guid: 609d6836d5557884abff6ab722eb26bf, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 150918, guid: 73704b9386729964ea4ad5cea47d1438, type: 2}
-    lootChance: 0
+    lootChance: 1
   - item: {fileID: 190100, guid: 6a9a4a3e281e68c49a5a018af0ffaf7c, type: 2}
-    lootChance: 0
+    lootChance: 1
   monsterNumber: 2

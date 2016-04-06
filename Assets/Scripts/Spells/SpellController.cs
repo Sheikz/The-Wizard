@@ -23,13 +23,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public int damage = 10;
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
     public float duration = 0f;
-    
-	[Tooltip("The list of spells required to unlock this one")]
-	public GameObject[] prerequisites;
-
-
-    [Tooltip("Should the prerequisites be removed when the spell is learned?")]
-	public bool removePrerequisites = false;
+    public bool collidesWithSpells = false;
+ 
 
 	protected Rigidbody2D rb;
 	protected CircleCollider2D circleCollider;
@@ -92,6 +87,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
 	protected IEnumerator destroyAfterSeconds(float seconds)
 	{
+        if (seconds == 0)
+            yield break;
 		yield return new WaitForSeconds(seconds);
 		Destroy(gameObject);
 	}
@@ -122,6 +119,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         Inventory inventory = emitter.GetComponent<Inventory>();
         if (inventory)
             result = Mathf.RoundToInt(result * inventory.getDamageMultiplier(magicElement));
+
+        result = Mathf.RoundToInt(result * emitter.getActiveBuff(magicElement));
 
         return result;
     }
@@ -155,22 +154,28 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
 	protected void applyLayer()
 	{
-		if (emitter == null)
-		{
-			Debug.Log("Emitter not defined for " + name);
-			return;
-		}
-		if (emitter.isMonster)
-		{
-			gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
-			enemyLayer = GameManager.instance.layerManager.heroLayer;
-		}
-		else
-		{
-			gameObject.layer = LayerMask.NameToLayer("Spells");
-			enemyLayer = GameManager.instance.layerManager.monsterLayer;
-		}
-	}
+        if (emitter == null)
+        {
+            Debug.Log("Emitter not defined for " + name);
+            return;
+        }
+        if (emitter.isMonster)
+        {
+            if (collidesWithSpells)
+                gameObject.layer = LayerMask.NameToLayer("MonsterSpellCollidingWithSpells");
+            else
+                gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
+            enemyLayer = GameManager.instance.layerManager.heroLayer;
+        }
+        else
+        {
+            if (collidesWithSpells)
+                gameObject.layer = LayerMask.NameToLayer("HeroSpellCollidingWithSpells");
+            else
+                gameObject.layer = LayerMask.NameToLayer("Spells");
+            enemyLayer = GameManager.instance.layerManager.monsterLayer;
+        }
+    }
 
     public virtual bool canCastSpell(SpellCaster spellCaster, Vector3 initialPos, Vector3 target)
     {

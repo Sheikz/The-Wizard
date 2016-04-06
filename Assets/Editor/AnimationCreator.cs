@@ -12,9 +12,6 @@ public class AnimationCreator : EditorWindow
     private Sprite spriteSheet;
     private string spriteName = "";
 
-    private string currentState = "";
-    private string currentDirection = "";
-
     [MenuItem("Window/Animation Creator")]
     public static void ShowWindow()
     {

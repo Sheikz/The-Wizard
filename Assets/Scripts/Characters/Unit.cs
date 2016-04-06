@@ -20,7 +20,6 @@ public class Unit : MonoBehaviour {
     private bool Loop = true;//loop animaton
     private int cFrame = 0;//Current Frame (column)
     private int cFrameRow = 0;//Current Animation (row)
-    private float cTime = 0;//Current Time
     private float fTime = 0;//time to switch frames
 
     //sample move code
