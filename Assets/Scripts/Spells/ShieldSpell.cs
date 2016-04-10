@@ -39,10 +39,10 @@ public class ShieldSpell : SpellController
         }
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         ShieldSpell newSpell = Instantiate(this);
-        newSpell.initialize(emitter, position, target);
+        newSpell.initialize(emitter, emitter.transform.position, target);
         return newSpell;
     }
 

@@ -34,7 +34,7 @@ public class SpellSkill : Skill
             Debug.Log("hero not found");
         if (hero.getKnownSpells() == null)
             Debug.Log("No known spells");
-        foreach(GameObject spell in GameManager.instance.spellManager.spellList)
+        foreach(GameObject spell in SpellManager.instance.spellList)
         {
             SpellController spController = spell.GetComponent<SpellController>();
 
@@ -51,7 +51,7 @@ public class SpellSkill : Skill
     {
         base.initializeSkill();
         List<GameObject> spellsToPickFrom = new List<GameObject>();
-        foreach (GameObject spell in GameManager.instance.spellManager.spellList)
+        foreach (GameObject spell in SpellManager.instance.spellList)
         {
             SpellController spController = spell.GetComponent<SpellController>();
 

@@ -27,7 +27,7 @@ public class FollowObjects : MonoBehaviour
         {
             if (hit.CompareTag(followingTag))
             {
-                autoPilot.lockToObject(hit.gameObject);
+                autoPilot.lockToObject(hit.transform);
             }
         }
     }

@@ -21,10 +21,10 @@ public class RotatingSpell : SpellController
         base.Start();
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         RotatingSpell newSpell = Instantiate(this);
-        newSpell.transform.position = position + Vector3.right * distanceToParent;
+        newSpell.transform.position = emitter.transform.position + Vector3.right * distanceToParent;
         newSpell.transform.parent = emitter.transform;
         newSpell.emitter = emitter;
         return newSpell;

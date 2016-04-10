@@ -5,16 +5,21 @@ using System.Collections.Generic;
 
 public class ItemHolder : MonoBehaviour
 {
-	public List<ItemWithDropChance> items;
 	public bool shouldDropItems = true;
 
 	public void die()
 	{
 		if (GameManager.instance.isShuttingDown)    // Avoid looting the items after the game is finished as they stay in the scene
 			return;
-		
-		if (shouldDropItems)
-			dropItem(Utils.getObjectWithProbability(items).item);
+
+        if (shouldDropItems)
+        {
+            foreach (ItemWithDropChance item in ItemManager.instance.monsterItems)
+            {
+                if (Random.Range(0f, 1f) <= item.lootChance)
+                    dropItem(item.item);
+            }
+        }
 	}
 
 	private void dropItem(GameObject itemToDrop)

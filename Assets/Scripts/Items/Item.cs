@@ -2,11 +2,11 @@
 using System.Collections;
 using System;
 
+[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
 public abstract class Item : MonoBehaviour
 {
     public bool canBePickedUp = true;
-    public float speed = 5;
 
     [HideInInspector]
     public int level = 1;
@@ -15,10 +15,11 @@ public abstract class Item : MonoBehaviour
     private enum ItemState { DoNothing, MoveToLooter};
     private ItemState state = ItemState.DoNothing;
 
-    void Awake()
+    protected void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("Item");
-        GetComponent<Collider2D>().isTrigger = true;
+        GetComponent<Collider2D>().isTrigger = false;
+        GetComponent<Rigidbody2D>().freezeRotation = true;
     }
 
     public virtual void initialize(CharacterStats looter)
@@ -49,7 +50,7 @@ public abstract class Item : MonoBehaviour
             isPickedUpBy(looter);
             return;
         }
-        transform.position += lineToLooter.normalized * speed * Time.fixedDeltaTime;
+        transform.position += lineToLooter.normalized * looter.vacuumSpeed * Time.fixedDeltaTime;
     }
 
     public abstract void isPickedUpBy(Inventory looter);
@@ -64,6 +65,7 @@ public abstract class Item : MonoBehaviour
 
     public void pullToSelf(ItemLooter itemLooter)
     {
+        GetComponent<Collider2D>().isTrigger = true;
         state = ItemState.MoveToLooter;
         looter = itemLooter.inventory;
     }

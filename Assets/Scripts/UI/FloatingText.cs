@@ -58,6 +58,18 @@ public class FloatingText : MonoBehaviour
     }
 
     /// <summary>
+    /// Initialize at a specified position in space
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="t"></param>
+    public void initialize(Vector3 position, string t)
+    {
+        text.text = t;
+        parentPosition = position;
+        parentRadius = 0;
+    }
+
+    /// <summary>
     ///  Version with numbers, apply the division if necessary
     /// </summary>
     /// <param name="parent">Parent.</param>

@@ -106,6 +106,16 @@ public class RoomBasedMapGenerator : MonoBehaviour
         Debug.Log("Number of rooms created " + roomCount);
     }
 
+    /// <summary>
+    /// Destroy the map, the monsters and the spells
+    /// </summary>
+    internal void destroy()
+    {
+        Destroy(monsterHolder.gameObject);
+        Destroy(spellHolder.gameObject);
+        Destroy(gameObject);
+    }
+
     private void initializeRooms()
     {
         floorTiles = gridMap.getTilesOfType(TileType.Floor);

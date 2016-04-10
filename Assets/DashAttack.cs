@@ -4,15 +4,15 @@ using System;
 
 public class DashAttack : SpellController
 {
-    public float startSpeed = 10f;
-    public float endSpeed = 1f;
+    public float startSpeedRatio = 2f;
+    public float endSpeedRatio = 0.2f;
     public float dashTime = 0.5f;
     public float minimumDistance = 3f;
 
     private Rigidbody2D emitterRigibody;
     private MovingCharacter movingChar;
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         // Only dash if the target is close enough
         if (emitter.isMonster && (emitter.transform.position - target).sqrMagnitude > minimumDistance * minimumDistance)
@@ -48,8 +48,15 @@ public class DashAttack : SpellController
 
     private IEnumerator startDashAttack()
     {
+        float startSpeed = 10f;
+        float endSpeed = 1f;
         if (movingChar)
+        {
             movingChar.enableAction(false);
+            startSpeed = movingChar.speed * startSpeedRatio;
+            endSpeed = movingChar.speed * endSpeedRatio;
+        }
+
         float startTime = Time.time;
         while (Time.time - startTime <= dashTime)
         {
@@ -59,7 +66,9 @@ public class DashAttack : SpellController
             if ((emitter.transform.position - target).sqrMagnitude <= 0.02f)
                 break;
 
-            float step = Mathf.Lerp(startSpeed, endSpeed, (Time.time - startTime) / dashTime) * Time.fixedDeltaTime;
+            float step = Mathf.Lerp(startSpeed
+                , endSpeed
+                , (Time.time - startTime) / dashTime) * Time.fixedDeltaTime;
             emitterRigibody.MovePosition(Vector2.MoveTowards(emitter.transform.position, target, step));
             yield return new WaitForFixedUpdate();
         }

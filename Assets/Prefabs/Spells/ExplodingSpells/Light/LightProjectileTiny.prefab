@@ -205,7 +205,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011437428380}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a7efcec7fdb97b844b88522de59cc35f, type: 3}
@@ -371,15 +371,16 @@ MonoBehaviour:
   description: 
   manaCost: 0
   manaCostInterval: 1
-  castTime: 0
-  cooldown: 0.2
+  castTime: 0.5
+  cooldown: 0.5
   icon: {fileID: 0}
   spellType: 0
   magicElement: 0
   spellSet: 0
-  damage: 10
+  damage: 100
   lightIntensity: 0
   duration: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

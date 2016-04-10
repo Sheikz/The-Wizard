@@ -16,6 +16,7 @@ public class ExplodingSpell : MonoBehaviour
     private SpellController spell;
     private ChainSpell chainSpell;
     private List<Collider2D> explosionsOnCooldown;
+    private SpellAutoPilot autoPilot;
 
     void Awake()
     {
@@ -23,6 +24,13 @@ public class ExplodingSpell : MonoBehaviour
         spell = GetComponent<SpellController>();
         chainSpell = GetComponent<ChainSpell>();
         explosionsOnCooldown = new List<Collider2D>();
+        autoPilot = GetComponent<SpellAutoPilot>();
+    }
+
+    void Start()
+    {
+        if (GetComponent<MovingSpell>())
+            StartCoroutine(explodeAfterSeconds(10));    // Avoid that a moving spell wander for eternity
     }
 
     void FixedUpdate()
@@ -32,17 +40,11 @@ public class ExplodingSpell : MonoBehaviour
             if (!collider)
                 continue;
             
-
             GameObject other = collider.gameObject;
             if (spell.emitter && other == spell.emitter.gameObject)
                 continue;
 
-            if (explodeOnTouch)
-            {
-                explode(collider);
-                return;
-            }
-            else if (collider.bounds.Contains(transform.position))
+            if (explodeOnTouch || collider.bounds.Contains(transform.position))
             {
                 explode(collider);
                 return;
@@ -76,6 +78,21 @@ public class ExplodingSpell : MonoBehaviour
         }
     }
 
+    public void explode()
+    {
+        if (explosion != null)
+        {
+            Explosion newExplosion = Instantiate(explosion).GetComponent<Explosion>();
+            newExplosion.transform.position = transform.position;   // if the object explodes, the exposion is created where it was
+
+            newExplosion.initialize(spell);
+        }
+        if (chainSpell)
+            chainSpell.bounce(null);
+        if (destroyWhenExplodes)
+            Destroy(gameObject);
+    }
+
     private IEnumerator startExplosionCooldown(Collider2D col)
     {
         explosionsOnCooldown.Add(col);
@@ -96,6 +113,13 @@ public class ExplodingSpell : MonoBehaviour
             (other.gameObject.layer == LayerMask.NameToLayer("Spells") || other.gameObject.layer == LayerMask.NameToLayer("MonsterSpells")))
             return;
 
+        if (other.CompareTag("NoExplosion")) // Dont explose when colliding sphere
+            return;
+
+        if (autoPilot && autoPilot.explodeOnlyOnTarget && autoPilot.targetObject &&
+            autoPilot.targetObject.gameObject != other.gameObject)
+            return;
+
         if (other)
         {
             affectedObjects.Add(other);
@@ -108,6 +132,12 @@ public class ExplodingSpell : MonoBehaviour
         {
             affectedObjects.Remove(other);
         }
+    }
+
+    IEnumerator explodeAfterSeconds(float time)
+    {
+        yield return new WaitForSeconds(time);
+        explode();
     }
 
     /*

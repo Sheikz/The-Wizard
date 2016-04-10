@@ -103,10 +103,10 @@ public class Spray : SpellController
         return true;
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         Spray spell = Instantiate(this);
-        if (!spell.initialize(emitter, position, target))
+        if (!spell.initialize(emitter, emitter.transform.position, target))
             return null;
         return spell;
     }

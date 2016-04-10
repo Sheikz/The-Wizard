@@ -39,7 +39,7 @@ public class CircleSpell : SpellController
         StartCoroutine(createSpells());
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         if (emitter.activeCircleSpells.Count > 0)
             return null;

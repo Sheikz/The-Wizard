@@ -209,7 +209,7 @@ MonoBehaviour:
   spellName: Scorching Flames
   spellTypeDescription: Shield Area of Effect
   damageString: <dmg> damage per second
-  description: Summon a fire shield around the Caster. <n> Damages nearby enemies
+  description: Summon a fire shield around the Caster.<n>Damages nearby enemies
   manaCost: 25
   manaCostInterval: 1
   castTime: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   damage: 75
   lightIntensity: 0
   duration: 5
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -229,7 +230,6 @@ MonoBehaviour:
   moveSpellCaster: {fileID: 0}
   collidesWithWalls: 0
   ignoredColliders: []
-  collidesWithSpells: 0
 --- !u!198 &198000010161435766
 ParticleSystem:
   m_ObjectHideFlags: 1

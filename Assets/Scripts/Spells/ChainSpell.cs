@@ -26,26 +26,32 @@ public class ChainSpell : MonoBehaviour
         if (numberOfBounces <= 0)
             return;
 
-        col.enabled = false;    // Disabling the collider so we don't include it in the overlapCircle
+        if (col)
+            col.enabled = false;    // Disabling the collider so we don't include it in the overlapCircle
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, chainRadius, spell.enemyLayer);
-        col.enabled = true;
+        if (col)
+            col.enabled = true;
 
         if (hits.Length <= 0)
             return;
 
         GameObject closestTarget = getClosest(hits);
-        SpellController newSpell = spell.castSpell(spell.emitter, transform.position, closestTarget.transform.position);
-        newSpell.ignoredColliders.Add(col); // Avoid colliding with the monster just after creation
+        SpellController newSpell = spell.castSpell(spell.emitter, closestTarget.transform.position);
+        MovingSpell movingSpell = newSpell.GetComponent<MovingSpell>();
+        if (movingSpell)
+            movingSpell.initialize(spell.emitter, transform.position, closestTarget.transform.position);    // Workaround because we cannot use the emitter position in this case
+
+        if (col)
+            newSpell.ignoredColliders.Add(col); // Avoid colliding with the monster just after creation
         Damageable dmg = closestTarget.GetComponent<Damageable>();
         AutoPilot autoPilot = newSpell.GetComponent<AutoPilot>();
         if (dmg && autoPilot)
         {
             // If autopilot is available and target is a damageable, lock on it
-            autoPilot.lockToObject(dmg.gameObject);
+            autoPilot.lockToObject(dmg.transform);
         }
-
     }
-    
+
     /// <summary>
     /// Get the closest from the list of hits
     /// </summary>

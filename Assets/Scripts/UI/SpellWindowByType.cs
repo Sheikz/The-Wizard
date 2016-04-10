@@ -35,7 +35,7 @@ public class SpellWindowByType : MonoBehaviour
 
     void addAllSpells()
     {
-        List<GameObject> spellList = GameManager.instance.spellManager.spellList;
+        List<GameObject> spellList = SpellManager.instance.spellList;
         List<SpellController> spellCList = new List<SpellController>();
         foreach (GameObject sp in spellList)
         {

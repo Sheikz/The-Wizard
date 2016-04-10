@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     public GameObject[] spellIcons;
     public Sprite emptyIcon;
 	public InventoryItemIcon inventoryItemIcon;
+    public Color[] elementColors;
 
     [HideInInspector]
     public Image[] coolDownImages;
@@ -103,6 +104,7 @@ public class UIManager : MonoBehaviour
 
     internal void setIconDescription(InputManager.Command cmd)
     {
+        // Only does that for the first 5 commands which are linked to the description of icons
         if ((int)cmd > 4)
             return;
 
@@ -147,10 +149,7 @@ public class UIManager : MonoBehaviour
 
     public void refreshControlWindow()
     {
-        foreach (ConfigControlButton button in controlsWindow.GetComponentsInChildren<ConfigControlButton>())
-        {
-            button.refresh();
-        }
+        controlsWindow.GetComponent<ControlsWindow>().refresh();
     }
 
     public void refreshUI()

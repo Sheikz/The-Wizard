@@ -10,7 +10,7 @@ public class Explosion : MonoBehaviour
 	[Tooltip("Time the explosion does damage")]
 	public float explosionTime;
     public float lightFadeDuration = 0.5f;
-    public bool damageOnce = false;
+    public bool hitOnce = false;
 
     [HideInInspector]
     public int damage;
@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
     private float manaCost;
-    private bool appliedDamage = false;
+    private bool appliedHit = false;
 
     void Awake()
     {
@@ -77,8 +77,7 @@ public class Explosion : MonoBehaviour
     IEnumerator fadeLights(float duration)
     {
         float startingTime = Time.time;
-        Light[] lights = GetComponentsInChildren<Light>();
-        //float startingIntensity = 0;
+        Light[] lights = GetComponentsInChildren<Light>();;
         if (lights.Length > 0)
         {
             float startingIntensity = lights[0].intensity;
@@ -97,7 +96,7 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-	public void initialize(SpellController spell)
+	public virtual void initialize(SpellController spell)
 	{
 		emitter = spell.emitter;
         damage = spell.damage;
@@ -106,9 +105,9 @@ public class Explosion : MonoBehaviour
         gameObject.layer = spell.gameObject.layer;
 	}
 
-	void OnTriggerEnter2D(Collider2D collider)
+	protected virtual void OnTriggerEnter2D(Collider2D collider)
 	{
-        if (damageOnce && appliedDamage)
+        if (hitOnce && appliedHit)
             return;
 
 		GameObject other = collider.gameObject;
@@ -118,8 +117,12 @@ public class Explosion : MonoBehaviour
 		Damageable dmg = other.gameObject.GetComponent<Damageable>();
 		if (dmg)
 		{
-			dmg.doDamage(emitter, damage);
-            appliedDamage = true;
+            if (damage >= 0)
+                dmg.doDamage(emitter, damage);
+            else
+                dmg.heal(-damage);
+
+            appliedHit = true;
             giveMana();
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {

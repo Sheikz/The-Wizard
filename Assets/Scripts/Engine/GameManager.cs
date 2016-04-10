@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 	public GameObject heroPrefab;
     
 	public LayerManager layerManager;
-    public SpellManager spellManager;
+    //public SpellManager spellManager;
     public RoomBasedMapGenerator mapPrefab;
 	
 	[HideInInspector]
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 		levelNumber++;
 		hero.gameObject.SetActive(false);
         isShuttingDown = true;
-        Destroy(map.gameObject);
+        map.destroy();
 
 		yield return null;      // This is necessary because Unity destroys the objects only at the next Update()
 

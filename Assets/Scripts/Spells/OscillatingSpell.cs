@@ -26,6 +26,6 @@ public class OscillatingSpell : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(lateralDirection * Mathf.Cos((Time.time - creationTime) * oscillatingFrequency) * oscillatingAmplitude);
+        rb.AddForce((lateralDirection * Mathf.Cos((Time.time - creationTime) * oscillatingFrequency) * oscillatingAmplitude) * rb.velocity.sqrMagnitude / 25);
     }
 }

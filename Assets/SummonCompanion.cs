@@ -6,7 +6,7 @@ public class SummonCompanion : SpellController
 {
     public Companion companion;
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         Companion newCompanion = Instantiate(companion);
         newCompanion.transform.SetParent(emitter.transform);

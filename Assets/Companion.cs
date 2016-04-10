@@ -92,7 +92,7 @@ public class Companion : MonoBehaviour
             if (inLineOfSight(dmg))
             {
                 target = dmg;
-                spellCaster.targetObject = dmg.gameObject;
+                spellCaster.targetOpponent = dmg.transform;
                 state = CompanionState.Locked;
                 return;
             }
@@ -119,7 +119,7 @@ public class Companion : MonoBehaviour
             return;
 
         if (inLineOfSight(target))   // If it has a clear shot
-            spellCaster.castAvailableSpells(target);
+            spellCaster.castOffensiveSpells(target);
         else
             state = CompanionState.Searching;
     }

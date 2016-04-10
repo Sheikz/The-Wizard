@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System;
 
+public enum RoomSize { Small, Medium, Large};
+
 public class MonsterEvent : RoomEvent
 {
-    public List<ItemWithDropChance> monsterPrefabs;
-    public int monsterNumber = 2;
+    public RoomSize roomSize;
 
     private List<NPCController> monsters;
 
@@ -33,13 +34,13 @@ public class MonsterEvent : RoomEvent
             Debug.LogError("Not a single tile to put monsters in room " + name);
             return;
         }
-        for (int i = 0; i < monsterNumber; i++)
+        var monstersToPut = WorldManager.instance.getMonsters(this);
+        foreach (NPCController monsterPrefab in monstersToPut)
         {
             Tile tileToPutMonster = Utils.pickRandom(roomTiles);
-            NPCController newMonsterPrefab = ItemWithDropChance.getItem(monsterPrefabs).item.GetComponent<NPCController>();
-            if (tileToPutMonster.getDistanceToClosest(newMonsterPrefab.isFlying) <= newMonsterPrefab.getRadius())   // Check if there is enough room to put the monster
-                continue;
-            NPCController newMonster = Instantiate(newMonsterPrefab, tileToPutMonster.position(), Quaternion.identity) as NPCController;
+            //if (tileToPutMonster.getDistanceToClosest(monsterPrefab.isFlying) <= monsterPrefab.getRadius())   // Check if there is enough room to put the monster
+            //    continue;
+            NPCController newMonster = Instantiate(monsterPrefab, tileToPutMonster.position(), Quaternion.identity) as NPCController;
             newMonster.transform.SetParent(room.map.monsterHolder);
             newMonster.initialize(room.map);
             newMonster.activate(false);

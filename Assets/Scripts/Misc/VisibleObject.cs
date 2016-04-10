@@ -6,6 +6,8 @@ public abstract class VisibleObject : MonoBehaviour
     public float progressiveApparitionTime = 0.5f;
     private SpriteRenderer[] spriteRenderers;
     private Light[] lights;
+    private FloatingHPBar HPBar;
+    private CastingBar castingBar;
 
     abstract public void setVisible();
 
@@ -28,6 +30,16 @@ public abstract class VisibleObject : MonoBehaviour
     {
         if (spriteRenderers.Length == 0)
             return;
+
+        if (HPBar == null)
+            HPBar = GetComponentInChildren<FloatingHPBar>();
+        if (HPBar)
+            HPBar.setVisible(value);
+
+        if (castingBar == null)
+            castingBar = GetComponentInChildren<CastingBar>();
+        if (castingBar)
+            castingBar.setVisible(value);
 
         if (value)
             startProggressiveApparition();

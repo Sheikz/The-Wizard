@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.315792, y: 49.58282, z: 0}
+  m_LocalPosition: {x: -14.207731, y: 6.6619444, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000014013979998}
@@ -121,6 +121,9 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
+  alliesLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &11434668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,15 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af756f9abb55afd4ba3a6eeaea00521c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - item: {fileID: 0}
-    lootChance: 1
-  - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
-    lootChance: 1
-  - item: {fileID: 1000013934318132, guid: 36a5401dd878b9847beaf6d0c734b92d, type: 2}
-    lootChance: 0.5
-  - item: {fileID: 1000011438046484, guid: ac35b16a1e1fc5545a8afbc1ca01473e, type: 2}
-    lootChance: 1
   shouldDropItems: 1
 --- !u!114 &11458092
 MonoBehaviour:
@@ -199,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d8de672193058b408731f13b6e52bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressiveApparitionTime: 0.5
+  progressiveApparitionTime: 0.1
 --- !u!114 &11485602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,7 +213,8 @@ MonoBehaviour:
   - {fileID: 11462106, guid: da10079c46e17d941833673863317e1d, type: 2}
   isMonster: 0
   activeCircleSpells: []
-  targetObject: {fileID: 0}
+  targetOpponent: {fileID: 0}
+  targetAlly: {fileID: 0}
 --- !u!114 &11496228
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,9 +6,9 @@ public class SpraySpell : SpellController
 {
     public Spray spray;
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
-        if (!initialize(emitter, position, target))
+        if (!initialize(emitter, emitter.transform.position, target))
             return null;
         else
             return this;

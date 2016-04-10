@@ -13,9 +13,10 @@ public class EquipableItem : Item
 		Destroy (gameObject);
 	}
 
-	void Awake()
+	new void Awake()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer> ();
+        base.Awake();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.enabled = false;
 	}
 

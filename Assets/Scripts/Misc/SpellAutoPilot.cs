@@ -6,6 +6,7 @@ public class SpellAutoPilot : AutoPilot
 {
     public float detectionRadius = 3f;
     public float detectionDistance = 3f;
+    public bool explodeOnlyOnTarget = false;
 
     private SpellController spell;
     private LayerMask enemyLayer;
@@ -69,7 +70,7 @@ public class SpellAutoPilot : AutoPilot
         Damageable dmg = closestObject.GetComponent<Damageable>();
         if (dmg)
         {
-            lockToObject(dmg.gameObject);
+            lockToObject(dmg.transform);
         }
     }
 

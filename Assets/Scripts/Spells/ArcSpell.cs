@@ -22,23 +22,23 @@ public class ArcSpell : SpellController
 
         rotateQuat = Quaternion.Euler(0, 0, offset);
         newTarget = position + rotateQuat * direction;
-        spell.castSpell(emitter, position, newTarget);
+        spell.castSpell(emitter, newTarget);
 
         for (int i=1; i <= nbrSpellsPerSide; i++)
         {
             rotateQuat = Quaternion.Euler(0, 0, i* angle + offset);
             newTarget = position + rotateQuat*direction;
-            spell.castSpell(emitter, position, newTarget);
+            spell.castSpell(emitter, newTarget);
 
             rotateQuat = Quaternion.Euler(0, 0, -i* angle + offset);
             newTarget = position + rotateQuat*direction;;
-            spell.castSpell(emitter, position, newTarget);
+            spell.castSpell(emitter, newTarget);
         }
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
-        createSpells(emitter, position, target);
+        createSpells(emitter, emitter.transform.position, target);
         return this;
     }
 }

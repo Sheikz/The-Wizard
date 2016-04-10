@@ -6,7 +6,7 @@ public class SummonNPC : SpellController
 {
     public CompanionController NPC;
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         CompanionController newNPC = Instantiate(NPC);
         newNPC.transform.position = target;

@@ -48,7 +48,7 @@ public class SpellBook : MonoBehaviour
         spellPanel.secondary = secondaryPanel;
         spellPanel.defensive = defensivePanel;
         spellPanel.ultimate = ultimatePanel;
-        spellManager = GameManager.instance.spellManager;
+        spellManager = SpellManager.instance;
         addAllSpells();
     }
 

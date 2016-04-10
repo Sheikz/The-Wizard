@@ -25,7 +25,8 @@ public class NPCController : MovingCharacter
     private Room room;
 
     private NPCState state;
-    private Damageable targetOpponent;
+    private Damageable targetOpponent;  // Target opponent to damage
+    private Damageable targetAlly;  // Target ally to heal
 
     private bool hasStrafeValueExpired = true;
     private float strafeValue = 1f;
@@ -33,9 +34,12 @@ public class NPCController : MovingCharacter
     private Vector2 mobRadius;
     private LayerMask enemyLayer;
     private LayerMask obstacleLayer;
+    public LayerMask alliesLayer;
     private LayerMask visionLayer;
     private Collider2D[] potentialTargets;
+    private Collider2D[] potentialInjuredAllies;
     private bool isDead = false;
+    private bool hasSupportSpells;  // Should this NPC check for nearby allies to heal?
 
     private enum NPCState { Idle, Wander, Chase };
 
@@ -43,9 +47,15 @@ public class NPCController : MovingCharacter
     {
         spellCaster = GetComponent<SpellCaster>();
         if (CompareTag("Hero") || CompareTag("HeroCompanion"))
+        {
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
+            alliesLayer = GameManager.instance.layerManager.heroLayer;
+        }
         else
+        {
             enemyLayer = GameManager.instance.layerManager.heroLayer;
+            alliesLayer = GameManager.instance.layerManager.monsterLayer;
+        }
 
         if (isFlying)   // If it is flying it only needs to avoid walls
             obstacleLayer = GameManager.instance.layerManager.highBlockingLayer;
@@ -56,6 +66,10 @@ public class NPCController : MovingCharacter
             visionLayer = GameManager.instance.layerManager.nothing;
         else
             visionLayer = GameManager.instance.layerManager.monsterVisionLayer;
+
+        hasSupportSpells = spellCaster.hasSupportSpells();
+        if (hasSupportSpells)
+            InvokeRepeating("checkForNearbyAllies", 0, 1f);
     }
 
     internal void activate(bool v)
@@ -76,7 +90,7 @@ public class NPCController : MovingCharacter
 
         setNewGoal();
         computePathToGoal();
-        state = NPCState.Wander;
+        startWander();
     }
 
     public void initialize(Room room)
@@ -114,18 +128,57 @@ public class NPCController : MovingCharacter
                 doIdle();
                 break;
         }
+        if (hasSupportSpells && targetAlly) // If it's a healer and there is a potential injured ally, then heal
+            healTargetAlly();
+    }
+
+    /// <summary>
+    /// Check if there is a nearby ally that need healing. If yes, heal it
+    /// </summary>
+    private void checkForNearbyAllies()
+    {
+        potentialInjuredAllies = Physics2D.OverlapCircleAll(transform.position, visionDistance, alliesLayer);
+        int maxMissingLife = 0;
+        targetAlly = null;
+        foreach (Collider2D potentialTarget in potentialInjuredAllies)
+        {
+            if (potentialTarget.gameObject == gameObject)   // Dont heal itself
+                continue;
+
+            Damageable dmg = potentialTarget.GetComponent<Damageable>();
+            if (!dmg)
+                continue;
+            if (dmg.missingLife() > maxMissingLife)
+                maxMissingLife = dmg.missingLife();
+            else
+                continue;
+
+            if (inLineOfSight(dmg))
+            {
+                targetAlly = dmg;
+            }
+        }
+    }
+
+    void healTargetAlly()
+    {
+        if (!targetAlly)
+            return;
+
+        if (targetAlly.missingLife() <= 0)  // Only heal if it's missing life
+            return;
+
+        if (spellCaster && hasSupportSpells && spellCaster.hasHealingSpellsAvailable() && hasClearShot(targetAlly))    // If this hero is a support spell caster
+            spellCaster.castHealingSpells(targetAlly);
     }
 
     private void doIdle()
     {
-        searchTarget();
+        return;
     }
 
     protected virtual void doWander()
     {
-        if (searchTarget())
-            return;
-
         if (!canMove || isRooted || isStunned)
             return;
 
@@ -157,8 +210,8 @@ public class NPCController : MovingCharacter
             if (inLineOfSight(dmg))
             {
                 targetOpponent = dmg;
-                spellCaster.targetObject = dmg.gameObject;
-                state = NPCState.Chase;
+                spellCaster.targetOpponent = dmg.transform;
+                startChasing();
                 return true;
             }
         }
@@ -180,20 +233,17 @@ public class NPCController : MovingCharacter
 
     void doChase()
     {
-        
-        if (!targetOpponent || !inLineOfSight(targetOpponent))
+        if (!targetOpponent)
         {
-            spellCaster.targetObject = null;
-            state = NPCState.Wander;
-            computePathToGoal();
+            startWander();
             return;
         }
 
         Vector3 lineToTarget = targetOpponent.transform.position - transform.position;
         float distanceToTarget = lineToTarget.magnitude;
 
-        if (spellCaster && hasClearShot(targetOpponent))    // If this hero is a spell caster
-            spellCaster.castAvailableSpells(targetOpponent);
+        if (spellCaster && spellCaster.hasOffensiveSpellsAvailable() && hasClearShot(targetOpponent))    // If this hero is a spell caster
+            spellCaster.castOffensiveSpells(targetOpponent);
 
         direction = lineToTarget;   // Face the target
         if (!canMove || isRooted || isStunned)
@@ -203,6 +253,43 @@ public class NPCController : MovingCharacter
         goal = targetOpponent.transform.position;
 
         moveToTarget();
+    }
+
+    /// <summary>
+    /// Verify if the target is still in line of sight
+    /// </summary>
+    void lookForTarget()
+    {
+        if (!inLineOfSight(targetOpponent))
+            startWander();
+    }
+
+    private void startWander()
+    {
+        if (spellCaster)
+            spellCaster.targetOpponent = null;
+        CancelInvoke("lookForTarget");
+        InvokeRepeating("searchTarget", 0, 0.5f);
+        state = NPCState.Wander;
+        computePathToGoal();
+    }
+
+    private void startIdle()
+    {
+        if (spellCaster)
+            spellCaster.targetOpponent = null;
+        CancelInvoke("lookForTarget");
+        InvokeRepeating("searchTarget", 0, 0.5f);
+        state = NPCState.Idle;
+        if (gameObject.activeSelf)
+            StartCoroutine(startIdleRoutine());
+    }
+
+    private void startChasing()
+    {
+        CancelInvoke("searchTarget");
+        InvokeRepeating("lookForTarget", 0, 0.5f);
+        state = NPCState.Chase;
     }
 
     private bool hasClearShot(Damageable dmg)
@@ -314,7 +401,7 @@ public class NPCController : MovingCharacter
         if (Random.Range(0f, 1f) <= idleChance)
         {
             if (gameObject.activeSelf)
-                StartCoroutine(startIdle());
+                StartCoroutine(startIdleRoutine());
             return;
         }
 
@@ -330,7 +417,7 @@ public class NPCController : MovingCharacter
         computePathToGoal();
     }
 
-    private IEnumerator startIdle()
+    private IEnumerator startIdleRoutine()
     {
         state = NPCState.Idle;
         movement = Vector2.zero;
@@ -342,12 +429,12 @@ public class NPCController : MovingCharacter
                 yield break;
             yield return new WaitForFixedUpdate();
         }
-        state = NPCState.Wander;
+        startWander();
     }
 
     protected bool computePathToGoal()
     {
-        path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(goal), getRadius(), isFlying, isGhost);
+        path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(goal), this);
         if (path == null)
         {
             Debug.Log(name + " no path found");

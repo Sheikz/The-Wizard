@@ -29,10 +29,10 @@ public class BoomerangSpell : MovingSpell
         state = BoomerangState.Going;
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         BoomerangSpell newSpell = Instantiate(this);
-        newSpell.initialize(emitter, position, target);
+        newSpell.initialize(emitter, emitter.transform.position, target);
         return newSpell;
     }
 
@@ -74,7 +74,7 @@ public class BoomerangSpell : MovingSpell
         if (!emitter)
             Destroy(gameObject);
 
-        autoPilot.lockToObject(emitter.gameObject);
+        autoPilot.lockToObject(emitter.transform);
         state = BoomerangState.ComingBack;
     }
 

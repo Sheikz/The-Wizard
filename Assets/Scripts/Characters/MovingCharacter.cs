@@ -12,8 +12,10 @@ public abstract class MovingCharacter : MonoBehaviour
     protected Vector2 movement;     // Direction in which the character moves
 
     protected Vector2 direction;    // Direction in which he is facing
-    protected Rigidbody2D rb;
-    protected Animator anim;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    [HideInInspector]
+    public Animator anim;
     [HideInInspector]
     public CircleCollider2D circleCollider;
     protected SpriteRenderer spriteRenderer;
@@ -21,10 +23,13 @@ public abstract class MovingCharacter : MonoBehaviour
     protected bool canMove = true;      // Can he move?
     [HideInInspector]
     public bool canAct = true;       // Can he do anything at all?
+    [HideInInspector]
     public bool isRooted = false;
+    [HideInInspector]
     public bool isStunned = false;
 
     protected bool isFalling = false;
+    [HideInInspector]
     public bool isFlying = false;
     private float spinningSpeed = 10f;
     private float fallingDuration = 3f;

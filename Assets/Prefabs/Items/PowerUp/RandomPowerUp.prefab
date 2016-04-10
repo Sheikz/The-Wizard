@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012838822748}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012838822748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011145205490}
+  - 58: {fileID: 58000012811267992}
+  - 114: {fileID: 114000011351382878}
+  - 50: {fileID: 50000012904091240}
+  m_Layer: 0
+  m_Name: RandomPowerUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011145205490
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012838822748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6861682, y: 3.5007162, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000012904091240
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012838822748}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &58000012811267992
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012838822748}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.0001
+--- !u!114 &114000011351382878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012838822748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e76f11916742c44b1da0ca1b9fcea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBePickedUp: 1
+  speed: 5
+  level: 1
+  items:
+  - item: {fileID: 1000012131664256, guid: 17ef3fd01e1b9d341b0a8a7506250a81, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000010200449240, guid: 6b96ef2df894b8a45b38d64e0d09d317, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000013061158864, guid: 5d0132ffce8738d47927d8ca06d261f3, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000011991111720, guid: 21b032da557829c43abdead2d1020e2c, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000012937569074, guid: 8836145e27590a7418fe0ad83221339e, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000014269582888, guid: 919edc2cbd736a644a627ac083fff6d9, type: 2}
+    lootChance: 1
+  - item: {fileID: 1000011273489658, guid: 44d49d015a9f58b48b401a3553eb95bc, type: 2}
+    lootChance: 1

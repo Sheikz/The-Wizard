@@ -5,8 +5,11 @@ using System;
 public class MonsterStats : CharacterStats
 {
     protected float dungeonLevel = 1;
+    [Tooltip("Used for Damage, HP")]
     public float dungeonLevelMultiplier = 1.2f;
-    public float monsterDamageMultiplier = 0.5f;
+    [Tooltip("Used for Damage")]
+    public float monsterDamageMultiplier = 1f;
+    [Tooltip("Used for Damage, HP")]
     public float difficultyModifier = 1.0f;
 
     new void Awake()
@@ -24,7 +27,10 @@ public class MonsterStats : CharacterStats
 
     public override float getDamageMultiplier(MagicElement school)
     {
-        return (getDamageMultiplier() + (dungeonLevel - 1) * (dungeonLevelMultiplier - 1)) * monsterDamageMultiplier * difficultyModifier;
+        float result = getDamageMultiplier();
+        result *= getDungeonLevelMultiplier();
+        result *= monsterDamageMultiplier * difficultyModifier;
+        return result;
     }
 
     protected float getDungeonLevelMultiplier()

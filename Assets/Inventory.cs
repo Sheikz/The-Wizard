@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     public float sqrDistanceLoot = 0.3f * 0.3f;
     public int goldAmount = 0;
     public EquipableItemStats[] equippedItems;
+    public float vacuumSpeed = 5f;
     private List<EquipableItemStats> inventoryItems;
     private CharacterWindow characterWindow;
     private CharacterStats characterStats;

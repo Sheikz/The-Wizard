@@ -23,11 +23,11 @@ public class SlashSpell : SpellController
         }
     }
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         SlashSpell newSpell = Instantiate(this);
 
-        if (!newSpell.initialize(emitter, position, target))
+        if (!newSpell.initialize(emitter, emitter.transform.position, target))
             return null;
         return newSpell;
     }

@@ -13,11 +13,21 @@ public class AStarPathFinder
         this.map = map;
     }
 
-    public Stack<Tile> getPath(Tile start, Tile goal, float radius, bool isFlying, bool isGhost)
+    public Stack<Tile> getPath(Tile start, Tile goal, NPCController npc)
     {
+        bool isFlying = npc.isFlying;
+        bool isGhost = npc.isGhost;
+        float radius = npc.getRadius();
         HashSet<Tile> closedSet = new HashSet<Tile>();
         HashSet<Tile> openSet = new HashSet<Tile>();
-        openSet.Add(start);
+        Tile startingTile = computeStart(start, goal, radius, isFlying, isGhost);
+        if (startingTile == null)
+        {
+            Debug.LogError("Did not find a starting tile for " + npc.name);
+            startingTile = start;
+        }
+
+        openSet.Add(startingTile);
         int rows = map.width;
         int columns = map.height;
         int maxLengthAllowed = 200;
@@ -71,6 +81,30 @@ public class AStarPathFinder
             }
         }
         return null;
+    }
+
+    private Tile computeStart(Tile start, Tile goal, float radius, bool isFlying, bool isGhost)
+    {
+        // If the start tile is wide enough for the monster, use it as a start tile
+        if (isFlying && (start.distanceToClosestHighBlocking > radius))
+            return start;
+        else if (!isFlying && (start.distanceToClosestBlocking > radius))
+            return start;
+
+        // If not, we need to find a neighbor with enough space
+        List<Tile> neighbors = map.getNeighbors(start, radius, isFlying, isGhost);
+        Tile result = null;
+        float minDistanceToGoal = Mathf.Infinity;
+        foreach (Tile t in neighbors)
+        {
+            float distanceToGoal = (t.position() - goal.position()).sqrMagnitude;
+            if (distanceToGoal < minDistanceToGoal)
+            {
+                result = t;
+                minDistanceToGoal = distanceToGoal;
+            }
+        }
+        return result;
     }
 
     private Stack<Tile> reconstructPath(Dictionary<Tile, Tile> cameFrom, Tile goal, Tile current)

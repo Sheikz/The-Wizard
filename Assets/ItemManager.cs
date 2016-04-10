@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ItemManager : MonoBehaviour 
 {
 	public static ItemManager instance;
 	public SpriteArray[] itemSprites;
     internal float powerToDamage = 100f;
+    public List<ItemWithDropChance> monsterItems;
 
     [System.Serializable]
 	public class SpriteArray

@@ -6,6 +6,18 @@ using System.Collections.Generic;
 /// </summary>
 public class SpellManager : MonoBehaviour
 {
+    public static SpellManager instance;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        name = "SpellManager";
+    }
+
     public List<GameObject> spellList;
     public GameObject[] auraPrefabs;
     public GameObject[] auraActivatePrefabs;

@@ -25,7 +25,6 @@ public class MoveSpellCaster : MonoBehaviour
 
         if (spell)
         {
-            Debug.Log("start");
             spell.emitter.spellList[(int)spell.spellType].moveSpellCaster = this;
         }
     }
@@ -99,12 +98,12 @@ public class MoveSpellCaster : MonoBehaviour
     /// <param name="position"></param>
     /// <param name="target"></param>
     /// <returns></returns>
-    internal bool canCastSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    internal bool canCastSpell(SpellCaster emitter, Vector3 target)
     {
         if (type == MoveSpellCasterType.Teleport)
             return true;
 
-        RaycastHit2D hit = Physics2D.Linecast(position, target, GameManager.instance.layerManager.blockingLayer);
+        RaycastHit2D hit = Physics2D.Linecast(emitter.transform.position, target, GameManager.instance.layerManager.blockingLayer);
         if (hit)
         {
             return false;

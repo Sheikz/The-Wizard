@@ -6,7 +6,7 @@ public class Teleport : SpellController
 {
     public GameObject teleportAnimation;
 
-    public override SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target)
+    public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         // Check if there is enough space where to go
         float emitterRadius = 0.5f;

@@ -24,7 +24,6 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
     public float duration = 0f;
     public bool collidesWithSpells = false;
- 
 
 	protected Rigidbody2D rb;
 	protected CircleCollider2D circleCollider;
@@ -53,7 +52,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		ignoredColliders = new List<Collider2D>();
     }
 
-	protected void Start()
+	protected virtual void Start()
 	{
 		setupLights();
 		applyStats();
@@ -62,9 +61,9 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
             transform.SetParent(GameManager.instance.map.spellHolder);
 	}
 
-	public abstract SpellController castSpell(SpellCaster emitter, Vector3 position, Vector3 target);
+	public abstract SpellController castSpell(SpellCaster emitter, Vector3 target);
 
-	void setupLights()
+    void setupLights()
 	{
 		foreach (Light light in GetComponentsInChildren<Light>(true))
 		{
@@ -159,7 +158,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
             Debug.Log("Emitter not defined for " + name);
             return;
         }
-        if (emitter.isMonster)
+        if (emitter.isMonster && damage >= 0)
         {
             if (collidesWithSpells)
                 gameObject.layer = LayerMask.NameToLayer("MonsterSpellCollidingWithSpells");
@@ -167,13 +166,29 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
                 gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
             enemyLayer = GameManager.instance.layerManager.heroLayer;
         }
-        else
+        else if (emitter.isMonster && damage < 0)
         {
             if (collidesWithSpells)
                 gameObject.layer = LayerMask.NameToLayer("HeroSpellCollidingWithSpells");
             else
                 gameObject.layer = LayerMask.NameToLayer("Spells");
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
+        }
+        else if (!emitter.isMonster && damage >= 0)
+        {
+            if (collidesWithSpells)
+                gameObject.layer = LayerMask.NameToLayer("HeroSpellCollidingWithSpells");
+            else
+                gameObject.layer = LayerMask.NameToLayer("Spells");
+            enemyLayer = GameManager.instance.layerManager.monsterLayer;
+        }
+        else
+        {
+            if (collidesWithSpells)
+                gameObject.layer = LayerMask.NameToLayer("MonsterSpellCollidingWithSpells");
+            else
+                gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
+            enemyLayer = GameManager.instance.layerManager.heroLayer;
         }
     }
 

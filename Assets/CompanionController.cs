@@ -18,9 +18,6 @@ public class CompanionController : NPCController
 
     protected override void doWander()
     {
-        if (searchTarget())
-            return;
-
         followMaster();
 
         if (!canMove)

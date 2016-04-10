@@ -15,7 +15,7 @@ public abstract class AutoPilot : MonoBehaviour
     [HideInInspector]
     public Vector3 targetPosition;
     [HideInInspector]
-    public GameObject targetObject;
+    public Transform targetObject;
     public enum PilotState { DoNothing, Searching, LockedToObject, LockedToPosition };    // LockedToDamageable lock to a damageable entity. Lock to position lock to a fixed position in space
     protected Rigidbody2D rigidBody;
     [HideInInspector]
@@ -32,14 +32,14 @@ public abstract class AutoPilot : MonoBehaviour
     /// </summary>
     /// <param name="obj"></param>
     /// <param name="endState"></param>
-    protected void steerToTarget(GameObject obj, PilotState endState)
+    protected void steerToTarget(Transform obj, PilotState endState)
     {
         if (obj == null)
         {
             state = endState;
             return;
         }
-        targetPosition = obj.transform.position;
+        targetPosition = obj.position;
         steerToTarget();
     }
 
@@ -64,7 +64,7 @@ public abstract class AutoPilot : MonoBehaviour
         }
     }
 
-    public void lockToObject(GameObject obj)
+    public void lockToObject(Transform obj)
     {
         targetObject = obj;
         state = PilotState.LockedToObject;

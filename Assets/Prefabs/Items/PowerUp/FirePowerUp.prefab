@@ -55,6 +55,7 @@ GameObject:
   - 4: {fileID: 4000013752748296}
   - 58: {fileID: 58000012711457500}
   - 114: {fileID: 114000013997395750}
+  - 50: {fileID: 50000012736663366}
   m_Layer: 18
   m_Name: FirePowerUp
   m_TagString: Untagged
@@ -196,6 +197,23 @@ Transform:
   m_Father: {fileID: 4000013752748296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000012736663366
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011991111720}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &58000012711457500
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -209,7 +227,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!108 &108000010061787784
 Light:
   m_ObjectHideFlags: 1
@@ -275,8 +293,8 @@ MonoBehaviour:
   level: 1
   buff:
     element: 2
-    duration: 30
-    multiplier: 2
+    duration: 10
+    multiplier: 1.5
 --- !u!198 &198000012265633310
 ParticleSystem:
   m_ObjectHideFlags: 1

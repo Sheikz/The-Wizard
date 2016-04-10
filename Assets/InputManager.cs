@@ -35,6 +35,22 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Forbid some key combinations
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    internal bool forbiddenCombination(Command command, KeyCode key)
+    {
+        if (key == KeyCode.Escape)
+            return true;
+        if ((command == Command.CharacterWindow || command == Command.SpellBook)
+            && (key == KeyCode.Mouse0))
+            return true;
+        return false;
+    }
+
+    /// <summary>
     /// Setup default keys
     /// </summary>
     public void setupDefaults()
@@ -123,6 +139,13 @@ public class InputManager : MonoBehaviour
 
     internal void setCommand(Command cmd, KeyCode key)
     {
+        for (int i= 0; i < keys.Length; i++)
+        {
+            if (keys[i] == key)
+            {
+                keys[i] = keys[(int)cmd];
+            }
+        }
         keys[(int)cmd] = key;
         UIManager.instance.setIconDescription(cmd);
     }

@@ -184,9 +184,9 @@ public class GridMap
         return result;
     }
 
-    public Stack<Tile> getPath(Vector2i start, Vector2i goal, float radius, bool isFlying, bool isGhost)
+    public Stack<Tile> getPath(Vector2i start, Vector2i goal, NPCController npc)
     {
-        return pathFinder.getPath(getTile(start), getTile(goal), radius, isFlying, isGhost);
+        return pathFinder.getPath(getTile(start), getTile(goal), npc);
     }
 
     public Tile findRandomTileWithinRadius(Vector3 position, float radius, TileType type)

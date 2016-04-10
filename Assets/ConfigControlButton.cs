@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ConfigControlButton : MonoBehaviour
 {
@@ -9,15 +10,18 @@ public class ConfigControlButton : MonoBehaviour
 
     private Text text;
     private ConfigControlButtonState state = ConfigControlButtonState.Nothing;
+    private ControlsWindow controlWindow;
 
     void Awake()
     {
         text = GetComponent<Text>();
+        controlWindow = GetComponentInParent<ControlsWindow>();
     }
 
     void Start()
     {
         text.text = command.ToString() + " : " + InputManager.instance.getKey(command).ToString();
+        refresh();
     }
 
     void Update()
@@ -30,11 +34,15 @@ public class ConfigControlButton : MonoBehaviour
 
         foreach (KeyCode key in Enum.GetValues(typeof(KeyCode)))
         {
-            if (Input.GetKey(key))
+            if (Input.GetKeyDown(key))
             {
+                if (key == KeyCode.Mouse0 && EventSystem.current.currentSelectedGameObject != gameObject)
+                    continue;
+                if (InputManager.instance.forbiddenCombination(command, key))
+                    continue;
                 InputManager.instance.setCommand(command, key);
                 state = ConfigControlButtonState.Nothing;
-                refresh();
+                controlWindow.refresh();
                 text.color = Color.white;
                 return;
             }
@@ -49,7 +57,14 @@ public class ConfigControlButton : MonoBehaviour
 
     public void onClick()
     {
+        controlWindow.cancelInput();
         text.color = Color.green;
         state = ConfigControlButtonState.WaitingForInput;
+    }
+
+    public void cancelInput()
+    {
+        text.color = Color.white;
+        state = ConfigControlButtonState.Nothing;
     }
 }

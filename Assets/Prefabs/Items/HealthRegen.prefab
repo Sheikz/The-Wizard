@@ -12,6 +12,7 @@ GameObject:
   - 95: {fileID: 9592652}
   - 60: {fileID: 6085818}
   - 114: {fileID: 11411340}
+  - 50: {fileID: 50000013701373554}
   m_Layer: 18
   m_Name: HealthRegen
   m_TagString: Untagged
@@ -230,3 +231,20 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186694}
   m_IsPrefabParent: 1
+--- !u!50 &50000013701373554
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186694}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

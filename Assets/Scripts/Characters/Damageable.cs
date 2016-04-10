@@ -145,7 +145,13 @@ public class Damageable : MonoBehaviour
         isDead = true;
     }
 
+    public int missingLife()
+    {
+        if (isDead)
+            return 0;
 
+        return maxHP - currentHP;
+    }
 
     /// <summary>
     /// Heal for a certain amount, and create a green floating text
@@ -154,6 +160,12 @@ public class Damageable : MonoBehaviour
     public void heal(int life)
     {
         if (life <= 0)
+            return;
+
+        if (life > missingLife())
+            life = missingLife();
+
+        if (life == 0)
             return;
 
         currentHP += life;

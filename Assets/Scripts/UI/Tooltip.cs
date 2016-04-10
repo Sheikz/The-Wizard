@@ -25,35 +25,38 @@ public class Tooltip : MonoBehaviour
         if (name == "")
             name = "#Undefined#";
 
-        result += "<size=18>"+name+"</size>" + "\n";
+        result += "<size=18>"+name+"</size>";
 
         if ((spell.manaCost >= 0) && spell.manaCostInterval == 1f)
-            result += "Cost: <color=magenta>" + spell.manaCost + "</color> mana\n";
+            result += "\nCost: <color=magenta>" + spell.manaCost + "</color> mana";
         else if ((spell.manaCost >= 0) && spell.manaCostInterval != 1f)
-            result += "Cost: <color=magenta>" + Mathf.RoundToInt(spell.manaCost/spell.manaCostInterval) + "</color> mana/sec\n";
+            result += "\nCost: <color=magenta>" + Mathf.RoundToInt(spell.manaCost/spell.manaCostInterval) + "</color> mana/sec";
         else
-            result += "Build up <color=magenta>" + (-spell.manaCost) + "</color> mana per hit\n";
+            result += "\nBuild up <color=magenta>" + (-spell.manaCost) + "</color> mana per hit";
 
         if (spell.castTime <= 0)
-            result += "Instant cast\n";
+            result += "\nInstant cast";
         else
-            result += "Cast time: <color=lime>" + spell.castTime + "</color> sec\n";
+            result += "\nCast time: <color=lime>" + spell.castTime + "</color> sec";
 
         if (spell.cooldown > 0)
-            result += "Cooldown: <color=orange>"+spell.cooldown +"</color> sec\n";
+            result += "\nCooldown: <color=orange>" + spell.cooldown +"</color> sec";
         if (spell.duration > 0)
-            result += "Duration: <color=orange>" + spell.duration + "</color> sec\n";
-        result += spell.spellTypeDescription + "\n";
+            result += "\nDuration: <color=orange>" + spell.duration + "</color> sec";
+        result += "\n" + spell.spellTypeDescription;
         if (damage > 0)
         {
             SpellDamager spellDamager = spell.GetComponent<SpellDamager>();
             if (spellDamager && spellDamager.delayBetweenDamage > 0)
                 damage = Mathf.RoundToInt(damage / spellDamager.delayBetweenDamage);
 
-            result += spell.damageString.Replace("<dmg>", "<color=orange>" + damage + "</color>") + "\n";
+            result += "\n" + spell.damageString.Replace("<dmg>", "<color=orange>" + damage + "</color>");
         }
-        result += spell.description;
+        result += "\n"+spell.description;
 
+        SlowTime slowTime = spell.GetComponent<SlowTime>();
+        if (slowTime)
+            result = result.Replace("<timeMultiplier>", "<color=magenta>"+((1-slowTime.timeMultiplier)*100).ToString() + "%</color>");
         result = result.Replace("<n>", "\n");
         return result;
     }
