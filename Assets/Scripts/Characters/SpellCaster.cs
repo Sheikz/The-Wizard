@@ -208,8 +208,12 @@ public class SpellCaster : MonoBehaviour
 		if (isCasting)
 			return;
 
-		if (useMana && mana < spell.manaCost)
-			return;
+        if (useMana && mana < spell.manaCost)
+        {
+            if (isHero)
+                SoundManager.instance.playSound("NotEnoughMana");
+            return;
+        }
 
 		if (spell.canCastSpell(this, transform.position, target))
 		{

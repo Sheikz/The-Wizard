@@ -29,4 +29,16 @@ public class ControlsWindow : MonoBehaviour
             button.refresh();
         }
     }
+
+    public void clickOK()
+    {
+        SoundManager.instance.playSound("ClickOK");
+        UIManager.instance.openControlsWindow(false);
+    }
+
+    public void clickDefaults()
+    {
+        SoundManager.instance.playSound("ClickOK");
+        InputManager.instance.setupDefaults();
+    }
 }

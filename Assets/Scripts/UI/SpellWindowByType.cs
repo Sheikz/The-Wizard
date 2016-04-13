@@ -61,6 +61,18 @@ public class SpellWindowByType : MonoBehaviour
         }
     }
 
+    public void clickAllocateOk()
+    {
+        SoundManager.instance.playSound("ClickOK");
+        open();
+    }
+
+    public void clickTypeBar(int number)
+    {
+        SoundManager.instance.playSound("ClickOK");
+        activatePanel(number);
+    }
+
     public void activatePanel(int number)
     {
         foreach (TypeGroup typeGroup in typeGroups)

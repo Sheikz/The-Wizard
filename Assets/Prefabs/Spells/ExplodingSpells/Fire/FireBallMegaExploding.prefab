@@ -548,17 +548,16 @@ MonoBehaviour:
   spellType: 3
   magicElement: 2
   spellSet: 0
-  damage: 100
-  lightIntensity: 0
+  damage: 150
+  lightIntensity: 3
   duration: 0
-  chargingSpell: 0
-  prerequisites:
-  - {fileID: 146420, guid: 8c4c374a45c860c45ab79ea704396294, type: 2}
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 5

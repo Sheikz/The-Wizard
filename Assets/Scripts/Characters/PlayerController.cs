@@ -105,6 +105,7 @@ public class PlayerController : MovingCharacter
 	{
 		if (UIManager.instance.screenMask.active)
 			StartCoroutine(enableScreenMaskForOneFrame());
+        SoundManager.instance.playSound("PlayerDamage");
 	}
 
 	private IEnumerator enableScreenMaskForOneFrame()
@@ -130,8 +131,9 @@ public class PlayerController : MovingCharacter
 		GameObject centerText = UIManager.instance.centerText;
 		ScreenMaskController screenMask = UIManager.instance.screenMask;
 		UIManager.instance.showMenu(true);
+        SoundManager.instance.playSound("PlayerDeath");
 
-		if (centerText)
+        if (centerText)
 		{
 			centerText.SetActive(true);
 			centerText.GetComponent<Text>().color = Color.white;

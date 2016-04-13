@@ -21,6 +21,7 @@ public class Explosion : MonoBehaviour
     private SpellIntensity intensity;
     private float manaCost;
     private bool appliedHit = false;
+    private string spellName;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class Explosion : MonoBehaviour
 		StartCoroutine(enableAfterSeconds(delayBeforeExplosion));
         setupLights();
         transform.SetParent(GameManager.instance.map.spellHolder);
+        SoundManager.instance.playSound(spellName+"Hit");
 	}
 
     void setupLights()
@@ -98,6 +100,7 @@ public class Explosion : MonoBehaviour
 
 	public virtual void initialize(SpellController spell)
 	{
+        spellName = spell.spellName;
 		emitter = spell.emitter;
         damage = spell.damage;
         intensity = spell.lightIntensity;
@@ -118,7 +121,9 @@ public class Explosion : MonoBehaviour
 		if (dmg)
 		{
             if (damage >= 0)
+            {
                 dmg.doDamage(emitter, damage);
+            }
             else
                 dmg.heal(-damage);
 

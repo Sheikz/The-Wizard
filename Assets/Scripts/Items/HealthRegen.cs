@@ -11,6 +11,7 @@ public class HealthRegen : Item
         Damageable dmg = other.GetComponent<Damageable>();
         if (dmg && dmg.isHealable)
         {
+            SoundManager.instance.playSound("GetHealth");
             dmg.healRatioOverTime(lifeRatio, duration);
             Destroy(gameObject);
         }

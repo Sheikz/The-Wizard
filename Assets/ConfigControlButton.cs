@@ -57,6 +57,7 @@ public class ConfigControlButton : MonoBehaviour
 
     public void onClick()
     {
+        SoundManager.instance.playSound("ClickOK");
         controlWindow.cancelInput();
         text.color = Color.green;
         state = ConfigControlButtonState.WaitingForInput;
@@ -64,6 +65,7 @@ public class ConfigControlButton : MonoBehaviour
 
     public void cancelInput()
     {
+        SoundManager.instance.playSound("ClickEsc");
         text.color = Color.white;
         state = ConfigControlButtonState.Nothing;
     }

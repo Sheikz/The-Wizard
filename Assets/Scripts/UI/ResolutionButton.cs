@@ -34,6 +34,7 @@ public class ResolutionButton : MonoBehaviour
         if (Application.isEditor)
             return;
 
+        SoundManager.instance.playSound("ClickOK");
         currentResolution++;
         currentResolution = currentResolution % (resolutions.Count);
         GraphicsManager.instance.setResolution(currentResolution, fullscreen);
@@ -42,6 +43,7 @@ public class ResolutionButton : MonoBehaviour
 
     public void switchFullscreen()
     {
+        SoundManager.instance.playSound("ClickOK");
         Screen.fullScreen = !Screen.fullScreen;
         fullscreen = !fullscreen;
         refresh();

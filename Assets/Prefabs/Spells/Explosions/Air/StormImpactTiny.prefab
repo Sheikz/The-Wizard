@@ -175,7 +175,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183550}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f2a8aaee6b49234299d7a37c49a1dfb, type: 3}
@@ -302,6 +302,7 @@ MonoBehaviour:
   delayBeforeExplosion: 0
   explosionTime: 0
   lightFadeDuration: 0.5
+  hitOnce: 0
   damage: 0
   emitter: {fileID: 0}
 --- !u!198 &19818864

@@ -37,7 +37,7 @@ public class AnimationCreator : EditorWindow
         string[] states = { "Idle", "Walking", "Attacking", "Dying" };
         string[] directions = { "Down", "Top", "Left", "Right" };
         Debug.Log("sprite name: " + spriteName);
-        Sprite[] sprites = Resources.LoadAll<Sprite>(spriteName + "/");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("MonsterSprites/"+spriteName + "/");
         Debug.Log(sprites.Length);
         if (sprites.Length != 64)
         {

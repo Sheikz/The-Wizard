@@ -69,7 +69,8 @@ public class InventoryItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerEx
             inventory = GameManager.instance.hero.GetComponent<Inventory>();
         
 		inventory.equipItem (itemStats);
-	}
+        SoundManager.instance.playSound("ClickOK");
+    }
 
     /// <summary>
     /// Called when the player click an item equipped. Should unequip it
@@ -80,5 +81,6 @@ public class InventoryItemIcon : MonoBehaviour, IPointerEnterHandler, IPointerEx
             inventory = GameManager.instance.hero.GetComponent<Inventory>();
 
         inventory.unequipItem(slot);
+        SoundManager.instance.playSound("ClickOK");
     }
 }

@@ -88,13 +88,14 @@ public class LevelUpManager : MonoBehaviour
     public void chooseSkill(int skillNumber)
     {
         skillChoices[skillNumber].GetComponent<Skill>().applySkill(hero);
+        SoundManager.instance.playSound("ClickOK");
         setIconsActive(false);
         levelsToSpend--;
         if (levelsToSpend > 0)  // Still levels to spend
             generateIcons();
         else if (levelsToSpend < 0)
         {
-            Debug.Log("Should not happen. Investigate");
+            Debug.LogError("Should not happen. Investigate");
             levelsToSpend = 0;
         }
     }

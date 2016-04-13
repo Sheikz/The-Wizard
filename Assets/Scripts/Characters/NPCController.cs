@@ -460,6 +460,7 @@ public class NPCController : MovingCharacter
         circleCollider.enabled = false;
         isDead = true;
         movement = Vector2.zero;
+        SoundManager.instance.playSound("EnemyDeath");
         if (room)
         {
             room.monsterDied(this);
@@ -490,5 +491,6 @@ public class NPCController : MovingCharacter
 
     public override void receivesDamage()
     {
+        SoundManager.instance.playSound("EnemyDamage");
     }
 }

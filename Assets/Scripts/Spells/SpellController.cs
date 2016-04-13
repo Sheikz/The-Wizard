@@ -57,6 +57,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		setupLights();
 		applyStats();
 		applyLayer();
+        SoundManager.instance.playSound(spellName, gameObject);
         if (transform.parent == null)
             transform.SetParent(GameManager.instance.map.spellHolder);
 	}
@@ -241,4 +242,9 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	{
         return (int)spellSet - (int)other.spellSet;
 	}
+
+    void OnDestroy()
+    {
+        SoundManager.instance.stopSoundFromMe(gameObject);
+    }
 }

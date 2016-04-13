@@ -103,6 +103,7 @@ public class PlayerStats : CharacterStats
 
         UIManager.instance.spellWindowByType.refresh();
         UIManager.instance.refreshUI();
+        SoundManager.instance.playSound("LevelUp");
     }
 
     public int getTotalToAllocate()

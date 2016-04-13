@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviour
 
     public void switchMenu()
     {
+        SoundManager.instance.playSound("ClickEsc");
         showMenu(!exitMenu.activeSelf);
     }
 
