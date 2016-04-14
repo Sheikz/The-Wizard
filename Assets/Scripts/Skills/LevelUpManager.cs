@@ -88,7 +88,7 @@ public class LevelUpManager : MonoBehaviour
     public void chooseSkill(int skillNumber)
     {
         skillChoices[skillNumber].GetComponent<Skill>().applySkill(hero);
-        SoundManager.instance.playSound("ClickOK");
+        SoundManager.instance.playSound("PickTrait");
         setIconsActive(false);
         levelsToSpend--;
         if (levelsToSpend > 0)  // Still levels to spend

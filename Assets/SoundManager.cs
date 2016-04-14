@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
     /// <summary>
     /// Load all the sounds at runtime from the Resources folder
     /// </summary>
-    void loadSounds()
+    public void loadSounds()
     {
         sounds = Resources.LoadAll<AudioClip>("Sounds/");
         foreach (AudioClip clip in sounds)
@@ -40,12 +40,21 @@ public class SoundManager : MonoBehaviour
 
     public void playSound(string clipName, GameObject emitter = null)
     {
+        if (clipName == "")
+        {
+            Debug.LogError("empty audioclip!");
+            return;
+        }
+
         clipName = clipName.Replace(" ", "");
         if (playingSounds.Contains(clipName))
             return;
         List<AudioClip> clips = new List<AudioClip>();
         foreach (AudioClip clip in sounds)
         {
+            if (!clip)
+                continue;
+
             if (clip.name == clipName)
             {
                 clips.Add(clip);
@@ -60,7 +69,10 @@ public class SoundManager : MonoBehaviour
             }
         }
         if (clips.Count == 0)
+        {
+            Debug.LogError("No audioclip found for " + clipName);
             return;
+        }
 
         //audio.clip = Utils.pickRandom(clips);
         play(Utils.pickRandom(clips), emitter);
@@ -74,6 +86,7 @@ public class SoundManager : MonoBehaviour
 
     private void play(AudioClip audioClip, GameObject emitter = null)
     {
+        Debug.Log("playing " + audioClip.name);
         audioSources[currentAudioSource].clip = audioClip;
         audioSources[currentAudioSource].Play();
         if (emitter != null)

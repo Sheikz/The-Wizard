@@ -60,6 +60,7 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (!heroStats.levelUpSpell(containedSpell))
             return;
 
+        SoundManager.instance.playSound("SelectNewSpell");
         heroStats.pointsToAllocate[(int)containedSpell.spellType]--;
         refreshSpellLevel();
         UIManager.instance.spellWindowByType.activateHelpMessage(false);

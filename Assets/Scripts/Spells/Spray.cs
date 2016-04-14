@@ -82,11 +82,6 @@ public class Spray : SpellController
         isOnManaCooldown = false;
     }
 
-    void OnParticleCollision(GameObject other)
-    {
-        Debug.Log("Collision with: " + other.name);
-    }
-
     /// <summary>
     /// Rotate the spell to redirect the target
     /// </summary>

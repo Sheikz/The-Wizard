@@ -28,6 +28,7 @@ public class SpraySpell : SpellController
             currentSpray = Instantiate(spray, position, Quaternion.identity) as Spray;
             currentSpray.transform.SetParent(emitter.transform);
             currentSpray.name = spray.name;
+            currentSpray.spellName = spellName;
             currentSpray.emitter = emitter;
             currentSpray.damage = damage;
             currentSpray.manaCostInterval = manaCostInterval;

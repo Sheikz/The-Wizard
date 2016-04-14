@@ -57,6 +57,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		setupLights();
 		applyStats();
 		applyLayer();
+        Debug.Log("playing " + spellName);
         SoundManager.instance.playSound(spellName, gameObject);
         if (transform.parent == null)
             transform.SetParent(GameManager.instance.map.spellHolder);
