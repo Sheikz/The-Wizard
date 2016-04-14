@@ -10,6 +10,7 @@ public class EquipableItem : Item
 	public override void isPickedUpBy (Inventory looter)
 	{
 		looter.addItem (itemStats);
+        SoundManager.instance.playSound("GetTreasure");
 		Destroy (gameObject);
 	}
 

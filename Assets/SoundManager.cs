@@ -6,6 +6,8 @@ using System;
 public class SoundManager : MonoBehaviour 
 {
     public static SoundManager instance;
+    [Tooltip("Interval at which the same audio clip can be played")]
+    public float soundCooldown = 0.25f;
     public AudioClip[] sounds;
 
     private AudioSource[] audioSources;
@@ -118,7 +120,7 @@ public class SoundManager : MonoBehaviour
             yield break; // Not cooldown for UI sounds
 
         playingSounds.Add(clipName);
-        yield return new WaitForSecondsRealtime(0.4f);
+        yield return new WaitForSecondsRealtime(soundCooldown);
         playingSounds.Remove(clipName);
     }
 }

@@ -13,6 +13,7 @@ public class GoldPile : Item
     public override void isPickedUpBy(Inventory looter)
     {
         looter.addGold(amount);
+        SoundManager.instance.playSound("GetTreasure");
         Destroy(gameObject);
     }
 }
