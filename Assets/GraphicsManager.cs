@@ -32,7 +32,7 @@ public class GraphicsManager : MonoBehaviour
     private void setupResolutions()
     {
         supportedResolutions = new List<Resolution>(Screen.resolutions);
-        if (Application.isEditor)
+        if (Application.isEditor || Application.isWebPlayer)
             return;
 
         for (int i = supportedResolutions.Count-1 ; i >= 0; i--)

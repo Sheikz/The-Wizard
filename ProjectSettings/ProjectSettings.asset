@@ -413,15 +413,17 @@ PlayerSettings:
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 1
-  WebGL::memorySize: 256
+  WebGL::memorySize: 1024
   WebPlayer::ScriptingBackend: 0
   boolPropertyNames:
   - Standalone::VR::enable
+  - WebGL::VR::enable
   - WebGL::analyzeBuildSize
   - WebGL::dataCaching
   - WebGL::useEmbeddedResources
   - XboxOne::enus
   Standalone::VR::enable: 0
+  WebGL::VR::enable: 0
   WebGL::analyzeBuildSize: 0
   WebGL::dataCaching: 0
   WebGL::useEmbeddedResources: 0
@@ -435,8 +437,10 @@ PlayerSettings:
   additionalIl2CppArgs::additionalIl2CppArgs: 
   vectorPropertyNames:
   - Standalone::VR::enabledDevices
+  - WebGL::VR::enabledDevices
   Standalone::VR::enabledDevices:
   - Oculus
+  WebGL::VR::enabledDevices: []
   cloudProjectId: 
   projectName: 
   organizationId: 

@@ -72,7 +72,7 @@ public class SoundManager : MonoBehaviour
         }
         if (clips.Count == 0)
         {
-            Debug.LogError("No audioclip found for " + clipName);
+            Debug.LogWarning("No audioclip found for " + clipName);
             return;
         }
 
