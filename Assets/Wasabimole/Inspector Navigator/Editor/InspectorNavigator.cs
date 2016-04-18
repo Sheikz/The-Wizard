@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Wasabimole.Core;
+#pragma warning disable 0618
 
 // ---------------------------------------------------------------------------------------------------------------------------
 // Inspector Navigator - © 2014, 2015 Wasabimole http://wasabimole.com

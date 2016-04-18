@@ -88,7 +88,6 @@ public class SoundManager : MonoBehaviour
 
     private void play(AudioClip audioClip, GameObject emitter = null)
     {
-        Debug.Log("playing " + audioClip.name);
         audioSources[currentAudioSource].clip = audioClip;
         audioSources[currentAudioSource].Play();
         if (emitter != null)

@@ -16,7 +16,6 @@ public class PlayerController : MovingCharacter
 	private Vector3 wayPoint;           // Position to respawn after falling into a hole
 	private Vector3 target;
 	private List<int> spellCasted;
-    private List<int> spellReleased;
 
 	new void Awake()
 	{
@@ -24,7 +23,6 @@ public class PlayerController : MovingCharacter
 		spellCaster = GetComponent<SpellCaster>();
 		damageable = GetComponent<Damageable>();
 		spellCasted = new List<int>();
-        spellReleased = new List<int>();
 	}
 
 	void Start()
