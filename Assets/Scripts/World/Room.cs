@@ -52,12 +52,13 @@ public class Room : MonoBehaviour, IComparable<Room>
     public void refreshWalls()
     {
         Pillar[] pillars = GetComponentsInChildren<Pillar>();
-        foreach (WallCreator wc in exitWalls)
+        foreach (WallCreator wc in GetComponentsInChildren<WallCreator>())
         {
+            wc.objectType = WallCreator.ObjectType.Mesh;
             wc.refreshContents();
         }
-        if (meshCreators == null)
-            OnEnable();
+
+        OnEnable();
         foreach(MeshCreator meshCreator in meshCreators)
         {
             meshCreator.BuildMesh();
@@ -104,6 +105,8 @@ public class Room : MonoBehaviour, IComparable<Room>
             entranceWall.doorStatus = WallCreator.DoorStatus.Open;
         else
             entranceWall.doorStatus = WallCreator.DoorStatus.Door;
+
+        entranceWall.objectType = WallCreator.ObjectType.Mesh;
         entranceWall.refreshContents();
     }
 
@@ -157,6 +160,23 @@ public class Room : MonoBehaviour, IComparable<Room>
         {
             ev.initialize();
         }
+
+        // Trying Static Batching without success
+
+        /*
+        Transform[] childrens = GetComponentsInChildren<Transform>();
+        GameObject[] childrenGos = new GameObject[childrens.Length];
+        for (int i=0; i < childrenGos.Length; i++)
+        {
+            childrenGos[i] = childrens[i].gameObject;
+        }
+        StaticBatchingUtility.Combine(childrenGos, gameObject);
+        for (int i = 0; i < childrenGos.Length; i++)
+        {
+            childrenGos[i].gameObject.SetActive(false);
+            childrenGos[i].gameObject.SetActive(true);
+        }
+        */
     }
 
     public void openEntrance(bool open)

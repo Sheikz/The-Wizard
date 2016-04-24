@@ -47,8 +47,11 @@ public class Tooltip : MonoBehaviour
         if (damage > 0)
         {
             SpellDamager spellDamager = spell.GetComponent<SpellDamager>();
+            Laser laserDamager = spell.GetComponent<Laser>();
             if (spellDamager && spellDamager.delayBetweenDamage > 0)
                 damage = Mathf.RoundToInt(damage / spellDamager.delayBetweenDamage);
+            else if (laserDamager && laserDamager.delayBetweenDamage >0)
+                damage = Mathf.RoundToInt(damage / laserDamager.delayBetweenDamage);
 
             result += "\n" + spell.damageString.Replace("<dmg>", "<color=orange>" + damage + "</color>");
         }

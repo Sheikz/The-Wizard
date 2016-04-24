@@ -35,6 +35,9 @@ public class RoomBasedMapGenerator : MonoBehaviour
     public List<Tile> floorTiles;
     [HideInInspector]
     public Transform monsterHolder;
+    [HideInInspector]
+    public int mapTheme;
+    private int decoCount = 0;
 
     public void Start()
     {
@@ -66,6 +69,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
         float startingTime = Time.realtimeSinceStartup;
         int roomCount = 1;
         int stepCount = 0;
+        mapTheme = Random.Range(0, 3);
 
         roomList.Add(createRoom(startingRoom, Vector3.zero, Quaternion.identity));
 
@@ -94,6 +98,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
 
             newRoom.depth = wall.parentRoom.depth + 1;
             roomList.Add(newRoom);
+            wall.objectType = WallCreator.ObjectType.Mesh;
             wall.refreshContents();
             availableWalls.Remove(wall);
             roomCount++;
@@ -101,6 +106,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
         createBossRoom();
         gridMap = new GridMap(this); // Create a grid representation of the map
         initializeRooms();
+
         Debug.Log("Created map in: " + (Time.realtimeSinceStartup - startingTime) + " seconds");
         Debug.Log("Number of steps: " + stepCount);
         Debug.Log("Number of rooms created " + roomCount);
@@ -128,47 +134,70 @@ public class RoomBasedMapGenerator : MonoBehaviour
 
     public void createDecos()
     {
-        int decoCount = 0;
+        decoCount = 0;
         float t = Time.realtimeSinceStartup;
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        List<Vector3> wallPositions = new List<Vector3>();
         foreach (GameObject wall in walls)
         {
-            // Copy constructor
-            List<ItemWithDropChance> wallDecos = new List<ItemWithDropChance>(wallTemplate.getWallDecos());
-
-            // The idea is to check all decos and verify if the constraints are verified
-            // We iterate in reverse order to allow removing while iterating
-            for (int i = wallDecos.Count - 1; i >= 0; i--)
+            MeshCreator wallMesh = wall.GetComponent<MeshCreator>();
+            if (wallMesh != null)
             {
-                if (wallDecos[i].item == null)
+                wallPositions = wallMesh.getDecoPositions();
+                if (wallPositions == null)
                     continue;
-                DecoConstraint[] constraints = wallDecos[i].item.GetComponents<DecoConstraint>();
-                bool passedAllChecks = true;
-                foreach (DecoConstraint constraint in constraints)
+                foreach (Vector3 wallPos in wallPositions)
                 {
-                    if (!constraint.checkConstraint(wall.transform, this))
-                    {
-                        passedAllChecks = false;
-                        break;
-                    }
+                    createDeco(wallPos, wall);
                 }
-                if (!passedAllChecks)
-                    wallDecos.RemoveAt(i);
             }
-
-            GameObject toInstantiate = ItemWithDropChance.getItem(wallDecos).item;
-            if (toInstantiate == null)
-                continue;
-
-            GameObject newDeco = Instantiate(toInstantiate, wall.transform.position, wall.transform.rotation) as GameObject;
-            ProximityConstraint proxyObject = newDeco.GetComponent<ProximityConstraint>();
-            if (proxyObject)
-                proxyObjects.Add(proxyObject.gameObject);       // Need to add the objects to the list of proxy objects
-
-            newDeco.transform.SetParent(wall.transform);
-            decoCount++;
+            else
+                createDeco(wall.transform.position, wall);
         }
         Debug.Log("Created " + decoCount + " wall decorations in " + (Time.realtimeSinceStartup - t) + " seconds");
+    }
+
+    /// <summary>
+    /// Create an individual decoration at a specified position on a specified wall
+    /// </summary>
+    /// <param name="wallPos"></param>
+    /// <param name="wall"></param>
+    private void createDeco(Vector3 wallPos, GameObject wall)
+    {
+        // Copy constructor
+        List<ItemWithDropChance> wallDecos = new List<ItemWithDropChance>(wallTemplate.getWallDecos());
+
+        // The idea is to check all decos and verify if the constraints are verified
+        // We iterate in reverse order to allow removing while iterating
+        for (int i = wallDecos.Count - 1; i >= 0; i--)
+        {
+            if (wallDecos[i].item == null)
+                continue;
+            DecoConstraint[] constraints = wallDecos[i].item.GetComponents<DecoConstraint>();
+            bool passedAllChecks = true;
+            foreach (DecoConstraint constraint in constraints)
+            {
+                if (!constraint.checkConstraint(wallPos, wall.transform, this))
+                {
+                    passedAllChecks = false;
+                    break;
+                }
+            }
+            if (!passedAllChecks)
+                wallDecos.RemoveAt(i);
+        }
+
+        GameObject toInstantiate = ItemWithDropChance.getItem(wallDecos).item;
+        if (toInstantiate == null)
+            return;
+
+        GameObject newDeco = Instantiate(toInstantiate, wallPos, wall.transform.rotation) as GameObject;
+        ProximityConstraint proxyObject = newDeco.GetComponent<ProximityConstraint>();
+        if (proxyObject)
+            proxyObjects.Add(proxyObject.gameObject);       // Need to add the objects to the list of proxy objects
+
+        newDeco.transform.SetParent(wall.transform);
+        decoCount++;
     }
 
     /// <summary>
@@ -271,6 +300,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
 
                 // Room creation succeeded at this point
                 wc.doorStatus = WallCreator.DoorStatus.Door;
+                wc.objectType = WallCreator.ObjectType.Mesh;
                 wc.refreshContents();
                 roomList.Add(newRoom);
                 return;
@@ -341,7 +371,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
     /// </summary>
     public void OnDrawGizmosSelected()
     {
-        if (gridMap.grid == null)
+        if (gridMap == null || gridMap.grid == null)
             return;
         foreach (Tile t in gridMap.grid)
         {

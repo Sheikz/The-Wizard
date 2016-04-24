@@ -7,11 +7,24 @@ public class MeshCreatorInspector : Editor
 {
     public override void OnInspectorGUI()
     {
+        MeshCreator meshCreator = (MeshCreator)target;
+
         DrawDefaultInspector();
+        if (meshCreator.meshType == MeshCreator.MeshType.Wall)
+        {
+            meshCreator.hasExteriorCornerLeft = EditorGUILayout.Toggle("Left Exterior Corner", meshCreator.hasExteriorCornerLeft);
+            meshCreator.hasInteriorCornerLeft = EditorGUILayout.Toggle("Left Interior Corner", meshCreator.hasInteriorCornerLeft);
+            meshCreator.hasExteriorCornerRight = EditorGUILayout.Toggle("Right Exterior Corner", meshCreator.hasExteriorCornerRight);
+            meshCreator.hasInteriorCornerRight = EditorGUILayout.Toggle("Right Interior Corner", meshCreator.hasInteriorCornerRight);
+        }
+
+        if (meshCreator.meshType == MeshCreator.MeshType.Deco1 || meshCreator.meshType == MeshCreator.MeshType.Deco2)
+        {
+            meshCreator.decoType = (MeshCreator.DecoType)EditorGUILayout.EnumPopup("Deco Type", meshCreator.decoType);
+        }
 
         if (GUILayout.Button("Regenerate"))
         {
-            MeshCreator meshCreator = (MeshCreator)target;
             meshCreator.BuildMesh();
         }
     }

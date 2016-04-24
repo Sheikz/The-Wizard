@@ -7,6 +7,6 @@ using System.Collections.Generic;
 public abstract class DecoConstraint : MonoBehaviour
 {
     public bool destroyWall = false; // indicate if the wall should be destroyed
-    public abstract bool checkConstraint(Transform wallTransform, RoomBasedMapGenerator map);
+    public abstract bool checkConstraint(Vector3 wallPos, Transform wall, RoomBasedMapGenerator map);
 }
 

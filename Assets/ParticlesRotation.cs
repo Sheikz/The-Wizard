@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
-public class RotateParticles : MonoBehaviour
+public class ParticlesRotation : MonoBehaviour
 {
     public Vector3 speed;
 

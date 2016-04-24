@@ -6,9 +6,9 @@ public class ProximityConstraint : DecoConstraint
 {
     public float minimumDistance = 2f;
 
-    public override bool checkConstraint(Transform wallTransform, RoomBasedMapGenerator map)
+    public override bool checkConstraint(Vector3 wallPos, Transform wall, RoomBasedMapGenerator map)
     {
-        return checkSurroundings(wallTransform.position, map.proxyObjects);
+        return checkSurroundings(wallPos, map.proxyObjects);
     }
 
     /// <summary>

@@ -7,12 +7,15 @@ public class Laser : MonoBehaviour
 {
     public Explosion explosion;
     public float delayBetweenExplosions = 0.5f;
+    public float delayBetweenDamage = 0.25f;
     private LineRenderer lineRenderer;
 
     private Vector2 offset = new Vector2(0, 0);
     private RaycastHit2D hit;
     private Collider2D lastCollider;
     private SpellController spell;
+    private List<Damageable> damagedObjects;
+    private StatusEffect[] statusEffects;
 
     private bool onExplosionCooldown = false;
 
@@ -23,6 +26,8 @@ public class Laser : MonoBehaviour
         lineRenderer.sharedMaterial.SetTextureScale("_MainTex", scale);
         lineRenderer.sortingLayerName = "BelowSpells";
         spell = GetComponent<SpellController>();
+        damagedObjects = new List<Damageable>();
+        statusEffects = GetComponentsInChildren<StatusEffect>();
     }
 
     void FixedUpdate()
@@ -78,10 +83,28 @@ public class Laser : MonoBehaviour
         {
             Damageable dmg = h.collider.GetComponent<Damageable>();
             if (dmg)
-            {
-                dmg.inflictDamage(spell.emitter, spell.damage);
-            }
+                applyDamage(dmg);
         }
+    }
+
+    void applyDamage(Damageable dmg)
+    {
+        if (damagedObjects.Contains(dmg))
+            return;
+
+        dmg.inflictDamage(spell.emitter, spell.damage);
+        foreach(StatusEffect effect in statusEffects)
+        {
+            effect.inflictStatus(dmg);
+        }
+        StartCoroutine(damageObjectCooldown(dmg));
+    }
+
+    IEnumerator damageObjectCooldown(Damageable dmg)
+    {
+        damagedObjects.Add(dmg);
+        yield return new WaitForSeconds(delayBetweenDamage);
+        damagedObjects.Remove(dmg);
     }
 }
 

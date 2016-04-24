@@ -43,14 +43,16 @@ public abstract class WorldObjectCreator : MonoBehaviour
         foreach (Transform child in transform)
             toDestroy.Add(child.gameObject);
 
-        foreach (Collider2D c in gameObject.GetComponents<Collider2D>())
-            toDestroy2.Add(c);
-
         foreach (GameObject td in toDestroy)
             DestroyImmediate(td);
 
-        foreach (Collider2D cd in toDestroy2)
-            DestroyImmediate(cd);
+        foreach (Collider2D c in GetComponents<Collider2D>())
+            toDestroy2.Add(c);
+
+        foreach (Collider2D c in toDestroy2)
+        {
+            DestroyImmediate(c);
+        }
 
     }
 }

@@ -23,20 +23,40 @@ public class GridMap
         // First, find out the size of the array required
         foreach (GameObject wall in wallTiles)
         {
-            if (wall.transform.position.x < floorX.minimum)
-                floorX.minimum = wall.transform.position.x;
-            if (wall.transform.position.x > floorX.maximum)
-                floorX.maximum = wall.transform.position.x;
-            if (wall.transform.position.y < floorY.minimum)
-                floorY.minimum = wall.transform.position.y;
-            if (wall.transform.position.y > floorY.maximum)
-                floorY.maximum = wall.transform.position.y;
+            MeshCreator wallMesh = wall.GetComponent<MeshCreator>();
+            if (wallMesh)   // If the wall object is a mesh, we need to compute take each individual positions into account
+            {
+                positionList = wallMesh.getPositions();
+                foreach (Vector3 pos in positionList)
+                {
+                    if (pos.x < floorX.minimum)
+                        floorX.minimum = pos.x;
+                    if (pos.x > floorX.maximum)
+                        floorX.maximum = pos.x;
+                    if (pos.y < floorY.minimum)
+                        floorY.minimum = pos.y;
+                    if (pos.y > floorY.maximum)
+                        floorY.maximum = pos.y;
+                }
+            }
+            else
+            {
+                if (wall.transform.position.x < floorX.minimum)
+                    floorX.minimum = wall.transform.position.x;
+                if (wall.transform.position.x > floorX.maximum)
+                    floorX.maximum = wall.transform.position.x;
+                if (wall.transform.position.y < floorY.minimum)
+                    floorY.minimum = wall.transform.position.y;
+                if (wall.transform.position.y > floorY.maximum)
+                    floorY.maximum = wall.transform.position.y;
+            }
         }
         offset = new Vector2i(Mathf.RoundToInt(floorX.minimum), Mathf.RoundToInt(floorY.minimum));
 
         width  = Mathf.RoundToInt(floorX.maximum) - offset.x + 1;    // +1 is necessary to take the tile [0,0] into account
         height = Mathf.RoundToInt(floorY.maximum) - offset.y + 1;
         grid = new Tile[height, width];
+        Debug.Log("creating a grid of size :" + width + ", " + height);
 
         for (int x = 0; x < width; x ++)
         {

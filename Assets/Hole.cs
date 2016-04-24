@@ -11,12 +11,11 @@ public class Hole : MonoBehaviour
 
     private List<MovingCharacter> charactersInside;
 
-    void Awake()
+    void Start()
     {
         colliders = GetComponents<Collider2D>();
-        charactersInside = new List<MovingCharacter>();
     }
-
+    /*
     void Update()
     {
         for (int i = charactersInside.Count - 1; i >= 0; i --)
@@ -36,8 +35,8 @@ public class Hole : MonoBehaviour
                 }
             }
         }
-    }
-
+    }*/
+    /*
     void OnTriggerEnter2D(Collider2D collision)
     {
         MovingCharacter character = collision.gameObject.GetComponent<MovingCharacter>();
@@ -49,5 +48,21 @@ public class Hole : MonoBehaviour
     {
         MovingCharacter character = collision.gameObject.GetComponent<MovingCharacter>();
         charactersInside.Remove(character);
+    }*/
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        MovingCharacter character = collision.GetComponent<MovingCharacter>();
+        if (!character || character.isFlying)
+            return;
+
+        foreach (Collider2D col in colliders)
+        {
+            if (col.bounds.Contains(character.transform.position))
+            {
+                character.startFalling(damageRatio);
+                return;
+            }
+        }
     }
 }

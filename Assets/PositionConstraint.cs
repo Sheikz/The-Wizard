@@ -4,9 +4,9 @@ using System;
 
 public class PositionConstraint : DecoConstraint
 {
-    public override bool checkConstraint(Transform wallTransform, RoomBasedMapGenerator map)
+    public override bool checkConstraint(Vector3 wallPos, Transform wall, RoomBasedMapGenerator map)
     {
-        if (Physics2D.Raycast(wallTransform.position, wallTransform.rotation * Vector2.up))
+        if (Physics2D.Raycast(wallPos, wall.transform.rotation * Vector2.up))
             return false;
         else
             return true;

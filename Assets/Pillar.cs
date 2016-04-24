@@ -42,6 +42,6 @@ public class Pillar : MonoBehaviour
 
         Pillar newPillar = Instantiate(pillarPrefab, transform.position, Quaternion.identity) as Pillar;
         newPillar.transform.SetParent(room.transform);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
 }

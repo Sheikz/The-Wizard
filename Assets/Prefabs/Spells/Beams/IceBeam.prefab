@@ -22,6 +22,7 @@ GameObject:
   - 120: {fileID: 120000012399334016}
   - 114: {fileID: 114000010199918620}
   - 114: {fileID: 114000010481024910}
+  - 114: {fileID: 114000010245229430}
   m_Layer: 0
   m_Name: IceBeam
   m_TagString: Untagged
@@ -55,6 +56,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 11441086, guid: c2a794276c41c184cb0a4fbfb81a3be6, type: 2}
   delayBetweenExplosions: 0.25
+  delayBetweenDamage: 0.25
+--- !u!114 &114000010245229430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011932588804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519928e43cff94cd6af44f530db9fae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowPercent: 0.5
+  duration: 1
+  colorMask: {r: 0.1177552, g: 0.857763, b: 0.8897059, a: 1}
 --- !u!114 &114000010481024910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,19 +82,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c957a74ca8a474683606e633e73473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: IceBeam
-  spellTypeDescription: 
-  damageString: 
-  description: 
-  manaCost: 0
-  manaCostInterval: 1
+  spellName: Ice Beam
+  spellTypeDescription: Channel
+  damageString: <dmg> damage/sec
+  description: Channel an Ice Beam \nSlow enemies
+  manaCost: 5
+  manaCostInterval: 0.25
   castTime: 0
   cooldown: 0.5
   icon: {fileID: 21300458, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 0
+  spellType: 1
   magicElement: 4
   spellSet: 1
-  damage: 50
+  damage: 75
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0

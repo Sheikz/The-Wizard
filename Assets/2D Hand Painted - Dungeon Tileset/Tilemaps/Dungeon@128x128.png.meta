@@ -260,7 +260,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -282,7 +282,7 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -291,14 +291,15 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 128
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 5
   buildTargetSettings: []
   spriteSheet:
@@ -318,6 +319,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_1
       rect:
         serializedVersion: 2
@@ -333,6 +335,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_2
       rect:
         serializedVersion: 2
@@ -348,6 +351,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_3
       rect:
         serializedVersion: 2
@@ -363,6 +367,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_4
       rect:
         serializedVersion: 2
@@ -378,6 +383,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_5
       rect:
         serializedVersion: 2
@@ -393,6 +399,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_6
       rect:
         serializedVersion: 2
@@ -442,6 +449,7 @@ TextureImporter:
         - {x: 35, y: 17}
         - {x: 33, y: 19}
         - {x: 30, y: 18}
+      tessellationDetail: -1
     - name: Dungeon@128x128_7
       rect:
         serializedVersion: 2
@@ -495,6 +503,7 @@ TextureImporter:
         - {x: 55, y: -27}
         - {x: 55, y: 58}
         - {x: 45, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_8
       rect:
         serializedVersion: 2
@@ -549,6 +558,7 @@ TextureImporter:
         - {x: -25, y: 35}
         - {x: -28, y: 36}
         - {x: -30, y: 34}
+      tessellationDetail: -1
     - name: Dungeon@128x128_9
       rect:
         serializedVersion: 2
@@ -599,6 +609,7 @@ TextureImporter:
         - {x: -8, y: 52}
         - {x: -9, y: 55}
         - {x: -21, y: 55}
+      tessellationDetail: -1
     - name: Dungeon@128x128_10
       rect:
         serializedVersion: 2
@@ -617,6 +628,7 @@ TextureImporter:
         - {x: 58, y: -50}
         - {x: 61, y: -49}
         - {x: 61, y: 3}
+      tessellationDetail: -1
     - name: Dungeon@128x128_11
       rect:
         serializedVersion: 2
@@ -650,6 +662,7 @@ TextureImporter:
         - {x: 41, y: -61}
         - {x: 41, y: -24}
         - {x: 39, y: -23}
+      tessellationDetail: -1
     - name: Dungeon@128x128_12
       rect:
         serializedVersion: 2
@@ -700,6 +713,7 @@ TextureImporter:
         - {x: 55, y: 35}
         - {x: 56, y: 38}
         - {x: 56, y: 53}
+      tessellationDetail: -1
     - name: Dungeon@128x128_13
       rect:
         serializedVersion: 2
@@ -716,6 +730,7 @@ TextureImporter:
         - {x: -34, y: -64}
         - {x: 64, y: 34}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_14
       rect:
         serializedVersion: 2
@@ -731,6 +746,7 @@ TextureImporter:
         - {x: -64, y: 34}
         - {x: 64, y: 34}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_15
       rect:
         serializedVersion: 2
@@ -747,6 +763,7 @@ TextureImporter:
         - {x: 34, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_16
       rect:
         serializedVersion: 2
@@ -762,6 +779,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_17
       rect:
         serializedVersion: 2
@@ -777,6 +795,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_18
       rect:
         serializedVersion: 2
@@ -792,6 +811,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_19
       rect:
         serializedVersion: 2
@@ -807,6 +827,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_20
       rect:
         serializedVersion: 2
@@ -822,6 +843,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_21
       rect:
         serializedVersion: 2
@@ -837,6 +859,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_22
       rect:
         serializedVersion: 2
@@ -852,6 +875,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_23
       rect:
         serializedVersion: 2
@@ -867,6 +891,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_24
       rect:
         serializedVersion: 2
@@ -882,6 +907,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_25
       rect:
         serializedVersion: 2
@@ -897,6 +923,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_26
       rect:
         serializedVersion: 2
@@ -912,6 +939,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_27
       rect:
         serializedVersion: 2
@@ -949,6 +977,7 @@ TextureImporter:
         - {x: 40, y: 49}
         - {x: 40, y: 60}
         - {x: 37, y: 62}
+      tessellationDetail: -1
     - name: Dungeon@128x128_28
       rect:
         serializedVersion: 2
@@ -965,6 +994,7 @@ TextureImporter:
         - {x: -33, y: -36}
         - {x: -35, y: -34}
         - {x: -64, y: -34}
+      tessellationDetail: -1
     - name: Dungeon@128x128_29
       rect:
         serializedVersion: 2
@@ -980,6 +1010,7 @@ TextureImporter:
         - {x: -34, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_30
       rect:
         serializedVersion: 2
@@ -998,6 +1029,7 @@ TextureImporter:
         - {x: 57, y: -52}
         - {x: 57, y: 28}
         - {x: 48, y: 62}
+      tessellationDetail: -1
     - name: Dungeon@128x128_31
       rect:
         serializedVersion: 2
@@ -1013,6 +1045,7 @@ TextureImporter:
         - {x: 34, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_32
       rect:
         serializedVersion: 2
@@ -1028,6 +1061,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_33
       rect:
         serializedVersion: 2
@@ -1043,6 +1077,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_34
       rect:
         serializedVersion: 2
@@ -1058,6 +1093,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_35
       rect:
         serializedVersion: 2
@@ -1073,6 +1109,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_36
       rect:
         serializedVersion: 2
@@ -1088,6 +1125,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_37
       rect:
         serializedVersion: 2
@@ -1103,6 +1141,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_38
       rect:
         serializedVersion: 2
@@ -1118,6 +1157,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_39
       rect:
         serializedVersion: 2
@@ -1133,6 +1173,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_40
       rect:
         serializedVersion: 2
@@ -1148,6 +1189,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_41
       rect:
         serializedVersion: 2
@@ -1163,6 +1205,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_42
       rect:
         serializedVersion: 2
@@ -1178,6 +1221,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_43
       rect:
         serializedVersion: 2
@@ -1194,6 +1238,7 @@ TextureImporter:
         - {x: 36, y: 33}
         - {x: 64, y: 33}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_44
       rect:
         serializedVersion: 2
@@ -1210,6 +1255,7 @@ TextureImporter:
         - {x: -35, y: 33}
         - {x: -33, y: 35}
         - {x: -33, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_45
       rect:
         serializedVersion: 2
@@ -1226,6 +1272,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -34}
         - {x: -34, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_46
       rect:
         serializedVersion: 2
@@ -1241,6 +1288,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -34}
         - {x: -64, y: -34}
+      tessellationDetail: -1
     - name: Dungeon@128x128_47
       rect:
         serializedVersion: 2
@@ -1257,6 +1305,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_48
       rect:
         serializedVersion: 2
@@ -1272,6 +1321,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_49
       rect:
         serializedVersion: 2
@@ -1287,6 +1337,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_50
       rect:
         serializedVersion: 2
@@ -1305,6 +1356,7 @@ TextureImporter:
         - {x: -28, y: -38}
         - {x: 48, y: -38}
         - {x: 48, y: 59}
+      tessellationDetail: -1
     - name: Dungeon@128x128_51
       rect:
         serializedVersion: 2
@@ -1326,6 +1378,7 @@ TextureImporter:
         - {x: 63, y: -26}
         - {x: 63, y: 32}
         - {x: 54, y: 44}
+      tessellationDetail: -1
     - name: Dungeon@128x128_52
       rect:
         serializedVersion: 2
@@ -1344,6 +1397,7 @@ TextureImporter:
         - {x: 43, y: -36}
         - {x: 43, y: 23}
         - {x: 26, y: 45}
+      tessellationDetail: -1
     - name: Dungeon@128x128_53
       rect:
         serializedVersion: 2
@@ -1359,6 +1413,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_54
       rect:
         serializedVersion: 2
@@ -1374,6 +1429,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_55
       rect:
         serializedVersion: 2
@@ -1389,6 +1445,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_56
       rect:
         serializedVersion: 2
@@ -1404,6 +1461,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_57
       rect:
         serializedVersion: 2
@@ -1419,6 +1477,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_58
       rect:
         serializedVersion: 2
@@ -1434,6 +1493,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_59
       rect:
         serializedVersion: 2
@@ -1450,6 +1510,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -10}
         - {x: 12, y: -10}
+      tessellationDetail: -1
     - name: Dungeon@128x128_60
       rect:
         serializedVersion: 2
@@ -1466,6 +1527,7 @@ TextureImporter:
         - {x: -10, y: -12}
         - {x: -12, y: -10}
         - {x: -64, y: -10}
+      tessellationDetail: -1
     - name: Dungeon@128x128_61
       rect:
         serializedVersion: 2
@@ -1482,6 +1544,7 @@ TextureImporter:
         - {x: -10, y: -64}
         - {x: 64, y: 10}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_62
       rect:
         serializedVersion: 2
@@ -1497,6 +1560,7 @@ TextureImporter:
         - {x: -64, y: 10}
         - {x: 64, y: 10}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_63
       rect:
         serializedVersion: 2
@@ -1513,6 +1577,7 @@ TextureImporter:
         - {x: 10, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_64
       rect:
         serializedVersion: 2
@@ -1528,6 +1593,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_65
       rect:
         serializedVersion: 2
@@ -1543,6 +1609,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_66
       rect:
         serializedVersion: 2
@@ -1565,6 +1632,7 @@ TextureImporter:
         - {x: 16, y: -61}
         - {x: 39, y: -50}
         - {x: 47, y: -46}
+      tessellationDetail: -1
     - name: Dungeon@128x128_67
       rect:
         serializedVersion: 2
@@ -1586,6 +1654,7 @@ TextureImporter:
         - {x: 40, y: -34}
         - {x: 39, y: -21}
         - {x: 28, y: -11}
+      tessellationDetail: -1
     - name: Dungeon@128x128_68
       rect:
         serializedVersion: 2
@@ -1608,6 +1677,7 @@ TextureImporter:
         - {x: 41, y: -47}
         - {x: 44, y: -46}
         - {x: 44, y: 51}
+      tessellationDetail: -1
     - name: Dungeon@128x128_69
       rect:
         serializedVersion: 2
@@ -1623,6 +1693,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_70
       rect:
         serializedVersion: 2
@@ -1638,6 +1709,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_71
       rect:
         serializedVersion: 2
@@ -1653,6 +1725,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_72
       rect:
         serializedVersion: 2
@@ -1668,6 +1741,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_73
       rect:
         serializedVersion: 2
@@ -1683,6 +1757,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_74
       rect:
         serializedVersion: 2
@@ -1698,6 +1773,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_75
       rect:
         serializedVersion: 2
@@ -1714,6 +1790,7 @@ TextureImporter:
         - {x: 12, y: 10}
         - {x: 64, y: 10}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_76
       rect:
         serializedVersion: 2
@@ -1730,6 +1807,7 @@ TextureImporter:
         - {x: -12, y: 10}
         - {x: -10, y: 12}
         - {x: -10, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_77
       rect:
         serializedVersion: 2
@@ -1745,6 +1823,7 @@ TextureImporter:
         - {x: -10, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_78
       rect:
         serializedVersion: 2
@@ -1762,6 +1841,7 @@ TextureImporter:
         - {x: 61, y: -62}
         - {x: 61, y: 42}
         - {x: 50, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_79
       rect:
         serializedVersion: 2
@@ -1777,6 +1857,7 @@ TextureImporter:
         - {x: 10, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_80
       rect:
         serializedVersion: 2
@@ -1792,6 +1873,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_81
       rect:
         serializedVersion: 2
@@ -1807,6 +1889,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_82
       rect:
         serializedVersion: 2
@@ -1832,6 +1915,7 @@ TextureImporter:
         - {x: 64, y: -59}
         - {x: 64, y: 52}
         - {x: 60, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_83
       rect:
         serializedVersion: 2
@@ -1853,6 +1937,7 @@ TextureImporter:
         - {x: -38, y: -47}
         - {x: 53, y: -47}
         - {x: 53, y: 34}
+      tessellationDetail: -1
     - name: Dungeon@128x128_84
       rect:
         serializedVersion: 2
@@ -1873,6 +1958,7 @@ TextureImporter:
         - {x: 41, y: -43}
         - {x: 41, y: 30}
         - {x: 37, y: 38}
+      tessellationDetail: -1
     - name: Dungeon@128x128_85
       rect:
         serializedVersion: 2
@@ -1888,6 +1974,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_86
       rect:
         serializedVersion: 2
@@ -1903,6 +1990,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_87
       rect:
         serializedVersion: 2
@@ -1918,6 +2006,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_88
       rect:
         serializedVersion: 2
@@ -1933,6 +2022,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_89
       rect:
         serializedVersion: 2
@@ -1948,6 +2038,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_90
       rect:
         serializedVersion: 2
@@ -1963,6 +2054,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_91
       rect:
         serializedVersion: 2
@@ -1981,6 +2073,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: 9}
         - {x: 61, y: 46}
+      tessellationDetail: -1
     - name: Dungeon@128x128_92
       rect:
         serializedVersion: 2
@@ -1997,6 +2090,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -10}
         - {x: -10, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_93
       rect:
         serializedVersion: 2
@@ -2012,6 +2106,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -10}
         - {x: -64, y: -10}
+      tessellationDetail: -1
     - name: Dungeon@128x128_94
       rect:
         serializedVersion: 2
@@ -2028,6 +2123,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_95
       rect:
         serializedVersion: 2
@@ -2043,6 +2139,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_96
       rect:
         serializedVersion: 2
@@ -2058,6 +2155,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_97
       rect:
         serializedVersion: 2
@@ -2073,6 +2171,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_98
       rect:
         serializedVersion: 2
@@ -2088,6 +2187,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_99
       rect:
         serializedVersion: 2
@@ -2103,6 +2203,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_100
       rect:
         serializedVersion: 2
@@ -2118,6 +2219,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_101
       rect:
         serializedVersion: 2
@@ -2133,6 +2235,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_102
       rect:
         serializedVersion: 2
@@ -2148,6 +2251,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_103
       rect:
         serializedVersion: 2
@@ -2163,6 +2267,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_104
       rect:
         serializedVersion: 2
@@ -2178,6 +2283,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_105
       rect:
         serializedVersion: 2
@@ -2193,6 +2299,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_106
       rect:
         serializedVersion: 2
@@ -2209,6 +2316,7 @@ TextureImporter:
         - {x: -59, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_107
       rect:
         serializedVersion: 2
@@ -2224,6 +2332,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_108
       rect:
         serializedVersion: 2
@@ -2239,6 +2348,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_109
       rect:
         serializedVersion: 2
@@ -2254,6 +2364,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_110
       rect:
         serializedVersion: 2
@@ -2269,6 +2380,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_111
       rect:
         serializedVersion: 2
@@ -2284,6 +2396,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_112
       rect:
         serializedVersion: 2
@@ -2299,6 +2412,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_113
       rect:
         serializedVersion: 2
@@ -2314,6 +2428,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_114
       rect:
         serializedVersion: 2
@@ -2329,6 +2444,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_115
       rect:
         serializedVersion: 2
@@ -2344,6 +2460,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_116
       rect:
         serializedVersion: 2
@@ -2359,6 +2476,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_117
       rect:
         serializedVersion: 2
@@ -2374,6 +2492,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_118
       rect:
         serializedVersion: 2
@@ -2389,6 +2508,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_119
       rect:
         serializedVersion: 2
@@ -2404,6 +2524,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_120
       rect:
         serializedVersion: 2
@@ -2419,6 +2540,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_121
       rect:
         serializedVersion: 2
@@ -2434,6 +2556,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_122
       rect:
         serializedVersion: 2
@@ -2449,6 +2572,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_123
       rect:
         serializedVersion: 2
@@ -2464,6 +2588,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_124
       rect:
         serializedVersion: 2
@@ -2479,6 +2604,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_125
       rect:
         serializedVersion: 2
@@ -2494,6 +2620,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_126
       rect:
         serializedVersion: 2
@@ -2509,6 +2636,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_127
       rect:
         serializedVersion: 2
@@ -2524,6 +2652,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_128
       rect:
         serializedVersion: 2
@@ -2539,6 +2668,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_129
       rect:
         serializedVersion: 2
@@ -2554,6 +2684,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_130
       rect:
         serializedVersion: 2
@@ -2569,6 +2700,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_131
       rect:
         serializedVersion: 2
@@ -2584,6 +2716,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_132
       rect:
         serializedVersion: 2
@@ -2599,6 +2732,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_133
       rect:
         serializedVersion: 2
@@ -2614,6 +2748,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_134
       rect:
         serializedVersion: 2
@@ -2629,6 +2764,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_135
       rect:
         serializedVersion: 2
@@ -2644,6 +2780,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_136
       rect:
         serializedVersion: 2
@@ -2659,6 +2796,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_137
       rect:
         serializedVersion: 2
@@ -2674,6 +2812,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_138
       rect:
         serializedVersion: 2
@@ -2689,6 +2828,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_139
       rect:
         serializedVersion: 2
@@ -2704,6 +2844,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_140
       rect:
         serializedVersion: 2
@@ -2719,6 +2860,7 @@ TextureImporter:
         - {x: -64, y: 64}
         - {x: -64, y: -64}
         - {x: 64, y: -64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_141
       rect:
         serializedVersion: 2
@@ -2734,6 +2876,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_142
       rect:
         serializedVersion: 2
@@ -2749,6 +2892,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_143
       rect:
         serializedVersion: 2
@@ -2764,6 +2908,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_144
       rect:
         serializedVersion: 2
@@ -2779,6 +2924,7 @@ TextureImporter:
         - {x: -64, y: -46}
         - {x: 64, y: -46}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_145
       rect:
         serializedVersion: 2
@@ -2794,6 +2940,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_146
       rect:
         serializedVersion: 2
@@ -2809,6 +2956,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_147
       rect:
         serializedVersion: 2
@@ -2824,6 +2972,7 @@ TextureImporter:
         - {x: 46, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_148
       rect:
         serializedVersion: 2
@@ -2839,6 +2988,7 @@ TextureImporter:
         - {x: -46, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_149
       rect:
         serializedVersion: 2
@@ -2854,6 +3004,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_150
       rect:
         serializedVersion: 2
@@ -2869,6 +3020,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_151
       rect:
         serializedVersion: 2
@@ -2884,6 +3036,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_152
       rect:
         serializedVersion: 2
@@ -2899,6 +3052,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_153
       rect:
         serializedVersion: 2
@@ -2916,6 +3070,7 @@ TextureImporter:
         - {x: 0, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_154
       rect:
         serializedVersion: 2
@@ -2931,6 +3086,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_155
       rect:
         serializedVersion: 2
@@ -2948,6 +3104,7 @@ TextureImporter:
         - {x: 32, y: -4}
         - {x: 32, y: 59}
         - {x: 31, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_156
       rect:
         serializedVersion: 2
@@ -2963,6 +3120,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_157
       rect:
         serializedVersion: 2
@@ -2978,6 +3136,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_158
       rect:
         serializedVersion: 2
@@ -2993,6 +3152,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_159
       rect:
         serializedVersion: 2
@@ -3008,6 +3168,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_160
       rect:
         serializedVersion: 2
@@ -3025,6 +3186,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 52}
+      tessellationDetail: -1
     - name: Dungeon@128x128_161
       rect:
         serializedVersion: 2
@@ -3040,6 +3202,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_162
       rect:
         serializedVersion: 2
@@ -3055,6 +3218,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_163
       rect:
         serializedVersion: 2
@@ -3070,6 +3234,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_164
       rect:
         serializedVersion: 2
@@ -3085,6 +3250,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_165
       rect:
         serializedVersion: 2
@@ -3100,6 +3266,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_166
       rect:
         serializedVersion: 2
@@ -3115,6 +3282,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_167
       rect:
         serializedVersion: 2
@@ -3130,6 +3298,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_168
       rect:
         serializedVersion: 2
@@ -3145,6 +3314,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_169
       rect:
         serializedVersion: 2
@@ -3163,6 +3333,7 @@ TextureImporter:
         - {x: 26, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_170
       rect:
         serializedVersion: 2
@@ -3178,6 +3349,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_171
       rect:
         serializedVersion: 2
@@ -3195,6 +3367,7 @@ TextureImporter:
         - {x: 8, y: 0}
         - {x: 8, y: 46}
         - {x: 2, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_172
       rect:
         serializedVersion: 2
@@ -3210,6 +3383,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_173
       rect:
         serializedVersion: 2
@@ -3225,6 +3399,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_174
       rect:
         serializedVersion: 2
@@ -3240,6 +3415,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_175
       rect:
         serializedVersion: 2
@@ -3255,6 +3431,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_176
       rect:
         serializedVersion: 2
@@ -3270,6 +3447,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_177
       rect:
         serializedVersion: 2
@@ -3285,6 +3463,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_178
       rect:
         serializedVersion: 2
@@ -3306,6 +3485,7 @@ TextureImporter:
         - {x: 62, y: 48}
         - {x: 64, y: 50}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_179
       rect:
         serializedVersion: 2
@@ -3324,6 +3504,7 @@ TextureImporter:
         - {x: 64, y: -40}
         - {x: 48, y: -40}
         - {x: 15, y: -44}
+      tessellationDetail: -1
     - name: Dungeon@128x128_180
       rect:
         serializedVersion: 2
@@ -3339,6 +3520,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_181
       rect:
         serializedVersion: 2
@@ -3357,6 +3539,7 @@ TextureImporter:
         - {x: 40, y: -51}
         - {x: 40, y: 55}
         - {x: 39, y: 56}
+      tessellationDetail: -1
     - name: Dungeon@128x128_182
       rect:
         serializedVersion: 2
@@ -3373,6 +3556,7 @@ TextureImporter:
         - {x: -7, y: -39}
         - {x: 64, y: -39}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_183
       rect:
         serializedVersion: 2
@@ -3388,6 +3572,7 @@ TextureImporter:
         - {x: -64, y: -39}
         - {x: 64, y: -39}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_184
       rect:
         serializedVersion: 2
@@ -3405,6 +3590,7 @@ TextureImporter:
         - {x: 7, y: -32}
         - {x: 7, y: 1}
         - {x: -59, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_185
       rect:
         serializedVersion: 2
@@ -3422,6 +3608,7 @@ TextureImporter:
         - {x: 3, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_186
       rect:
         serializedVersion: 2
@@ -3437,6 +3624,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_187
       rect:
         serializedVersion: 2
@@ -3454,6 +3642,7 @@ TextureImporter:
         - {x: -4, y: 24}
         - {x: -8, y: 56}
         - {x: -25, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_188
       rect:
         serializedVersion: 2
@@ -3469,6 +3658,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_189
       rect:
         serializedVersion: 2
@@ -3484,6 +3674,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_190
       rect:
         serializedVersion: 2
@@ -3499,6 +3690,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_191
       rect:
         serializedVersion: 2
@@ -3515,6 +3707,7 @@ TextureImporter:
         - {x: 42, y: -46}
         - {x: 64, y: -46}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_192
       rect:
         serializedVersion: 2
@@ -3530,6 +3723,7 @@ TextureImporter:
         - {x: -64, y: -47}
         - {x: 64, y: -47}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_193
       rect:
         serializedVersion: 2
@@ -3547,6 +3741,7 @@ TextureImporter:
         - {x: 42, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -63}
+      tessellationDetail: -1
     - name: Dungeon@128x128_194
       rect:
         serializedVersion: 2
@@ -3562,6 +3757,7 @@ TextureImporter:
         - {x: 47, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_195
       rect:
         serializedVersion: 2
@@ -3577,6 +3773,7 @@ TextureImporter:
         - {x: -47, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_196
       rect:
         serializedVersion: 2
@@ -3592,6 +3789,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_197
       rect:
         serializedVersion: 2
@@ -3607,6 +3805,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_198
       rect:
         serializedVersion: 2
@@ -3624,6 +3823,7 @@ TextureImporter:
         - {x: 54, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 39}
+      tessellationDetail: -1
     - name: Dungeon@128x128_199
       rect:
         serializedVersion: 2
@@ -3639,6 +3839,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 39}
+      tessellationDetail: -1
     - name: Dungeon@128x128_200
       rect:
         serializedVersion: 2
@@ -3657,6 +3858,7 @@ TextureImporter:
         - {x: 7, y: 2}
         - {x: 7, y: 35}
         - {x: 2, y: 39}
+      tessellationDetail: -1
     - name: Dungeon@128x128_201
       rect:
         serializedVersion: 2
@@ -3675,6 +3877,7 @@ TextureImporter:
         - {x: -32, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_202
       rect:
         serializedVersion: 2
@@ -3690,6 +3893,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_203
       rect:
         serializedVersion: 2
@@ -3706,6 +3910,7 @@ TextureImporter:
         - {x: 32, y: -64}
         - {x: 32, y: 9}
         - {x: 3, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_204
       rect:
         serializedVersion: 2
@@ -3737,6 +3942,7 @@ TextureImporter:
         - {x: -20, y: -9}
         - {x: -20, y: -7}
         - {x: -22, y: -5}
+      tessellationDetail: -1
     - name: Dungeon@128x128_205
       rect:
         serializedVersion: 2
@@ -3778,6 +3984,7 @@ TextureImporter:
         - {x: -56, y: 23}
         - {x: -54, y: 25}
         - {x: -54, y: 33}
+      tessellationDetail: -1
     - name: Dungeon@128x128_206
       rect:
         serializedVersion: 2
@@ -3795,6 +4002,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: 47}
         - {x: 61, y: 46}
+      tessellationDetail: -1
     - name: Dungeon@128x128_207
       rect:
         serializedVersion: 2
@@ -3810,6 +4018,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: 47}
         - {x: -64, y: 47}
+      tessellationDetail: -1
     - name: Dungeon@128x128_208
       rect:
         serializedVersion: 2
@@ -3830,6 +4039,7 @@ TextureImporter:
         - {x: -16, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_209
       rect:
         serializedVersion: 2
@@ -3846,6 +4056,7 @@ TextureImporter:
         - {x: -12, y: -64}
         - {x: 46, y: 55}
         - {x: 46, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_210
       rect:
         serializedVersion: 2
@@ -3863,6 +4074,7 @@ TextureImporter:
         - {x: 49, y: 40}
         - {x: 64, y: 40}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_211
       rect:
         serializedVersion: 2
@@ -3879,6 +4091,7 @@ TextureImporter:
         - {x: -36, y: -56}
         - {x: 39, y: -56}
         - {x: 39, y: 61}
+      tessellationDetail: -1
     - name: Dungeon@128x128_212
       rect:
         serializedVersion: 2
@@ -3894,6 +4107,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_213
       rect:
         serializedVersion: 2
@@ -3909,6 +4123,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_214
       rect:
         serializedVersion: 2
@@ -3924,6 +4139,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_215
       rect:
         serializedVersion: 2
@@ -3939,6 +4155,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_216
       rect:
         serializedVersion: 2
@@ -3957,6 +4174,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -1}
         - {x: 0, y: 34}
+      tessellationDetail: -1
     - name: Dungeon@128x128_217
       rect:
         serializedVersion: 2
@@ -3973,6 +4191,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -21}
         - {x: -20, y: -3}
+      tessellationDetail: -1
     - name: Dungeon@128x128_218
       rect:
         serializedVersion: 2
@@ -3990,6 +4209,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: -3}
+      tessellationDetail: -1
     - name: Dungeon@128x128_219
       rect:
         serializedVersion: 2
@@ -4006,6 +4226,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 33}
+      tessellationDetail: -1
     - name: Dungeon@128x128_220
       rect:
         serializedVersion: 2
@@ -4103,6 +4324,7 @@ TextureImporter:
         - {x: 64, y: -10}
         - {x: 64, y: 12}
         - {x: 63, y: 13}
+      tessellationDetail: -1
     - name: Dungeon@128x128_221
       rect:
         serializedVersion: 2
@@ -4138,6 +4360,7 @@ TextureImporter:
         - {x: -61, y: 7}
         - {x: -64, y: 8}
         - {x: -64, y: 3}
+      tessellationDetail: -1
     - name: Dungeon@128x128_222
       rect:
         serializedVersion: 2
@@ -4154,6 +4377,7 @@ TextureImporter:
         - {x: 64, y: -64}
         - {x: 64, y: -10}
         - {x: 63, y: -4}
+      tessellationDetail: -1
     - name: Dungeon@128x128_223
       rect:
         serializedVersion: 2
@@ -4177,6 +4401,7 @@ TextureImporter:
         - {x: -59, y: -31}
         - {x: -60, y: -28}
         - {x: -63, y: -28}
+      tessellationDetail: -1
     - name: Dungeon@128x128_224
       rect:
         serializedVersion: 2
@@ -4193,6 +4418,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_225
       rect:
         serializedVersion: 2
@@ -4210,6 +4436,7 @@ TextureImporter:
         - {x: 64, y: 64}
         - {x: -64, y: 64}
         - {x: -64, y: -46}
+      tessellationDetail: -1
     - name: Dungeon@128x128_226
       rect:
         serializedVersion: 2
@@ -4225,6 +4452,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_227
       rect:
         serializedVersion: 2
@@ -4240,6 +4468,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_228
       rect:
         serializedVersion: 2
@@ -4289,6 +4518,7 @@ TextureImporter:
         - {x: -44, y: 39}
         - {x: -52, y: 38}
         - {x: -61, y: 33}
+      tessellationDetail: -1
     - name: Dungeon@128x128_229
       rect:
         serializedVersion: 2
@@ -4304,6 +4534,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_230
       rect:
         serializedVersion: 2
@@ -4319,6 +4550,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_231
       rect:
         serializedVersion: 2
@@ -4334,6 +4566,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_232
       rect:
         serializedVersion: 2
@@ -4349,6 +4582,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_233
       rect:
         serializedVersion: 2
@@ -4364,6 +4598,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_234
       rect:
         serializedVersion: 2
@@ -4379,6 +4614,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_235
       rect:
         serializedVersion: 2
@@ -4394,6 +4630,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_236
       rect:
         serializedVersion: 2
@@ -4435,6 +4672,7 @@ TextureImporter:
         - {x: 17, y: -64}
         - {x: 17, y: -58}
         - {x: 16, y: -56}
+      tessellationDetail: -1
     - name: Dungeon@128x128_237
       rect:
         serializedVersion: 2
@@ -4469,6 +4707,7 @@ TextureImporter:
         - {x: -1, y: 23}
         - {x: -1, y: 28}
         - {x: -3, y: 29}
+      tessellationDetail: -1
     - name: Dungeon@128x128_238
       rect:
         serializedVersion: 2
@@ -4494,6 +4733,7 @@ TextureImporter:
         - {x: -56, y: -47}
         - {x: -59, y: -46}
         - {x: -61, y: -48}
+      tessellationDetail: -1
     - name: Dungeon@128x128_239
       rect:
         serializedVersion: 2
@@ -4511,6 +4751,7 @@ TextureImporter:
         - {x: 62, y: -62}
         - {x: 64, y: -60}
         - {x: 64, y: 63}
+      tessellationDetail: -1
     - name: Dungeon@128x128_240
       rect:
         serializedVersion: 2
@@ -4527,6 +4768,7 @@ TextureImporter:
         - {x: 63, y: -62}
         - {x: 64, y: -57}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_241
       rect:
         serializedVersion: 2
@@ -4546,6 +4788,7 @@ TextureImporter:
         - {x: 61, y: -28}
         - {x: 61, y: 38}
         - {x: 59, y: 40}
+      tessellationDetail: -1
     - name: Dungeon@128x128_242
       rect:
         serializedVersion: 2
@@ -4561,6 +4804,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_243
       rect:
         serializedVersion: 2
@@ -4576,6 +4820,7 @@ TextureImporter:
         - {x: -64, y: -64}
         - {x: 64, y: -64}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_244
       rect:
         serializedVersion: 2
@@ -4611,6 +4856,7 @@ TextureImporter:
         - {x: 35, y: 60}
         - {x: 37, y: 62}
         - {x: 37, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_245
       rect:
         serializedVersion: 2
@@ -4629,6 +4875,7 @@ TextureImporter:
         - {x: 61, y: -63}
         - {x: 61, y: 61}
         - {x: 59, y: 62}
+      tessellationDetail: -1
     - name: Dungeon@128x128_246
       rect:
         serializedVersion: 2
@@ -4646,6 +4893,7 @@ TextureImporter:
         - {x: 61, y: -63}
         - {x: 61, y: 60}
         - {x: 59, y: 62}
+      tessellationDetail: -1
     - name: Dungeon@128x128_247
       rect:
         serializedVersion: 2
@@ -4662,6 +4910,7 @@ TextureImporter:
         - {x: 5, y: -33}
         - {x: 64, y: -4}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_248
       rect:
         serializedVersion: 2
@@ -4679,6 +4928,7 @@ TextureImporter:
         - {x: 63, y: 22}
         - {x: 64, y: 25}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_249
       rect:
         serializedVersion: 2
@@ -4696,6 +4946,7 @@ TextureImporter:
         - {x: 57, y: 4}
         - {x: 64, y: 4}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_250
       rect:
         serializedVersion: 2
@@ -4714,6 +4965,7 @@ TextureImporter:
         - {x: 61, y: -32}
         - {x: 64, y: -27}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     - name: Dungeon@128x128_251
       rect:
         serializedVersion: 2
@@ -4746,6 +4998,7 @@ TextureImporter:
         - {x: 19, y: -11}
         - {x: 19, y: -2}
         - {x: 18, y: 2}
+      tessellationDetail: -1
     - name: Dungeon@128x128_252
       rect:
         serializedVersion: 2
@@ -4846,6 +5099,7 @@ TextureImporter:
         - {x: 63, y: 58}
         - {x: 64, y: 59}
         - {x: 64, y: 64}
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 

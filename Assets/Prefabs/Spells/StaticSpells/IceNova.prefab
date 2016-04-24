@@ -77,7 +77,7 @@ GameObject:
   - 4: {fileID: 4000012430843702}
   - 198: {fileID: 198000012054165092}
   - 199: {fileID: 199000013218128592}
-  - 114: {fileID: 114000011494751752}
+  - 114: {fileID: 114000011356816104}
   m_Layer: 0
   m_Name: Snow
   m_TagString: Untagged
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486d0a7fb8e5e0e46bc9a07f2786c6e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011494751752
+--- !u!114 &114000011356816104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -186,10 +186,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013548984154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f29d63276aff0d4f9a92f67bee2ce92, type: 3}
+  m_Script: {fileID: 11500000, guid: e4f9637bdeb54924b816f031bb01de47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mprSpeed: 0.5
+  speed: {x: 0, y: 0, z: 5}
 --- !u!114 &114000012331223702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,6 +216,7 @@ MonoBehaviour:
   damage: 100
   lightIntensity: 2
   duration: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

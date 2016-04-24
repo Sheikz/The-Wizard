@@ -2,15 +2,48 @@
 using System.Collections.Generic;
 using System;
 
+[ExecuteInEditMode]
 public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
 
     public Pillar pillar;
     public Pillar pillarWithTorch;
+    public Texture2D[] dungeonTileSets;
     public List<ItemWithDropChance> monsters;
+    public GameObject wallRumbles;
+    public GameObject windowLight;
+    public Sprite[] skullDeco;
+    public Sprite[] swordDeco;
+    public Sprite[] shieldDeco;
+    public Sprite[] bannerDecoTop;
+    public Sprite[] bannerDecoBottom;
+    public Sprite[] rumbleSprites;
+    public Sprite[] doorLeft;
+    public Sprite[] doorTopLeft;
+    public Sprite[] doorRight;
+    public Sprite[] doorTopRight;
+    public Sprite[] floor;
+    public Sprite[] bigDoorLeft;
+    public Sprite[] bigDoorTopLeft;
+    public Sprite[] bigDoorRight;
+    public Sprite[] bigDoorTopRight;
+    public Sprite[] stairsTopLeft;
+    public Sprite[] stairsTopRight;
+    public Sprite[] stairsBottomLeft;
+    public Sprite[] stairsBottomRight;
 
     void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+
+        name = "WorldManager";
+    }
+
+    void OnEnable()
     {
         if (instance == null)
             instance = this;
@@ -38,5 +71,21 @@ public class WorldManager : MonoBehaviour
             result.Add(chosenItem.item.GetComponent<NPCController>());
         }
         return result;
+    }
+
+    internal Texture2D getDungeonTileSet()
+    {
+        if (!GameManager.instance || !GameManager.instance.map)
+            return dungeonTileSets[0];
+
+        return dungeonTileSets[GameManager.instance.map.mapTheme];
+    }
+
+    internal int getDungeonTheme()
+    {
+        if (GameManager.instance && GameManager.instance.map)
+            return GameManager.instance.map.mapTheme;
+        else
+            return UnityEngine.Random.Range(0, 3);
     }
 }

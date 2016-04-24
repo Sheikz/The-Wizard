@@ -47,7 +47,7 @@ public class PlayerController : MovingCharacter
 			direction = movement;
 
 		updateAnimations();
-		if (!canMove)
+		if (!canMove || isFalling)
 			return;
 		rb.velocity = movement;
 	}
