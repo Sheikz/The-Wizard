@@ -89,6 +89,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
                     as GameObject).GetComponent<VisibleRoom>();  // Instantiate the liaison
 
                 newLiaison.transform.SetParent(liaisonHolder.transform);
+                newLiaison.GetComponent<RoomLiaison>().refresh();
                 wall.parentRoom.visibleRoom.linkTo(newLiaison);
                 wall.parentRoom.visibleRoom.linkTo(newRoom.visibleRoom);
                 wall.parentRoom.linkRoom(newRoom);

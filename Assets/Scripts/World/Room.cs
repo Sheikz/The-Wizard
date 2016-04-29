@@ -68,6 +68,11 @@ public class Room : MonoBehaviour, IComparable<Room>
         foreach (Pillar pillar in pillars)
             pillar.initialize(hasPillars, this);
 
+        foreach (AdjustTheme adjustTheme in GetComponentsInChildren<AdjustTheme>())
+        {
+            adjustTheme.refresh();
+        }
+
         //combineMeshes();
     }
 

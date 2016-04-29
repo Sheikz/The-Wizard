@@ -18,7 +18,6 @@ public abstract class Item : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Item");
         GetComponent<Collider2D>().isTrigger = false;
-        GetComponent<Rigidbody2D>().freezeRotation = true;
     }
 
     public virtual void initialize(CharacterStats looter)

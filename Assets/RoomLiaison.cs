@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public class RoomLiaison : MonoBehaviour 
 {
-	void Start () 
-	{
+
+    public void refresh()
+    {
         foreach (MeshCreator meshCreator in GetComponentsInChildren<MeshCreator>())
         {
             meshCreator.BuildMesh();
         }
-	}
+    }
 }

@@ -11,12 +11,18 @@ public class AdjustTheme : MonoBehaviour
         DoorTopLeft, DoorTopRight,
         BigDoorTopLeft, BigDoorTopRight,
         StairTopLeft, StairsTopRight,
-        StairsBottomLeft, StairsBottomRight
+        StairsBottomLeft, StairsBottomRight,
+        Deco1Side, Deco1InteriorCorner, Deco1ExteriorCorner
     }
 
     public ThemeObject themeObject;
 
     void Start()
+    {
+        refresh();
+    }
+
+    public void refresh()
     {
         SpriteRenderer rdr = GetComponent<SpriteRenderer>();
         if (!rdr)
@@ -80,6 +86,15 @@ public class AdjustTheme : MonoBehaviour
                 break;
             case ThemeObject.StairsBottomRight:
                 rdr.sprite = WorldManager.instance.stairsBottomRight[WorldManager.instance.getDungeonTheme()];
+                break;
+            case ThemeObject.Deco1Side:
+                rdr.sprite = WorldManager.instance.deco1Side[WorldManager.instance.getDungeonTheme()];
+                break;
+            case ThemeObject.Deco1InteriorCorner:
+                rdr.sprite = WorldManager.instance.deco1InteriorCorner[WorldManager.instance.getDungeonTheme()];
+                break;
+            case ThemeObject.Deco1ExteriorCorner:
+                rdr.sprite = WorldManager.instance.deco1ExteriorCorner[WorldManager.instance.getDungeonTheme()];
                 break;
         }
     }

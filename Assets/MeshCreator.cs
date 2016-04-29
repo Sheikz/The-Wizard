@@ -84,6 +84,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[0] = getPixels(0, 15);
                 pixels[1] = getPixels(1, 15);
                 tag = "Floor";
+                name = "Floor";
                 break;
             case MeshType.Hole:
                 pixels = new Color[9][];
@@ -97,6 +98,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.SouthWest] = getPixels(13, 4);
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
+                name = "Hole";
                 break;
             case MeshType.Carpet:
                 pixels = new Color[9][];
@@ -110,6 +112,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.SouthWest] = getPixels(13, 7);
                 pixels[(int)TextureItem.West] = getPixels(13, 8);
                 tag = "Untagged";
+                name = "Carpet";
                 break;
             case MeshType.Deco1:
                 pixels = new Color[9][];
@@ -138,6 +141,7 @@ public class MeshCreator : MonoBehaviour
                     pixels[(int)TextureItem.West] = getPixels(13, 11);
                 }
                 tag = "Untagged";
+                name = "FloorDeco";
                 break;
             case MeshType.Deco2:
                 pixels = new Color[9][];
@@ -166,6 +170,7 @@ public class MeshCreator : MonoBehaviour
                     pixels[(int)TextureItem.West] = getPixels(13, 14);
                 }
                 tag = "Untagged";
+                name = "FloorDeco";
                 break;
             case MeshType.Wall:
                 pixels = new Color[6][];
@@ -182,11 +187,13 @@ public class MeshCreator : MonoBehaviour
                 exteriorCornerLeft = getPixels(0, 13, 2, 2);
                 exteriorCornerRight = getPixels(5, 13, 2, 2);
                 tag = "Wall";
+                name = "Wall";
                 break;
             case MeshType.WallCorner:
                 pixels = new Color[1][];
                 pixels[0] = getPixels(7, 11, 2, 2);
                 tag = "Wall";
+                name = "Corner";
                 break;
         }
         

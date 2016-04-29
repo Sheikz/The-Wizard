@@ -72,7 +72,6 @@ GameObject:
   - 4: {fileID: 4000010605688546}
   - 58: {fileID: 58000013384183222}
   - 114: {fileID: 114000010213759374}
-  - 50: {fileID: 50000013522336174}
   m_Layer: 0
   m_Name: ShadowPowerUp
   m_TagString: Untagged
@@ -197,23 +196,6 @@ Transform:
   m_Father: {fileID: 4000010605688546}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50000013522336174
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012131664256}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!58 &58000013384183222
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -273,7 +255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePickedUp: 1
-  speed: 5
   level: 1
   buff:
     element: 6
