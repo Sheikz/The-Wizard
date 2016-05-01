@@ -53,8 +53,8 @@ public class DashAttack : SpellController
         if (movingChar)
         {
             movingChar.enableAction(false);
-            startSpeed = movingChar.speed * startSpeedRatio;
-            endSpeed = movingChar.speed * endSpeedRatio;
+            startSpeed = movingChar.movingSpeed * startSpeedRatio;
+            endSpeed = movingChar.movingSpeed * endSpeedRatio;
         }
 
         float startTime = Time.time;

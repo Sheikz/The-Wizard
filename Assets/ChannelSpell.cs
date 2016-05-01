@@ -38,5 +38,8 @@ public class ChannelSpell : SpellController
     {
         if (currentChannel)
             currentChannel.refresh(targetPosition);
+
+        if (currentChannel && currentChannel.emitter)
+            currentChannel.emitter.payChannelMana(manaCost, manaCostInterval);
     }
 }

@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class StaticSpell : SpellController
 {
     public float delayBeforeDamage;
     public float colliderDuration;
-
-    [HideInInspector]
-    public List<Damageable> affectedObjects;
+    public float durationLeft;
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
@@ -24,7 +22,6 @@ public class StaticSpell : SpellController
     {
         transform.position = target;
         this.emitter = emitter;
-        affectedObjects = new List<Damageable>();
 
         foreach (ParticleSystem partSystem in GetComponentsInChildren<ParticleSystem>())
         {
@@ -33,7 +30,7 @@ public class StaticSpell : SpellController
         return true;
     }
 
-    IEnumerator stopLoopingAfterSeconds(ParticleSystem system, float time)
+    protected IEnumerator stopLoopingAfterSeconds(ParticleSystem system, float time)
     {
         if (time == 0)
             yield break;
@@ -47,11 +44,13 @@ public class StaticSpell : SpellController
         StartCoroutine(enableAfterSeconds(delayBeforeDamage));
         StartCoroutine(disableAfterSeconds(colliderDuration));
         StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
+        durationLeft = duration;
     }
 
     protected void FixedUpdate()
     {
         checkIfAlive();
+        durationLeft -= Time.fixedDeltaTime;
     }
 
     protected IEnumerator enableAfterSeconds(float seconds)
@@ -59,9 +58,11 @@ public class StaticSpell : SpellController
         Light[] lights = GetComponentsInChildren<Light>();
         foreach (Light light in lights)
             light.enabled = false;
-        circleCollider.enabled = false;
+        foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
+            col.enabled = false;
         yield return new WaitForSeconds(seconds);
-        circleCollider.enabled = true;
+        foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
+            col.enabled = true;
         foreach (Light light in lights)
             light.enabled = true;
     }

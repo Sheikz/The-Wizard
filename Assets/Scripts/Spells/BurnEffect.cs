@@ -4,7 +4,7 @@ using System;
 
 public class BurnEffect : StatusEffect
 {
-    public override void inflictStatus(Damageable dmg)
+    public override void inflictStatus(StatusEffectReceiver dmg)
     {
         throw new NotImplementedException();
     }

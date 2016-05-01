@@ -30,6 +30,7 @@ GameObject:
   - 114: {fileID: 114000012422333416}
   - 114: {fileID: 114000013480571402}
   - 114: {fileID: 114000011607624222}
+  - 114: {fileID: 114000013186171684}
   m_Layer: 9
   m_Name: Monster01
   m_TagString: Enemy
@@ -133,10 +134,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 3
   speed: 3
+  direction: {x: 0, y: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
   isRooted: 0
-  isStunned: 0
   isFlying: 0
   idleChance: 0.25
   idleTime:
@@ -152,6 +155,9 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
+  alliesLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114000011607624222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +200,20 @@ MonoBehaviour:
   - {fileID: 114000010591845390, guid: b4ff12cc72c68c143807b41559f89200, type: 2}
   isMonster: 0
   activeCircleSpells: []
-  targetObject: {fileID: 0}
+  targetOpponent: {fileID: 0}
+  targetAlly: {fileID: 0}
+--- !u!114 &114000013186171684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013481156612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imunizedTo: 
 --- !u!114 &114000013480571402
 MonoBehaviour:
   m_ObjectHideFlags: 1

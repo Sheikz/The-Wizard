@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using Random = UnityEngine.Random;
 
 public class SpellCaster : MonoBehaviour
 {
@@ -35,14 +36,18 @@ public class SpellCaster : MonoBehaviour
 	public Transform targetOpponent;
     [HideInInspector]
     public Transform targetAlly;
-	private List<PowerUpBuff> activeBuffs;
+    private StatusEffectReceiver statusEffectReceiver;
 
-	void Awake()
+    private List<PowerUpBuff> activeBuffs;
+    private bool payChannelManaOnCooldown = false;
+
+    void Awake()
 	{
 		characterStats = GetComponent<CharacterStats>();
 		movingCharacter = GetComponent<MovingCharacter>();
 		anim = GetComponent<Animator>();
-	}
+        statusEffectReceiver = GetComponent<StatusEffectReceiver>();
+    }
 
 	// Use this for initialization
 	void Start ()
@@ -195,8 +200,11 @@ public class SpellCaster : MonoBehaviour
 		if (spellList.Length == 0)
 			return;
 
-		if (movingCharacter && (!movingCharacter.canAct || movingCharacter.isStunned))
+		if (movingCharacter && !movingCharacter.canAct)
 			return;
+
+        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+            return;
 
 		if (!spellList[spellIndex])
 			return;
@@ -243,17 +251,20 @@ public class SpellCaster : MonoBehaviour
     /// <returns></returns>
     private IEnumerator castingSpellRoutine(SpellController spell, int index, Vector3 targetPosition)
 	{
+        if (anim)
+            anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
 		if (spell.castTime > 0)
 		{
-			if (anim)
-				anim.SetTrigger("PrepareAttack");
+            if (anim)
+                anim.SetTrigger("PrepareAttack");
+
 			isCasting = true;
 			float startingTime = Time.time;
 			if (movingCharacter)
 				movingCharacter.enableMovement(false);
 			while (Time.time - startingTime < spell.castTime)
 			{
-				if (movingCharacter && movingCharacter.isStunned)  // If the character is stunned while casting, it should stop the cast
+				if (statusEffectReceiver && statusEffectReceiver.isStunned)  // If the character is stunned while casting, it should stop the cast
 				{
 					isCasting = false;
 					if (!castingBar)
@@ -265,7 +276,13 @@ public class SpellCaster : MonoBehaviour
 				}
 
 				setCastBarRatio((Time.time - startingTime) / spell.castTime);
-				yield return null;
+                if (isHero)
+                {
+                    targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    targetPosition.z = 0;    // fix because camera see point at z = -5
+                }
+                updateFacingDirection(targetPosition);
+                yield return null;
 			}
 			setCastBarRatio(1f);
 
@@ -287,13 +304,14 @@ public class SpellCaster : MonoBehaviour
 		{
 			StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
 			payMana(spell.manaCost);
-			if (anim)
-				anim.SetTrigger("Attack");
-		}
+            if (anim)
+                anim.SetTrigger("Attack");
+            updateFacingDirection(targetPosition);
+        }
 		else
 		{
-			if (anim)
-				anim.SetTrigger("CancelAttack");
+            if (anim)
+                anim.SetTrigger("CancelAttack");
 		}
 		isCasting = false;
 		if (!castingBar)
@@ -303,6 +321,12 @@ public class SpellCaster : MonoBehaviour
 		castingBar.gameObject.SetActive(false);
 	}
 
+    /// <summary>
+    /// This will fail is casted by monsters as it's always using hero target
+    /// </summary>
+    /// <param name="spell"></param>
+    /// <param name="index"></param>
+    /// <returns></returns>
 	private IEnumerator chargingSpellRoutine(ChargingSpell spell, int index)
 	{
 		int stage = 0;
@@ -311,7 +335,17 @@ public class SpellCaster : MonoBehaviour
 		isCasting = true;
 		if (movingCharacter)
 			movingCharacter.enableMovement(false);
-		while (InputManager.instance.IsKeyPressed(spell.spellType))
+
+        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPosition.z = 0;    // fix because camera see point at z = -5
+
+        if (anim)
+        {
+            anim.SetTrigger("PrepareAttack");
+            anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
+        }
+
+        while (InputManager.instance.IsKeyPressed(spell.spellType))
 		{
 			if (stage < maxStage)
 			{
@@ -326,13 +360,16 @@ public class SpellCaster : MonoBehaviour
 					chargingTime += Time.deltaTime;
 			}
 			yield return null;
-		}
+            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition.z = 0;    // fix because camera see point at z = -5
+            updateFacingDirection(targetPosition);
+        }
 		
 		isCasting = false;
 		if (movingCharacter)
 			movingCharacter.enableMovement(true);
 
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0;    // fix because camera see point at z = -5
 
         // If it was not charged enough, return without paying mana
@@ -340,7 +377,10 @@ public class SpellCaster : MonoBehaviour
 		{
 			StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
 			payMana(spell.manaCost);
-		}
+            if (anim)
+                anim.SetTrigger("Attack");
+            updateFacingDirection(targetPosition);
+        }
 		else
 		{
 			if (anim)
@@ -361,6 +401,12 @@ public class SpellCaster : MonoBehaviour
         if (movingCharacter)
             movingCharacter.enableMovement(false);
 
+        if (anim)
+        {
+            anim.SetTrigger("PrepareAttack");
+            anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
+        }
+
         Vector3 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPosition.z = 0;    // fix because camera see point at z = -5
 
@@ -369,6 +415,9 @@ public class SpellCaster : MonoBehaviour
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0;    // fix because camera see point at z = -5
+
+            updateFacingDirection(targetPosition);
+
             spell.update(targetPosition);
 
             chargingTime += Time.deltaTime;
@@ -381,9 +430,40 @@ public class SpellCaster : MonoBehaviour
             movingCharacter.enableMovement(true);
 
         spell.stop();
+        if (anim)
+            anim.SetTrigger("CancelAttack");
 
         StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
-        payMana(spell.manaCost);
+    }
+
+    private void updateFacingDirection(Vector3 targetPosition)
+    {
+        if (!anim)
+            return;
+
+        Vector2 castDirection = targetPosition - transform.position;
+        anim.SetFloat("AttackDirectionX", castDirection.x);
+        anim.SetFloat("AttackDirectionY", castDirection.y);
+        anim.SetFloat("DirectionX", castDirection.x);
+        anim.SetFloat("DirectionY", castDirection.y);
+        if (movingCharacter)
+            movingCharacter.direction = castDirection;
+    }
+
+    internal void payChannelMana(float manaCost, float payManaInterval)
+    {
+        if (payChannelManaOnCooldown)
+            return;
+
+        payMana(manaCost);
+        StartCoroutine(startChannelManaCooldown(payManaInterval));
+    }
+
+    IEnumerator startChannelManaCooldown(float payManaInterval)
+    {
+        payChannelManaOnCooldown = true;
+        yield return new WaitForSeconds(payManaInterval);
+        payChannelManaOnCooldown = false;
     }
 
     private void setCastBarRatio(float ratio)
@@ -574,13 +654,16 @@ public class SpellCaster : MonoBehaviour
 		floatingText.setColor(UIManager.instance.elementColors[(int)buff.element]);
 		activeBuffs.Add(buff);
 		GameObject activateAura = Instantiate(SpellManager.instance.auraDisablePrefabs[(int)buff.element], transform.position, Quaternion.identity) as GameObject;
+        activateAura.GetComponent<Aura>().initialize();
 		activateAura.transform.SetParent(transform);
 		yield return new WaitForSeconds(0.5f);
 		GameObject aura = Instantiate(SpellManager.instance.auraPrefabs[(int)buff.element], transform.position, Quaternion.identity) as GameObject;
+        aura.GetComponent<Aura>().initialize();
 		aura.transform.SetParent(transform);
 		yield return new WaitForSeconds(Mathf.Max(0, buff.duration -0.5f));
 		Destroy(aura);
 		GameObject deactivateAura = Instantiate(SpellManager.instance.auraActivatePrefabs[(int)buff.element], transform.position, Quaternion.identity) as GameObject;
+        deactivateAura.GetComponent<Aura>().initialize();
 		deactivateAura.transform.SetParent(transform);
 		activeBuffs.Remove(buff);
 	}

@@ -48,7 +48,6 @@ GameObject:
   - 58: {fileID: 5850924}
   - 114: {fileID: 11446118}
   - 114: {fileID: 11483698}
-  - 114: {fileID: 114000010962943880}
   m_Layer: 12
   m_Name: LightningProjectileTiny
   m_TagString: Untagged
@@ -5759,16 +5758,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 158654}
   m_IsPrefabParent: 1
---- !u!114 &114000010962943880
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e94b511da5c14212875bbd527d4d9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chainRadius: 3
-  numberOfBounces: 5

@@ -179,7 +179,10 @@ public class NPCController : MovingCharacter
 
     protected virtual void doWander()
     {
-        if (!canMove || isRooted || isStunned)
+        if (!canMove)
+            return;
+
+        if (statusEffectReceiver && statusEffectReceiver.isStunned)
             return;
 
         if (hasReached(goal))
@@ -246,7 +249,10 @@ public class NPCController : MovingCharacter
             spellCaster.castOffensiveSpells(targetOpponent);
 
         direction = lineToTarget;   // Face the target
-        if (!canMove || isRooted || isStunned)
+        if (!canMove)
+            return;
+
+        if (statusEffectReceiver && statusEffectReceiver.isStunned)
             return;
 
         doStrafe(distanceToTarget, lineToTarget);
@@ -320,8 +326,8 @@ public class NPCController : MovingCharacter
         else
             target = targetOpponent.transform.position;
 
-        movement = (target - transform.position).normalized * speed;
-        
+        movement = (target - transform.position).normalized * movingSpeed;
+
         if (isFlying)   // if it is flying, it does not need to avoid obstacles
             return;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, movement, circleCollider.radius, obstacleLayer);
@@ -357,13 +363,13 @@ public class NPCController : MovingCharacter
 
     protected void updateMovementToReachTarget()
     {
-        movement = (target - transform.position).normalized * speed;
+        movement = (target - transform.position).normalized * movingSpeed;
         direction = movement;
     }
 
     protected void moveToTarget()
     {
-        rb.MovePosition(Vector3.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime));
+        rb.MovePosition(Vector3.MoveTowards(rb.position, target, movingSpeed * Time.fixedDeltaTime));
     }
 
     protected bool hasReached(Vector3 t)

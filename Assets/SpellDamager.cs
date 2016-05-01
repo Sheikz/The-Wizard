@@ -73,12 +73,16 @@ public class SpellDamager : MonoBehaviour
         if (drainSpell)
             drainSpell.absorbDamage(spell.damage);
 
+        StartCoroutine(damageObject(dmg));
+
+        StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+        if (!receiver)
+            return;
+
         foreach (StatusEffect effect in statusEffects)
         {
-            effect.inflictStatus(dmg);
+            effect.inflictStatus(receiver);
         }
-
-        StartCoroutine(damageObject(dmg));
     }
 
     IEnumerator damageObject(Damageable dmg)

@@ -27,6 +27,7 @@ GameObject:
   - 4: {fileID: 472000}
   - 198: {fileID: 19899404}
   - 199: {fileID: 19962732}
+  - 114: {fileID: 11480178}
   m_Layer: 0
   m_Name: SpinningFire
   m_TagString: Untagged
@@ -78,9 +79,7 @@ GameObject:
   - 4: {fileID: 436608}
   - 198: {fileID: 19848114}
   - 199: {fileID: 19950020}
-  - 58: {fileID: 58000010549483454}
-  - 114: {fileID: 114000013604646780}
-  - 114: {fileID: 114000012933699708}
+  - 114: {fileID: 11430538}
   m_Layer: 0
   m_Name: SpinningFire
   m_TagString: Untagged
@@ -94,8 +93,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 10, y: 0.22, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 472000}
@@ -123,8 +122,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157450}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0.000001296401}
+  m_LocalPosition: {x: 0, y: -0.0000000107288365, z: 0.09000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 436608}
@@ -136,8 +135,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121360}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalRotation: {x: 0.70710605, y: 0, z: 0, w: 0.7071076}
+  m_LocalPosition: {x: 0, y: -0, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 482902}
@@ -157,6 +156,30 @@ Transform:
   m_Father: {fileID: 436608}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11430538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f29d63276aff0d4f9a92f67bee2ce92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mprSpeed: 1.75
+--- !u!114 &11480178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f29d63276aff0d4f9a92f67bee2ce92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mprSpeed: 1.75
 --- !u!198 &19824046
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4262,7 +4285,7 @@ ParticleSystem:
       minMaxState: 0
     separateAxes: 0
   RotationModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: 1
       maxCurve:
@@ -4334,7 +4357,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     curve:
-      scalar: 0.39269906
+      scalar: 0.7853982
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7774,9 +7797,9 @@ ParticleSystem:
       minMaxState: 0
     separateAxes: 0
   RotationModule:
-    enabled: 1
+    enabled: 0
     x:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7811,7 +7834,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     y:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7846,7 +7869,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     curve:
-      scalar: 0.39269906
+      scalar: 0.7853982
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9138,78 +9161,8 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.w
-      value: -0.00000016292068
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157646}
   m_IsPrefabParent: 1
---- !u!58 &58000010549483454
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157646}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.49
---- !u!114 &114000012933699708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 1
-  delayBetweenDamage: 0.25
---- !u!114 &114000013604646780
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be632815707fc084b8e36a5306e0bdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellName: Scorching Flames
-  spellTypeDescription: Shield Area of Effect
-  damageString: <dmg> damage per second
-  description: Summon a fire shield around the Caster. <n> Damages nearby enemies
-  manaCost: 25
-  manaCostInterval: 1
-  castTime: 0
-  cooldown: 10
-  icon: {fileID: 21300204, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 2
-  magicElement: 2
-  spellSet: 1
-  damage: 25
-  lightIntensity: 0
-  duration: 5
-  emitter: {fileID: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  target: {x: 0, y: 0, z: 0}
-  moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 0
-  ignoredColliders: []
-  collidesWithSpells: 0

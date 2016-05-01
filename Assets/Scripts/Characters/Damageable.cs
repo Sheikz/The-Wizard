@@ -268,28 +268,4 @@ public class Damageable : MonoBehaviour
         Debug.Log("Added " + additionalHP+" hp");
         maxHP += additionalHP;
     }
-
-    public void applyColorMask(Color color, float duration)
-    {
-        if (isSlowed)
-            return;
-        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer sp in spriteRenderers)
-        {
-            StartCoroutine(applyColorMask(sp, color, duration));
-        }
-    }
-
-    private IEnumerator applyColorMask(SpriteRenderer sp, Color color, float duration)
-    {
-        isSlowed = true;
-        Color originalColor = sp.color;
-        sp.color = color;
-        yield return new WaitForSeconds(duration);
-        if (!sp)
-            yield break;
-        sp.color = originalColor;
-        isSlowed = false;
-    }
-
 }

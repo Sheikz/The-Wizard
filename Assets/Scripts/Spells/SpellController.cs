@@ -44,12 +44,13 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
     protected void Awake()
 	{
-		rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 		circleCollider = GetComponent<CircleCollider2D>();
 		if (circleCollider)
 			circleCollider.isTrigger = true;
 		blockingLayer = GameManager.instance.layerManager.spellBlockingLayer;
 		ignoredColliders = new List<Collider2D>();
+        
     }
 
 	protected virtual void Start()

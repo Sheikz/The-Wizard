@@ -42,13 +42,16 @@ public class PlayerController : MovingCharacter
 
 		float inputX = InputManager.instance.getHorizontalInput();
 		float inputY = InputManager.instance.getVerticalInput();
-		movement = new Vector2(inputX, inputY).normalized * speed;
+		movement = new Vector2(inputX, inputY).normalized * movingSpeed;
 		if (movement != Vector2.zero)
 			direction = movement;
 
 		updateAnimations();
 		if (!canMove || isFalling)
 			return;
+        if (statusEffectReceiver.isStunned)
+            return;
+        
 		rb.velocity = movement;
 	}
 
@@ -118,7 +121,6 @@ public class PlayerController : MovingCharacter
 		transform.position = wayPoint;
 		damageable.inflictDamageRatio(damageRatio);
 		isFalling = false;
-        isStunned = false;
 		transform.rotation = Quaternion.identity;
 		transform.localScale = new Vector3(1, 1, 1);
 	}

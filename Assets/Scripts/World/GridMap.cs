@@ -56,7 +56,6 @@ public class GridMap
         width  = Mathf.RoundToInt(floorX.maximum) - offset.x + 1;    // +1 is necessary to take the tile [0,0] into account
         height = Mathf.RoundToInt(floorY.maximum) - offset.y + 1;
         grid = new Tile[height, width];
-        Debug.Log("creating a grid of size :" + width + ", " + height);
 
         for (int x = 0; x < width; x ++)
         {

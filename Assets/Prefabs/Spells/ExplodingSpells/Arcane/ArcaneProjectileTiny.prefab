@@ -329,7 +329,7 @@ MonoBehaviour:
   description: Shoots a pure energy bolt
   manaCost: -5
   manaCostInterval: 1
-  castTime: 0.2
+  castTime: 0.3
   cooldown: 0.5
   icon: {fileID: 21300304, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
@@ -338,8 +338,7 @@ MonoBehaviour:
   damage: 140
   lightIntensity: 1
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

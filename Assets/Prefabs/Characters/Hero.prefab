@@ -36,6 +36,7 @@ GameObject:
   - 114: {fileID: 11443016}
   - 114: {fileID: 114000011002847520}
   - 114: {fileID: 114000011873066926}
+  - 114: {fileID: 114000012157314752}
   m_Layer: 10
   m_Name: Hero
   m_TagString: Hero
@@ -111,7 +112,7 @@ Animator:
   m_GameObject: {fileID: 191952}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60efef450b6d45940850d3c106a149a7, type: 2}
+  m_Controller: {fileID: 22100000, guid: a53baa9ebdb47ae4a8ae4dede41d9b09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -219,7 +220,8 @@ MonoBehaviour:
   - {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
-  targetObject: {fileID: 0}
+  targetOpponent: {fileID: 0}
+  targetAlly: {fileID: 0}
 --- !u!114 &11489054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,10 +235,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 5
   speed: 5
+  direction: {x: 0, y: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
   isRooted: 0
-  isStunned: 0
   isFlying: 0
   dyingLight: {fileID: 197130, guid: 7d7de3d0709066e419f0e487753ae850, type: 2}
   damageable: {fileID: 0}
@@ -261,6 +265,7 @@ MonoBehaviour:
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
+  isDead: 0
 --- !u!212 &21284262
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -288,7 +293,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -761238155
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300014, guid: 93ca25147a7da93458625a1a97a270e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f35f4ba2e8a8cb4dbd4bd0cb03fb35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -586,6 +591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sqrDistanceLoot: 0.09
   goldAmount: 0
+  vacuumSpeed: 5
 --- !u!114 &114000011873066926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -598,3 +604,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackImmuneTime: 0.5
+--- !u!114 &114000012157314752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imunizedTo: 

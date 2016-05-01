@@ -8,6 +8,7 @@ public class Laser : MonoBehaviour
     public Explosion explosion;
     public float delayBetweenExplosions = 0.5f;
     public float delayBetweenDamage = 0.25f;
+    public float distance = 10f;
     private LineRenderer lineRenderer;
 
     private Vector2 offset = new Vector2(0, 0);
@@ -16,6 +17,7 @@ public class Laser : MonoBehaviour
     private SpellController spell;
     private List<Damageable> damagedObjects;
     private StatusEffect[] statusEffects;
+    private Vector3 hitPoint;
 
     private bool onExplosionCooldown = false;
 
@@ -41,12 +43,10 @@ public class Laser : MonoBehaviour
 
     void refreshExplosion()
     {
-        if (!hit)
-            return;
-
-        if (hit.collider != lastCollider)
+        if (hit && hit.collider != lastCollider)
             explode();
-        lastCollider = hit.collider;
+        if (hit && hit.collider)
+            lastCollider = hit.collider;
 
         if (onExplosionCooldown)
             return;
@@ -59,7 +59,7 @@ public class Laser : MonoBehaviour
         if (explosion != null)
         {
             Explosion newExplosion = Instantiate(explosion);
-            newExplosion.transform.position = hit.point;   // if the object explodes, the exposion is created where it was
+            newExplosion.transform.position = hitPoint;   // if the object explodes, the exposion is created where it was
             newExplosion.initialize(spell);
         }
         StartCoroutine(startExplosionCooldown());
@@ -74,11 +74,18 @@ public class Laser : MonoBehaviour
 
     internal void update(Vector3 position, Vector3 targetPosition)
     {
-        hit = Physics2D.Raycast(position, targetPosition-position, Mathf.Infinity, GameManager.instance.layerManager.blockingLayer);
+        Vector3 direction = targetPosition - position;
+        direction.z = 0;
+        hit = Physics2D.Raycast(position, direction, distance, GameManager.instance.layerManager.blockingLayer);
         lineRenderer.SetPosition(0, position);
-        lineRenderer.SetPosition(1, hit.point);
+        if (!hit)
+            hitPoint = position + direction.normalized * distance;
+        else
+            hitPoint = hit.point;
 
-        RaycastHit2D[] hits = Physics2D.LinecastAll(position, hit.point, GameManager.instance.layerManager.monsterLayer);
+        lineRenderer.SetPosition(1, hitPoint);
+
+        RaycastHit2D[] hits = Physics2D.LinecastAll(position, hitPoint, GameManager.instance.layerManager.monsterLayer);
         foreach (RaycastHit2D h in hits)
         {
             Damageable dmg = h.collider.GetComponent<Damageable>();
@@ -93,11 +100,17 @@ public class Laser : MonoBehaviour
             return;
 
         dmg.inflictDamage(spell.emitter, spell.damage);
-        foreach(StatusEffect effect in statusEffects)
-        {
-            effect.inflictStatus(dmg);
-        }
         StartCoroutine(damageObjectCooldown(dmg));
+
+        StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+        if (!receiver)
+            return;
+
+        foreach (StatusEffect effect in statusEffects)
+        {
+            effect.inflictStatus(receiver);
+        }
+        
     }
 
     IEnumerator damageObjectCooldown(Damageable dmg)

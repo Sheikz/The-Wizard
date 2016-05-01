@@ -11,7 +11,8 @@ public abstract class MovingCharacter : MonoBehaviour
 
     protected Vector2 movement;     // Direction in which the character moves
 
-    protected Vector2 direction;    // Direction in which he is facing
+    [HideInInspector]
+    public Vector2 direction;    // Direction in which he is facing
     [HideInInspector]
     public Rigidbody2D rb;
     [HideInInspector]
@@ -23,16 +24,13 @@ public abstract class MovingCharacter : MonoBehaviour
     protected bool canMove = true;      // Can he move?
     [HideInInspector]
     public bool canAct = true;       // Can he do anything at all?
-    [HideInInspector]
-    public bool isRooted = false;
-    [HideInInspector]
-    public bool isStunned = false;
 
     protected bool isFalling = false;
     [HideInInspector]
     public bool isFlying = false;
     private float spinningSpeed = 10f;
     private float fallingDuration = 3f;
+    protected StatusEffectReceiver statusEffectReceiver;
 
     // Use this for initialization
     protected void Awake()
@@ -41,11 +39,13 @@ public abstract class MovingCharacter : MonoBehaviour
         anim = GetComponent<Animator>();
         circleCollider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        statusEffectReceiver = GetComponent<StatusEffectReceiver>();
+        speed = baseSpeed;
     }
 
     protected void updateAnimations()
     {
-        if (isStunned)
+        if (statusEffectReceiver && statusEffectReceiver.isStunned)
             return;
 
         if (anim)
@@ -62,25 +62,7 @@ public abstract class MovingCharacter : MonoBehaviour
         }
     }
 
-    public void applySlow(float slowPercent, float duration)
-    {
-        if (isSlowed)
-            return;
-        if (slowPercent == 1)
-            StartCoroutine(stunForSeconds(duration));
-        else
-            StartCoroutine(slowForSeconds(slowPercent, duration));
-    }
-
-    private IEnumerator slowForSeconds(float slowPercent, float duration)
-    {
-        float originalSpeed = speed;
-        speed *= slowPercent;
-        isSlowed = true;
-        yield return new WaitForSeconds(duration);
-        speed = originalSpeed;
-        isSlowed = false;
-    }
+    
 
     /// <summary>
     /// Is falling into a hole
@@ -92,7 +74,7 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!isFalling)
         {
             StartCoroutine(fallAnimation(spinningSpeed, fallingDuration, damageRatio));
-            isStunned = true;
+            statusEffectReceiver.stunFor(fallingDuration);
         }
         isFalling = true;
     }
@@ -167,22 +149,17 @@ public abstract class MovingCharacter : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void stunFor(float stunDuration)
+    public float movingSpeed
     {
-        if (isStunned)
-            return;
-
-        StartCoroutine(stunForSeconds(stunDuration));
-    }
-
-    IEnumerator stunForSeconds(float duration)
-    {
-        isStunned = true;
-        float savedAnimSpeed = anim.speed;
-        anim.speed = 0;
-        yield return new WaitForSeconds(duration);
-        anim.speed = savedAnimSpeed;
-        isStunned = false;
+        get
+        {
+            if (statusEffectReceiver)
+            {
+                return speed * statusEffectReceiver.getMoveSpeedPercent();
+            }
+            else
+                return speed;
+        }
     }
 
     public abstract void die();

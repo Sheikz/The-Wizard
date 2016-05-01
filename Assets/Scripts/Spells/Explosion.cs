@@ -129,11 +129,20 @@ public class Explosion : MonoBehaviour
 
             appliedHit = true;
             giveMana();
+
+            StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+            if (!receiver)
+            {
+                Debug.Log("no receiver in "+dmg.name);
+                return;
+            }
+
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {
-                effect.inflictStatus(dmg);
+                Debug.Log("here "+receiver.name);
+                effect.inflictStatus(receiver);
             }
-		}
+        }
 	}
 
 	private IEnumerator enableAfterSeconds(float delay)

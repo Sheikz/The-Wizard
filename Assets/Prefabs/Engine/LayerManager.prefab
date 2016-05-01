@@ -28,6 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11457332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -72,6 +73,9 @@ MonoBehaviour:
   monsterSpells:
     serializedVersion: 2
     m_Bits: 8192
+  holeLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

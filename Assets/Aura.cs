@@ -7,8 +7,15 @@ public class Aura : MonoBehaviour
 
     void Awake()
     {
+        if (!ps)
+            ps = GetComponent<ParticleSystem>();
+    }
+
+    public void initialize()
+    {
         ps = GetComponent<ParticleSystem>();
         ps.startSize = 3f;
+        GetComponent<ParticleSystemRenderer>().renderMode = ParticleSystemRenderMode.Billboard;
     }
 
     void Start()

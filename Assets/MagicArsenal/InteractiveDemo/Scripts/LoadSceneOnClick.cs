@@ -6,34 +6,56 @@ using System.Collections.Generic;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
-    public void LoadScene1()  {
-		SceneManager.LoadScene ("magic_projectiles");
-	}
-    public void LoadScene2()  {
+    public void LoadSceneProjectiles()
+    {
+        SceneManager.LoadScene("magic_projectiles");
+    }
+    public void LoadSceneSprays()
+    {
         SceneManager.LoadScene("magic_sprays");
-	}
-    public void LoadScene3()  {
+    }
+    public void LoadSceneAura()
+    {
         SceneManager.LoadScene("magic_aura");
-	}
-    public void LoadScene4()  {
-		SceneManager.LoadScene ("magic_modular");
-	}
-    public void LoadScene5()  {
-        SceneManager.LoadScene ("magic_domes");
-	}
-    public void LoadScene6()  {
-        SceneManager.LoadScene ("magic_shields");
-	}
-    public void LoadScene7()  {
-        SceneManager.LoadScene ("magic_sphereblast");
-	}
-    public void LoadScene8()  {
-        SceneManager.LoadScene ("magic_enchant");
     }
-    public void LoadScene9()  {
-        SceneManager.LoadScene ("magic_slash");
+    public void LoadSceneModular()
+    {
+        SceneManager.LoadScene("magic_modular");
     }
-    public void LoadScene10() {
+    public void LoadSceneShields2()
+    {
+        SceneManager.LoadScene("magic_domes");
+    }
+    public void LoadSceneShields()
+    {
+        SceneManager.LoadScene("magic_shields");
+    }
+    public void LoadSceneSphereBlast()
+    {
+        SceneManager.LoadScene("magic_sphereblast");
+    }
+    public void LoadSceneEnchant()
+    {
+        SceneManager.LoadScene("magic_enchant");
+    }
+    public void LoadSceneSlash()
+    {
+        SceneManager.LoadScene("magic_slash");
+    }
+    public void LoadSceneCharge()
+    {
         SceneManager.LoadScene("magic_charge");
+    }
+    public void LoadSceneCleave()
+    {
+        SceneManager.LoadScene("magic_cleave");
+    }
+    public void LoadSceneAura2()
+    {
+        SceneManager.LoadScene("magic_aura2");
+    }
+    public void LoadSceneWalls()
+    {
+        SceneManager.LoadScene("magic_walls");
     }
 }

@@ -4,12 +4,9 @@ public class StunEffect : StatusEffect
 {
     public float stunDuration;
 
-    public override void inflictStatus(Damageable dmg)
+    public override void inflictStatus(StatusEffectReceiver dmg)
     {
-        MovingCharacter movingChar = dmg.GetComponent<MovingCharacter>();
-        if (movingChar)
-        {
-            movingChar.stunFor(stunDuration);
-        }
+        Debug.Log("stunning " + name + " for " + stunDuration + " sec");
+        dmg.stunFor(stunDuration);
     }
 }

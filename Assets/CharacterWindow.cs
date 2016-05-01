@@ -74,7 +74,7 @@ public class CharacterWindow : MonoBehaviour
 
         statsInfo[(int)Stats.Gold].refresh(inventory.goldAmount);
         statsInfo[(int)Stats.Power].refresh(inventory.getPower());
-        statsInfo[(int)Stats.MoveSpeed].refresh(movingChar.speed);
+        statsInfo[(int)Stats.MoveSpeed].refresh(movingChar.movingSpeed);
         if (damageable == null)
             damageable = inventory.GetComponent<Damageable>();
         if (damageable)

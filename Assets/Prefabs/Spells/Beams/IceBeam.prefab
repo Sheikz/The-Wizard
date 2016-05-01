@@ -56,7 +56,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 11441086, guid: c2a794276c41c184cb0a4fbfb81a3be6, type: 2}
   delayBetweenExplosions: 0.25
-  delayBetweenDamage: 0.25
+  delayBetweenDamage: 0.1
+  distance: 10
 --- !u!114 &114000010245229430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,15 +87,15 @@ MonoBehaviour:
   spellTypeDescription: Channel
   damageString: <dmg> damage/sec
   description: Channel an Ice Beam \nSlow enemies
-  manaCost: 5
-  manaCostInterval: 0.25
+  manaCost: 1
+  manaCostInterval: 0.05
   castTime: 0
   cooldown: 0.5
   icon: {fileID: 21300458, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 1
   magicElement: 4
   spellSet: 1
-  damage: 75
+  damage: 40
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0

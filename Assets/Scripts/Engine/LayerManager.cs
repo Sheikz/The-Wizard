@@ -14,6 +14,7 @@ public class LayerManager : MonoBehaviour
     public LayerMask highBlockingLayer;
     public LayerMask heroSpells;
     public LayerMask monsterSpells;
+    public LayerMask holeLayer;
 }
 
 
