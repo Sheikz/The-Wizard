@@ -9,6 +9,7 @@ public class Tooltip : MonoBehaviour
     public int horizontalPadding = 10;
     public int verticalPadding = 10;
     private RectTransform rectTransform;
+    private bool positionFixed;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public class Tooltip : MonoBehaviour
         canvas.overrideSorting = true;
         canvas.sortingOrder = 10;
         rectTransform = GetComponent<RectTransform>();
+        positionFixed = false;
     }
 
     private string parseDescription(SpellController spell, int damage)
@@ -64,11 +66,11 @@ public class Tooltip : MonoBehaviour
         return result;
     }
 
-    internal void refresh(ItemStats stats, int value)
+    internal void refresh(InventoryStats stats, int value)
     {
         switch (stats)
         {
-            case ItemStats.Power:
+            case InventoryStats.Power:
                 tooltipText.text = "Increase Magic Damage by <color=magenta>" + value / ItemManager.instance.powerToDamage *100f  + "%</color>";
                 break;
         }
@@ -105,6 +107,14 @@ public class Tooltip : MonoBehaviour
 
         if (itemStats.moveSpeed > 0)
 		    result += "\nMove speed: +<color=yellow>" + itemStats.moveSpeed + "</color>";
+
+        // Item Perk List
+        if (itemStats.itemPerks.Count > 0)
+            result += "\n";
+        foreach (ItemPerk perk in itemStats.itemPerks)
+        {
+            result += "\n<color=orange>"+perk.getDescription()+"</color>";
+        }
 
 		return result;
 	}
@@ -145,6 +155,9 @@ public class Tooltip : MonoBehaviour
 
     IEnumerator fixPosition()
     {
+        if (positionFixed)
+            yield break;
+
         yield return new WaitForEndOfFrame();
         float widthExcess = (transform.position.x + rectTransform.rect.width) - Screen.width;
         if (widthExcess >= horizontalPadding)
@@ -156,5 +169,6 @@ public class Tooltip : MonoBehaviour
         {
             transform.position += Vector3.up * (heightExcess + verticalPadding);
         }
+        positionFixed = true;
     }
 }

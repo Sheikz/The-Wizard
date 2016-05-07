@@ -37,6 +37,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public Vector3 target;
     [HideInInspector]
     public MoveSpellCaster moveSpellCaster;
+    protected SpellAutoPilot autoPilot;
 
     public bool collidesWithWalls = true;
 	[HideInInspector]
@@ -50,7 +51,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 			circleCollider.isTrigger = true;
 		blockingLayer = GameManager.instance.layerManager.spellBlockingLayer;
 		ignoredColliders = new List<Collider2D>();
-        
+        autoPilot = GetComponent<SpellAutoPilot>();
     }
 
 	protected virtual void Start()
@@ -58,12 +59,28 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		setupLights();
 		applyStats();
 		applyLayer();
+        applyItemPerks();
         SoundManager.instance.playSound(spellName, gameObject);
         if (transform.parent == null)
             transform.SetParent(GameManager.instance.map.spellHolder);
 	}
 
-	public abstract SpellController castSpell(SpellCaster emitter, Vector3 target);
+    protected virtual void applyItemPerks()
+    {
+        PlayerStats stats = emitter.GetComponent<PlayerStats>();
+        if (!stats)
+            return;
+
+        switch (spellName)
+        {
+            case "Energy Bolt":
+                if (stats.getItemPerk(ItemPerk.EnergyBoltAimBot) && autoPilot)
+                    autoPilot.activated = true;
+                break;
+        }
+    }
+
+    public abstract SpellController castSpell(SpellCaster emitter, Vector3 target);
 
     void setupLights()
 	{

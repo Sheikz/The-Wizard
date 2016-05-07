@@ -9,8 +9,6 @@ public class MonsterStats : CharacterStats
     public float dungeonLevelMultiplier = 1.2f;
     [Tooltip("Used for Damage")]
     public float monsterDamageMultiplier = 1f;
-    [Tooltip("Used for Damage, HP")]
-    public float difficultyModifier = 1.0f;
 
     new void Awake()
     {
@@ -29,7 +27,7 @@ public class MonsterStats : CharacterStats
     {
         float result = getDamageMultiplier();
         result *= getDungeonLevelMultiplier();
-        result *= monsterDamageMultiplier * difficultyModifier;
+        result *= monsterDamageMultiplier * GameManager.instance.difficulty;
         return result;
     }
 
@@ -46,7 +44,7 @@ public class MonsterStats : CharacterStats
         float mult = 1.0f;
         mult *= getHPMultiplier();
         mult *= getDungeonLevelMultiplier();
-        mult *= difficultyModifier;
+        mult *= GameManager.instance.difficulty;
         damageable.multiplyBaseHP(mult, 0, updateCurrentHP);
     }
 }

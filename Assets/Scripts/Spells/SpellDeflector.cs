@@ -7,6 +7,7 @@ public class SpellDeflector : MonoBehaviour
     public Countf angleDeviation;
 
     private SpellCaster emitter;
+    private bool activated = false;
 
     // Use this for initialization
     void Start()
@@ -16,6 +17,9 @@ public class SpellDeflector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!activated)
+            return;
+
         SpellController otherSpell = other.GetComponent<SpellController>();
         if (otherSpell) // It's a spell
         {
@@ -42,5 +46,10 @@ public class SpellDeflector : MonoBehaviour
             else
                 otherSpell.gameObject.layer = LayerMask.NameToLayer("Spells");
         }
+    }
+
+    internal void setActive(bool v)
+    {
+        activated = v;
     }
 }

@@ -70,6 +70,7 @@ public class SpellAutoPilot : AutoPilot
         Damageable dmg = closestObject.GetComponent<Damageable>();
         if (dmg)
         {
+            Debug.Log(name + " locking on " + dmg.name);
             lockToObject(dmg.transform);
         }
     }

@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public RoomBasedMapGenerator map;
     private float savedTimeScale = 1.0f;
-	
-	void Awake ()
+    public float difficulty = 1.0f;
+
+    void Awake ()
 	{
 		if (instance == null)
 			instance = this;
@@ -112,6 +113,11 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = savedTimeScale;
         }
+    }
+
+    public void setDifficulty(float value)
+    {
+        difficulty = value;
     }
 
     public void tryAgain()

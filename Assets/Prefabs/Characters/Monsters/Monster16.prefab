@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 1000
+  baseHP: 800
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
@@ -198,7 +198,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
-  isRooted: 0
   isFlying: 0
   idleChance: 0.3
   idleTime:
@@ -234,7 +233,6 @@ MonoBehaviour:
   cooldownModifier: 2
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 0.5
-  difficultyModifier: 1.5
 --- !u!212 &21251822
 SpriteRenderer:
   m_ObjectHideFlags: 1

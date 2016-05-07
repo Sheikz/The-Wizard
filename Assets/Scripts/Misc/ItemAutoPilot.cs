@@ -7,7 +7,6 @@ public class ItemAutoPilot : AutoPilot
 {
     void Start()
     {
-        activated = true;
         state = PilotState.DoNothing;
     }
 

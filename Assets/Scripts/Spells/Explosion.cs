@@ -139,7 +139,6 @@ public class Explosion : MonoBehaviour
 
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {
-                Debug.Log("here "+receiver.name);
                 effect.inflictStatus(receiver);
             }
         }

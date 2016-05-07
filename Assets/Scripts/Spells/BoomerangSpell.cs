@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System;
 
 [RequireComponent(typeof(CircleCollider2D))]
-[RequireComponent(typeof(AutoPilot))]
+[RequireComponent(typeof(SpellAutoPilot))]
 public class BoomerangSpell : MovingSpell
 {
-    private AutoPilot autoPilot;
     private Vector3 targetPosition;
     private enum BoomerangState { Going, ComingBack };
     private BoomerangState state;
@@ -16,7 +15,6 @@ public class BoomerangSpell : MovingSpell
     new void Awake()
     {
         base.Awake();
-        autoPilot = GetComponent<AutoPilot>();
         drainSpell = GetComponent<DrainSpell>();
     }
 

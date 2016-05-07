@@ -16,4 +16,10 @@ public class TimeText : MonoBehaviour
         Time.timeScale = value;
         text.text = "Time Multiplier : " + value.ToString("0.00");
     }
+
+    public void setDifficultyMultiplier(float value)
+    {
+        text.text = "Difficulty : " + value.ToString("0.00");
+        GameManager.instance.difficulty = value;
+    }
 }

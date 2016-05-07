@@ -8,14 +8,13 @@ public class PlayerStats : CharacterStats
     public int[,,] spellLevels; // In order: set, element, type
     public int[] pointsToAllocate;
 
-
-
     private int numberOfTypes;
     private int numberOfElements;
     private int numberOfSets;
     private SpellCaster hero;
     [HideInInspector]
     public float HPSkillBonus = 1.0f;
+    [HideInInspector]
     public float speedSkillBonus = 0f;
     private Inventory inventory;
 
@@ -130,5 +129,10 @@ public class PlayerStats : CharacterStats
             hpFromItems = inventory.getAdditionalHPFromItems();
 
         damageable.multiplyBaseHP(mult, hpFromItems, updateCurrentHP);
+    }
+
+    public bool getItemPerk(ItemPerk itemPerk)
+    {
+        return inventory.getItemPerk(itemPerk);
     }
 }

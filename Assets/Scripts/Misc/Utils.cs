@@ -38,6 +38,26 @@ public static class Utils
         return input[Random.Range(0, input.Length)];
     }
 
+    public static int pickRandomIndexWithDifferentChances(params float[] input)
+    {
+        if (input == null)
+            return -1;
+
+        float totalSum = 0f;
+        foreach (float chance in input)
+        {
+            totalSum += chance;
+        }
+        float index = Random.Range(0f, totalSum);
+        float sum = 0f;
+        int i = 0;
+        while (sum < index)
+        {
+            sum += input[i++];
+        }
+        return i - 1;
+    }
+
     public static Color[] pickRandom(params Color[][] objects)
     {
         return objects[Random.Range(0, 2)];

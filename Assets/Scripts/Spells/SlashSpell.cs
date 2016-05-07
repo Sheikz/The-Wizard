@@ -4,6 +4,8 @@ using System;
 
 public class SlashSpell : SpellController
 {
+    private bool canBeMultiplied = true;
+
     [Serializable]
     public class ColliderWithStartTime
     {
@@ -35,11 +37,54 @@ public class SlashSpell : SpellController
     public bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
     {
         this.emitter = emitter;
+        this.target = target;
         transform.SetParent(emitter.transform);
         transform.position = position;
+        applyItemPerks();
 
         rotateAroundY(target - position, Quaternion.Euler(90, 0, 0));
         return true;
+    }
+
+    override protected void applyItemPerks()
+    {
+        PlayerStats stats = emitter.GetComponent<PlayerStats>();
+        switch (spellName)
+        {
+            case "Flaming Whip":
+                if (stats && stats.getItemPerk(ItemPerk.FireSlashReflect))
+                    activateReflect();
+                if (stats && stats.getItemPerk(ItemPerk.FireSlashMultiply) && canBeMultiplied)
+                    StartCoroutine(multiply(transform.position, target));
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Create 2 others slashes after a certain delay
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator multiply(Vector3 position, Vector3 target)
+    {
+        Vector3 farTarget = position + (target - position).normalized * 5f;
+        Vector3 position1 = position + (target - position).normalized * 1f;
+        Vector3 position2 = position + (target - position).normalized * 2f;
+
+        yield return new WaitForSeconds(0.2f);
+        SlashSpell newSpell1 = Instantiate(this);
+        newSpell1.canBeMultiplied = false;
+        newSpell1.initialize(emitter, position1, farTarget);
+
+        yield return new WaitForSeconds(0.2f);
+        SlashSpell newSpell2 = Instantiate(this);
+        newSpell2.canBeMultiplied = false;
+        newSpell2.initialize(emitter, position2, farTarget);
+    }
+
+    void activateReflect()
+    {
+        foreach (SpellDeflector deflector in GetComponentsInChildren<SpellDeflector>())
+            deflector.setActive(true);
     }
 
     void FixedUpdate()

@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     private MovingCharacter movingChar;
 
     private float[] elementMultiplier;
+    private bool[] hasItemPerk;
 
 	void Awake()
 	{
@@ -21,8 +22,11 @@ public class Inventory : MonoBehaviour
 		equippedItems = new EquipableItemStats[Enum.GetNames(typeof(ItemSlot)).Length];
 		inventoryItems = new List<EquipableItemStats> ();
         elementMultiplier = new float[Enum.GetNames(typeof(MagicElement)).Length];
+        hasItemPerk = new bool[Enum.GetValues(typeof(ItemPerk)).Length];
         for (int i = 0; i < elementMultiplier.Length; i++)
             elementMultiplier[i] = 1.0f;
+        for (int i = 0; i < hasItemPerk.Length; i++)
+            hasItemPerk[i] = false;
 	}
 
 	void Start()
@@ -77,7 +81,21 @@ public class Inventory : MonoBehaviour
         refreshMultipliers();
         refreshHP();
         refreshMoveSpeed();
+        refreshItemPerks();
         characterWindow.refresh();
+    }
+
+    private void refreshItemPerks()
+    {
+        for (int i = 0; i < hasItemPerk.Length; i++)
+            hasItemPerk[i] = false;
+        foreach (EquipableItemStats itemStats in equippedItems)
+        {
+            if (itemStats == null)
+                continue;
+            foreach (ItemPerk perk in itemStats.itemPerks)
+                hasItemPerk[(int)perk] = true;
+        }
     }
 
     public void refreshMoveSpeed()
@@ -151,6 +169,11 @@ public class Inventory : MonoBehaviour
             }
             elementMultiplier[i] = result * multiplier;
         }
+    }
+
+    internal bool getItemPerk(ItemPerk itemPerk)
+    {
+        return hasItemPerk[(int)itemPerk];
     }
 
     public float getDamageMultiplier(MagicElement element)

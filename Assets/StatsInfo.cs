@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public ItemStats stats;
+    public InventoryStats stats;
     private Text text;
     private Tooltip tooltip;
     private int value;
@@ -19,7 +19,7 @@ public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (stats != ItemStats.Power)
+        if (stats != InventoryStats.Power)
             return;
 
         if (tooltip == null)
@@ -35,7 +35,7 @@ public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (stats != ItemStats.Power)
+        if (stats != InventoryStats.Power)
             return;
         tooltip.gameObject.SetActive(false);
     }
@@ -47,15 +47,15 @@ public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.value = value;
         switch (stats)
         {
-            case ItemStats.Power: text.text = "Power : <color=magenta>" + value + "</color>";
+            case InventoryStats.Power: text.text = "Power : <color=magenta>" + value + "</color>";
                 break;
-            case ItemStats.HP:
+            case InventoryStats.HP:
                 text.text = "HP : <color=green>" + value + "</color>";
                 break;
-            case ItemStats.MoveSpeed:
+            case InventoryStats.MoveSpeed:
                 text.text = "Move Speed : <color=orange>" + value + "</color>";
                 break;
-            case ItemStats.Gold:
+            case InventoryStats.Gold:
                 text.text = "Gold : <color=yellow>" + value + "</color>";
                 break;
         }
@@ -68,16 +68,16 @@ public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         this.fvalue = value;
         switch (stats)
         {
-            case ItemStats.Power:
+            case InventoryStats.Power:
                 text.text = "Power : <color=magenta>" + fvalue + "</color>";
                 break;
-            case ItemStats.HP:
+            case InventoryStats.HP:
                 text.text = "HP : <color=green>" + fvalue + "</color>";
                 break;
-            case ItemStats.MoveSpeed:
+            case InventoryStats.MoveSpeed:
                 text.text = "Move Speed : <color=orange>" + fvalue + "</color>";
                 break;
-            case ItemStats.Gold:
+            case InventoryStats.Gold:
                 text.text = "Gold : <color=yellow>" + fvalue + "</color>";
                 break;
         }

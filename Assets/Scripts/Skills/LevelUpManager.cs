@@ -73,7 +73,7 @@ public class LevelUpManager : MonoBehaviour
         setIconsActive(true);
         for (int i = 0; i < 3; i++)
         {
-            ItemWithDropChance chosenSkill = Utils.getObjectWithProbability(remainingSkills);
+            ItemWithDropChance chosenSkill = ItemWithDropChance.getItem(remainingSkills);
             skillChoices[i] = chosenSkill.item;
             if (skillChoices[i] == null)    // No more skills to pick from
                 return;

@@ -38,7 +38,8 @@ public class MovingSpell : SpellController
         if (emitter.targetOpponent)
         {
             autoPilot = GetComponent<SpellAutoPilot>();
-            if (autoPilot)
+
+            if (autoPilot && autoPilot.activated)
             {
                 if (damage >= 0)
                     autoPilot.lockToObject(emitter.targetOpponent.transform);
