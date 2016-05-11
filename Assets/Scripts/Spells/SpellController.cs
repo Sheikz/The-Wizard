@@ -38,6 +38,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     [HideInInspector]
     public MoveSpellCaster moveSpellCaster;
     protected SpellAutoPilot autoPilot;
+    protected MultipleSpells multiSpells;
+    protected ChainSpell chainSpell;
 
     public bool collidesWithWalls = true;
 	[HideInInspector]
@@ -52,6 +54,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		blockingLayer = GameManager.instance.layerManager.spellBlockingLayer;
 		ignoredColliders = new List<Collider2D>();
         autoPilot = GetComponent<SpellAutoPilot>();
+        multiSpells = GetComponent<MultipleSpells>();
+        chainSpell = GetComponent<ChainSpell>();
     }
 
 	protected virtual void Start()
@@ -76,6 +80,14 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
             case "Energy Bolt":
                 if (stats.getItemPerk(ItemPerk.EnergyBoltAimBot) && autoPilot)
                     autoPilot.activated = true;
+                break;
+            case "Ice Shard":
+                if (stats.getItemPerk(ItemPerk.IceShardMultiply) && multiSpells)
+                    multiSpells.activated = true;
+                break;
+            case "Spark":
+                if (stats.getItemPerk(ItemPerk.SparkBounce) && chainSpell)
+                    chainSpell.activated = true;
                 break;
         }
     }

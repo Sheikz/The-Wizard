@@ -11,9 +11,9 @@ GameObject:
   - 82: {fileID: 8227106}
   - 50: {fileID: 5050892}
   - 58: {fileID: 5801678}
-  - 114: {fileID: 11407344}
   - 114: {fileID: 11427006}
   - 114: {fileID: 11488778}
+  - 114: {fileID: 114000013282577150}
   m_Layer: 0
   m_Name: FrostProjectileTinyPiercing
   m_TagString: Untagged
@@ -313,19 +313,6 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &11407344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 0
-  delayBetweenDamage: 0
 --- !u!114 &11427006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -352,8 +339,7 @@ MonoBehaviour:
   damage: 100
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -3961,3 +3947,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101768}
   m_IsPrefabParent: 1
+--- !u!114 &114000013282577150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa386d61bfcded43a25740489f66308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  additionalSpellsPerSide: 1
+  angleBetweenSpells: 7
+  canBeMultiplied: 1
+  activated: 0

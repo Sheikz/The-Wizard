@@ -15,7 +15,8 @@ public class SpellCaster : MonoBehaviour
 	protected bool[] isOnCoolDown;
 	private Image[] spellIcons;
 	private HashSet<Spray> activeSprays;
-	private bool isHero = false;
+    [HideInInspector]
+	public bool isHero = false;
 	private SpellBook spellBook;
 
 	private bool isCasting = false;

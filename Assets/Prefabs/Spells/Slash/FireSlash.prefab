@@ -417,6 +417,7 @@ MonoBehaviour:
   angleDeviation:
     minimum: -15
     maximum: 30
+  targetToMouseCursor: 1
 --- !u!114 &11420102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -431,6 +432,7 @@ MonoBehaviour:
   angleDeviation:
     minimum: -15
     maximum: 30
+  targetToMouseCursor: 1
 --- !u!114 &11434444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -457,6 +459,7 @@ MonoBehaviour:
   angleDeviation:
     minimum: -15
     maximum: 30
+  targetToMouseCursor: 1
 --- !u!114 &11468650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -507,12 +510,13 @@ MonoBehaviour:
   damage: 75
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   colliders:

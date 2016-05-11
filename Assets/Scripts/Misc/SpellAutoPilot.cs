@@ -20,11 +20,21 @@ public class SpellAutoPilot : AutoPilot
 
     void Start()
     {
-        // if the spell is emitted by the hero, it needs to lock on monsters
-        if (spell.emitter.gameObject.CompareTag("Hero") || spell.emitter.gameObject.CompareTag("HeroCompanion"))
-            enemyLayer = GameManager.instance.layerManager.monsterLayer;
-        else    // If not, it needs to lock on hero
-            enemyLayer = GameManager.instance.layerManager.heroLayer;
+        if (spell.damage >= 0)
+        {
+            // if the spell is emitted by the hero, it needs to lock on monsters
+            if (spell.emitter.gameObject.CompareTag("Hero") || spell.emitter.gameObject.CompareTag("HeroCompanion"))
+                enemyLayer = GameManager.instance.layerManager.monsterLayer;
+            else    // If not, it needs to lock on hero
+                enemyLayer = GameManager.instance.layerManager.heroLayer;
+        }
+        else // If it's a healing spell, it's the other way around
+        {
+            if (spell.emitter.gameObject.CompareTag("Hero") || spell.emitter.gameObject.CompareTag("HeroCompanion"))
+                enemyLayer = GameManager.instance.layerManager.heroLayer;
+            else
+                enemyLayer = GameManager.instance.layerManager.monsterLayer;
+        }
     }
 
     void FixedUpdate()

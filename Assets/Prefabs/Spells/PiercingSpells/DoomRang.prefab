@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11456292}
   - 114: {fileID: 11430410}
   - 114: {fileID: 11490360}
+  - 114: {fileID: 114000013995426688}
   m_Layer: 0
   m_Name: DoomRang
   m_TagString: Untagged
@@ -292,12 +293,13 @@ MonoBehaviour:
   damage: 100
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
@@ -313,11 +315,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
+  searchNewTargetIfDead: 1
+  slowMode: 0
+  rotatingStep: 0.1
+  velocityIfStopped: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
+  state: 0
   detectionRadius: 3
   detectionDistance: 3
-  rotatingStep: 0.1
-  slowMode: 0
-  targetPosition: {x: 0, y: 0, z: 0}
+  explodeOnlyOnTarget: 0
 --- !u!114 &11475696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7471,3 +7478,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101476}
   m_IsPrefabParent: 1
+--- !u!114 &114000013995426688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 864aaab45fc107143bd7c414c58af5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 11443506, guid: a3d933b0c9fc155428414376f3594110, type: 2}
+  destroyWhenExplodes: 1
+  explodeOnTouch: 0
+  delayBetweenExplosions: 0.5
+  automaticExplosion: 0

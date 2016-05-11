@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour
     private MovingCharacter movingChar;
 
     private float[] elementMultiplier;
-    private bool[] hasItemPerk;
+    public bool[] hasItemPerk;
 
 	void Awake()
 	{

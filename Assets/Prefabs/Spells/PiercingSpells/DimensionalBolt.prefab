@@ -22,7 +22,6 @@ GameObject:
   - 82: {fileID: 82000013332968658}
   - 58: {fileID: 58000011455825630}
   - 50: {fileID: 50000012584609600}
-  - 114: {fileID: 114000011736935208}
   - 114: {fileID: 114000013671934406}
   - 114: {fileID: 114000013150055302}
   m_Layer: 12
@@ -306,19 +305,6 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000011736935208
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010688247590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageType: 0
-  delayBetweenDamage: 0
 --- !u!114 &114000013150055302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -346,8 +332,7 @@ MonoBehaviour:
   damage: 200
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -358,7 +343,7 @@ MonoBehaviour:
   ignoredColliders: []
   speed: 5
   explosion: {fileID: 198928, guid: aa786cdc685a11843bbf5188d71e7f7d, type: 2}
-  pierceCausesExplosion: 0
+  pierceCausesExplosion: 1
 --- !u!114 &114000013671934406
 MonoBehaviour:
   m_ObjectHideFlags: 1

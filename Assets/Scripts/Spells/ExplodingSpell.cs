@@ -11,6 +11,7 @@ public class ExplodingSpell : MonoBehaviour
     [Tooltip("Does the object need to contain the center of the collider to explode?")]
     public bool explodeOnTouch = false;
     public float delayBetweenExplosions = 0.5f;
+    public bool automaticExplosion = true;
 
     private List<Collider2D> affectedObjects;
     private SpellController spell;
@@ -35,6 +36,9 @@ public class ExplodingSpell : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!automaticExplosion)
+            return;
+
         foreach (Collider2D collider in affectedObjects)
         {
             if (!collider)
@@ -103,6 +107,9 @@ public class ExplodingSpell : MonoBehaviour
     // Weird fix because OnTriggerStay2D randomly doesn't work. Need to keep a list of objects triggering
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (!automaticExplosion)
+            return;
+
         if (spell.ignoredColliders.Contains(other))
             return;
 
@@ -128,6 +135,9 @@ public class ExplodingSpell : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (!automaticExplosion)
+            return;
+
         if (other)
         {
             affectedObjects.Remove(other);

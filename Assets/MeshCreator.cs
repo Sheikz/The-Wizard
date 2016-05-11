@@ -85,6 +85,8 @@ public class MeshCreator : MonoBehaviour
                 pixels[1] = getPixels(1, 15);
                 tag = "Floor";
                 name = "Floor";
+                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Hole:
                 pixels = new Color[9][];
@@ -99,6 +101,8 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
                 name = "Hole";
+                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Carpet:
                 pixels = new Color[9][];
@@ -113,6 +117,8 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 8);
                 tag = "Untagged";
                 name = "Carpet";
+                meshRenderer.sortingOrder = 2;
+                meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Deco1:
                 pixels = new Color[9][];
@@ -142,6 +148,8 @@ public class MeshCreator : MonoBehaviour
                 }
                 tag = "Untagged";
                 name = "FloorDeco";
+                meshRenderer.sortingOrder = 1;
+                meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Deco2:
                 pixels = new Color[9][];
@@ -171,6 +179,8 @@ public class MeshCreator : MonoBehaviour
                 }
                 tag = "Untagged";
                 name = "FloorDeco";
+                meshRenderer.sortingOrder = 1;
+                meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Wall:
                 pixels = new Color[6][];
@@ -188,12 +198,16 @@ public class MeshCreator : MonoBehaviour
                 exteriorCornerRight = getPixels(5, 13, 2, 2);
                 tag = "Wall";
                 name = "Wall";
+                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingLayerName = "Walls";
                 break;
             case MeshType.WallCorner:
                 pixels = new Color[1][];
                 pixels[0] = getPixels(7, 11, 2, 2);
                 tag = "Wall";
                 name = "Corner";
+                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingLayerName = "Walls";
                 break;
         }
         
@@ -489,7 +503,10 @@ public class MeshCreator : MonoBehaviour
             collider = gameObject.AddComponent<BoxCollider2D>();
         collider.size = new Vector2(size.x, size.y);
         collider.offset = new Vector2(size.x / 2f, size.y / 2f);
-        collider.isTrigger = true;
+        if (meshType == MeshType.Hole)
+            collider.isTrigger = true;
+        else
+            collider.isTrigger = false;
     }
 
     /// <summary>

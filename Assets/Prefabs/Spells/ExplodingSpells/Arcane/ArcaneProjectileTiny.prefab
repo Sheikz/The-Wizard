@@ -47,6 +47,7 @@ GameObject:
   - 50: {fileID: 5002604}
   - 114: {fileID: 11475406}
   - 114: {fileID: 11473316}
+  - 114: {fileID: 114000012635496200}
   m_Layer: 12
   m_Name: ArcaneProjectileTiny
   m_TagString: Untagged
@@ -363,6 +364,7 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
 --- !u!198 &19855184
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -3958,3 +3960,25 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179058}
   m_IsPrefabParent: 1
+--- !u!114 &114000012635496200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a969074387d6f4e2f85be61e0c520f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  searchNewTargetIfDead: 1
+  slowMode: 0
+  rotatingStep: 0.1
+  velocityIfStopped: 3
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetObject: {fileID: 0}
+  state: 0
+  detectionRadius: 3
+  detectionDistance: 3
+  explodeOnlyOnTarget: 0

@@ -13,6 +13,7 @@ public class Room : MonoBehaviour, IComparable<Room>
     [Tooltip("Indicates if the room can be merged with another")]
     public bool canBeMergedAtEntrance = true;
     public bool canBeMergedAtExit = true;
+    public bool randomized = true;
     public bool hasCarpet = false;
     public bool hasPillars = false;
     public List<GameObject> carpets;
@@ -41,7 +42,7 @@ public class Room : MonoBehaviour, IComparable<Room>
     {
         map = GetComponentInParent<RoomBasedMapGenerator>();
         if (map == null)
-            Debug.Log("map not found");
+            Debug.Log("Room: "+name+": map not found");
     }
 
     public BoxCollider2D[] getEdges()
@@ -78,6 +79,9 @@ public class Room : MonoBehaviour, IComparable<Room>
 
     public void randomize()
     {
+        if (!randomized)
+            return;
+
         hasCarpet = Utils.randomBool();
         hasPillars = Utils.randomBool();
     }

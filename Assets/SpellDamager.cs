@@ -69,7 +69,7 @@ public class SpellDamager : MonoBehaviour
         if (damagedObjects.Contains(dmg))
             return;
 
-        dmg.doDamage(spell.emitter, spell.damage);
+        dmg.doDamage(this, spell.emitter, spell.damage);
         if (drainSpell)
             drainSpell.absorbDamage(spell.damage);
 

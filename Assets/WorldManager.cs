@@ -35,6 +35,8 @@ public class WorldManager : MonoBehaviour
     public Sprite[] deco1Side;
     public Sprite[] deco1InteriorCorner;
     public Sprite[] deco1ExteriorCorner;
+    public Sprite[] wallTop;
+    public Sprite[] wallBottom;
 
     void Awake()
     {

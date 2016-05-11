@@ -7,6 +7,10 @@ public class RoomEdges : MonoBehaviour
     void Awake()
     {
         room = GetComponentInParent<Room>();
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.isTrigger = true;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

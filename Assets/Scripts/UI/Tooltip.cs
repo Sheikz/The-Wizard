@@ -10,6 +10,7 @@ public class Tooltip : MonoBehaviour
     public int verticalPadding = 10;
     private RectTransform rectTransform;
     private bool positionFixed;
+    private Inventory heroInventory;
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class Tooltip : MonoBehaviour
         canvas.sortingOrder = 10;
         rectTransform = GetComponent<RectTransform>();
         positionFixed = false;
+        heroInventory = GameManager.instance.hero.GetComponent<Inventory>();
     }
 
     private string parseDescription(SpellController spell, int damage)
@@ -59,6 +61,14 @@ public class Tooltip : MonoBehaviour
         }
         result += "\n"+spell.description;
 
+        foreach (ItemPerk perk in Enum.GetValues(typeof(ItemPerk)))
+        {
+            if (heroInventory.hasItemPerk[(int)perk] && perk.getSpellName() == spell.spellName)
+            {
+                result += "\n<color=orange>• " + perk.getDescription() + "</color>";
+            }
+        }
+
         SlowTime slowTime = spell.GetComponent<SlowTime>();
         if (slowTime)
             result = result.Replace("<timeMultiplier>", "<color=magenta>"+((1-slowTime.timeMultiplier)*100).ToString() + "%</color>");
@@ -90,7 +100,16 @@ public class Tooltip : MonoBehaviour
             return "";
         
 		string result = "";
-		result += "<size=18>" + itemStats.name + "</size>";
+        string nameColor = "white";
+        switch (itemStats.rarity)
+        {
+            case ItemRarity.Common: nameColor = "white"; break;
+            case ItemRarity.Rare: nameColor = "blue"; break;
+            case ItemRarity.Epic: nameColor = "magenta"; break;
+            case ItemRarity.Legendary: nameColor = "orange"; break;
+        }
+        result += "<size=12>"+itemStats.rarity.ToString()+"</size>";
+		result += "\n<size=18><color="+nameColor+">" + itemStats.name + "</color></size>";
         if (itemStats.power > 0)
 		    result += "\nPower: +<color=magenta>" + itemStats.power + "</color>";
         for (int i = 0; i < itemStats.magicModifiers.Length; i++)
@@ -113,7 +132,7 @@ public class Tooltip : MonoBehaviour
             result += "\n";
         foreach (ItemPerk perk in itemStats.itemPerks)
         {
-            result += "\n<color=orange>"+perk.getDescription()+"</color>";
+            result += "\n<color=orange>• " + perk.getDescription()+"</color>";
         }
 
 		return result;

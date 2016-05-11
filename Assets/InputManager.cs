@@ -128,6 +128,18 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Return the position of the cursor at this moment
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 getCursorPosition()
+    {
+        Vector3 result;
+        result = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        result.z = 0;    // fix because camera see point at z = -5
+        return result;
+    }
+
+    /// <summary>
     /// Return true only the frame the key was pressed
     /// </summary>
     /// <param name="cmd"></param>

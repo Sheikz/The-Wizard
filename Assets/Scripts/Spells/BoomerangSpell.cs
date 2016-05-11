@@ -61,7 +61,24 @@ public class BoomerangSpell : MovingSpell
                     isBackToEmitter();
                 break;
         }
+    }
 
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("BlockingLayer"))
+            return;
+
+        if (!collision.bounds.Contains(transform.position))
+            return;
+
+        explode();
+    }
+
+    void explode()
+    {
+        ExplodingSpell explodingSpell = GetComponent<ExplodingSpell>();
+        if (explodingSpell)
+            explodingSpell.explode();
     }
 
     /// <summary>

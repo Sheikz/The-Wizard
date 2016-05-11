@@ -5,6 +5,8 @@ using System;
 public class SpellDeflector : MonoBehaviour
 {
     public Countf angleDeviation;
+    [Tooltip("Does the spell get reflected in the direction of the mouse?")]
+    public bool targetToMouseCursor = false;
 
     private SpellCaster emitter;
     private bool activated = false;
@@ -36,8 +38,20 @@ public class SpellDeflector : MonoBehaviour
         Rigidbody2D otherRB = otherSpell.GetComponent<Rigidbody2D>();
         if (otherRB)
         {
-            float deviation = angleDeviation.getRandom();
-            otherRB.velocity *= -1;
+            float deviation = 0;
+            if (targetToMouseCursor && emitter.isHero)
+            {
+                Vector3 target = InputManager.instance.getCursorPosition();
+                Vector3 desiredDirection = target - transform.position;
+                float magnitude = otherRB.velocity.magnitude;
+                deviation = Vector3.Angle(-otherRB.velocity, desiredDirection);
+                otherRB.velocity = desiredDirection.normalized * magnitude;
+            }
+            else
+            {
+                deviation = angleDeviation.getRandom();
+                otherRB.velocity *= -1;
+            }
             otherRB.velocity.rotate(deviation);
             otherSpell.transform.Rotate(0, 0, 180 - deviation);
             otherSpell.emitter = emitter;

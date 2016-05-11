@@ -7,6 +7,7 @@ public class ChainSpell : MonoBehaviour
     public float chainRadius = 3f;
     public int numberOfBounces = 5;
     private SpellController spell;
+    public bool activated;
 
     void Awake()
     {
@@ -23,7 +24,10 @@ public class ChainSpell : MonoBehaviour
     /// </summary>
     public void bounce(Collider2D col)
     {
-        if (numberOfBounces <= 0)
+        if (!activated)
+            return;
+
+        if (numberOfBounces < 0)
             return;
 
         if (col)

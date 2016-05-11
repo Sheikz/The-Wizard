@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class Damageable : MonoBehaviour
@@ -25,15 +26,22 @@ public class Damageable : MonoBehaviour
     private Material originalMaterial;
     private bool isSlowed = false;
     private FloatingHPBar floatingHPBar;
+    private List<SpellDamager> spellDamagers;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        maxHP = baseHP;
-        currentHP = maxHP;
         movingChar = GetComponent<MovingCharacter>();
         floatingText = UIManager.instance.floatingText;
         originalMaterial = spriteRenderer.material;
+        spellDamagers = new List<SpellDamager>();
+    }
+
+    void Start()
+    {
+        
+        maxHP = baseHP;
+        currentHP = maxHP;
         isDead = false;
     }
     
@@ -65,6 +73,38 @@ public class Damageable : MonoBehaviour
         inflictDamage(emitter, damage);
     }
 
+    internal void doDamage(SpellDamager spellDamager, SpellCaster emitter, int damage)
+    {
+        if (isDead)
+            return;
+
+        if (isInvincible)
+            return;
+
+        if (!isDamageable(emitter))  // Am I damaging myself?
+            return;
+
+        if (spellDamagers.Contains(spellDamager)) // Already damaged by this object ?
+            return;
+
+        StartCoroutine(startDamageCooldown(spellDamager));
+
+        if (damage <= 0)
+        {
+            Debug.Log("null damage detected");
+            return;
+        }
+
+        inflictDamage(emitter, damage);
+    }
+
+    private IEnumerator startDamageCooldown(SpellDamager spellDamager)
+    {
+        spellDamagers.Add(spellDamager);
+        yield return new WaitForSeconds(invincibilityTime);
+        spellDamagers.Remove(spellDamager);
+    }
+
     internal void multiplyBaseHP(float mult, int hpFromItems, bool updateCurrentHP)
     {
         float ratio = 1.0f;
@@ -76,6 +116,8 @@ public class Damageable : MonoBehaviour
         maxHP += hpFromItems;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
     }
+
+
 
     public void inflictDamage(SpellCaster emitter, int damage)
     {
