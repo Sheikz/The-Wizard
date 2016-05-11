@@ -15,9 +15,6 @@ public class RoomBasedMapGenerator : MonoBehaviour
     public int roomNumber;
     public int distanceBetweenRoom = 4;
     public GridMap gridMap;
-    public List<ItemWithDropChance> monsters;
-    [Range(0, 100)]
-    public int monsterNumber;
     [Range(0f,1f)]
     public float mergingChance = 0.5f;
 
@@ -204,6 +201,8 @@ public class RoomBasedMapGenerator : MonoBehaviour
     /// <summary>
     /// Create the monsters
     /// </summary>
+    ///
+    /*
     public void createMonsters()
     {
         if (monsters.Count == 0)
@@ -241,7 +240,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
             monsterList.Add(newMonster);
             monsterCount++;
         }
-    }
+    }*/
 
     /// <summary>
     /// Check if the room can be created at this position.

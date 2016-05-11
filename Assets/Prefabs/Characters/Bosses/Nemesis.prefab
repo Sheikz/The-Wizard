@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012655025566}
+  m_IsPrefabParent: 1
+--- !u!1 &1000012655025566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013710292466}
+  - 212: {fileID: 212000010008397382}
+  - 114: {fileID: 114000011143053010}
+  - 114: {fileID: 114000012344704814}
+  - 114: {fileID: 114000013475026866}
+  - 114: {fileID: 114000013215616418}
+  - 58: {fileID: 58000013809200694}
+  - 50: {fileID: 50000010970892656}
+  - 114: {fileID: 114000014099787968}
+  - 95: {fileID: 95000010100269812}
+  - 114: {fileID: 114000011760703316}
+  - 114: {fileID: 114000012993379334}
+  - 114: {fileID: 114000010547074648}
+  - 114: {fileID: 114000011819687876}
+  m_Layer: 9
+  m_Name: Nemesis
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013710292466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000010970892656
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &58000013809200694
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.45
+--- !u!95 &95000010100269812
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 5b76871ce792c4e46986021921b5be88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010547074648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638c76e59a77f714bb90df70ca88ed31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  DamageMultiplierPerLevel: 1.1
+  HPMultiplierPerLevel: 1.1
+  cooldownModifier: 2
+  dungeonLevelMultiplier: 1.2
+  monsterDamageMultiplier: 0.5
+--- !u!114 &114000011143053010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a014df5fb9619294695ba5d784a2d8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 2.5
+  speed: 2.5
+  direction: {x: 0, y: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
+  circleCollider: {fileID: 0}
+  canAct: 1
+  isFlying: 0
+  idleChance: 0.3
+  idleTime:
+    minimum: 1
+    maximum: 3
+  goalDistance: 10
+  visionDistance: 10
+  preferedDistance:
+    minimum: 0
+    maximum: 3
+  strafeFrequency:
+    minimum: 0.2
+    maximum: 0.5
+  isGhost: 0
+  deathAnimationTime: 3
+  alliesLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &114000011760703316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef24803d4a9806478b2370fa8c5e631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMana: 0
+  maxMana: 0
+  manaRegenPerSecond: 0
+  spellList:
+  - {fileID: 114000010591845390, guid: b4ff12cc72c68c143807b41559f89200, type: 2}
+  - {fileID: 114000012935239900, guid: dfa76658dd5b0314384e096106c82b78, type: 2}
+  - {fileID: 11436048, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
+  isHero: 0
+  isMonster: 0
+  activeCircleSpells: []
+  targetOpponent: {fileID: 0}
+  targetAlly: {fileID: 0}
+--- !u!114 &114000011819687876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imunizedTo: 
+--- !u!114 &114000012344704814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHP: 500
+  invincibilityTime: 0.1
+  isHealable: 0
+  healAnimation: {fileID: 0}
+  flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
+  showHPBar: 1
+  maxHP: 1000
+  currentHP: 0
+  onDamageCooldown: 0
+  isInvincible: 0
+  isDead: 0
+--- !u!114 &114000012993379334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8de672193058b408731f13b6e52bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressiveApparitionTime: 0.1
+--- !u!114 &114000013215616418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af756f9abb55afd4ba3a6eeaea00521c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldDropItems: 1
+--- !u!114 &114000013475026866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e5ff01a4f566144a02389dfb9c6a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackImmuneTime: 1
+--- !u!114 &114000014099787968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f60ca7e18d43e4ab14de05f130fdf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experience: 40
+--- !u!212 &212000010008397382
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012655025566}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -635551827
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 86eb6a1d9ccdca643983f8f67600c706, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0

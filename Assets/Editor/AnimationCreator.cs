@@ -11,6 +11,8 @@ public class AnimationCreator : EditorWindow
     private RuntimeAnimatorController animatorController;
     private Sprite spriteSheet;
     private string spriteName = "";
+    private int numberOfFramesPerAnimation = 4;
+    private bool rightThenLeft = false;
 
     [MenuItem("Window/Animation Creator")]
     public static void ShowWindow()
@@ -23,8 +25,10 @@ public class AnimationCreator : EditorWindow
         GUILayout.Label("Spritesheet of character", EditorStyles.boldLabel);
         GUILayout.Label("Name of the folder where the monster is located", EditorStyles.wordWrappedMiniLabel);
         spriteName = GUILayout.TextField(spriteName);
+        numberOfFramesPerAnimation = EditorGUILayout.IntField("Number of Frames", numberOfFramesPerAnimation);
+        rightThenLeft = EditorGUILayout.Toggle("Right then Left", rightThenLeft);
 
-        animatorController = (RuntimeAnimatorController)EditorGUILayout.ObjectField("Animator Controller to override", animatorController, typeof(RuntimeAnimatorController), false);
+    animatorController = (RuntimeAnimatorController)EditorGUILayout.ObjectField("Animator Controller to override", animatorController, typeof(RuntimeAnimatorController), false);
 
         if (GUILayout.Button("Create animations"))
         {
@@ -36,12 +40,18 @@ public class AnimationCreator : EditorWindow
     {
         string[] states = { "Idle", "Walking", "Attacking", "Dying" };
         string[] directions = { "Down", "Top", "Left", "Right" };
+        if (rightThenLeft)
+        {
+            directions[2] = "Right";
+            directions[3] = "Left";
+        }
+
         Debug.Log("sprite name: " + spriteName);
         Sprite[] sprites = Resources.LoadAll<Sprite>("CharacterSprites/"+spriteName + "/");
         Debug.Log(sprites.Length);
-        if (sprites.Length != 64)
+        if (sprites.Length != 16*numberOfFramesPerAnimation)
         {
-            Debug.LogError("Invalid sprite sheet " + spriteName+". Length should be 64, is " + sprites.Length);
+            Debug.LogError("Invalid sprite sheet " + spriteName+". Length should be "+ 16 * numberOfFramesPerAnimation+", is " + sprites.Length);
             return;
         }
         AnimationClip[] clips = new AnimationClip[20];  // 16 for the usual ones, 4 for PrepareAttack
@@ -86,19 +96,19 @@ public class AnimationCreator : EditorWindow
             {
                 ObjectReferenceKeyframe kf = new ObjectReferenceKeyframe();
                 kf.time = i / 12f;
-                kf.value = sprites[row * 16 + 8 + i];
+                kf.value = sprites[row * (numberOfFramesPerAnimation*4) + (numberOfFramesPerAnimation*2) + i];
                 keyFrames[i] = kf;
             }
         }
         else
         {
-            keyFrames = new ObjectReferenceKeyframe[4];
+            keyFrames = new ObjectReferenceKeyframe[numberOfFramesPerAnimation];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < numberOfFramesPerAnimation; i++)
             {
                 ObjectReferenceKeyframe kf = new ObjectReferenceKeyframe();
                 kf.time = i / 12f;
-                kf.value = sprites[row * 4 + i];
+                kf.value = sprites[row * numberOfFramesPerAnimation + i];
                 keyFrames[i] = kf;
             }
         }
@@ -136,5 +146,18 @@ public class AnimationCreator : EditorWindow
         overrideController["PrepareToAttackLeft"] = clips[18];
         overrideController["PrepareToAttackTop"] = clips[17];
         overrideController["PrepareToAttackRight"] = clips[19];
+        if (rightThenLeft)
+        {
+            overrideController["M3IdleLeft"] = clips[12];
+            overrideController["M3IdleRight"] = clips[8];
+            overrideController["M3AttackingLeft"] = clips[14];
+            overrideController["M3AttackingRight"] = clips[10];
+            overrideController["M3WalkingLeft"] = clips[13];
+            overrideController["M3WalkingRight"] = clips[9];
+            overrideController["M3DyingLeft"] = clips[15];
+            overrideController["M3DyingRight"] = clips[11];
+            overrideController["PrepareToAttackLeft"] = clips[19];
+            overrideController["PrepareToAttackRight"] = clips[18];
+        }
     }
 }
