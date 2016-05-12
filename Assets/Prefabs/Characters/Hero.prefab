@@ -112,7 +112,7 @@ Animator:
   m_GameObject: {fileID: 191952}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 184e047ac9497544eb86423573e61549, type: 2}
+  m_Controller: {fileID: 22100000, guid: a53baa9ebdb47ae4a8ae4dede41d9b09, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,7 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 1
   maxMana: 100
-  manaRegenPerSecond: 5
+  baseManaRegen: 5
+  baseCritChance: 50
   spellList:
   - {fileID: 0}
   - {fileID: 0}
@@ -223,6 +224,7 @@ MonoBehaviour:
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
   targetAlly: {fileID: 0}
+  critChance: 0
 --- !u!114 &11489054
 MonoBehaviour:
   m_ObjectHideFlags: 1

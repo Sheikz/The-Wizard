@@ -74,7 +74,7 @@ public class FloatingText : MonoBehaviour
     /// </summary>
     /// <param name="parent">Parent.</param>
     /// <param name="value">Value.</param>
-	public void initialize(GameObject parent, int value) // Initialization attached to a parent
+    public void initialize(GameObject parent, int value) // Initialization attached to a parent
 	{
         if (value >= 1000000)
             text.text = (value / 1000000).ToString() + "M";
@@ -82,11 +82,18 @@ public class FloatingText : MonoBehaviour
             text.text = (value / 1000).ToString() + "K";
         else
             text.text = value.ToString();
-        
+
 		this.parent = parent;
 		parentPosition = parent.transform.position;
 		parentRadius = parent.GetComponent<CircleCollider2D>().radius;
 	}
+
+    public void setCriticalHit()
+    {
+        text.color = Color.red;
+        text.fontSize = 24;
+        text.fontStyle = FontStyle.Bold;
+    }
 
 	IEnumerator fadeAfterSeconds(float duration)
 	{

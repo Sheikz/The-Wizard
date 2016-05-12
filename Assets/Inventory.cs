@@ -82,6 +82,21 @@ public class Inventory : MonoBehaviour
         refreshHP();
         refreshMoveSpeed();
         refreshItemPerks();
+
+        int critChance = 0;
+        int manaRegen = 0;
+        foreach (EquipableItemStats stats in equippedItems)
+        {
+            if (!stats)
+                continue;
+            
+            critChance += stats.criticalStrikeChance;
+            manaRegen += stats.energyRegen;
+        }
+
+        characterStats.refreshCritChance(critChance);
+        characterStats.refreshManaRegen(manaRegen);
+
         characterWindow.refresh();
     }
 

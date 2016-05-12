@@ -42,6 +42,16 @@ public abstract class CharacterStats : MonoBehaviour
         this.level = level;
     }
 
+    public void refreshCritChance(int critChance)
+    {
+        caster.setCriticalChance(critChance);
+    }
+
+    public void refreshManaRegen(int manaRegen)
+    {
+        caster.setManaRegen(manaRegen);
+    }
+
     protected float getDamageMultiplier()
     {
         return Mathf.Pow(DamageMultiplierPerLevel, level-1);

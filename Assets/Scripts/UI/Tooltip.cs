@@ -121,6 +121,10 @@ public class Tooltip : MonoBehaviour
                 result += ": +<color=magenta>" + modValue + "%</color>";
             }
         }
+        if (itemStats.criticalStrikeChance > 0)
+            result += "\nCritical strike: +<color=orange>" + itemStats.criticalStrikeChance + "%</color>";
+        if (itemStats.energyRegen > 0)
+            result += "\nEnergy regen: +<color=magenta>" + itemStats.energyRegen + "</color> mana per second";
         if (itemStats.hp > 0)
 		    result += "\nHP: +<color=green>" + itemStats.hp + "</color>";
 

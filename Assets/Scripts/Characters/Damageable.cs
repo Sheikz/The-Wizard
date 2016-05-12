@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Random = UnityEngine.Random;
 
 public class Damageable : MonoBehaviour
 {
@@ -121,7 +122,17 @@ public class Damageable : MonoBehaviour
 
     public void inflictDamage(SpellCaster emitter, int damage)
     {
+        bool criticalHit = false;
+        // Is a critical hit?
+        if (Random.Range(0, 100) < emitter.getCritChance())
+            criticalHit = true;
+
         GameObject dmgText = Instantiate(floatingText) as GameObject;
+        if (criticalHit)
+        {
+            dmgText.GetComponent<FloatingText>().setCriticalHit();
+            damage *= 2;
+        }
         dmgText.GetComponent<FloatingText>().initialize(gameObject, damage);
 
         if (movingChar)
@@ -216,7 +227,7 @@ public class Damageable : MonoBehaviour
 
         refreshHPBar();
         GameObject healText = Instantiate(floatingText) as GameObject;
-        healText.GetComponent<FloatingText>().initialize(gameObject,  life);
+        healText.GetComponent<FloatingText>().initialize(gameObject, life);
         healText.GetComponent<FloatingText>().setColor(Color.green);
     }
 

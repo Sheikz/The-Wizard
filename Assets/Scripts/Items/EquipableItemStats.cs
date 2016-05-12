@@ -54,11 +54,13 @@ public class EquipableItemStats
             case ItemSlot.OffHand:
                 setRandomPower();
                 addPerks();
+                addManaRegen();
                 name = "Book";
                 break;
             case ItemSlot.Armor:
                 setRandomHP();
                 name = "Armor";
+                addManaRegen();
                 addPerks();
                 break;
             case ItemSlot.Gloves:
@@ -78,16 +80,16 @@ public class EquipableItemStats
 
     private void addCriticalChance()
     {
-        int lowerBound = 0;
-        int higherBound = 5;
-        switch (rarity)
-        {
-            case ItemRarity.Common: lowerBound = 0; higherBound = 3; break;
-            case ItemRarity.Rare: lowerBound = 0; higherBound = 5; break;
-            case ItemRarity.Epic: lowerBound = 3; higherBound = 5; break;
-            case ItemRarity.Legendary: lowerBound = 5; higherBound = 10; break;
-        }
-        criticalStrikeChance = Random.Range(lowerBound, higherBound + 1);
+        int[] lowerBound = { 0, 0, 3, 5 };
+        int[] higherBound = { 3, 5, 5, 10 };
+        criticalStrikeChance = Random.Range(lowerBound[(int)rarity], higherBound[(int)rarity] + 1);
+    }
+
+    private void addManaRegen()
+    {
+        int[] lowerBound = { 0, 1, 2, 3 };
+        int[] higherBound = { 2, 3, 4, 5 };
+        energyRegen = Random.Range(lowerBound[(int)rarity], higherBound[(int)rarity]+1);
     }
 
     private void randomizeRarity()

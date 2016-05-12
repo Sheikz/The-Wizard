@@ -9,7 +9,8 @@ public class SpellCaster : MonoBehaviour
 {
 	public bool useMana = false;
 	public int maxMana;
-	public float manaRegenPerSecond;
+	public float baseManaRegen;
+    public int baseCritChance;
 	public SpellController[] spellList;
 
 	protected bool[] isOnCoolDown;
@@ -38,6 +39,8 @@ public class SpellCaster : MonoBehaviour
     [HideInInspector]
     public Transform targetAlly;
     private StatusEffectReceiver statusEffectReceiver;
+    private float manaRegen;
+    private int critChance;
 
     private List<PowerUpBuff> activeBuffs;
     private bool payChannelManaOnCooldown = false;
@@ -82,7 +85,7 @@ public class SpellCaster : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		mana += manaRegenPerSecond * Time.fixedDeltaTime;
+        mana += manaRegen * Time.fixedDeltaTime;
 		if (mana >= maxMana)
 			mana = maxMana;
 	}
@@ -639,6 +642,21 @@ public class SpellCaster : MonoBehaviour
 	{
 		return mana / maxMana;
 	}
+
+    public void setManaRegen(int manaRegen)
+    {
+        this.manaRegen = baseManaRegen + manaRegen;
+    }
+
+    public void setCriticalChance(int critChance)
+    {
+        this.critChance = critChance;
+    }
+
+    public int getCritChance()
+    {
+        return baseCritChance + critChance;
+    }
 
 	internal void addBuff(PowerUpBuff buff)
 	{
