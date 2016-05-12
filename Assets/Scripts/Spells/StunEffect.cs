@@ -6,7 +6,7 @@ public class StunEffect : StatusEffect
 
     public override void inflictStatus(StatusEffectReceiver dmg)
     {
-        Debug.Log("stunning " + name + " for " + stunDuration + " sec");
+        Debug.Log("stunning " + dmg.name + " for " + stunDuration + " sec");
         dmg.stunFor(stunDuration);
     }
 }

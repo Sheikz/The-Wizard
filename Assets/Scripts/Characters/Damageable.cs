@@ -25,7 +25,6 @@ public class Damageable : MonoBehaviour
     public bool isDead = false;
     private int healEffects = 0;
     private Material originalMaterial;
-    private bool isSlowed = false;
     private FloatingHPBar floatingHPBar;
     private List<SpellDamager> spellDamagers;
 

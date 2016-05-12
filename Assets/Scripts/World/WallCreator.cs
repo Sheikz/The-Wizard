@@ -33,7 +33,6 @@ public class WallCreator : WorldObjectCreator
     [HideInInspector]
     public Door door;
     private BoxCollider2D colliderLeft;
-    private BoxCollider2D colliderCenter;
     private BoxCollider2D colliderRight;
 
     private HashSet<Line2D> gizmoPoints;
@@ -59,8 +58,6 @@ public class WallCreator : WorldObjectCreator
                 if (colliderLeft == null)
                     colliderLeft = gameObject.AddComponent<BoxCollider2D>();
 
-                if (colliderCenter != null)
-                    DestroyImmediate(colliderCenter);
                 if (colliderRight != null)
                     DestroyImmediate(colliderRight);
 
@@ -84,8 +81,6 @@ public class WallCreator : WorldObjectCreator
                 if (colliderRight == null && ((length - (doorPosition + 3) > 0) || hasCornerRight))
                     colliderRight = gameObject.AddComponent<BoxCollider2D>();
 
-                if (colliderCenter != null)
-                    DestroyImmediate(colliderCenter);
                 if (colliderLeft != null && doorPosition <= 0 && !hasCornerLeft)
                     DestroyImmediate(colliderLeft);
                 if (colliderRight != null && (length - (doorPosition + 3) <= 0) && !hasCornerRight)

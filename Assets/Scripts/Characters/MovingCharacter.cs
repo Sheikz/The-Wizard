@@ -20,7 +20,6 @@ public abstract class MovingCharacter : MonoBehaviour
     [HideInInspector]
     public CircleCollider2D circleCollider;
     protected SpriteRenderer spriteRenderer;
-    private bool isSlowed = false;
     protected bool canMove = true;      // Can he move?
     [HideInInspector]
     public bool canAct = true;       // Can he do anything at all?
