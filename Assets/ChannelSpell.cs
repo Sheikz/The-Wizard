@@ -8,6 +8,8 @@ public class ChannelSpell : SpellController
     private ChannelSpell currentChannel;
     private Laser laser;
 
+    public bool canMoveWhileCasting = false;
+
     new void Awake()
     {
         base.Awake();
@@ -19,7 +21,31 @@ public class ChannelSpell : SpellController
         currentChannel = Instantiate(this);
         currentChannel.emitter = emitter;
         currentChannel.refresh(target);
+        currentChannel.applyChannelPerks();
         return currentChannel;
+    }
+
+    protected void applyChannelPerks()
+    {
+        PlayerStats stats = emitter.GetComponent<PlayerStats>();
+        if (!stats)
+            return;
+
+        switch (spellName)
+        {
+            case "Dragon Breath":
+                if (stats.getItemPerk(ItemPerk.DragonBreathMove))
+                    canMoveWhileCasting = true;
+                break;
+            case "Ice Beam":
+                if (stats.getItemPerk(ItemPerk.IceBeamMove))
+                    canMoveWhileCasting = true;
+                break;
+        }
+
+        MovingCharacter movingChar = emitter.GetComponent<MovingCharacter>();
+        if (movingChar)
+            movingChar.enableMovement(canMoveWhileCasting);
     }
 
     internal void refresh(Vector3 targetPosition)
@@ -28,13 +54,13 @@ public class ChannelSpell : SpellController
             laser.update(emitter.transform.position, targetPosition);
     }
 
-    internal void stop()
+    internal virtual void stop()
     {
         if (currentChannel)
             Destroy(currentChannel.gameObject);
     }
 
-    internal void update(Vector3 targetPosition)
+    internal virtual void update(Vector3 targetPosition)
     {
         if (currentChannel)
             currentChannel.refresh(targetPosition);

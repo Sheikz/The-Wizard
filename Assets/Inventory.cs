@@ -87,6 +87,8 @@ public class Inventory : MonoBehaviour
         int manaRegen = 0;
         foreach (EquipableItemStats stats in equippedItems)
         {
+            if (stats == null)
+                continue;
             critChance += stats.criticalStrikeChance;
             manaRegen += stats.energyRegen;
         }

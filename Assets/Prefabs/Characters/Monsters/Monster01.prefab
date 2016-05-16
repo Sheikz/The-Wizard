@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013481156612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68319404, y: 24.364586, z: -1}
+  m_LocalPosition: {x: 4.613697, y: 8.726914, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,9 +77,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.03, y: -0.06}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.48
 --- !u!95 &95000010791941122
@@ -139,7 +139,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
-  isRooted: 0
   isFlying: 0
   idleChance: 0.25
   idleTime:
@@ -170,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &114000012422333416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -195,9 +195,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 114000010591845390, guid: b4ff12cc72c68c143807b41559f89200, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -243,7 +245,6 @@ MonoBehaviour:
   cooldownModifier: 3
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 1
-  difficultyModifier: 1
 --- !u!212 &212000013233232380
 SpriteRenderer:
   m_ObjectHideFlags: 1

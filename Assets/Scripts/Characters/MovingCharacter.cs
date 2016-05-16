@@ -42,6 +42,11 @@ public abstract class MovingCharacter : MonoBehaviour
         speed = baseSpeed;
     }
 
+    protected void Start()
+    {
+        rb.freezeRotation = true;
+    }
+
     protected void updateAnimations()
     {
         if (statusEffectReceiver && statusEffectReceiver.isStunned)

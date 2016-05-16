@@ -32,7 +32,6 @@ public class SpellDamager : MonoBehaviour
 
     private void applyLayer()
     {
-
         if (spell.emitter == null)
         {
             Debug.Log("Emitter not defined for " + name);
@@ -48,7 +47,6 @@ public class SpellDamager : MonoBehaviour
         }
     }
 
-    ///Should work, does not work
     void OnTriggerStay2D(Collider2D other)
     {
         if (damageType == DamageType.None)
@@ -64,7 +62,7 @@ public class SpellDamager : MonoBehaviour
         applyDamage(dmg);
     }
 
-    void applyDamage(Damageable dmg)
+    public void applyDamage(Damageable dmg)
     {
         if (damagedObjects.Contains(dmg))
             return;

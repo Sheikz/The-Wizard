@@ -9,13 +9,11 @@ public class MultipleSpells : MonoBehaviour
 
     [HideInInspector]
     public bool canBeMultiplied = true;
-    [HideInInspector]
-    public bool activated;
+    public bool activated = false;
     private SpellController spell;
 
     void Awake()
     {
-        activated = false;
         spell = GetComponent<SpellController>();
     }
 

@@ -94,6 +94,27 @@ public class GridMap
             if (t != null)
                 t.type = TileType.Wall;
         }
+        foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("Roof"))   // Update the obstacles position (pillar, rumbles, ...)
+        {
+            meshCreator = obstacle.GetComponent<MeshCreator>();
+            if (meshCreator)
+            {
+                Debug.Log("here with " + meshCreator.name);
+                positionList = meshCreator.getPositions();
+                foreach (Vector3 pos in positionList)
+                {
+                    Tile t = getTile(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y));
+                    if (t != null)
+                        t.type = TileType.Roof;
+                }
+            }
+            else
+            {
+                int x = Mathf.RoundToInt(obstacle.transform.position.x);
+                int y = Mathf.RoundToInt(obstacle.transform.position.y);
+                getTile(x, y).type = TileType.Roof;
+            }
+        }
         foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("Hole"))   // Update the obstacles position (pillar, rumbles, ...)
         {
             meshCreator = obstacle.GetComponent<MeshCreator>();
@@ -125,7 +146,7 @@ public class GridMap
     /// <returns></returns>
     private float getDistanceToClosestObject(Vector3 point, LayerMask layer)
     {
-        float[] radiusToTest = new float[] { 0.9f, 1.6f, 2.4f };
+        float[] radiusToTest = new float[] { 0.1f, 0.9f, 1.6f, 2.4f };
         foreach (float radius in radiusToTest)
         {
             if (Physics2D.OverlapCircle(point, radius, layer))

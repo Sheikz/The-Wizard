@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class VisibleUnit : VisibleObject
 {
+    public bool alwaysVisible = false;
     private bool isVisible = false;
 	private bool hasBeenSeenThisFrame = false;
     private Damageable dmg;
@@ -16,6 +17,9 @@ public class VisibleUnit : VisibleObject
 	// Update is called once per frame
 	void FixedUpdate()
 	{
+        if (alwaysVisible)
+            return;
+
         if (dmg && dmg.isDead)
             return;
 

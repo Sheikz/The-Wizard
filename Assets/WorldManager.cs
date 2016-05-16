@@ -67,6 +67,7 @@ public class WorldManager : MonoBehaviour
             case RoomSize.Small: monsterNumbers = 2; break;
             case RoomSize.Medium: monsterNumbers = 3; break;
             case RoomSize.Large: monsterNumbers = 4; break;
+            case RoomSize.UltraLarge: monsterNumbers = 8; break;
         }
         List<ItemWithDropChance> duplicatedList = new List<ItemWithDropChance>(monsters);
         for (int i= 0; i < monsterNumbers; i++)

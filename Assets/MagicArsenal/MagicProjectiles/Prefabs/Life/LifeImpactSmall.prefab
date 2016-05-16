@@ -128,6 +128,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400014}
   - 82: {fileID: 8200000}
+  - 58: {fileID: 58000013226123158}
+  - 114: {fileID: 114000012836882108}
   m_Layer: 0
   m_Name: LifeImpactSmall
   m_TagString: Untagged
@@ -12668,3 +12670,34 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100014}
   m_IsPrefabParent: 1
+--- !u!58 &58000013226123158
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &114000012836882108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e1509d9f3f62842a5854ccf48fb2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeExplosion: 0
+  explosionTime: 0
+  lightFadeDuration: 0.5
+  hitOnce: 0
+  damage: 0
+  emitter: {fileID: 0}

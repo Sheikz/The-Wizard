@@ -117,13 +117,12 @@ public class Damageable : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
     }
 
-
-
     public void inflictDamage(SpellCaster emitter, int damage)
     {
         bool criticalHit = false;
         // Is a critical hit?
-        if (Random.Range(0, 100) < emitter.getCritChance())
+        int chance = Random.Range(0, 100);
+        if (chance < emitter.getCritChance())
             criticalHit = true;
 
         GameObject dmgText = Instantiate(floatingText) as GameObject;

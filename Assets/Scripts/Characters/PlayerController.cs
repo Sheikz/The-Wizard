@@ -25,8 +25,10 @@ public class PlayerController : MovingCharacter
 		spellCasted = new List<int>();
 	}
 
-	void Start()
+	new protected void Start()
 	{
+        base.Start();
+
 		setWayPoint(transform.position);
 	}
 

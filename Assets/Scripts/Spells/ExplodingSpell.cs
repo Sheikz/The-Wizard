@@ -18,6 +18,7 @@ public class ExplodingSpell : MonoBehaviour
     private ChainSpell chainSpell;
     private List<Collider2D> explosionsOnCooldown;
     private SpellAutoPilot autoPilot;
+    private SummonSpell summonSpell;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class ExplodingSpell : MonoBehaviour
         chainSpell = GetComponent<ChainSpell>();
         explosionsOnCooldown = new List<Collider2D>();
         autoPilot = GetComponent<SpellAutoPilot>();
+        summonSpell = GetComponent<SummonSpell>();
     }
 
     void Start()
@@ -71,6 +73,9 @@ public class ExplodingSpell : MonoBehaviour
 
             newExplosion.initialize(spell);
         }
+        if (summonSpell)
+            summonSpell.summon();
+
         Damageable dmg = collider.GetComponent<Damageable>();
         if (dmg && chainSpell)
             chainSpell.bounce(collider);

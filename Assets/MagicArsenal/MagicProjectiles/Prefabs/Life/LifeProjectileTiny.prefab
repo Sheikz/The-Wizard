@@ -60,6 +60,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 414542}
   - 82: {fileID: 8217824}
+  - 58: {fileID: 58000013751567866}
+  - 50: {fileID: 50000010788654056}
+  - 114: {fileID: 114000012529190096}
   m_Layer: 0
   m_Name: LifeProjectileTiny
   m_TagString: Untagged
@@ -5580,3 +5583,70 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 174430}
   m_IsPrefabParent: 1
+--- !u!50 &50000010788654056
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174430}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58000013751567866
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174430}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &114000012529190096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5480bc06e4301014ca91fb324790b7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellName: 
+  spellTypeDescription: 
+  damageString: 
+  description: 
+  manaCost: 0
+  manaCostInterval: 1
+  castTime: 0
+  cooldown: 0.2
+  icon: {fileID: 0}
+  spellType: 0
+  magicElement: 0
+  spellSet: 0
+  damage: 10
+  lightIntensity: 0
+  duration: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  emitter: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
+  ignoredColliders: []
+  speed: 5

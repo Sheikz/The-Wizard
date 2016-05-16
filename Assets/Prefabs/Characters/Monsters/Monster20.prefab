@@ -70,7 +70,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0.06, y: -0.09}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.38
 --- !u!95 &9583610
@@ -108,7 +108,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
-  isRooted: 0
   isFlying: 1
   idleChance: 0.3
   idleTime:
@@ -197,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &11485602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,10 +210,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 11404826, guid: af7fe0293495c3d408d4c7e515834bc6, type: 2}
   - {fileID: 11462106, guid: da10079c46e17d941833673863317e1d, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -235,7 +237,6 @@ MonoBehaviour:
   cooldownModifier: 1
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 0.5
-  difficultyModifier: 1.5
 --- !u!212 &21271028
 SpriteRenderer:
   m_ObjectHideFlags: 1

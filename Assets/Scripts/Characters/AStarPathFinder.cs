@@ -22,10 +22,7 @@ public class AStarPathFinder
         HashSet<Tile> openSet = new HashSet<Tile>();
         Tile startingTile = computeStart(start, goal, radius, isFlying, isGhost);
         if (startingTile == null)
-        {
-            Debug.LogError("Did not find a starting tile for " + npc.name);
             startingTile = start;
-        }
 
         openSet.Add(startingTile);
         int rows = map.width;
@@ -49,6 +46,9 @@ public class AStarPathFinder
         while (openSet.Count > 0)
         {
             Tile current = getLowestF(openSet);
+            if (current == null)
+                break;
+
             if (current.position2i().Equals(goal.position2i()))
             {
                 return reconstructPath(cameFrom, goal, current);
@@ -86,9 +86,11 @@ public class AStarPathFinder
     private Tile computeStart(Tile start, Tile goal, float radius, bool isFlying, bool isGhost)
     {
         // If the start tile is wide enough for the monster, use it as a start tile
-        if (isFlying && (start.distanceToClosestHighBlocking > radius))
+        if (isFlying 
+            && (start.type == TileType.Floor || start.type == TileType.Hole)
+            && (start.distanceToClosestHighBlocking > radius))
             return start;
-        else if (!isFlying && (start.distanceToClosestBlocking > radius))
+        else if (!isFlying && start.type == TileType.Floor && (start.distanceToClosestBlocking > radius))
             return start;
 
         // If not, we need to find a neighbor with enough space
@@ -122,6 +124,11 @@ public class AStarPathFinder
     private Tile getLowestF(HashSet<Tile> set)
     {
         Tile result = null;
+        if (set.Count == 0)
+        {
+            Debug.LogWarning("Empty set");
+            return null;
+        }
         float lowestScore = Mathf.Infinity;
         foreach (Tile t in set)
         {

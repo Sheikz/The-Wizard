@@ -24,8 +24,9 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
     public float duration = 0f;
     public bool collidesWithSpells = false;
+    public bool collidesWithWalls = true;
 
-	protected Rigidbody2D rb;
+    protected Rigidbody2D rb;
 	protected CircleCollider2D circleCollider;
 	[HideInInspector]
 	public SpellCaster emitter;   // Reference to the caster of the spell
@@ -41,7 +42,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     protected MultipleSpells multiSpells;
     protected ChainSpell chainSpell;
 
-    public bool collidesWithWalls = true;
+    
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
 

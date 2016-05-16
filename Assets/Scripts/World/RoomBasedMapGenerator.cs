@@ -377,14 +377,14 @@ public class RoomBasedMapGenerator : MonoBehaviour
         {
             if (t.type == TileType.Floor)
             {
-                if (t.distanceToClosestBlocking <= 0.9f)
+                if (t.distanceToClosestBlocking <= 0.1f)
                     Gizmos.color = Color.red;
+                else if (t.distanceToClosestBlocking <= 0.9f)
+                    Gizmos.color = new Color(250f/255f, 150f/255f, 51f/255f); // Orange
                 else if (t.distanceToClosestBlocking <= 1.6f)
                     Gizmos.color = Color.yellow;
                 else if (t.distanceToClosestBlocking <= 2.4f)
                     Gizmos.color = Color.green;
-                else
-                    Gizmos.color = Color.white;
                 /*
                 if (t.distanceToClosestHighBlocking <= 0.9f)
                     Gizmos.color = Color.red;
@@ -405,6 +405,11 @@ public class RoomBasedMapGenerator : MonoBehaviour
             else if (t.type == TileType.Hole)
             {
                 Gizmos.color = Color.cyan;
+                Gizmos.DrawSphere(t.position(), 0.1f);
+            }
+            else if (t.type == TileType.Roof)
+            {
+                Gizmos.color = Color.magenta;
                 Gizmos.DrawSphere(t.position(), 0.1f);
             }
         }

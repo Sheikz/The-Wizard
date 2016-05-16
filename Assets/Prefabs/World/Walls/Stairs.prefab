@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010997710892}
   - 212: {fileID: 212000011632795502}
   - 114: {fileID: 114000010636612602}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_153
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,9 +38,9 @@ GameObject:
   - 4: {fileID: 4000014233538766}
   - 212: {fileID: 212000013861425024}
   - 114: {fileID: 114000011636776820}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Wall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000010671921734}
   - 212: {fileID: 212000011941031218}
   - 114: {fileID: 114000013076933032}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: S2WallNorth1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - 4: {fileID: 4000010751603418}
   - 212: {fileID: 212000011406557502}
   - 114: {fileID: 114000010523743394}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_171
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010824815974}
   - 212: {fileID: 212000010512935062}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_154
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 4: {fileID: 4000011988822418}
   - 61: {fileID: 61000013933018638}
   - 61: {fileID: 61000012932776602}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,9 @@ GameObject:
   - 4: {fileID: 4000013412274730}
   - 212: {fileID: 212000012498459098}
   - 114: {fileID: 114000013205659814}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Wall (1)
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -139,7 +139,7 @@ GameObject:
   - 4: {fileID: 4000012838127206}
   - 212: {fileID: 212000013795023618}
   - 114: {fileID: 114000011638391664}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_155
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - 4: {fileID: 4000011653221138}
   - 212: {fileID: 212000012677470390}
   - 114: {fileID: 114000012521364876}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_169
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010640385926}
   - 212: {fileID: 212000010394217898}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: DungeonColor2@128x128_170
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   - 4: {fileID: 4000012782963704}
   - 212: {fileID: 212000012036410472}
   - 114: {fileID: 114000014028778816}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: S2WallNorth1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011900576106}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -41.954338, y: -23.31392, z: 0}
+  m_LocalPosition: {x: 9.792806, y: 14.881971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000010824815974}
@@ -624,7 +624,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1101360937
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300068, guid: 54e05f0b4090cda49ad32fec113291c9, type: 3}
+  m_Sprite: {fileID: 21300040, guid: 54e05f0b4090cda49ad32fec113291c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -655,7 +655,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1101360937
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300068, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
+  m_Sprite: {fileID: 21300036, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -686,7 +686,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1101360937
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300036, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
+  m_Sprite: {fileID: 21300072, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -779,7 +779,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1101360937
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300036, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
+  m_Sprite: {fileID: 21300072, guid: 1f100ae964ed2134a836a40ce33c05a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

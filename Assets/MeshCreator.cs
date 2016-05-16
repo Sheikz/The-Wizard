@@ -10,7 +10,7 @@ using System.Collections.Generic;
 public class MeshCreator : MonoBehaviour 
 {
     private enum TextureItem { Center, NorthWest, North, NorthEast, East, SouthEast, South, SouthWest, West };
-    public enum MeshType { Floor, Hole, Deco1, Deco2, Carpet, Wall, WallCorner};
+    public enum MeshType { Floor, Hole, Deco1, Deco2, Carpet, Wall, WallCorner, Roof};
     public enum DecoType { Exterior, Interior };
     public MeshType meshType = MeshType.Floor;
     public Vector2i size = new Vector2i(5, 5);
@@ -26,6 +26,8 @@ public class MeshCreator : MonoBehaviour
     public bool hasExteriorCornerLeft = false;
     [HideInInspector]
     public bool hasExteriorCornerRight = false;
+    [HideInInspector]
+    public bool blockingLow = false;
     [HideInInspector]
     public DecoType decoType = DecoType.Exterior;
 
@@ -198,6 +200,10 @@ public class MeshCreator : MonoBehaviour
                 exteriorCornerRight = getPixels(5, 13, 2, 2);
                 tag = "Wall";
                 name = "Wall";
+                if (blockingLow)
+                    gameObject.layer = LayerMask.NameToLayer("BlockingLow");
+                else
+                    gameObject.layer = LayerMask.NameToLayer("BlockingLayer");
                 meshRenderer.sortingOrder = 0;
                 meshRenderer.sortingLayerName = "Walls";
                 break;
@@ -206,6 +212,15 @@ public class MeshCreator : MonoBehaviour
                 pixels[0] = getPixels(7, 11, 2, 2);
                 tag = "Wall";
                 name = "Corner";
+                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingLayerName = "Walls";
+                break;
+            case MeshType.Roof:
+                pixels = new Color[2][];
+                pixels[0] = getPixels(4, 15);
+                pixels[1] = getPixels(5, 15);
+                tag = "Roof";
+                name = "Roof";
                 meshRenderer.sortingOrder = 0;
                 meshRenderer.sortingLayerName = "Walls";
                 break;
@@ -234,6 +249,7 @@ public class MeshCreator : MonoBehaviour
                     switch (meshType)
                     {
                         case MeshType.Floor:
+                        case MeshType.Roof:
                             setPixels(texture, x, y, 1, 1, pixels[Random.Range(0, pixels.Length)]);
                             break;
                         default:

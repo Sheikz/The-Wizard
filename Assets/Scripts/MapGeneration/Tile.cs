@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum TileType { Wall, Floor, Hole };
+public enum TileType { Wall, Floor, Hole, Roof };
 
 public class Tile
 {

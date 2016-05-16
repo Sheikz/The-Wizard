@@ -59,7 +59,7 @@ public class Door : MonoBehaviour
             isOpen = true;
             doorCollider.enabled = false;
             if (GameManager.instance)
-                GameManager.instance.map.gridMap.getTile(transform.position.x, transform.position.y).type = TileType.Wall;
+                GameManager.instance.map.gridMap.getTile(transform.position.x, transform.position.y).type = TileType.Floor;
             if (!Application.isPlaying)
             {
                 showDoor(true);

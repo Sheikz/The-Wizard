@@ -11,7 +11,7 @@ public class WallCreator : WorldObjectCreator
     public enum ObjectType { Sprite, Mesh };
     public WallTemplate wallTemplate;
     public ObjectType objectType = ObjectType.Mesh;
-    [Range(1, 20)]
+    [Range(1, 50)]
     public int length;
     public int doorPosition;
     public DoorStatus doorStatus = DoorStatus.Wall;

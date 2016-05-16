@@ -43,8 +43,10 @@ public class NPCController : MovingCharacter
 
     private enum NPCState { Idle, Wander, Chase };
 
-    void Start()
+    new protected void Start()
     {
+        base.Start();
+
         spellCaster = GetComponent<SpellCaster>();
         if (CompareTag("Hero") || CompareTag("HeroCompanion"))
         {
@@ -223,7 +225,10 @@ public class NPCController : MovingCharacter
 
     bool inLineOfSight(Damageable dmg)
     {
-        if (!dmg)
+        if (!dmg && !dmg.isDead)
+            return false;
+
+        if ((dmg.transform.position - transform.position).sqrMagnitude > visionDistance * visionDistance)
             return false;
 
         RaycastHit2D hit = Physics2D.Linecast(transform.position, dmg.transform.position, visionLayer);
@@ -458,7 +463,6 @@ public class NPCController : MovingCharacter
             return Mathf.Max(transform.localScale.x * GetComponent<CircleCollider2D>().radius, transform.localScale.y * GetComponent<CircleCollider2D>().radius);
         else
             return Mathf.Max(mobRadius.x, mobRadius.y);
-
     }
         
     public override void die()

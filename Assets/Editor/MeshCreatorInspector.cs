@@ -16,6 +16,7 @@ public class MeshCreatorInspector : Editor
             meshCreator.hasInteriorCornerLeft = EditorGUILayout.Toggle("Left Interior Corner", meshCreator.hasInteriorCornerLeft);
             meshCreator.hasExteriorCornerRight = EditorGUILayout.Toggle("Right Exterior Corner", meshCreator.hasExteriorCornerRight);
             meshCreator.hasInteriorCornerRight = EditorGUILayout.Toggle("Right Interior Corner", meshCreator.hasInteriorCornerRight);
+            meshCreator.blockingLow = EditorGUILayout.Toggle("Blocking Low", meshCreator.blockingLow);
         }
 
         if (meshCreator.meshType == MeshCreator.MeshType.Deco1 || meshCreator.meshType == MeshCreator.MeshType.Deco2)

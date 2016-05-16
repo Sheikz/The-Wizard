@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public enum ItemPerk
 {
     FireSlashReflect, FireSlashMultiply, EnergyBoltAimBot,
-    IceShardMultiply, SparkBounce
+    IceShardMultiply, SparkBounce, DragonBreathMove,
+    IceBeamMove
 };
 
 public static class ItemPerkExtensions
@@ -19,6 +20,8 @@ public static class ItemPerkExtensions
             case ItemPerk.EnergyBoltAimBot: return "Energy Bolt auto-aims at enemies";
             case ItemPerk.IceShardMultiply: return "Ice Shard launches 3 shards in an arc";
             case ItemPerk.SparkBounce: return "Spark bounces 2 times between enemies";
+            case ItemPerk.IceBeamMove: return "Can move while casting "+ perk.getSpellName();
+            case ItemPerk.DragonBreathMove: return "Can move while casting "+perk.getSpellName();
         }
         return "Not implemented";
     }
@@ -32,6 +35,8 @@ public static class ItemPerkExtensions
             case ItemPerk.EnergyBoltAimBot: return "Energy Bolt";
             case ItemPerk.IceShardMultiply: return "Ice Shard";
             case ItemPerk.SparkBounce: return "Spark";
+            case ItemPerk.IceBeamMove: return "Ice Beam";
+            case ItemPerk.DragonBreathMove: return "Dragon Breath";
         }
         return "Not implemented";
     }

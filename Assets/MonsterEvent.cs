@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-public enum RoomSize { Small, Medium, Large};
+public enum RoomSize { Small, Medium, Large, UltraLarge };
 
 public class MonsterEvent : RoomEvent
 {
@@ -34,6 +34,7 @@ public class MonsterEvent : RoomEvent
             Debug.LogError("Not a single tile to put monsters in room " + name);
             return;
         }
+        filterRoomTiles();
         var monstersToPut = WorldManager.instance.getMonsters(this);
         foreach (NPCController monsterPrefab in monstersToPut)
         {
@@ -45,6 +46,22 @@ public class MonsterEvent : RoomEvent
             newMonster.initialize(room.map);
             newMonster.activate(false);
             monsters.Add(newMonster);
+        }
+    }
+
+    /// <summary>
+    /// Remove the tiles which are not practicable
+    /// </summary>
+    void filterRoomTiles()
+    {
+        for (int i= roomTiles.Count -1; i >= 0; i--)
+        {
+            if ((roomTiles[i].type != TileType.Floor) ||
+                roomTiles[i].getDistanceToClosest(true) <= 0.1f)
+            {
+                roomTiles.RemoveAt(i);
+                continue;
+            }
         }
     }
 

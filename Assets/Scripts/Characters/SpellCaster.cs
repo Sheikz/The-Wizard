@@ -15,7 +15,6 @@ public class SpellCaster : MonoBehaviour
 
 	protected bool[] isOnCoolDown;
 	private Image[] spellIcons;
-	private HashSet<Spray> activeSprays;
     [HideInInspector]
 	public bool isHero = false;
 	private SpellBook spellBook;
@@ -39,8 +38,8 @@ public class SpellCaster : MonoBehaviour
     [HideInInspector]
     public Transform targetAlly;
     private StatusEffectReceiver statusEffectReceiver;
-    private float manaRegen;
-    private int critChance;
+    private float itemManaRegen;
+    private int itemCritChance;
 
     private List<PowerUpBuff> activeBuffs;
     private bool payChannelManaOnCooldown = false;
@@ -59,7 +58,6 @@ public class SpellCaster : MonoBehaviour
 		isOnCoolDown = new bool[spellList.Length];
 		resetCooldowns();
 		spellIcons = new Image[spellList.Length];
-		activeSprays = new HashSet<Spray>();
 		companionList = new List<Companion>();
 		followerList = new List<CompanionController>();
 		activeBuffs = new List<PowerUpBuff>();
@@ -85,12 +83,17 @@ public class SpellCaster : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        mana += manaRegen * Time.fixedDeltaTime;
+        mana += getManaRegen() * Time.fixedDeltaTime;
 		if (mana >= maxMana)
 			mana = maxMana;
 	}
 
-	public void levelUpFollowers()
+    private float getManaRegen()
+    {
+        return baseManaRegen + itemManaRegen;
+    }
+
+    public void levelUpFollowers()
 	{
 		foreach (CompanionController follower in followerList)
 		{
@@ -402,8 +405,8 @@ public class SpellCaster : MonoBehaviour
     {
         float chargingTime = 0;
         isCasting = true;
-        if (movingCharacter)
-            movingCharacter.enableMovement(false);
+        //if (movingCharacter)
+        //    movingCharacter.enableMovement(false);
 
         if (anim)
         {
@@ -577,31 +580,6 @@ public class SpellCaster : MonoBehaviour
 			}
 		}
 	}
-
-	public void addSpray(Spray newSpray)
-	{
-		activeSprays.Add(newSpray);
-	}
-
-	public void removeSpray(Spray spray)
-	{
-		activeSprays.Remove(spray);
-	}
-
-	public Spray getActiveSpray(string name)
-	{
-		foreach (Spray sp in activeSprays)
-		{
-			if (sp == null)
-			{
-				activeSprays.Remove(sp);
-				continue;
-			}
-			if (sp.name == name)
-				return sp;
-		}
-		return null;
-	}
 		
 	/// <summary>
 	/// Check if we did not reach the max number of companions. If not, add it
@@ -645,17 +623,17 @@ public class SpellCaster : MonoBehaviour
 
     public void setManaRegen(int manaRegen)
     {
-        this.manaRegen = baseManaRegen + manaRegen;
+        itemManaRegen = manaRegen;
     }
 
     public void setCriticalChance(int critChance)
     {
-        this.critChance = critChance;
+        itemCritChance = critChance;
     }
 
     public int getCritChance()
     {
-        return baseCritChance + critChance;
+        return baseCritChance + itemCritChance;
     }
 
 	internal void addBuff(PowerUpBuff buff)
