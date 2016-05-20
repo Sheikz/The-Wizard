@@ -9,7 +9,7 @@ public class SpellDeflector : MonoBehaviour
     public bool targetToMouseCursor = false;
 
     private SpellCaster emitter;
-    private bool activated = false;
+    public bool activated = true;
 
     // Use this for initialization
     void Start()
@@ -29,7 +29,6 @@ public class SpellDeflector : MonoBehaviour
                 return;
 
             deflectSpell(otherSpell);
-            
         }
     }
 

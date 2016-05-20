@@ -312,7 +312,7 @@ MonoBehaviour:
   description: Hurls a pure energy bolt
   manaCost: -5
   manaCostInterval: 1
-  castTime: 3
+  castTime: 0.3
   cooldown: 1
   icon: {fileID: 21300304, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
@@ -321,16 +321,14 @@ MonoBehaviour:
   damage: 200
   lightIntensity: 0
   duration: 0
-  prerequisites:
-  - {fileID: 193880, guid: 10ef9d8f22446844883d5ac1370faf84, type: 2}
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
 --- !u!114 &11460200
@@ -348,6 +346,7 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
 --- !u!114 &11493038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,13 +359,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
+  searchNewTargetIfDead: 1
   slowMode: 0
   rotatingStep: 0.1
   velocityIfStopped: 3
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
+  state: 0
   detectionRadius: 3
   detectionDistance: 3
+  explodeOnlyOnTarget: 0
 --- !u!198 &19831250
 ParticleSystem:
   m_ObjectHideFlags: 1

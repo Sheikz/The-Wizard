@@ -10,14 +10,16 @@ public class FloatingText : MonoBehaviour
 	[Range(0, 10)]
 	public float duration;
     public Countf randomHorizontalOffset;
+    public Countf randomVerticalOffset;
 
-	private Text text;
+    private Text text;
 	private RectTransform rectTransform;
 	private Vector3 speedOffset;
 	private GameObject parent;
 	private Vector3 parentPosition;
 	private float parentRadius;
     private float horizontalOffset;
+    private float verticalOffset;
 
     void Awake()
 	{
@@ -25,8 +27,9 @@ public class FloatingText : MonoBehaviour
 		transform.SetParent(UIManager.instance.floatingTextHolder.transform);
 		rectTransform = GetComponent<RectTransform>();
 		speedOffset = Vector3.zero;
-        horizontalOffset = Random.Range(randomHorizontalOffset.minimum, randomHorizontalOffset.maximum);
-		StartCoroutine(fadeAfterSeconds(duration));
+        horizontalOffset = randomHorizontalOffset.getRandom();
+        verticalOffset = randomVerticalOffset.getRandom();
+        StartCoroutine(fadeAfterSeconds(duration));
 	}
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class FloatingText : MonoBehaviour
         speedOffset += Vector3.up * speed;
 		rectTransform.position = Camera.main.WorldToScreenPoint
 			(parentPosition
-			+ Vector3.up * parentRadius
+			+ Vector3.up * parentRadius * verticalOffset
 			+ Vector3.right * parentRadius * horizontalOffset
             ) 
 			+ speedOffset;
@@ -85,7 +88,11 @@ public class FloatingText : MonoBehaviour
 
 		this.parent = parent;
 		parentPosition = parent.transform.position;
-		parentRadius = parent.GetComponent<CircleCollider2D>().radius;
+        CircleCollider2D col = parent.GetComponent<CircleCollider2D>();
+        if (col)
+            parentRadius = col.radius;
+        else
+            parentRadius = 1.0f;
 	}
 
     public void setCriticalHit()

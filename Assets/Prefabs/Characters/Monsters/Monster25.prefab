@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a014df5fb9619294695ba5d784a2d8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1.5
+  baseSpeed: 2
   speed: 1.5
   direction: {x: 0, y: 0}
   rb: {fileID: 0}
@@ -184,10 +184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 114000011243822958, guid: 6182e4428d4e1dc47b2075e40505f200, type: 2}
   - {fileID: 114000010469189860, guid: 5b0558da1c9e99d40b5743dc6d452c30, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -238,6 +240,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0

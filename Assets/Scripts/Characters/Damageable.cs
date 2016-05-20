@@ -12,6 +12,7 @@ public class Damageable : MonoBehaviour
     public GameObject healAnimation;
     public Material flashingMaterial;
     public bool showHPBar = true;
+    public GameObject destructionAnimation;
 
     private GameObject floatingText;
     public int maxHP;
@@ -32,14 +33,13 @@ public class Damageable : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         movingChar = GetComponent<MovingCharacter>();
-        floatingText = UIManager.instance.floatingText;
         originalMaterial = spriteRenderer.material;
         spellDamagers = new List<SpellDamager>();
     }
 
     void Start()
     {
-        
+        floatingText = UIManager.instance.floatingText;
         maxHP = baseHP;
         currentHP = maxHP;
         isDead = false;
@@ -122,7 +122,7 @@ public class Damageable : MonoBehaviour
         bool criticalHit = false;
         // Is a critical hit?
         int chance = Random.Range(0, 100);
-        if (chance < emitter.getCritChance())
+        if (emitter && chance < emitter.getCritChance())
             criticalHit = true;
 
         GameObject dmgText = Instantiate(floatingText) as GameObject;
@@ -192,6 +192,9 @@ public class Damageable : MonoBehaviour
         ItemHolder holder = GetComponent<ItemHolder>();
         if (holder)
             holder.die();
+
+        if (destructionAnimation)
+            Instantiate(destructionAnimation, transform.position, Quaternion.identity);
             
         isDead = true;
     }

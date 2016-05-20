@@ -103,7 +103,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
                 name = "Hole";
-                meshRenderer.sortingOrder = 0;
+                meshRenderer.sortingOrder = 3;
                 meshRenderer.sortingLayerName = "Floor";
                 break;
             case MeshType.Carpet:
@@ -468,16 +468,6 @@ public class MeshCreator : MonoBehaviour
         BuildTexture();
         AlignToAxis();
         CreateCollider();
-        FixSortingLayer();
-    }
-
-    private void FixSortingLayer()
-    {
-        if (meshType == MeshType.Hole)
-        {
-            meshRenderer.sortingLayerName = "Floor";
-            meshRenderer.sortingOrder = 3;
-        }
     }
 
     private void clearContents()

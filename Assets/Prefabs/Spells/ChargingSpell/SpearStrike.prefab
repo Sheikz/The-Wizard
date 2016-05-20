@@ -63,18 +63,17 @@ MonoBehaviour:
   spellType: 0
   magicElement: 5
   spellSet: 0
-  damage: 75
+  damage: 100
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   spellStages:
   - spell: {fileID: 114000014184389178, guid: b70adf23a47366a4e8fe414558bf2e46, type: 2}

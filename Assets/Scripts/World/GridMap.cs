@@ -99,7 +99,6 @@ public class GridMap
             meshCreator = obstacle.GetComponent<MeshCreator>();
             if (meshCreator)
             {
-                Debug.Log("here with " + meshCreator.name);
                 positionList = meshCreator.getPositions();
                 foreach (Vector3 pos in positionList)
                 {

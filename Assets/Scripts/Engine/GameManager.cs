@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
 
     public void levelUpHero()
     {
-        hero.GetComponent<ExperienceReceiver>().levelUp();
+        for (int i=0; i < 10; i++)
+            hero.GetComponent<ExperienceReceiver>().levelUp();
     }
 
     public void createHero()

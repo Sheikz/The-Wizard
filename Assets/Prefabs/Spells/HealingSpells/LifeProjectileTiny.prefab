@@ -378,17 +378,17 @@ MonoBehaviour:
   spellType: 0
   magicElement: 0
   spellSet: 1
-  damage: -100
+  damage: -200
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
 --- !u!114 &114000012280116070
@@ -407,6 +407,7 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
 --- !u!114 &114000013554362540
 MonoBehaviour:
   m_ObjectHideFlags: 1

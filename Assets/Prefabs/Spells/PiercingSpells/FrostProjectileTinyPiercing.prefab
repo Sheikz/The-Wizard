@@ -336,17 +336,17 @@ MonoBehaviour:
   spellType: 0
   magicElement: 4
   spellSet: 0
-  damage: 100
+  damage: 80
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 10
   explosion: {fileID: 183862, guid: c2a794276c41c184cb0a4fbfb81a3be6, type: 2}

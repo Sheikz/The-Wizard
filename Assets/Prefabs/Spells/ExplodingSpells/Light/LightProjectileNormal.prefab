@@ -205,7 +205,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012601481588}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a7efcec7fdb97b844b88522de59cc35f, type: 3}
@@ -370,6 +370,7 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
 --- !u!114 &114000011953686682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Blinding Light
   spellTypeDescription: Projectile
-  damageString: <dmg>
+  damageString: <dmg> damage
   description: Ball of Light. Destroy projectiles.<n>Has a chance to blind enemies
   manaCost: 25
   manaCostInterval: 1
@@ -397,13 +398,13 @@ MonoBehaviour:
   lightIntensity: 2
   duration: 0
   collidesWithSpells: 1
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
 --- !u!198 &198000010537252372

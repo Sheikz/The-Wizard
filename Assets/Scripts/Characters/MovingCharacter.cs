@@ -7,6 +7,7 @@ using System;
 public abstract class MovingCharacter : MonoBehaviour
 {
     public float baseSpeed;
+    [HideInInspector]
     public float speed;
 
     protected Vector2 movement;     // Direction in which the character moves
@@ -25,7 +26,6 @@ public abstract class MovingCharacter : MonoBehaviour
     public bool canAct = true;       // Can he do anything at all?
 
     protected bool isFalling = false;
-    [HideInInspector]
     public bool isFlying = false;
     private float spinningSpeed = 10f;
     private float fallingDuration = 3f;

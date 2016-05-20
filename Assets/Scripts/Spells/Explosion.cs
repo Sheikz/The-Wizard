@@ -5,10 +5,10 @@ using System;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Explosion : MonoBehaviour
 {
-	[Tooltip("Time before the explosion start doing damage")]
-	public float delayBeforeExplosion;
-	[Tooltip("Time the explosion does damage")]
-	public float explosionTime;
+    [Tooltip("Time before the explosion start doing damage")]
+    public float delayBeforeExplosion;
+    [Tooltip("Time the explosion does damage")]
+    public float explosionTime;
     public float lightFadeDuration = 0.5f;
     public bool hitOnce = false;
 
@@ -29,13 +29,13 @@ public class Explosion : MonoBehaviour
         circleCollider.isTrigger = true;
     }
 
-	void Start()
-	{
-		StartCoroutine(enableAfterSeconds(delayBeforeExplosion));
+    void Start()
+    {
+        StartCoroutine(enableAfterSeconds(delayBeforeExplosion));
         setupLights();
         transform.SetParent(GameManager.instance.map.spellHolder);
-        SoundManager.instance.playSound(spellName+"Hit");
-	}
+        SoundManager.instance.playSound(spellName + "Hit");
+    }
 
     void setupLights()
     {
@@ -59,7 +59,7 @@ public class Explosion : MonoBehaviour
     }
 
     void FixedUpdate()
-	{
+    {
         if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
             return; // Legacy Particle System can be defined as one-shot and dont need to be destroyed manually
 
@@ -69,17 +69,17 @@ public class Explosion : MonoBehaviour
             StartCoroutine(fadeLights(lightFadeDuration));
         }
 
-        foreach(ParticleSystem ps in partSystems)
+        foreach (ParticleSystem ps in partSystems)
         {
             if (!ps.IsAlive())
                 Destroy(ps.gameObject);
         }
-	}
+    }
 
     IEnumerator fadeLights(float duration)
     {
         float startingTime = Time.time;
-        Light[] lights = GetComponentsInChildren<Light>();;
+        Light[] lights = GetComponentsInChildren<Light>(); ;
         if (lights.Length > 0)
         {
             float startingIntensity = lights[0].intensity;
@@ -98,28 +98,28 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-	public virtual void initialize(SpellController spell)
-	{
+    public virtual void initialize(SpellController spell)
+    {
         spellName = spell.spellName;
-		emitter = spell.emitter;
+        emitter = spell.emitter;
         damage = spell.damage;
         intensity = spell.lightIntensity;
         manaCost = spell.manaCost;
         gameObject.layer = spell.gameObject.layer;
-	}
+    }
 
-	protected virtual void OnTriggerEnter2D(Collider2D collider)
-	{
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
+    {
         if (hitOnce && appliedHit)
             return;
 
-		GameObject other = collider.gameObject;
-		if (other == emitter)
-			return;
+        GameObject other = collider.gameObject;
+        if (other == emitter)
+            return;
 
-		Damageable dmg = other.gameObject.GetComponent<Damageable>();
-		if (dmg)
-		{
+        Damageable dmg = other.gameObject.GetComponent<Damageable>();
+        if (dmg)
+        {
             if (damage >= 0)
             {
                 dmg.doDamage(emitter, damage);
@@ -132,34 +132,31 @@ public class Explosion : MonoBehaviour
 
             StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
             if (!receiver)
-            {
-                Debug.Log("no receiver in "+dmg.name);
                 return;
-            }
 
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {
                 effect.inflictStatus(receiver);
             }
         }
-	}
+    }
 
-	private IEnumerator enableAfterSeconds(float delay)
-	{
-		circleCollider.enabled = false;
-		yield return new WaitForSeconds(delay);
-		circleCollider.enabled = true;
-		yield return StartCoroutine(disableAfterSeconds(explosionTime));
-	}
+    private IEnumerator enableAfterSeconds(float delay)
+    {
+        circleCollider.enabled = false;
+        yield return new WaitForSeconds(delay);
+        circleCollider.enabled = true;
+        yield return StartCoroutine(disableAfterSeconds(explosionTime));
+    }
 
-	private IEnumerator disableAfterSeconds(float delay)
-	{
-		if (delay == 0)
-			yield return new WaitForSeconds(0.05f);
-		else
-			yield return new WaitForSeconds(delay);
-		circleCollider.enabled = false;
-	}
+    private IEnumerator disableAfterSeconds(float delay)
+    {
+        if (delay == 0)
+            yield return new WaitForSeconds(0.05f);
+        else
+            yield return new WaitForSeconds(delay);
+        circleCollider.enabled = false;
+    }
 
     private void giveMana()
     {

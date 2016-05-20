@@ -78,11 +78,9 @@ public class SpellAutoPilot : AutoPilot
             return;
 
         Damageable dmg = closestObject.GetComponent<Damageable>();
+
         if (dmg)
-        {
-            Debug.Log(name + " locking on " + dmg.name);
             lockToObject(dmg.transform);
-        }
     }
 
     Collider2D getClosest(RaycastHit2D[] hits)
@@ -90,10 +88,13 @@ public class SpellAutoPilot : AutoPilot
         if (hits.Length <= 0)
             return null;
 
-        Collider2D result = hits[0].collider;
+        Collider2D result = null;
         float minDistance = Mathf.Infinity;
         for (int i = 0; i < hits.Length; i++)
         {
+            if (hits[i].collider.gameObject == spell.emitter)   // Don't lock on its emitter
+                continue;
+
             if (spell.ignoredColliders.Contains(hits[i].collider))
                 continue;
             float sqrDistance = (hits[i].transform.position - transform.position).sqrMagnitude;

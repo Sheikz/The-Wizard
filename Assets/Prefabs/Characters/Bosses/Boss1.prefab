@@ -79,7 +79,7 @@ Animator:
   m_GameObject: {fileID: 108374}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: aa3fc94dd926bf74884bb9276464e98d, type: 2}
+  m_Controller: {fileID: 22100000, guid: caceca41e44d69e469762997a0a80e68, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.5
+  alwaysVisible: 0
 --- !u!114 &11417960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,10 +117,12 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 2000
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
+  isDead: 0
 --- !u!114 &11453140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,13 +136,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 11436048, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
   - {fileID: 11427560, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
-  targetObject: {fileID: 0}
+  targetOpponent: {fileID: 0}
+  targetAlly: {fileID: 0}
 --- !u!114 &11463836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,10 +172,9 @@ MonoBehaviour:
   level: 1
   DamageMultiplierPerLevel: 1.1
   HPMultiplierPerLevel: 1.1
-  cooldownModifier: 2
+  cooldownModifier: 1
   dungeonLevelMultiplier: 1.2
-  monsterDamageMultiplier: 0.5
-  difficultyModifier: 1.5
+  monsterDamageMultiplier: 1.5
 --- !u!114 &11477938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,9 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af756f9abb55afd4ba3a6eeaea00521c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - item: {fileID: 186694, guid: d5af80cf1c78b2046beeae12f6a699f8, type: 2}
-    lootChance: 1
   shouldDropItems: 1
 --- !u!114 &11495404
 MonoBehaviour:
@@ -196,13 +198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a014df5fb9619294695ba5d784a2d8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1.5
+  baseSpeed: 4
   speed: 1.5
+  direction: {x: 0, y: 0}
+  rb: {fileID: 0}
+  anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
-  isRooted: 0
-  isStunned: 0
-  isFlying: 1
+  isFlying: 0
   idleChance: 0.3
   idleTime:
     minimum: 1
@@ -210,13 +213,16 @@ MonoBehaviour:
   goalDistance: 5
   visionDistance: 10
   preferedDistance:
-    minimum: 1
-    maximum: 5
+    minimum: 3
+    maximum: 6
   strafeFrequency:
     minimum: 0.1
     maximum: 0.5
-  isGhost: 0
+  isGhost: 1
   deathAnimationTime: 0
+  alliesLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!212 &21209260
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -244,7 +250,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -635551827
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300020, guid: d1df7466e55a27f4f93587e51d392289, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5d633be2ddc8d6a478cf558892bbf388, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
