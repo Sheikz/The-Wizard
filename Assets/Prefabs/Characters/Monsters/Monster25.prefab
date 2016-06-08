@@ -161,14 +161,15 @@ MonoBehaviour:
   goalDistance: 10
   visionDistance: 10
   preferedDistance:
-    minimum: 1
-    maximum: 5
+    minimum: 2
+    maximum: 6
   strafeFrequency:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &114000013010705198

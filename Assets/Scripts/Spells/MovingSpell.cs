@@ -7,9 +7,13 @@ using System;
 public class MovingSpell : SpellController
 {
 	public float speed = 5;
+    public bool activated = true;
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
+        if (!activated)
+            return null;
+
         MoveSpellCaster moveCaster = GetComponent<MoveSpellCaster>();
         if (moveCaster && !moveCaster.canCastSpell(emitter, target))
             return null;
@@ -35,21 +39,39 @@ public class MovingSpell : SpellController
         applyLayer();
 
         SpellAutoPilot autoPilot;
-        if (emitter.targetOpponent)
+        if (emitter.targetOpponent || emitter.targetAlly)
         {
             autoPilot = GetComponent<SpellAutoPilot>();
 
             if (autoPilot && autoPilot.activated)
             {
-                if (damage >= 0)
+                if (damage >= 0 && emitter.targetOpponent)
                     autoPilot.lockToObject(emitter.targetOpponent.transform);
-                else
+                else if (emitter.targetAlly)
+                {
+                    Debug.Log(emitter.name + " locking on ally : " + emitter.targetAlly.name);
                     autoPilot.lockToObject(emitter.targetAlly.transform);
+                }
             }
         }
 
         return true;
 	}
+
+    internal void addLateralVelocity(float v)
+    {
+        StartCoroutine(addLateralVelocityRoutine(v));
+    }
+
+    private IEnumerator addLateralVelocityRoutine(float v)
+    {
+        while (true)
+        {
+            Vector3 velocityToAdd = Vector3.Cross(Vector3.forward, rb.velocity) * v;
+            rb.velocity += (Vector2)velocityToAdd;
+            yield return new WaitForFixedUpdate();
+        }
+    }
 
     public void refreshSpeed()
     {

@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010282737136}
   - 212: {fileID: 212000013233232380}
+  - 114: {fileID: 114000010553877444}
   - 95: {fileID: 95000010791941122}
   - 50: {fileID: 50000010094495568}
   - 58: {fileID: 58000010461045898}
-  - 114: {fileID: 114000010553877444}
   - 114: {fileID: 114000010465460882}
   - 114: {fileID: 114000012484320614}
   - 114: {fileID: 114000013483894800}
@@ -116,6 +116,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
@@ -147,14 +148,15 @@ MonoBehaviour:
   goalDistance: 10
   visionDistance: 10
   preferedDistance:
-    minimum: 1
+    minimum: 0
     maximum: 3
   strafeFrequency:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &114000011607624222

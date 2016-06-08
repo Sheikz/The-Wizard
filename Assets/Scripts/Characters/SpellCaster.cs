@@ -529,7 +529,7 @@ public class SpellCaster : MonoBehaviour
         for (int i = 0; i < spellList.Length; i++)
         {
             if (spellList[i].damage < 0)
-                castSpell(i, target.transform.position);
+                castSpell(i, targetAlly.position);
         }
     }
 

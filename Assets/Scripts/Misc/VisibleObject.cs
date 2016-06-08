@@ -56,15 +56,13 @@ public abstract class VisibleObject : MonoBehaviour
     {
         foreach (SpriteRenderer spr in spriteRenderers)
         {
-            spr.enabled = true;
-            if (progressiveApparitionTime <= 0)
-                continue;
             StartCoroutine(appearAfterSeconds(progressiveApparitionTime, spr));
         }
     }
 
     private IEnumerator appearAfterSeconds(float duration, SpriteRenderer rdr)
     {
+        rdr.enabled = true;
         float startingTime = Time.time;
         while (Time.time - startingTime < duration)
         {
@@ -80,11 +78,6 @@ public abstract class VisibleObject : MonoBehaviour
     {
         foreach (SpriteRenderer spr in spriteRenderers)
         {
-            if (progressiveApparitionTime <= 0)
-            {
-                spr.enabled = false;
-                continue;
-            }
             StartCoroutine(disappearAfterSeconds(progressiveApparitionTime, spr));
         }
     }

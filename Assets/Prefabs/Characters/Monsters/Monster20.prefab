@@ -21,7 +21,7 @@ GameObject:
   - 114: {fileID: 11470894}
   - 114: {fileID: 11496228}
   - 114: {fileID: 114000012924971802}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Monster20
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -123,7 +123,8 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &11434668
@@ -179,6 +180,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 400
   currentHP: 0
   onDamageCooldown: 0
@@ -405,7 +407,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014013979998}
   - 108: {fileID: 108000013525423346}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

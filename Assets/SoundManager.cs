@@ -8,12 +8,20 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     [Tooltip("Interval at which the same audio clip can be played")]
     public float soundCooldown = 0.25f;
+    public GameObject musicManager;
+    public AudioClip dungeonMusic;
+
+    public AudioClip bossMusic;
     public AudioClip[] sounds;
 
+    private AudioSource musicSource;
     private AudioSource[] audioSources;
     private GameObject[] audioEmitters;
     private List<string> playingSounds;
     private int currentAudioSource = 0;
+
+    private float volumeSFX = 1;
+    private float volumeMusic = 1;
 
     void Awake()
     {
@@ -24,8 +32,52 @@ public class SoundManager : MonoBehaviour
 
         loadSounds();
         audioSources = GetComponents<AudioSource>();
+        musicSource = musicManager.GetComponent<AudioSource>();
         audioEmitters = new GameObject[audioSources.Length];
         playingSounds = new List<string>();
+    }
+
+    void Start()
+    {
+        if (!Application.isEditor)
+            playDungeonMusic();
+    }
+
+    public float SFXVolume
+    {
+        get { return volumeSFX;  }
+        set {
+            volumeSFX = value;
+            refreshVolumeSFX();
+        }
+    }
+
+    public float MusicVolume
+    {
+        get { return volumeMusic; }
+        set
+        {
+            volumeMusic = value;
+            refreshVolumeMusic();
+        }
+    }
+
+    public void playDungeonMusic()
+    {
+        if (musicSource.clip == dungeonMusic && musicSource.isPlaying)
+            return;
+
+        musicSource.clip = dungeonMusic;
+        musicSource.Play();
+    }
+
+    public void playBossMusic()
+    {
+        if (musicSource.clip == bossMusic && musicSource.isPlaying)
+            return;
+
+        musicSource.clip = bossMusic;
+        musicSource.Play();
     }
 
     /// <summary>
@@ -79,6 +131,19 @@ public class SoundManager : MonoBehaviour
         //audio.clip = Utils.pickRandom(clips);
         play(Utils.pickRandom(clips), emitter);
         StartCoroutine(routinePlayingSound(clipName));
+    }
+
+    private void refreshVolumeSFX()
+    {
+        foreach (AudioSource source in audioSources)
+        {
+            source.volume = volumeSFX;
+        }
+    }
+
+    private void refreshVolumeMusic()
+    {
+        musicSource.volume = volumeMusic;
     }
 
     public void stopSoundFromMe(GameObject emitter)

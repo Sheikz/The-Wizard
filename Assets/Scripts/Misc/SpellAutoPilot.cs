@@ -80,7 +80,10 @@ public class SpellAutoPilot : AutoPilot
         Damageable dmg = closestObject.GetComponent<Damageable>();
 
         if (dmg)
+        {
+            Debug.Log(gameObject.name + " from " + spell.emitter + " locking on " + dmg.name);
             lockToObject(dmg.transform);
+        }
     }
 
     Collider2D getClosest(RaycastHit2D[] hits)

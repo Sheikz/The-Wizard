@@ -182,6 +182,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
@@ -214,13 +215,14 @@ MonoBehaviour:
   visionDistance: 10
   preferedDistance:
     minimum: 0
-    maximum: 3
+    maximum: 5
   strafeFrequency:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &114000012413135562
@@ -235,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &114000012851612174
 MonoBehaviour:
   m_ObjectHideFlags: 1

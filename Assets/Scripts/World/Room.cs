@@ -17,6 +17,8 @@ public class Room : MonoBehaviour, IComparable<Room>
     public bool hasCarpet = false;
     public bool hasPillars = false;
     public List<GameObject> carpets;
+    public static float timeSpentRefreshingRoom = 0;
+    public static int refreshRoomCount = 0;
 
     [HideInInspector]
     public int roomDepth;
@@ -52,11 +54,12 @@ public class Room : MonoBehaviour, IComparable<Room>
 
     public void refreshWalls()
     {
+        float now = Time.realtimeSinceStartup;
         Pillar[] pillars = GetComponentsInChildren<Pillar>();
         foreach (WallCreator wc in GetComponentsInChildren<WallCreator>())
         {
             wc.objectType = WallCreator.ObjectType.Mesh;
-            wc.refreshContents();
+            wc.initializeContents();
         }
 
         OnEnable();
@@ -74,6 +77,8 @@ public class Room : MonoBehaviour, IComparable<Room>
             adjustTheme.refresh();
         }
 
+        timeSpentRefreshingRoom += (Time.realtimeSinceStartup - now);
+        refreshRoomCount++;
         //combineMeshes();
     }
 

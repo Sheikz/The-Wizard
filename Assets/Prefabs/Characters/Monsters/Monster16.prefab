@@ -115,9 +115,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 11496928, guid: 10ef9d8f22446844883d5ac1370faf84, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -134,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &11426302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,6 +178,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
@@ -206,14 +210,15 @@ MonoBehaviour:
   goalDistance: 10
   visionDistance: 10
   preferedDistance:
-    minimum: 1
+    minimum: 2
     maximum: 5
   strafeFrequency:
     minimum: 0.2
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &11467906

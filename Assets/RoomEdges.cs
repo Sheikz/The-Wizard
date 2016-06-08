@@ -13,6 +13,14 @@ public class RoomEdges : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (transform.localPosition != Vector3.zero)
+        {
+            Debug.LogWarning(gameObject.name +": room edges local position not equal to origin!");
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController player = collision.GetComponent<PlayerController>();

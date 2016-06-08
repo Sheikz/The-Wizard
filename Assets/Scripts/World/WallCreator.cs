@@ -111,10 +111,15 @@ public class WallCreator : WorldObjectCreator
         }
     }
 
-    public override void refreshContents()
+    public void initializeContents()
     {
         if (!parentRoom)
             parentRoom = GetComponentInParent<Room>();
+        createColliders();
+    }
+
+    public override void refreshContents()
+    {
         if (!hasChanged())
             return;
         destroyContents();
@@ -129,8 +134,7 @@ public class WallCreator : WorldObjectCreator
                 break;
         }
 
-        createColliders();
-
+        initializeContents();
         currentLength = length;
         currentDoorPosition = doorPosition;
         currentDoorStatus = doorStatus;

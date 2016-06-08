@@ -17,6 +17,7 @@ public class NPCController : MovingCharacter
     public Countf strafeFrequency = new Countf(0.2f, 0.5f);
     public bool isGhost = false;
     public float deathAnimationTime = 0f;
+    public float computePathToTargetCooldown = 1f;
 
     protected Vector3 target;     // short-term target
     protected Vector3 goal;       // long-term target
@@ -32,14 +33,18 @@ public class NPCController : MovingCharacter
     private float strafeValue = 1f;
     private SpellCaster spellCaster;
     private Vector2 mobRadius;
+    private Vector3 lineToTarget;
+    private Vector3 directionToTarget;
+    private float distanceToTarget;
     private LayerMask enemyLayer;
-    private LayerMask obstacleLayer;
-    public LayerMask alliesLayer;
+    public LayerMask obstacleLayer;
+    private LayerMask alliesLayer;
     private LayerMask visionLayer;
     private Collider2D[] potentialTargets;
     private Collider2D[] potentialInjuredAllies;
     private bool isDead = false;
     private bool hasSupportSpells;  // Should this NPC check for nearby allies to heal?
+    private bool pathToTargetOpponentOnCooldown = false;
 
     private enum NPCState { Idle, Wander, Chase };
 
@@ -241,26 +246,26 @@ public class NPCController : MovingCharacter
 
     void doChase()
     {
+        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+            return;
+
         if (!targetOpponent)
         {
             startWander();
             return;
         }
 
-        Vector3 lineToTarget = targetOpponent.transform.position - transform.position;
-        float distanceToTarget = lineToTarget.magnitude;
+        lineToTarget = targetOpponent.transform.position - transform.position;
+        distanceToTarget = lineToTarget.magnitude;
 
-        if (spellCaster && spellCaster.hasOffensiveSpellsAvailable() && hasClearShot(targetOpponent))    // If this hero is a spell caster
+        if (spellCaster && spellCaster.hasOffensiveSpellsAvailable() && hasClearShot(targetOpponent))    // If this NPC is a spell caster
             spellCaster.castOffensiveSpells(targetOpponent);
 
         direction = lineToTarget;   // Face the target
         if (!canMove)
             return;
 
-        if (statusEffectReceiver && statusEffectReceiver.isStunned)
-            return;
-
-        doStrafe(distanceToTarget, lineToTarget);
+        doStrafe(distanceToTarget);
         goal = targetOpponent.transform.position;
 
         moveToTarget();
@@ -316,31 +321,73 @@ public class NPCController : MovingCharacter
         return false;
     }
 
-    private void doStrafe(float distanceToTarget, Vector3 lineToTarget) // Strafe according to the distance to the hero
+    private void doStrafe(float distanceToTarget) // Strafe according to the distance to the hero
     {
-        Vector3 directionToHero = lineToTarget.normalized;
+        directionToTarget = lineToTarget.normalized;
         if (distanceToTarget < preferedDistance.minimum)  // Too close to hero, go back
         {
-            target = transform.position + directionToHero * -1;
+            target = transform.position + directionToTarget * -1;
         }
         else if (distanceToTarget > preferedDistance.minimum && distanceToTarget < preferedDistance.maximum)    // In the prefered distance, do random strafe
         {
-            updateRandomTemporaryStrafeValue();
-            target = transform.position + (Vector3.Cross(directionToHero, Vector3.back)) * strafeValue;
+            applyStrafe();
         }
-        else
-            target = targetOpponent.transform.position;
-
+        else // Too far away from the away, need to go closer
+        {
+            moveToTargetOpponent();
+        }
+            
         movement = (target - transform.position).normalized * movingSpeed;
 
-        if (isFlying)   // if it is flying, it does not need to avoid obstacles
-            return;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, movement, circleCollider.radius, obstacleLayer);
         if (hit)
         {
             target = transform.position + (target - transform.position) * -1;
             StartCoroutine(switchStrafeValue(Random.Range(strafeFrequency.minimum, strafeFrequency.maximum)));
         }
+    }
+
+    private void applyStrafe()
+    {
+        updateRandomTemporaryStrafeValue();
+        target = transform.position + (Vector3.Cross(directionToTarget, Vector3.back)) * strafeValue;
+    }
+
+    private void moveToTargetOpponent()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, circleCollider.radius*0.75f, lineToTarget, distanceToTarget, obstacleLayer);
+        if (!hit)   // If the way is clear, the NPC can move in a straight line to the opponent
+        {
+            target = targetOpponent.transform.position;
+            return;
+        }
+        if (pathToTargetOpponentOnCooldown == true)
+        {
+            if (hasReached(target) && path != null && path.Count > 0)
+                target = path.Pop().position();
+            return;
+        }
+
+        StartCoroutine(computePathToTargetStartCooldown());
+        if (!computePathTo(targetOpponent.transform.position))  // If no path if found, apply strafe and return
+        {
+            applyStrafe();
+            return;
+        }
+        if (path != null && path.Count > 0)
+            target = path.Pop().position();
+        else
+        {
+            Debug.LogWarning("This should not happen. Investigate");
+            target = targetOpponent.transform.position;
+        }
+    }
+
+    private IEnumerator computePathToTargetStartCooldown()
+    {
+        pathToTargetOpponentOnCooldown = true;
+        yield return new WaitForSeconds(computePathToTargetCooldown);
+        pathToTargetOpponentOnCooldown = false;
     }
 
     private void updateRandomTemporaryStrafeValue()
@@ -379,8 +426,8 @@ public class NPCController : MovingCharacter
 
     protected bool hasReached(Vector3 t)
     {
-        float distanceToTarget = (t - transform.position).sqrMagnitude;
-        if (distanceToTarget <= float.Epsilon)
+        float distanceToT = (t - transform.position).sqrMagnitude;
+        if (distanceToT <= float.Epsilon)
             return true;
 
         return false;
@@ -454,6 +501,14 @@ public class NPCController : MovingCharacter
             return false;
         }
         setNewTarget();
+        return true;
+    }
+
+    private bool computePathTo(Vector3 position)
+    {
+        path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(position), this);
+        if (path == null)
+            return false;
         return true;
     }
 

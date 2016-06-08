@@ -22,6 +22,12 @@ public class OptionsMenu : MonoBehaviour
         UIManager.instance.openGraphicsWindow(true);
     }
 
+    public void clickSounds()
+    {
+        SoundManager.instance.playSound("ClickOK");
+        UIManager.instance.openSoundsWindow(true);
+    }
+
     public void clickExit()
     {
         SoundManager.instance.playSound("ClickOK");

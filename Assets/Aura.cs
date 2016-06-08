@@ -16,6 +16,7 @@ public class Aura : MonoBehaviour
         ps = GetComponent<ParticleSystem>();
         ps.startSize = 3f;
         GetComponent<ParticleSystemRenderer>().renderMode = ParticleSystemRenderMode.Billboard;
+        GetComponent<ParticleSystemRenderer>().sortingLayerName = "SpritesPreCharacter";
     }
 
     void Start()

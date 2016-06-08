@@ -108,6 +108,8 @@ public class RoomBasedMapGenerator : MonoBehaviour
         Debug.Log("Created map in: " + (Time.realtimeSinceStartup - startingTime) + " seconds");
         Debug.Log("Number of steps: " + stepCount);
         Debug.Log("Number of rooms created " + roomCount);
+        Debug.Log("Time spent refreshing rooms: " + Room.timeSpentRefreshingRoom);
+        Debug.Log("Number of time refreshing rooms: " + Room.refreshRoomCount);
     }
 
     /// <summary>

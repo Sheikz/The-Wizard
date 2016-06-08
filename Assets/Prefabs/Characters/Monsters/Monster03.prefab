@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011031350994}
   - 212: {fileID: 212000011444044222}
+  - 114: {fileID: 114000013799276340}
   - 95: {fileID: 95000011413451770}
   - 50: {fileID: 50000012817304960}
   - 58: {fileID: 58000010391300502}
-  - 114: {fileID: 114000013799276340}
   - 114: {fileID: 114000012403203056}
   - 114: {fileID: 114000011271166952}
   - 114: {fileID: 114000012872911076}
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &114000010593406400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +175,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
@@ -241,7 +243,8 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!212 &212000011444044222
