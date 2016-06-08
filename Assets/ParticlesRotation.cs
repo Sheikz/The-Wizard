@@ -6,7 +6,8 @@ public class ParticlesRotation : MonoBehaviour
 {
     public Vector3 speed;
 
-	void FixedUpdate()
+    [ExecuteInEditMode]
+	void Update()
 	{
         transform.Rotate(speed);
     }

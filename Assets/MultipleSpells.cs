@@ -2,15 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MultipleSpells : MonoBehaviour 
+public class MultipleSpells : MonoBehaviour
 {
     public int numberOfSpells;
-    public float angleBetweenSpells;
+    [Tooltip("Rotation speed in degrees")]
+    public float rotationSpeed = 5f;
+    public float radialVelocity = 5f;
+    public bool attachedToCaster = false;
 
     [HideInInspector]
     public bool canBeMultiplied = true;
+    [HideInInspector]
+    public Vector3 localDirection;
     public bool activated = false;
     private SpellController spell;
+    private AnchorReferential referential;
 
     void Awake()
     {
@@ -25,10 +31,22 @@ public class MultipleSpells : MonoBehaviour
         if (!activated)
             return;
 
-        for (int i= 0; i < numberOfSpells; i++)
+        referential = new GameObject().AddComponent<AnchorReferential>();
+        referential.transform.position = spell.emitter.transform.position;
+        referential.rotationSpeed = rotationSpeed;
+        if (attachedToCaster)
+            referential.parent = spell.emitter.transform;
+
+        for (int i = 0; i < numberOfSpells; i++)
         {
             castSpell(i * 360f / numberOfSpells);
         }
+        Destroy(gameObject);
+    }
+
+    void FixedUpdate()
+    {
+        radialMovement();
     }
 
     void castSpell(float angle)
@@ -38,16 +56,21 @@ public class MultipleSpells : MonoBehaviour
         Quaternion rotateQuat;
         SpellController newSpell;
         MultipleSpells multi;
-        MovingSpell movingSpell;
 
         rotateQuat = Quaternion.Euler(0, 0, angle);
-        newTarget = transform.position + rotateQuat * direction; ;
+        newTarget = transform.position + rotateQuat * direction;
         newSpell = spell.castSpell(spell.emitter, newTarget);
         multi = newSpell.GetComponent<MultipleSpells>();
         if (multi)
+        {
             multi.canBeMultiplied = false;
-        movingSpell = newSpell.GetComponent<MovingSpell>();
-        if (movingSpell)
-            movingSpell.addLateralVelocity(0.1f);
+            multi.localDirection = (newTarget - transform.position).normalized;
+        }
+        newSpell.transform.SetParent(referential.transform);
+    }
+
+    void radialMovement()
+    {
+        transform.localPosition += radialVelocity * Time.fixedDeltaTime * localDirection;
     }
 }

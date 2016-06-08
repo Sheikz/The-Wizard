@@ -9,12 +9,14 @@ public class SpellDeflector : MonoBehaviour
     public bool targetToMouseCursor = false;
 
     private SpellCaster emitter;
+    private SpellController spell;
     public bool activated = true;
 
     // Use this for initialization
     void Start()
     {
         emitter = GetComponentInParent<SpellController>().emitter;
+        spell = GetComponentInParent<SpellController>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -58,6 +60,10 @@ public class SpellDeflector : MonoBehaviour
                 otherSpell.gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
             else
                 otherSpell.gameObject.layer = LayerMask.NameToLayer("Spells");
+
+            UIManager.instance.createFloatingText("Deflect!",
+                UIManager.instance.elementColors[(int)spell.magicElement],
+                otherSpell.transform.position);
         }
     }
 

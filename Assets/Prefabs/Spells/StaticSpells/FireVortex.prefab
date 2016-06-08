@@ -264,27 +264,26 @@ MonoBehaviour:
   manaCostInterval: 1
   castTime: 0.2
   cooldown: 1.5
-  icon: {fileID: 21300148, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
+  icon: {fileID: 21300210, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 1
   magicElement: 2
   spellSet: 1
   damage: 30
   lightIntensity: 0
   duration: 3
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0.5
   colliderDuration: 0
-  damageOverTime: 1
-  affectedObjects: []
+  automaticDestroy: 1
+  durationLeft: 0
 --- !u!114 &11496780
 MonoBehaviour:
   m_ObjectHideFlags: 1

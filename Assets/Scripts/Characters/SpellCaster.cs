@@ -17,7 +17,8 @@ public class SpellCaster : MonoBehaviour
 	private Image[] spellIcons;
     [HideInInspector]
 	public bool isHero = false;
-	private SpellBook spellBook;
+
+    private SpellBook spellBook;
 
 	private bool isCasting = false;
 
@@ -289,7 +290,7 @@ public class SpellCaster : MonoBehaviour
                     targetPosition.z = 0;    // fix because camera see point at z = -5
                 }
                 updateFacingDirection(targetPosition);
-                yield return null;
+                yield return new WaitForFixedUpdate();
 			}
 			setCastBarRatio(1f);
 
@@ -641,7 +642,13 @@ public class SpellCaster : MonoBehaviour
 		StartCoroutine(addBuffRoutine(buff));
 	}
 
-	IEnumerator addBuffRoutine(PowerUpBuff buff)
+    public bool hasLineOfSight(Vector3 target)
+    {
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, target, GameManager.instance.layerManager.highBlockingLayer);
+        return !hit;
+    }
+
+    IEnumerator addBuffRoutine(PowerUpBuff buff)
 	{
 		FloatingText floatingText = (Instantiate(UIManager.instance.floatingText) as GameObject).GetComponent<FloatingText>();
 		String text = buff.element.ToString() + " +" + ((buff.multiplier - 1) * 100) + "%";

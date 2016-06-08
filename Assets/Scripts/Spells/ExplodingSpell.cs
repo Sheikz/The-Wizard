@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [RequireComponent(typeof(SpellController))]
 public class ExplodingSpell : MonoBehaviour
@@ -12,6 +13,7 @@ public class ExplodingSpell : MonoBehaviour
     public bool explodeOnTouch = false;
     public float delayBetweenExplosions = 0.5f;
     public bool automaticExplosion = true;
+    public float[] delayedExplosions;
 
     private List<Collider2D> affectedObjects;
     private SpellController spell;
@@ -32,8 +34,8 @@ public class ExplodingSpell : MonoBehaviour
 
     void Start()
     {
-        if (GetComponent<MovingSpell>())
-            StartCoroutine(explodeAfterSeconds(10));    // Avoid that a moving spell wander for eternity
+        if (delayedExplosions.Length > 0)
+            StartCoroutine(delayedExplosionRoutine());
     }
 
     void FixedUpdate()
@@ -101,6 +103,18 @@ public class ExplodingSpell : MonoBehaviour
         if (destroyWhenExplodes)
             Destroy(gameObject);
     }
+
+    private IEnumerator delayedExplosionRoutine()
+    {
+        destroyWhenExplodes = false;
+        foreach (float time in delayedExplosions)
+        {
+            yield return new WaitForSeconds(time);
+            explode();
+        }
+        Destroy(gameObject);
+    }
+
 
     private IEnumerator startExplosionCooldown(Collider2D col)
     {

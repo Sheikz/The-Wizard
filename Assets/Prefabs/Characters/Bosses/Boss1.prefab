@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 2000
+  baseHP: 5000
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
@@ -220,7 +220,8 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 1
   deathAnimationTime: 0
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!212 &21209260

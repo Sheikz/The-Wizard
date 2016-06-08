@@ -8,14 +8,35 @@ public class StaticSpell : SpellController
 {
     public float delayBeforeDamage;
     public float colliderDuration;
+    [Tooltip("Does the spell verify if it's still alive and destroy itself if not?")]
+    public bool automaticDestroy = true;
+    public bool needLineOfSight = true;
+    public bool createdAtCasterPosition = false;
+    [Tooltip("Collides with monsters and hero")]
+    public bool collidesWithBothParties = false;
+    [HideInInspector]
     public float durationLeft;
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
+        if (needLineOfSight && !emitter.hasLineOfSight(target))
+            return null;
+
+        if (createdAtCasterPosition)
+            target = emitter.transform.position;
+
         StaticSpell newSpell = Instantiate(this);
         if (!newSpell.initialize(emitter, emitter.transform.position, target))
             return null;
         return newSpell;
+    }
+
+    public override bool canCastSpell(SpellCaster spellCaster, Vector3 initialPos, Vector3 target)
+    {
+        if (needLineOfSight)
+            return spellCaster.hasLineOfSight(target);
+        else
+            return true;
     }
 
     protected bool initialize(SpellCaster emitter, Vector3 position, Vector3 target)
@@ -43,13 +64,16 @@ public class StaticSpell : SpellController
         base.Start();
         StartCoroutine(enableAfterSeconds(delayBeforeDamage));
         StartCoroutine(disableAfterSeconds(colliderDuration));
-        StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
+        //StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
         durationLeft = duration;
+        if (collidesWithBothParties)
+            gameObject.layer = LayerMask.NameToLayer("HeroShield");
     }
 
     protected void FixedUpdate()
     {
-        checkIfAlive();
+        if (automaticDestroy)
+            checkIfAlive();
         durationLeft -= Time.fixedDeltaTime;
     }
 

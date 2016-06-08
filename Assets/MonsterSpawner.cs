@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    public bool bossEvent = false;
     public NPCController[] monsterPrefabs;
 
     private Room room;
@@ -16,6 +17,15 @@ public class MonsterSpawner : MonoBehaviour
 
     public void spawnMonster()
     {
+        if (bossEvent)
+        {
+            GameObject bossToInstantiate = ItemWithDropChance.getItem(WorldManager.instance.bosses).item;
+            NPCController newMonster = (Instantiate(bossToInstantiate, transform.position, Quaternion.identity) as GameObject).GetComponent<NPCController>();
+            newMonster.transform.parent = room.transform;
+            newMonster.initialize(room);
+            spawnedMonsterList.Add(newMonster);
+            return;
+        }
         foreach (NPCController mc in monsterPrefabs)
         {
             NPCController newMonster = Instantiate(mc, transform.position, Quaternion.identity) as NPCController;

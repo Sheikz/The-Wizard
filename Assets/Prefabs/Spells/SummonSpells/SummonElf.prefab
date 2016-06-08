@@ -343,6 +343,7 @@ MonoBehaviour:
   moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   speed: 5
+  activated: 1
 --- !u!114 &114000011581939346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,8 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa386d61bfcded43a25740489f66308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalSpellsPerSide: 2
-  angleBetweenSpells: 45
+  numberOfSpells: 5
   canBeMultiplied: 1
   activated: 1
 --- !u!114 &114000011924694952

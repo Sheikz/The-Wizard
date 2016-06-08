@@ -359,10 +359,10 @@ MonoBehaviour:
   spellTypeDescription: Projectile
   damageString: <dmg> damage
   description: Test
-  manaCost: -5
+  manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 0.5
+  cooldown: 2
   icon: {fileID: 21300146, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
   magicElement: 2
@@ -379,8 +379,7 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
   ignoredColliders: []
-  speed: 2.5
-  activated: 0
+  speed: 0
 --- !u!114 &11497652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5792,7 +5791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa386d61bfcded43a25740489f66308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalSpellsPerSide: 3
-  angleBetweenSpells: 45
+  numberOfSpells: 6
+  rotationSpeed: 120
+  radialVelocity: 1
+  attachedToCaster: 0
   canBeMultiplied: 1
+  localDirection: {x: 0, y: 0, z: 0}
   activated: 1

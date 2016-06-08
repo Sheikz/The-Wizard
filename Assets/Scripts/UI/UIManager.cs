@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 	public GameObject[] spellIcons;
 	public Sprite emptyIcon;
 	public InventoryItemIcon inventoryItemIcon;
+    public BuffBar buffBar;
 	public Color[] elementColors;
 
 	[HideInInspector]
@@ -135,7 +136,33 @@ public class UIManager : MonoBehaviour
 		setScreenColor(originalScreenMaskColor);
 	}
 
-	public float getFPS()
+    /// <summary>
+    /// Instantiate a floating text above the gameObject
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="text"></param>
+    /// <param name="color"></param>
+    public void createFloatingText(string text, Color color, GameObject gameObject)
+    {
+        FloatingText xpText = (Instantiate(floatingText) as GameObject).GetComponent<FloatingText>();
+        xpText.initialize(gameObject, text);
+        xpText.setColor(color);
+    }
+
+    /// <summary>
+    /// Instantiate a floating text at the specified position
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <param name="text"></param>
+    /// <param name="color"></param>
+    public void createFloatingText(string text, Color color, Vector3 position)
+    {
+        FloatingText xpText = (Instantiate(floatingText) as GameObject).GetComponent<FloatingText>();
+        xpText.initialize(position, text);
+        xpText.setColor(color);
+    }
+
+    public float getFPS()
 	{
 		return fpsDisplay.getFPS();
 	}

@@ -72,7 +72,12 @@ public class Tooltip : MonoBehaviour
         SlowTime slowTime = spell.GetComponent<SlowTime>();
         if (slowTime)
             result = result.Replace("<timeMultiplier>", "<color=magenta>"+((1-slowTime.timeMultiplier)*100).ToString() + "%</color>");
-        result = result.Replace("<n>", "\n");
+        
+        ExplodingSpell explodingSpell = spell.GetComponent<ExplodingSpell>();
+        if (explodingSpell && explodingSpell.delayedExplosions.Length > 0)
+            result = result.Replace("<delay>", "<color=magenta>" + explodingSpell.delayedExplosions[0] + "</color>");
+
+        result = result.Replace("<n>", "\n");   // Put line feeds
         return result;
     }
 

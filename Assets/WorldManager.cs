@@ -11,6 +11,7 @@ public class WorldManager : MonoBehaviour
     public Pillar pillarWithTorch;
     public Texture2D[] dungeonTileSets;
     public List<ItemWithDropChance> monsters;
+    public List<ItemWithDropChance> bosses;
     public GameObject wallRumbles;
     public GameObject windowLight;
     public Sprite[] skullDeco;

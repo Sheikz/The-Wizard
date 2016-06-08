@@ -46,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013922761434}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.95113, y: 9.189593, z: 0}
+  m_LocalPosition: {x: 0.327159, y: 5.595096, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 2000
+  baseHP: 5000
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
@@ -203,7 +203,8 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &114000012225974138
