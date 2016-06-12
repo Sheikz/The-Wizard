@@ -17,7 +17,7 @@ public class BuffBar : MonoBehaviour
     {
         BuffIcon newBuff = Instantiate(buffIconPrefab);
         newBuff.buffName = buff.name;
-        newBuff.setIcon(buff.icon);
+        newBuff.setIcon(buff);
         newBuff.description = buff.description;
         newBuff.transform.SetParent(transform);
         buffIcons.Add(newBuff);

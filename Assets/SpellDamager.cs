@@ -5,6 +5,7 @@ using System;
 
 public class SpellDamager : MonoBehaviour
 {
+    public bool activated = true;
     public enum DamageType { DamageOnce, DamageOverTime, None };
     public DamageType damageType = DamageType.DamageOverTime;
     public float delayBetweenDamage = 0f;
@@ -32,23 +33,28 @@ public class SpellDamager : MonoBehaviour
 
     private void applyLayer()
     {
-        if (spell.emitter == null)
+        if (spell.collidesWithBothParties)
+        {
+            gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+        }
+        else if (spell.emitter == null)
         {
             Debug.Log("Emitter not defined for " + name);
             return;
         }
-        if (spell.emitter.isMonster)
+        else if (spell.emitter.isMonster)
         {
             gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
         }
         else
-        {
             gameObject.layer = LayerMask.NameToLayer("Spells");
-        }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (!activated)
+            return;
+
         if (damageType == DamageType.None)
             return;
 
@@ -91,5 +97,13 @@ public class SpellDamager : MonoBehaviour
 
         yield return new WaitForSeconds(delayBetweenDamage);
         damagedObjects.Remove(dmg);
+    }
+
+    /// <summary>
+    /// Remove all objects in the damaged objects list, allowing the spell to hit again
+    /// </summary>
+    public void resetDamagedObjects()
+    {
+        damagedObjects.Clear();
     }
 }

@@ -22,4 +22,7 @@ public class SpellManager : MonoBehaviour
     public GameObject[] auraPrefabs;
     public GameObject[] auraActivatePrefabs;
     public GameObject[] auraDisablePrefabs;
+    public Sprite[] elementIcons;
+    public Sprite freezeDebuffIcon;
+    public Sprite slowDebuffIcon;
 }

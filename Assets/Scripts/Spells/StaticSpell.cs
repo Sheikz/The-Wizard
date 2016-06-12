@@ -12,8 +12,7 @@ public class StaticSpell : SpellController
     public bool automaticDestroy = true;
     public bool needLineOfSight = true;
     public bool createdAtCasterPosition = false;
-    [Tooltip("Collides with monsters and hero")]
-    public bool collidesWithBothParties = false;
+    
     [HideInInspector]
     public float durationLeft;
 
@@ -67,7 +66,7 @@ public class StaticSpell : SpellController
         //StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
         durationLeft = duration;
         if (collidesWithBothParties)
-            gameObject.layer = LayerMask.NameToLayer("HeroShield");
+            gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
     }
 
     protected void FixedUpdate()

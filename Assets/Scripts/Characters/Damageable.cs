@@ -28,6 +28,7 @@ public class Damageable : MonoBehaviour
     private Material originalMaterial;
     private FloatingHPBar floatingHPBar;
     private List<SpellDamager> spellDamagers;
+    private BuffsReceiver buffReceiver;
 
     void Awake()
     {
@@ -35,6 +36,7 @@ public class Damageable : MonoBehaviour
         movingChar = GetComponent<MovingCharacter>();
         originalMaterial = spriteRenderer.material;
         spellDamagers = new List<SpellDamager>();
+        buffReceiver = GetComponent<BuffsReceiver>();
     }
 
     void Start()
@@ -131,6 +133,13 @@ public class Damageable : MonoBehaviour
             dmgText.GetComponent<FloatingText>().setCriticalHit();
             damage *= 2;
         }
+
+        // Apply buff damage reduction
+        if (buffReceiver)
+        {
+            damage = Mathf.RoundToInt(damage * buffReceiver.getDamageReduction());
+        }
+
         dmgText.GetComponent<FloatingText>().initialize(gameObject, damage);
 
         if (movingChar)
@@ -275,6 +284,11 @@ public class Damageable : MonoBehaviour
         }
         onDamageCooldown = false;
         spriteRenderer.material = originalMaterial;
+    }
+
+    public void healRatio(float ratio)
+    {
+        heal(Mathf.RoundToInt(maxHP * ratio));
     }
 
     public void healRatioOverTime(float ratio, float duration)

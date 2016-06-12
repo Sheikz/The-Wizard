@@ -17,7 +17,7 @@ public class RoomEdges : MonoBehaviour
     {
         if (transform.localPosition != Vector3.zero)
         {
-            Debug.LogWarning(gameObject.name +": room edges local position not equal to origin!");
+            Debug.LogWarning(room.name +": room edges local position not equal to origin! at "+room.transform.position);
         }
     }
 

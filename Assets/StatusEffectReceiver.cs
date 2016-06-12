@@ -15,6 +15,7 @@ public class StatusEffectReceiver : MonoBehaviour
     private Color lastColorApplied;
     private Animator anim;
     private Rigidbody2D rb;
+    private BuffsReceiver buffReceiver;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class StatusEffectReceiver : MonoBehaviour
         freezeEffects = new Dictionary<float, int>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        buffReceiver = GetComponent<BuffsReceiver>();
     }
 
     public void applySlow(float moveSpeedPercent, float duration)
@@ -32,6 +34,7 @@ public class StatusEffectReceiver : MonoBehaviour
         if (moveSpeedPercent == 0)  // It's a stun
         {
             stunFor(duration);
+            addFreezeDebuff(duration);
             return;
         }
         if (imunizedTo[(int)StatusEffectType.Slow])
@@ -39,11 +42,36 @@ public class StatusEffectReceiver : MonoBehaviour
         StartCoroutine(slowForSeconds(moveSpeedPercent, duration));
     }
 
+    private void addFreezeDebuff(float duration)
+    {
+        if (!buffReceiver)
+            return;
+
+        Buff freezeDebuff = new Buff();
+        freezeDebuff.name = "Freeze";
+        freezeDebuff.icon = SpellManager.instance.freezeDebuffIcon;
+        freezeDebuff.timeLeft = duration;
+        buffReceiver.addBuff(freezeDebuff);
+    }
+
+    private void addSlowDebuff(float duration)
+    {
+        if (!buffReceiver)
+            return;
+
+        Buff freezeDebuff = new Buff();
+        freezeDebuff.name = "Slow";
+        freezeDebuff.icon = SpellManager.instance.slowDebuffIcon;
+        freezeDebuff.timeLeft = duration;
+        buffReceiver.addBuff(freezeDebuff);
+    }
+
     public void applySlow(float moveSpeedPercent, Color colorMask, float duration)
     {
         if (moveSpeedPercent == 0)  // It's a stun
         {
             stunFor(duration, colorMask);
+            addFreezeDebuff(duration);
             return;
         }
         if (imunizedTo[(int)StatusEffectType.Slow])
@@ -73,6 +101,7 @@ public class StatusEffectReceiver : MonoBehaviour
     /// <returns></returns>
     private IEnumerator slowForSeconds(float moveSpeedPercent, float duration)
     {
+        addSlowDebuff(duration);
         if (freezeEffects.ContainsKey(moveSpeedPercent))
             freezeEffects[moveSpeedPercent]++;
         else

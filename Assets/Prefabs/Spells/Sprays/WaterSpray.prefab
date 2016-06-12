@@ -231,11 +231,12 @@ MonoBehaviour:
   spellType: 0
   magicElement: 4
   spellSet: 1
-  damage: 15
+  damage: 20
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.2
 --- !u!198 &198000010626337856
@@ -7319,7 +7321,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 0
+  moveWithTransform: 1
   scalingMode: 2
   InitialModule:
     serializedVersion: 2

@@ -222,6 +222,7 @@ public class NPCController : MovingCharacter
                 targetOpponent = dmg;
                 spellCaster.targetOpponent = dmg.transform;
                 startChasing();
+                UIManager.instance.createFloatingText("!", Color.yellow, gameObject);   // Put a floating "!" to show detection
                 return true;
             }
         }
@@ -251,6 +252,7 @@ public class NPCController : MovingCharacter
 
         if (!targetOpponent)
         {
+            UIManager.instance.createFloatingText("?", Color.yellow, gameObject);
             startWander();
             return;
         }
@@ -277,7 +279,10 @@ public class NPCController : MovingCharacter
     void lookForTarget()
     {
         if (!inLineOfSight(targetOpponent))
+        {
+            UIManager.instance.createFloatingText("?", Color.yellow, gameObject);
             startWander();
+        }
     }
 
     private void startWander()

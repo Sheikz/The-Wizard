@@ -2,11 +2,17 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class UpgradeSkill : Skill
 {
     public MagicElement magicSchool;
     public float multiplier = 1.25f;
+
+    void Start()
+    {
+        GetComponent<Image>().sprite = SpellManager.instance.elementIcons[(int)magicSchool];
+    }
 
     public override void applySkill(GameObject hero)
     {

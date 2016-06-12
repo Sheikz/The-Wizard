@@ -6,7 +6,8 @@ public enum ItemPerk
 {
     FireSlashReflect, FireSlashMultiply, EnergyBoltAimBot,
     IceShardMultiply, SparkBounce, DragonBreathMove,
-    IceBeamMove
+    IceBeamMove, SanctuaryHeal, SanctuaryDamage,
+    DoomrangHeal, DoomrangDamageTwice
 };
 
 public static class ItemPerkExtensions
@@ -22,6 +23,10 @@ public static class ItemPerkExtensions
             case ItemPerk.SparkBounce: return "Spark bounces 2 times between enemies";
             case ItemPerk.IceBeamMove: return "Can move while casting "+ perk.getSpellName();
             case ItemPerk.DragonBreathMove: return "Can move while casting "+perk.getSpellName();
+            case ItemPerk.SanctuaryDamage: return perk.getSpellName()+" does damage to enemies inside the circle";
+            case ItemPerk.SanctuaryHeal: return perk.getSpellName() + " heal allies inside the circle";
+            case ItemPerk.DoomrangHeal: return perk.getSpellName() + " heals for 5% of damage done";
+            case ItemPerk.DoomrangDamageTwice: return perk.getSpellName() + " damages enemies when going and returning";
         }
         return "Not implemented";
     }
@@ -37,6 +42,10 @@ public static class ItemPerkExtensions
             case ItemPerk.SparkBounce: return "Spark";
             case ItemPerk.IceBeamMove: return "Ice Beam";
             case ItemPerk.DragonBreathMove: return "Dragon Breath";
+            case ItemPerk.SanctuaryDamage: return "Sanctuary";
+            case ItemPerk.SanctuaryHeal: return "Sanctuary";
+            case ItemPerk.DoomrangHeal: return "Doomrang";
+            case ItemPerk.DoomrangDamageTwice: return "Doomrang";
         }
         return "Not implemented";
     }

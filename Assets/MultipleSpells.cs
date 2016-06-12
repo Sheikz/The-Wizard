@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 public class MultipleSpells : MonoBehaviour
 {
+    public enum MultipleSpellType {Circle, Arc };
+    public MultipleSpellType type;
     public int numberOfSpells;
     [Tooltip("Rotation speed in degrees")]
     public float rotationSpeed = 5f;
     public float radialVelocity = 5f;
     public bool attachedToCaster = false;
+    public float angle;
 
     [HideInInspector]
     public bool canBeMultiplied = true;
@@ -28,6 +31,7 @@ public class MultipleSpells : MonoBehaviour
         if (!canBeMultiplied)
             return;
 
+        Debug.Log("multi start");
         if (!activated)
             return;
 
@@ -39,14 +43,26 @@ public class MultipleSpells : MonoBehaviour
 
         for (int i = 0; i < numberOfSpells; i++)
         {
-            castSpell(i * 360f / numberOfSpells);
+            switch (type)
+            {
+                case MultipleSpellType.Circle:
+                    castSpell(i * 360f / numberOfSpells);
+                    break;
+                case MultipleSpellType.Arc:
+                    castSpell(-(i+1) * angle);
+                    castSpell((i+1) * angle);
+                    break;
+            }
+
         }
-        Destroy(gameObject);
+        if (type == MultipleSpellType.Circle)
+            Destroy(gameObject);
     }
 
     void FixedUpdate()
     {
-        radialMovement();
+        if (type == MultipleSpellType.Circle)
+            radialMovement();
     }
 
     void castSpell(float angle)

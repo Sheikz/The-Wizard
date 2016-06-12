@@ -86,19 +86,23 @@ MonoBehaviour:
   spellSet: 0
   damage: 40
   lightIntensity: 0
-  duration: 3
-  prerequisites: []
-  removePrerequisites: 0
+  duration: 5
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  collidesWithWalls: 1
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   delayBeforeDamage: 0.5
   colliderDuration: 0
-  damageOverTime: 1
-  affectedObjects: []
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
+  durationLeft: 0
 --- !u!114 &11449862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
 --- !u!198 &19845206

@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System;
 
-public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SpellBookSpell : MonoBehaviour
 {
     public GameObject iconPrefab;
     public Text spellLevel;
     public Image spellImage;
     public Button levelUpButton;
-    public Tooltip tooltipPrefab;
     
     private SpellCaster hero;
     private PlayerStats heroStats;
@@ -18,7 +16,6 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public SpellController containedSpell;
 
     private SpellBook spellBook;
-    private Tooltip tooltip;
 
     public void initialize(SpellController spell)
     {
@@ -31,6 +28,9 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         hero = GameManager.instance.hero.GetComponent<SpellCaster>();
         heroStats = hero.GetComponent<PlayerStats>();
         spellBook = UIManager.instance.spellBook;
+        HoveringToolTip tooltip = GetComponent<HoveringToolTip>();
+        if (tooltip)
+            tooltip.initialize(hero, containedSpell);
         refreshSpellLevel();
     }
 
@@ -87,27 +87,5 @@ public class SpellBookSpell : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         levelUpButton.gameObject.SetActive(value);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (tooltip)
-        {
-            tooltip.gameObject.SetActive(true);
-            tooltip.refresh(hero, containedSpell);
-        }
-        else
-        {
-            tooltip = Instantiate(tooltipPrefab);
-            tooltip.transform.SetParent(transform);
-            tooltip.transform.position = transform.position + new Vector3(25, -10, 0);
-            tooltip.refresh(hero, containedSpell);
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (tooltip)
-        {
-            tooltip.gameObject.SetActive(false);
-        }
-    }
+    
 }

@@ -66,9 +66,4 @@ public class SpellDeflector : MonoBehaviour
                 otherSpell.transform.position);
         }
     }
-
-    internal void setActive(bool v)
-    {
-        activated = v;
-    }
 }

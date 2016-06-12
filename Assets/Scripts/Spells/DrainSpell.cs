@@ -7,6 +7,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(SpellController))]
 public class DrainSpell : MonoBehaviour
 {
+    public bool activated = true;
     [Range(0, 1f)]
     [Tooltip("The ratio of damage absorbed as drain")]
     public float drainRatio = 0.1f;
@@ -15,11 +16,17 @@ public class DrainSpell : MonoBehaviour
 
     public void absorbDamage(float damage)
     {
+        if (!activated)
+            return;
+
         damageAbsorbed += damage * drainRatio;
     }
 
     public void healDamageAbsorbed(Damageable dmg)
     {
+        if (!activated)
+            return;
+
         dmg.heal(Mathf.CeilToInt(damageAbsorbed));
     }
 

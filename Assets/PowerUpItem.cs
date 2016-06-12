@@ -6,13 +6,27 @@ using System;
 public struct PowerUpBuff
 {
     public MagicElement element;
+    public string name;
     public float duration;
     public float multiplier;
 }
 
 public class PowerUpItem : Item
 {
-    public PowerUpBuff buff; 
+    public PowerUpBuff powerUpBuff;
+
+    private Buff buff;
+
+    void Start()
+    {
+        buff = new Buff();
+        buff.name = powerUpBuff.name;
+        buff.description = "Increase damage done by " + powerUpBuff.element.ToString() + " spells by " 
+            + "<color=orange>"+Mathf.RoundToInt(((powerUpBuff.multiplier - 1) * 100)) + "%</color>";
+        buff.timeLeft = powerUpBuff.duration;
+        buff.timedBuff = true;
+        buff.icon = SpellManager.instance.elementIcons[(int)powerUpBuff.element];
+    }
 
     public override void isPickedUpBy(Inventory looter)
     {
@@ -20,7 +34,10 @@ public class PowerUpItem : Item
         if (!spellCaster)
             return;
 
-        spellCaster.addBuff(buff);
+        BuffsReceiver bReceiver = looter.GetComponent<BuffsReceiver>();
+        if (bReceiver)
+            bReceiver.addBuff(buff);
+        spellCaster.addBuff(powerUpBuff);
         Destroy(gameObject);
     }
 }

@@ -21,10 +21,23 @@ public class BoomerangSpell : MovingSpell
     new void Start()
     {
         base.Start();
+        applyBoomerangPerks();
         autoPilot.searchNewTargetIfDead = false;
         autoPilot.lockToTargetPosition(targetPosition);
         autoPilot.rotatingStep = 0.1f;
         state = BoomerangState.Going;
+    }
+
+    private void applyBoomerangPerks()
+    {
+        if (!stats)
+            return;
+        switch (spellName)
+        {
+            case "Doomrang":
+                if (drainSpell) drainSpell.activated = stats.getItemPerk(ItemPerk.DoomrangHeal) ? true : false;
+                break;
+        }
     }
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
@@ -91,6 +104,11 @@ public class BoomerangSpell : MovingSpell
 
         autoPilot.lockToObject(emitter.transform);
         state = BoomerangState.ComingBack;
+        if (spellName == ItemPerk.DoomrangDamageTwice.getSpellName() && stats & spellDamager)
+        {
+            if (stats.getItemPerk(ItemPerk.DoomrangDamageTwice))    // Allow the doomrang to damage twice enemies
+                spellDamager.resetDamagedObjects();
+        }
     }
 
     /// <summary>

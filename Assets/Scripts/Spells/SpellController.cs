@@ -25,6 +25,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public float duration = 0f;
     public bool collidesWithSpells = false;
     public bool collidesWithWalls = true;
+    [Tooltip("Collides with monsters and hero")]
+    public bool collidesWithBothParties = false;
 
     protected Rigidbody2D rb;
 	protected CircleCollider2D circleCollider;
@@ -38,10 +40,12 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public Vector3 target;
     [HideInInspector]
     public MoveSpellCaster moveSpellCaster;
+    protected PlayerStats stats;
     protected SpellAutoPilot autoPilot;
     protected MultipleSpells multiSpells;
     protected ChainSpell chainSpell;
-
+    protected SpellDamager spellDamager;
+    protected HealArea healArea;
     
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
@@ -57,6 +61,8 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         autoPilot = GetComponent<SpellAutoPilot>();
         multiSpells = GetComponent<MultipleSpells>();
         chainSpell = GetComponent<ChainSpell>();
+        spellDamager = GetComponent<SpellDamager>();
+        healArea = GetComponent<HealArea>();
     }
 
 	protected virtual void Start()
@@ -64,6 +70,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		setupLights();
 		applyStats();
 		applyLayer();
+        stats = emitter.GetComponent<PlayerStats>();
         applyItemPerks();
         SoundManager.instance.playSound(spellName, gameObject);
         if (transform.parent == null)
@@ -72,7 +79,6 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
     protected virtual void applyItemPerks()
     {
-        PlayerStats stats = emitter.GetComponent<PlayerStats>();
         if (!stats)
             return;
 
@@ -83,12 +89,15 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
                     autoPilot.activated = true;
                 break;
             case "Ice Shard":
-                if (stats.getItemPerk(ItemPerk.IceShardMultiply) && multiSpells)
-                    multiSpells.activated = true;
+                if (multiSpells) multiSpells.activated = stats.getItemPerk(ItemPerk.IceShardMultiply) ? true : false;
                 break;
             case "Spark":
                 if (stats.getItemPerk(ItemPerk.SparkBounce) && chainSpell)
                     chainSpell.activated = true;
+                break;
+            case "Sanctuary":
+                if (healArea) healArea.activated = stats.getItemPerk(ItemPerk.SanctuaryHeal) ? true : false;
+                if (spellDamager) spellDamager.activated = stats.getItemPerk(ItemPerk.SanctuaryDamage) ? true : false;
                 break;
         }
     }

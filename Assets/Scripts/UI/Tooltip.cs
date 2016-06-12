@@ -10,7 +10,7 @@ public class Tooltip : MonoBehaviour
     public int verticalPadding = 10;
     private RectTransform rectTransform;
     private bool positionFixed;
-    private Inventory heroInventory;
+    private PlayerStats playerStats;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class Tooltip : MonoBehaviour
         canvas.sortingOrder = 10;
         rectTransform = GetComponent<RectTransform>();
         positionFixed = false;
-        heroInventory = GameManager.instance.hero.GetComponent<Inventory>();
+        playerStats = GameManager.instance.hero.GetComponent<PlayerStats>();
     }
 
     private string parseDescription(SpellController spell, int damage)
@@ -63,7 +63,7 @@ public class Tooltip : MonoBehaviour
 
         foreach (ItemPerk perk in Enum.GetValues(typeof(ItemPerk)))
         {
-            if (heroInventory.hasItemPerk[(int)perk] && perk.getSpellName() == spell.spellName)
+            if (playerStats.getItemPerk(perk) && perk.getSpellName() == spell.spellName)
             {
                 result += "\n<color=orange>• " + perk.getDescription() + "</color>";
             }
@@ -72,12 +72,39 @@ public class Tooltip : MonoBehaviour
         SlowTime slowTime = spell.GetComponent<SlowTime>();
         if (slowTime)
             result = result.Replace("<timeMultiplier>", "<color=magenta>"+((1-slowTime.timeMultiplier)*100).ToString() + "%</color>");
+
+        BuffArea buffArea = spell.GetComponent<BuffArea>();
+        if (buffArea && buffArea.buff.damageReduction > 0)
+            result = result.Replace("<damagereduction>", "<color=orange>" + buffArea.buff.damageReduction * 100 + "%</color>");
         
         ExplodingSpell explodingSpell = spell.GetComponent<ExplodingSpell>();
         if (explodingSpell && explodingSpell.delayedExplosions.Length > 0)
             result = result.Replace("<delay>", "<color=magenta>" + explodingSpell.delayedExplosions[0] + "</color>");
 
         result = result.Replace("<n>", "\n");   // Put line feeds
+        return result;
+    }
+
+    internal void refresh(string text)
+    {
+        tooltipText.text = text;
+        if (gameObject.activeSelf)
+            StartCoroutine(fixPosition());
+    }
+
+    internal void refresh(Buff buff)
+    {
+        tooltipText.text = parseBuffDescription(buff);
+        if (gameObject.activeSelf)
+            StartCoroutine(fixPosition());
+    }
+
+    private string parseBuffDescription(Buff buff)
+    {
+        string result = "";
+        result += "<size=18>" + buff.name + "</size>";
+        result += "\n" + buff.description;
+        result = result.Replace("<n>", "\n");
         return result;
     }
 

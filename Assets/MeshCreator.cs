@@ -103,6 +103,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
                 name = "Hole";
+                gameObject.layer = LayerMask.NameToLayer("Obstacles");
                 meshRenderer.sortingOrder = 3;
                 meshRenderer.sortingLayerName = "Floor";
                 break;

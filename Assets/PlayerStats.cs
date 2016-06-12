@@ -17,6 +17,7 @@ public class PlayerStats : CharacterStats
     [HideInInspector]
     public float speedSkillBonus = 0f;
     private Inventory inventory;
+    public bool hasAllPerks = false;
 
     new void Awake()
     {
@@ -133,6 +134,8 @@ public class PlayerStats : CharacterStats
 
     public bool getItemPerk(ItemPerk itemPerk)
     {
+        if (hasAllPerks)
+            return true;
         return inventory.getItemPerk(itemPerk);
     }
 }

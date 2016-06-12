@@ -15,6 +15,7 @@ public class SpellCaster : MonoBehaviour
 
 	protected bool[] isOnCoolDown;
 	private Image[] spellIcons;
+    private HoveringToolTip[] tooltips;
     [HideInInspector]
 	public bool isHero = false;
 
@@ -59,6 +60,7 @@ public class SpellCaster : MonoBehaviour
 		isOnCoolDown = new bool[spellList.Length];
 		resetCooldowns();
 		spellIcons = new Image[spellList.Length];
+        tooltips = new HoveringToolTip[spellList.Length];
 		companionList = new List<Companion>();
 		followerList = new List<CompanionController>();
 		activeBuffs = new List<PowerUpBuff>();
@@ -559,6 +561,10 @@ public class SpellCaster : MonoBehaviour
 		spellIcons[2] = GameObject.Find("SpellIconDefensive").transform.FindChild("SpellIcon").GetComponent<Image>();
 		spellIcons[3] = GameObject.Find("SpellIconUltimate1").transform.FindChild("SpellIcon").GetComponent<Image>();
 		spellIcons[4] = GameObject.Find("SpellIconUltimate2").transform.FindChild("SpellIcon").GetComponent<Image>();
+
+        for (int i = 0; i < spellIcons.Length; i++)
+            tooltips[i] = spellIcons[i].GetComponent<HoveringToolTip>();
+
 		refreshIcons();
 	}
 
@@ -578,6 +584,7 @@ public class SpellCaster : MonoBehaviour
 				c.a = 1f;
 				spellIcons[i].color = c;
 				spellIcons[i].sprite = spellList[i].GetComponent<SpellController>().icon;
+                tooltips[i].initialize(this, spellList[i]);
 			}
 		}
 	}

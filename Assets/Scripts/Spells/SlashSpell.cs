@@ -49,11 +49,13 @@ public class SlashSpell : SpellController
     override protected void applyItemPerks()
     {
         PlayerStats stats = emitter.GetComponent<PlayerStats>();
+        if (!stats)
+            return;
+
         switch (spellName)
         {
             case "Flaming Whip":
-                if (stats && stats.getItemPerk(ItemPerk.FireSlashReflect))
-                    activateReflect();
+                activateReflect(stats.getItemPerk(ItemPerk.FireSlashReflect));
                 if (stats && stats.getItemPerk(ItemPerk.FireSlashMultiply) && canBeMultiplied)
                     StartCoroutine(multiply(transform.position, target));
                 break;
@@ -81,10 +83,10 @@ public class SlashSpell : SpellController
         newSpell2.initialize(emitter, position2, farTarget);
     }
 
-    void activateReflect()
+    void activateReflect(bool value)
     {
         foreach (SpellDeflector deflector in GetComponentsInChildren<SpellDeflector>())
-            deflector.setActive(true);
+            deflector.activated = value;
     }
 
     void FixedUpdate()

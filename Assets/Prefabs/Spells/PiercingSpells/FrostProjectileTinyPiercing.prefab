@@ -341,6 +341,7 @@ MonoBehaviour:
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -3958,7 +3959,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa386d61bfcded43a25740489f66308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalSpellsPerSide: 1
-  angleBetweenSpells: 7
+  type: 1
+  numberOfSpells: 1
+  rotationSpeed: 5
+  radialVelocity: 5
+  attachedToCaster: 0
+  angle: 15
   canBeMultiplied: 1
+  localDirection: {x: 0, y: 0, z: 0}
   activated: 0
