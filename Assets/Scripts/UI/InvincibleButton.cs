@@ -16,13 +16,13 @@ public class InvincibleButton : MonoBehaviour
     {
         if (invincible)
         {
-            GameManager.instance.hero.damageable.isInvincible = false;
+            GameManager.instance.hero.damageable.isInvincible--;
             text.text = "Invincible = Off";
             invincible = false;
         }
         else
         {
-            GameManager.instance.hero.damageable.isInvincible = true;
+            GameManager.instance.hero.damageable.isInvincible++;
             text.text = "Invincible = On";
             invincible = true;
         }

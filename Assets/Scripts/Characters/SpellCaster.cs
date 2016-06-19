@@ -22,8 +22,7 @@ public class SpellCaster : MonoBehaviour
     private SpellBook spellBook;
 
 	private bool isCasting = false;
-
-	private CharacterStats characterStats;
+    private CharacterStats characterStats;
 	[HideInInspector]
 	public bool isMonster;
 	private List<Companion> companionList;

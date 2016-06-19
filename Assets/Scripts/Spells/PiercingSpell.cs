@@ -5,6 +5,7 @@ public class PiercingSpell : MovingSpell
 {
     public GameObject explosion;
     public bool pierceCausesExplosion = false;
+    public bool destroyIfFinished = false;
 
     private bool isOnExplosionCoolDown = false;
     private float timeBetweenExplosions = 0.5f;
@@ -15,6 +16,14 @@ public class PiercingSpell : MovingSpell
             return false;
 
         return base.canCastSpell(spellCaster, initialPos, target);
+    }
+
+    void FixedUpdate()
+    {
+        if (!destroyIfFinished)
+            return;
+
+        checkIfAlive();
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -5,6 +5,7 @@ using System;
 public class SpraySpell : ChannelSpell
 {
     private SpraySpell currentSpray;
+    public bool lookToCursor = true;
 
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
@@ -46,7 +47,8 @@ public class SpraySpell : ChannelSpell
     new void Start()
     {
         base.Start();
-        transform.rotation = Quaternion.Euler(90, -90, 0);
+        if (lookToCursor)
+            transform.rotation = Quaternion.Euler(90, -90, 0);
     }
 
     void FixedUpdate()
@@ -95,7 +97,8 @@ public class SpraySpell : ChannelSpell
     public bool refresh(SpellCaster emitter, Vector3 position, Vector3 target)
     {
         this.emitter = emitter;
-        rotateAroundX(target - position, Quaternion.Euler(90, -90, 0));
+        if (lookToCursor)
+            rotateAroundX(target - position, Quaternion.Euler(90, -90, 0));
         return true;
     }
 }

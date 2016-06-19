@@ -50,7 +50,6 @@ public class MovingSpell : SpellController
                 }
             }
         }
-
         return true;
 	}
 

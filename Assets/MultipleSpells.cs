@@ -31,7 +31,6 @@ public class MultipleSpells : MonoBehaviour
         if (!canBeMultiplied)
             return;
 
-        Debug.Log("multi start");
         if (!activated)
             return;
 

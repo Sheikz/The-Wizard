@@ -49,7 +49,8 @@ public class PlayerController : MovingCharacter
 			direction = movement;
 
 		updateAnimations();
-		if (!canMove || isFalling)
+        updateSortingOrder();
+        if (!canMove || isFalling)
 			return;
         if (statusEffectReceiver.isStunned)
             return;

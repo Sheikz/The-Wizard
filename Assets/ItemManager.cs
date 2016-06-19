@@ -58,6 +58,7 @@ public class ItemManager : MonoBehaviour
     internal float powerToDamage = 100f;
     public List<ItemWithDropChance> monsterItems;
     public float[] rarityChance;
+    public GameObject[] itemAuras;
 
     [System.Serializable]
 	public class SpriteArray

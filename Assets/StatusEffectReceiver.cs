@@ -16,6 +16,7 @@ public class StatusEffectReceiver : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BuffsReceiver buffReceiver;
+    private bool imunizedToAll = false;
 
     void Awake()
     {
@@ -33,11 +34,13 @@ public class StatusEffectReceiver : MonoBehaviour
     {
         if (moveSpeedPercent == 0)  // It's a stun
         {
+            if (isImunizedTo(StatusEffectType.Freeze))
+                return;
             stunFor(duration);
             addFreezeDebuff(duration);
             return;
         }
-        if (imunizedTo[(int)StatusEffectType.Slow])
+        if (isImunizedTo(StatusEffectType.Slow))
             return;
         StartCoroutine(slowForSeconds(moveSpeedPercent, duration));
     }
@@ -66,6 +69,18 @@ public class StatusEffectReceiver : MonoBehaviour
         buffReceiver.addBuff(freezeDebuff);
     }
 
+    internal void setImunized(bool v)
+    {
+        imunizedToAll = v;
+    }
+
+    private bool isImunizedTo(StatusEffectType type)
+    {
+        if (imunizedToAll)
+            return true;
+        return imunizedTo[(int)type];
+    }
+
     public void applySlow(float moveSpeedPercent, Color colorMask, float duration)
     {
         if (moveSpeedPercent == 0)  // It's a stun
@@ -74,7 +89,7 @@ public class StatusEffectReceiver : MonoBehaviour
             addFreezeDebuff(duration);
             return;
         }
-        if (imunizedTo[(int)StatusEffectType.Slow])
+        if (isImunizedTo(StatusEffectType.Slow))
             return;
 
         StartCoroutine(slowForSeconds(moveSpeedPercent, duration));
@@ -87,7 +102,7 @@ public class StatusEffectReceiver : MonoBehaviour
     /// <param name="duration"></param>
     public void applyRoot(float duration)
     {
-        if (imunizedTo[(int)StatusEffectType.Root])
+        if (isImunizedTo(StatusEffectType.Root))
             return;
 
         StartCoroutine(slowForSeconds(0, duration));
@@ -139,14 +154,14 @@ public class StatusEffectReceiver : MonoBehaviour
 
     internal void stunFor(float stunDuration)
     {
-        if (imunizedTo[(int)StatusEffectType.Stun])
+        if (isImunizedTo(StatusEffectType.Stun))
             return;
         StartCoroutine(stunRoutine(stunDuration));
     }
 
     internal void stunFor(float stunDuration, Color colorMask)
     {
-        if (imunizedTo[(int)StatusEffectType.Stun])
+        if (isImunizedTo(StatusEffectType.Stun))
             return;
         StartCoroutine(stunRoutine(stunDuration));
         applyColorMask(colorMask, stunDuration);

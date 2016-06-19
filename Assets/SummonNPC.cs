@@ -15,12 +15,9 @@ public class SummonNPC : SpellController
 
         // Set the level of the companion
         CharacterStats companionStats = newNPC.GetComponent<CharacterStats>();
-        if (companionStats)
-        {
-            CharacterStats masterStats = emitter.GetComponent<CharacterStats>();
-            if (masterStats)
-                companionStats.level = masterStats.level;
-        }
+        CharacterStats masterStats = emitter.GetComponent<CharacterStats>();
+        if (companionStats && masterStats)
+            companionStats.level = masterStats.level;
 
         emitter.addFollower(newNPC);
         return this;

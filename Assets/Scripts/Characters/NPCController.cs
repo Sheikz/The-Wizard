@@ -110,6 +110,7 @@ public class NPCController : MovingCharacter
     void FixedUpdate()
     {
         actAccordingToState();
+        updateSortingOrder();
         updateAnimations();
     }
 
@@ -250,7 +251,7 @@ public class NPCController : MovingCharacter
         if (statusEffectReceiver && statusEffectReceiver.isStunned)
             return;
 
-        if (!targetOpponent)
+        if (!targetOpponent || targetOpponent.isDead)
         {
             UIManager.instance.createFloatingText("?", Color.yellow, gameObject);
             startWander();

@@ -33,6 +33,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
     [HideInInspector]
     public Transform monsterHolder;
     [HideInInspector]
+    private Transform furnitureHolder;
     public int mapTheme;
     private int decoCount = 0;
 
@@ -51,12 +52,15 @@ public class RoomBasedMapGenerator : MonoBehaviour
         liaisonHolder = new GameObject();
         liaisonHolder.name = "Liaison Holder";
         liaisonHolder.transform.SetParent(transform);
+        furnitureHolder = new GameObject("Furniture").transform;
+        furnitureHolder.SetParent(transform);
 
         spellHolder = new GameObject("Spells").transform;
 
         hero = GameManager.instance.hero;
         hero.transform.position = new Vector3(0, 5f, 0f);
         createMap();
+        //createFurnitures();
         createDecos();
         //createMonsters();
     }
@@ -131,6 +135,43 @@ public class RoomBasedMapGenerator : MonoBehaviour
             room.initialize(this);
         }
     }
+
+    private void createFurnitures()
+    {
+        List<Vector3> floorPositions = new List<Vector3>();
+        GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+        {
+            foreach (GameObject floor in floors)
+            {
+                MeshCreator floorMesh = floor.GetComponent<MeshCreator>();
+                if (floorMesh != null)
+                {
+                    floorPositions = floorMesh.getPositions();
+                    if (floorPositions == null)
+                        continue;
+                    foreach (Vector3 floorPos in floorPositions)
+                    {
+                        createFurniture(floorPos);
+                    }
+                }
+                else
+                    createFurniture(floor.transform.position);
+            }
+        }
+    }
+
+    private void createFurniture(Vector3 position)
+    {
+        if (Random.Range(0f, 1f) < 0.5f)
+            return;
+
+        if (Physics2D.OverlapCircle(position, 0.55f, GameManager.instance.layerManager.blockingLayer))
+            return;
+
+        GameObject newFurniture = Instantiate(wallTemplate.furniture, position, Quaternion.identity) as GameObject;
+        newFurniture.transform.SetParent(furnitureHolder);
+    }
+
 
     public void createDecos()
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum StatusEffectType { Slow, Root, Stun, Burning, Knockback};
+public enum StatusEffectType { Slow, Root, Stun, Burning, Knockback, Freeze};
 
 public abstract class StatusEffect : MonoBehaviour 
 {

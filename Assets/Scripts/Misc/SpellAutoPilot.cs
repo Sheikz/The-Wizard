@@ -73,42 +73,43 @@ public class SpellAutoPilot : AutoPilot
         if (hits.Length <= 0)
             return;
 
-        Collider2D closestObject = getClosest(hits);
-        if (closestObject == null)
+        Damageable closestDmg = getClosest(hits);
+        if (closestDmg == null)
             return;
 
-        Damageable dmg = closestObject.GetComponent<Damageable>();
-
-        if (dmg)
+        if (closestDmg && !closestDmg.isDead)
         {
-            Debug.Log(gameObject.name + " from " + spell.emitter + " locking on " + dmg.name);
-            lockToObject(dmg.transform);
+            Debug.Log(gameObject.name + " from " + spell.emitter + " locking on " + closestDmg.name);
+            lockToObject(closestDmg.transform);
         }
     }
 
-    Collider2D getClosest(RaycastHit2D[] hits)
+    Damageable getClosest(RaycastHit2D[] hits)
     {
         if (hits.Length <= 0)
             return null;
 
-        Collider2D result = null;
+        Damageable result = null;
         float minDistance = Mathf.Infinity;
         for (int i = 0; i < hits.Length; i++)
         {
+            Damageable dmg = hits[i].collider.GetComponent<Damageable>();
+            if (!dmg || dmg.isDead)
+                continue;
+
             if (hits[i].collider.gameObject == spell.emitter)   // Don't lock on its emitter
                 continue;
 
             if (spell.ignoredColliders.Contains(hits[i].collider))
                 continue;
+
             float sqrDistance = (hits[i].transform.position - transform.position).sqrMagnitude;
             if (sqrDistance < minDistance)
             {
                 minDistance = sqrDistance;
-                result = hits[i].collider;
+                result = dmg;
             }
         }
-        if (spell.ignoredColliders.Contains(result))
-            return null;
 
         return result;
     }

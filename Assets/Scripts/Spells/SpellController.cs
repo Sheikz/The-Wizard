@@ -15,7 +15,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public float manaCost;
     public float manaCostInterval = 1f;
     public float castTime = 0f;
-    public float cooldown = 0.2f;
+    public float cooldown = 0.5f;
     public Sprite icon;
 	public SpellType spellType = SpellType.Primary;
 	public MagicElement magicElement;
@@ -46,6 +46,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     protected ChainSpell chainSpell;
     protected SpellDamager spellDamager;
     protected HealArea healArea;
+    protected ParticleSystem particleSystem;
     
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
@@ -56,21 +57,23 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		circleCollider = GetComponent<CircleCollider2D>();
 		if (circleCollider)
 			circleCollider.isTrigger = true;
-		blockingLayer = GameManager.instance.layerManager.spellBlockingLayer;
 		ignoredColliders = new List<Collider2D>();
         autoPilot = GetComponent<SpellAutoPilot>();
         multiSpells = GetComponent<MultipleSpells>();
         chainSpell = GetComponent<ChainSpell>();
         spellDamager = GetComponent<SpellDamager>();
         healArea = GetComponent<HealArea>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
 	protected virtual void Start()
 	{
-		setupLights();
+        blockingLayer = GameManager.instance.layerManager.spellBlockingLayer;
+        setupLights();
 		applyStats();
 		applyLayer();
-        stats = emitter.GetComponent<PlayerStats>();
+        if (emitter)
+            stats = emitter.GetComponent<PlayerStats>();
         applyItemPerks();
         SoundManager.instance.playSound(spellName, gameObject);
         if (transform.parent == null)
@@ -85,15 +88,13 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         switch (spellName)
         {
             case "Energy Bolt":
-                if (stats.getItemPerk(ItemPerk.EnergyBoltAimBot) && autoPilot)
-                    autoPilot.activated = true;
+                if (autoPilot) autoPilot.activated = stats.getItemPerk(ItemPerk.EnergyBoltAimBot) ? true : false;
                 break;
             case "Ice Shard":
                 if (multiSpells) multiSpells.activated = stats.getItemPerk(ItemPerk.IceShardMultiply) ? true : false;
                 break;
             case "Spark":
-                if (stats.getItemPerk(ItemPerk.SparkBounce) && chainSpell)
-                    chainSpell.activated = true;
+                if (chainSpell) chainSpell.activated = stats.getItemPerk(ItemPerk.SparkBounce) ? true : false;
                 break;
             case "Sanctuary":
                 if (healArea) healArea.activated = stats.getItemPerk(ItemPerk.SanctuaryHeal) ? true : false;
@@ -243,7 +244,14 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
 			return; // Legacy Particle System can be defined as one-shot and dont need to be destroyed manually
 
-		ParticleSystem[] partSystems = GetComponentsInChildren<ParticleSystem>();
+        if (particleSystem)
+        {
+            if (!particleSystem.IsAlive(true))
+                Destroy(gameObject);
+            return;
+        }
+
+        ParticleSystem[] partSystems = GetComponentsInChildren<ParticleSystem>();
 		if (partSystems.Length == 0)
 		{
 			StartCoroutine(fadeLights(fadeLightsDuration));

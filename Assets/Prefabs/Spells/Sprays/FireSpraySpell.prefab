@@ -60,11 +60,12 @@ MonoBehaviour:
   spellType: 1
   magicElement: 2
   spellSet: 0
-  damage: 25
+  damage: 50
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 0
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -73,6 +74,7 @@ MonoBehaviour:
   moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   canMoveWhileCasting: 0
+  lookToCursor: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -410,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
 --- !u!114 &114000012054854446
@@ -423,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
 --- !u!114 &114000014032519388

@@ -12,6 +12,7 @@ public class WorldManager : MonoBehaviour
     public Texture2D[] dungeonTileSets;
     public List<ItemWithDropChance> monsters;
     public List<ItemWithDropChance> bosses;
+    public List<ItemWithDropChance> furnitures;
     public GameObject wallRumbles;
     public GameObject windowLight;
     public Sprite[] skullDeco;

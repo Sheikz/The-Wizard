@@ -1,13 +1,38 @@
 fileFormatVersion: 2
 guid: b4eb3d54c3354a340b4fe68d64eff14f
-timeCreated: 1463561813
+timeCreated: 1465894029
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: props_0
+    21300002: props_1
+    21300004: props_2
+    21300006: props_3
+    21300008: props_4
+    21300010: props_5
+    21300012: props_6
+    21300014: props_7
+    21300016: props_8
+    21300018: props_9
+    21300020: props_10
+    21300022: props_11
+    21300024: props_12
+    21300026: props_13
+    21300028: props_14
+    21300030: props_15
+    21300032: props_16
+    21300034: props_17
+    21300036: props_18
+    21300038: props_19
+    21300040: props_20
+    21300042: props_21
+    21300044: props_22
+    21300046: props_23
+    21300048: props_24
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -27,10 +52,10 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 8192
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,19 +63,785 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: props_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 98, y: 136}
+        - {x: -105, y: 136}
+        - {x: -117, y: 115}
+        - {x: -117, y: -166}
+        - {x: 108, y: -166}
+        - {x: 118, y: -154}
+        - {x: 118, y: 75}
+        - {x: 105, y: 132}
+      tessellationDetail: 0
+    - name: props_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 72, y: -188}
+        - {x: 65, y: -185}
+        - {x: 54, y: -180}
+        - {x: 51, y: -180}
+        - {x: -51, y: -189}
+        - {x: -80, y: -167}
+        - {x: -103, y: -158}
+        - {x: -114, y: -143}
+        - {x: -57, y: -181}
+        - {x: -6, y: -182}
+        - {x: 51, y: -180}
+        - {x: 70, y: -174}
+        - {x: 83, y: -165}
+        - {x: 83, y: -154}
+        - {x: 78, y: -151}
+        - {x: 56, y: -146}
+        - {x: 71, y: -149}
+        - {x: 95, y: -149}
+        - {x: 114, y: -117}
+        - {x: 114, y: -55}
+        - {x: 9, y: -29}
+        - {x: -117, y: -29}
+        - {x: -131, y: -53}
+        - {x: -129, y: -60}
+        - {x: -115, y: -69}
+        - {x: -94, y: -80}
+        - {x: -74, y: -90}
+        - {x: -56, y: -98}
+        - {x: -66, y: -94}
+        - {x: -70, y: -93}
+        - {x: -80, y: -91}
+        - {x: -129, y: -104}
+        - {x: -188, y: -140}
+        - {x: -188, y: -162}
+        - {x: -108, y: -215}
+        - {x: -12, y: -215}
+        - {x: 24, y: -208}
+        - {x: 71, y: -193}
+        - {x: 73, y: -191}
+      - - {x: 150, y: -126}
+        - {x: 138, y: -133}
+        - {x: 138, y: -149}
+        - {x: 166, y: -149}
+        - {x: 170, y: -148}
+        - {x: 174, y: -134}
+        - {x: 174, y: -126}
+      tessellationDetail: 0
+    - name: props_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -86, y: 136}
+        - {x: -106, y: 127}
+        - {x: -117, y: 83}
+        - {x: -117, y: -159}
+        - {x: -115, y: -166}
+        - {x: 95, y: -166}
+        - {x: 118, y: -139}
+        - {x: 118, y: 101}
+        - {x: 89, y: 136}
+      tessellationDetail: 0
+    - name: props_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -136, y: -74}
+        - {x: -136, y: -186}
+        - {x: -130, y: -191}
+        - {x: 150, y: -191}
+        - {x: 150, y: -153}
+        - {x: 134, y: -132}
+        - {x: 51, y: -74}
+      - - {x: 63, y: -69}
+        - {x: 19, y: -92}
+        - {x: 19, y: -103}
+        - {x: 38, y: -113}
+        - {x: 71, y: -113}
+        - {x: 103, y: -91}
+        - {x: 103, y: -77}
+        - {x: 84, y: -69}
+      tessellationDetail: 0
+    - name: props_4
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -162, y: 188}
+        - {x: -163, y: 186}
+        - {x: -163, y: -158}
+        - {x: -159, y: -167}
+        - {x: -156, y: -168}
+        - {x: 168, y: -168}
+        - {x: 168, y: 187}
+        - {x: 167, y: 188}
+      tessellationDetail: 0
+    - name: props_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -194, y: 65}
+        - {x: -194, y: -215}
+        - {x: 194, y: -215}
+        - {x: 194, y: 64}
+        - {x: 191, y: 65}
+      tessellationDetail: 0
+    - name: props_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -135, y: 130}
+        - {x: -192, y: 76}
+        - {x: -192, y: -223}
+        - {x: 12, y: -256}
+        - {x: 171, y: -256}
+        - {x: 196, y: -246}
+        - {x: 196, y: 52}
+        - {x: 186, y: 130}
+      tessellationDetail: 0
+    - name: props_7
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 153}
+        - {x: 20, y: 142}
+        - {x: 20, y: 132}
+        - {x: 19, y: 124}
+        - {x: 20, y: 196}
+        - {x: 30, y: 203}
+        - {x: 27, y: 210}
+        - {x: 25, y: 213}
+        - {x: 1, y: 241}
+        - {x: -3, y: 242}
+        - {x: -11, y: 242}
+        - {x: -31, y: 209}
+        - {x: -28, y: 202}
+        - {x: -24, y: 199}
+        - {x: -24, y: 124}
+        - {x: -24, y: 191}
+        - {x: -48, y: 226}
+        - {x: -88, y: 186}
+        - {x: -195, y: 81}
+        - {x: -195, y: -214}
+        - {x: -193, y: -215}
+        - {x: 194, y: -215}
+        - {x: 194, y: 66}
+        - {x: 43, y: 175}
+      - - {x: -20, y: 78}
+        - {x: -20, y: 97}
+        - {x: -21, y: 97}
+        - {x: -21, y: 66}
+      - - {x: 16, y: 97}
+        - {x: 15, y: 91}
+        - {x: 15, y: 70}
+        - {x: 19, y: 66}
+      tessellationDetail: 0
+    - name: props_8
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 39, y: 239}
+        - {x: 17, y: 140}
+        - {x: 16, y: 131}
+        - {x: 17, y: 128}
+        - {x: 16, y: 121}
+        - {x: 17, y: 194}
+        - {x: 24, y: 198}
+        - {x: 38, y: 239}
+        - {x: -96, y: 239}
+        - {x: -193, y: 63}
+        - {x: -194, y: 0}
+        - {x: -194, y: -214}
+        - {x: 195, y: -214}
+        - {x: 195, y: 75}
+        - {x: 61, y: 239}
+      - - {x: -27, y: 71}
+        - {x: -23, y: 75}
+        - {x: -24, y: 95}
+        - {x: -25, y: 66}
+      - - {x: 13, y: 94}
+        - {x: 12, y: 88}
+        - {x: 12, y: 67}
+        - {x: 13, y: 66}
+      - - {x: -29, y: 166}
+        - {x: -28, y: 167}
+        - {x: -29, y: 122}
+      tessellationDetail: 0
+    - name: props_9
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -157, y: 97}
+        - {x: -193, y: 75}
+        - {x: -194, y: 10}
+        - {x: -194, y: -215}
+        - {x: 194, y: -215}
+        - {x: 194, y: 67}
+        - {x: 147, y: 97}
+      tessellationDetail: 0
+    - name: props_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -51, y: 111}
+        - {x: -51, y: -156}
+        - {x: -49, y: -158}
+        - {x: 64, y: -158}
+        - {x: 64, y: 109}
+        - {x: 63, y: 111}
+      - - {x: -20, y: 16}
+        - {x: -20, y: 50}
+        - {x: 29, y: 50}
+        - {x: 30, y: 2}
+      tessellationDetail: 0
+    - name: props_11
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24, y: 111}
+        - {x: -50, y: 3}
+        - {x: -50, y: -158}
+        - {x: 64, y: -158}
+        - {x: 64, y: 110}
+        - {x: 61, y: 111}
+      tessellationDetail: 0
+    - name: props_12
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50, y: -165}
+        - {x: 64, y: -165}
+        - {x: 64, y: 52}
+        - {x: 62, y: 56}
+        - {x: -50, y: 56}
+      - - {x: 29, y: -5}
+        - {x: 29, y: -4}
+        - {x: -20, y: -4}
+        - {x: -20, y: -5}
+      tessellationDetail: 0
+    - name: props_13
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 43}
+        - {x: -67, y: 37}
+        - {x: -67, y: 0}
+        - {x: -55, y: -41}
+        - {x: -42, y: -42}
+        - {x: 56, y: -42}
+        - {x: 66, y: 8}
+        - {x: 66, y: 33}
+        - {x: 63, y: 43}
+      tessellationDetail: 0
+    - name: props_14
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -64, y: 43}
+        - {x: -66, y: 38}
+        - {x: -66, y: 2}
+        - {x: -53, y: -40}
+        - {x: -42, y: -42}
+        - {x: 56, y: -42}
+        - {x: 66, y: 4}
+        - {x: 66, y: 36}
+        - {x: 63, y: 43}
+      tessellationDetail: 0
+    - name: props_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -176, y: 118}
+        - {x: -193, y: 33}
+        - {x: -193, y: -87}
+        - {x: -162, y: -144}
+        - {x: -120, y: -167}
+        - {x: 175, y: -167}
+        - {x: 191, y: -134}
+        - {x: 191, y: 41}
+        - {x: 145, y: 118}
+      tessellationDetail: 0
+    - name: props_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 74, y: 63}
+        - {x: 59, y: 59}
+        - {x: 67, y: 92}
+        - {x: 57, y: 141}
+        - {x: 5, y: 204}
+        - {x: 1, y: 207}
+        - {x: -15, y: 207}
+        - {x: -109, y: 143}
+        - {x: -137, y: 20}
+        - {x: -137, y: -37}
+        - {x: -65, y: -198}
+        - {x: 44, y: -198}
+        - {x: 48, y: -194}
+        - {x: 131, y: -25}
+        - {x: 131, y: 17}
+      tessellationDetail: 0
+    - name: props_17
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: -89}
+        - {x: -108, y: -89}
+        - {x: -122, y: -99}
+        - {x: -122, y: -128}
+        - {x: -114, y: -130}
+        - {x: -61, y: -130}
+        - {x: -53, y: -120}
+        - {x: -53, y: -98}
+        - {x: -65, y: -90}
+      - - {x: -24, y: -89}
+        - {x: -36, y: -97}
+        - {x: -36, y: -120}
+        - {x: -33, y: -129}
+        - {x: -25, y: -130}
+        - {x: 23, y: -130}
+        - {x: 32, y: -126}
+        - {x: 32, y: -100}
+        - {x: 25, y: -89}
+      - - {x: 54, y: -89}
+        - {x: 48, y: -96}
+        - {x: 48, y: -120}
+        - {x: 59, y: -130}
+        - {x: 102, y: -130}
+        - {x: 117, y: -125}
+        - {x: 117, y: -94}
+        - {x: 106, y: -89}
+      - - {x: -107, y: -10}
+        - {x: -122, y: -20}
+        - {x: -122, y: -46}
+        - {x: -107, y: -52}
+        - {x: -63, y: -52}
+        - {x: -53, y: -44}
+        - {x: -53, y: -22}
+        - {x: -67, y: -10}
+      - - {x: -23, y: -10}
+        - {x: -36, y: -15}
+        - {x: -36, y: -46}
+        - {x: -33, y: -52}
+        - {x: 19, y: -52}
+        - {x: 32, y: -49}
+        - {x: 32, y: -17}
+        - {x: 22, y: -10}
+      - - {x: 48, y: -23}
+        - {x: 48, y: -41}
+        - {x: 58, y: -52}
+        - {x: 104, y: -52}
+        - {x: 117, y: -46}
+        - {x: 117, y: -17}
+        - {x: 113, y: -12}
+        - {x: 108, y: -10}
+        - {x: 66, y: -10}
+        - {x: 51, y: -15}
+      - - {x: -119, y: 60}
+        - {x: -122, y: 54}
+        - {x: -122, y: 32}
+        - {x: -117, y: 22}
+        - {x: -108, y: 18}
+        - {x: -65, y: 18}
+        - {x: -56, y: 19}
+        - {x: -53, y: 28}
+        - {x: -53, y: 58}
+        - {x: -64, y: 60}
+      - - {x: -33, y: 60}
+        - {x: -36, y: 55}
+        - {x: -36, y: 20}
+        - {x: -24, y: 18}
+        - {x: 23, y: 18}
+        - {x: 32, y: 29}
+        - {x: 32, y: 60}
+      - - {x: 55, y: 60}
+        - {x: 48, y: 47}
+        - {x: 48, y: 29}
+        - {x: 64, y: 18}
+        - {x: 102, y: 18}
+        - {x: 117, y: 30}
+        - {x: 117, y: 54}
+        - {x: 104, y: 60}
+      tessellationDetail: 0
+    - name: props_18
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -92, y: 129}
+        - {x: -96, y: 122}
+        - {x: -122, y: 60}
+        - {x: -122, y: -130}
+        - {x: -55, y: -130}
+        - {x: -53, y: -128}
+        - {x: -53, y: 56}
+        - {x: -71, y: 129}
+      - - {x: -6, y: 129}
+        - {x: -7, y: 127}
+        - {x: -11, y: 116}
+        - {x: -36, y: 52}
+        - {x: -36, y: -130}
+        - {x: 28, y: -130}
+        - {x: 32, y: -126}
+        - {x: 32, y: 69}
+        - {x: 22, y: 129}
+      - - {x: 85, y: 129}
+        - {x: 75, y: 129}
+        - {x: 48, y: 82}
+        - {x: 48, y: -130}
+        - {x: 116, y: -130}
+        - {x: 117, y: -126}
+        - {x: 117, y: 92}
+        - {x: 90, y: 126}
+      tessellationDetail: 0
+    - name: props_19
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58, y: 45}
+        - {x: 29, y: 61}
+        - {x: -34, y: 61}
+        - {x: -92, y: 24}
+        - {x: -88, y: -8}
+        - {x: -101, y: -79}
+        - {x: -101, y: -119}
+        - {x: -98, y: -129}
+        - {x: -47, y: -139}
+        - {x: 64, y: -139}
+        - {x: 98, y: -126}
+        - {x: 98, y: -20}
+        - {x: 89, y: 21}
+      - - {x: -49, y: -23}
+        - {x: -59, y: 7}
+        - {x: -30, y: 21}
+        - {x: -24, y: -1}
+      - - {x: 50, y: -23}
+        - {x: 25, y: 1}
+        - {x: 34, y: 20}
+        - {x: 60, y: -5}
+      tessellationDetail: 0
+    - name: props_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -72, y: 55}
+        - {x: -68, y: 50}
+        - {x: -44, y: 27}
+        - {x: -64, y: 15}
+        - {x: -52, y: -6}
+        - {x: -48, y: -4}
+        - {x: -34, y: -4}
+        - {x: -33, y: -19}
+        - {x: -20, y: -47}
+        - {x: -4, y: -60}
+        - {x: 4, y: -63}
+        - {x: 19, y: -3}
+        - {x: 19, y: 1}
+        - {x: 4, y: 12}
+        - {x: -6, y: 28}
+        - {x: 11, y: 9}
+        - {x: 35, y: -15}
+        - {x: 27, y: -20}
+        - {x: 20, y: -31}
+        - {x: -3, y: -80}
+        - {x: -7, y: -62}
+        - {x: -34, y: -31}
+        - {x: -36, y: -14}
+        - {x: -45, y: -8}
+        - {x: -52, y: -6}
+        - {x: -56, y: -6}
+        - {x: -60, y: -9}
+        - {x: -71, y: 2}
+        - {x: -65, y: 30}
+        - {x: -76, y: 44}
+        - {x: -90, y: 37}
+        - {x: -101, y: 22}
+        - {x: -101, y: 9}
+        - {x: -93, y: -20}
+        - {x: -81, y: -54}
+        - {x: -97, y: -93}
+        - {x: -101, y: -104}
+        - {x: -101, y: -122}
+        - {x: -96, y: -128}
+        - {x: -75, y: -139}
+        - {x: 72, y: -139}
+        - {x: 98, y: -133}
+        - {x: 98, y: 34}
+        - {x: 89, y: 78}
+        - {x: -55, y: 78}
+        - {x: -72, y: 71}
+      - - {x: 50, y: 14}
+        - {x: 32, y: 42}
+        - {x: 55, y: 44}
+        - {x: 67, y: 18}
+      tessellationDetail: 0
+    - name: props_21
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -113, y: 34}
+        - {x: -113, y: -131}
+        - {x: -108, y: -139}
+        - {x: 81, y: -139}
+        - {x: 126, y: -96}
+        - {x: 126, y: -12}
+        - {x: -71, y: 34}
+      - - {x: -86, y: 100}
+        - {x: -86, y: -7}
+        - {x: -13, y: -30}
+        - {x: 43, y: -30}
+        - {x: 112, y: -7}
+        - {x: 112, y: 44}
+        - {x: 73, y: 100}
+      - - {x: 34, y: 44}
+        - {x: 32, y: 51}
+        - {x: 56, y: 71}
+        - {x: 72, y: 43}
+      tessellationDetail: 0
+    - name: props_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 67, y: 14}
+        - {x: 38, y: 20}
+        - {x: -95, y: 20}
+        - {x: -110, y: 8}
+        - {x: -110, y: -129}
+        - {x: -108, y: -139}
+        - {x: 114, y: -139}
+        - {x: 121, y: -122}
+        - {x: 121, y: -37}
+        - {x: 116, y: -31}
+      - - {x: 6, y: -69}
+        - {x: 9, y: -64}
+        - {x: 35, y: -66}
+        - {x: 22, y: -73}
+      - - {x: 25, y: -31}
+        - {x: 34, y: -10}
+        - {x: 68, y: -27}
+        - {x: 54, y: -33}
+      tessellationDetail: 0
+    - name: props_23
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -69, y: -64}
+        - {x: -110, y: -81}
+        - {x: -110, y: -124}
+        - {x: -109, y: -131}
+        - {x: -57, y: -150}
+        - {x: 58, y: -150}
+        - {x: 122, y: -131}
+        - {x: 122, y: -83}
+        - {x: 103, y: -64}
+      tessellationDetail: 0
+    - name: props_24
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -71, y: 60}
+        - {x: -100, y: 44}
+        - {x: -100, y: -134}
+        - {x: -82, y: -140}
+        - {x: 60, y: -140}
+        - {x: 76, y: -139}
+        - {x: 99, y: -127}
+        - {x: 99, y: 55}
+        - {x: 76, y: 60}
+      - - {x: -58, y: -7}
+        - {x: -54, y: 15}
+        - {x: -33, y: 20}
+        - {x: -23, y: 0}
+      - - {x: 33, y: -5}
+        - {x: 27, y: 12}
+        - {x: 58, y: 12}
+        - {x: 58, y: -16}
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

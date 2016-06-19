@@ -99,7 +99,7 @@ public class Laser : MonoBehaviour
         if (damagedObjects.Contains(dmg))
             return;
 
-        dmg.inflictDamage(spell.emitter, spell.damage);
+        dmg.doDamage(spell.emitter, spell.damage);
         StartCoroutine(damageObjectCooldown(dmg));
 
         StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();

@@ -30,13 +30,17 @@ public class CompanionController : NPCController
         RaycastHit2D hit = Physics2D.Linecast(transform.position, master.transform.position, GameManager.instance.layerManager.obstacleLayer);
         if (hit)
         {
+            Debug.Log("computing path to master");
             computePathToMaster();
             return;
         }
         hasGoal = false;
         Vector3 lineToMaster = master.transform.position - transform.position;
         if (lineToMaster.magnitude <= minimumDistanceToMaster)
+        {
+            movement = Vector2.zero;
             target = transform.position;
+        }
         else
         {
             target = master.transform.position;

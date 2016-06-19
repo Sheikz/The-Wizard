@@ -66,7 +66,10 @@ public abstract class MovingCharacter : MonoBehaviour
         }
     }
 
-    
+    protected void updateSortingOrder()
+    {
+        spriteRenderer.sortingOrder = -Mathf.RoundToInt(transform.position.y * 10);
+    }
 
     /// <summary>
     /// Is falling into a hole

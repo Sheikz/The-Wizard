@@ -11,6 +11,7 @@ public class WallTemplate : MonoBehaviour
     public GameObject[] door;
     public List<ItemWithDropChance> floorPrefabs;
     public List<ItemWithDropChance> wallDecos;
+    public List<ItemWithDropChance> furniturePrefabs;
     public MeshCreator meshCreator;
 
     public GameObject wall
@@ -37,6 +38,14 @@ public class WallTemplate : MonoBehaviour
             return ItemWithDropChance.getItem(floorPrefabs).item;
         }
 
+    }
+
+    public GameObject furniture
+    {
+        get
+        {
+            return ItemWithDropChance.getItem(furniturePrefabs).item;
+        }
     }
 
     public List<ItemWithDropChance> getWallDecos()

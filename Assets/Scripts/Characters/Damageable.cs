@@ -18,10 +18,11 @@ public class Damageable : MonoBehaviour
     public int maxHP;
     public int currentHP;
     public bool onDamageCooldown = false;
-    public bool isInvincible = false;
+    public int isInvincible = 0;    // Semaphore instead of bool to manage multiple sources of invincibility
     private GameObject healingAnimation;
     private SpriteRenderer spriteRenderer;
     private MovingCharacter movingChar;
+
     [HideInInspector]
     public bool isDead = false;
     private int healEffects = 0;
@@ -29,14 +30,17 @@ public class Damageable : MonoBehaviour
     private FloatingHPBar floatingHPBar;
     private List<SpellDamager> spellDamagers;
     private BuffsReceiver buffReceiver;
+    private SpellAbsorbDamage spellAbsorbDamage;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         movingChar = GetComponent<MovingCharacter>();
-        originalMaterial = spriteRenderer.material;
+        if (spriteRenderer)
+            originalMaterial = spriteRenderer.material;
         spellDamagers = new List<SpellDamager>();
         buffReceiver = GetComponent<BuffsReceiver>();
+        spellAbsorbDamage = GetComponent<SpellAbsorbDamage>();
     }
 
     void Start()
@@ -57,7 +61,7 @@ public class Damageable : MonoBehaviour
         if (isDead)
             return;
 
-        if (isInvincible)
+        if (isInvincible > 0)
             return;
 
         if (!isDamageable(emitter))  // Am I damaging myself?
@@ -80,7 +84,7 @@ public class Damageable : MonoBehaviour
         if (isDead)
             return;
 
-        if (isInvincible)
+        if (isInvincible > 0)
             return;
 
         if (!isDamageable(emitter))  // Am I damaging myself?
@@ -273,17 +277,17 @@ public class Damageable : MonoBehaviour
         onDamageCooldown = true;
         while (Time.time - startingTime < duration)
         {
-            if (spriteRenderer.material == originalMaterial)
+            if (spriteRenderer && spriteRenderer.material == originalMaterial)
                 spriteRenderer.material = flashingMaterial;
-            else
+            else if (spriteRenderer)
                 spriteRenderer.material = originalMaterial;
 
             // Flickering frequence
             yield return new WaitForSeconds(0.05f);
-
         }
         onDamageCooldown = false;
-        spriteRenderer.material = originalMaterial;
+        if (spriteRenderer)
+            spriteRenderer.material = originalMaterial;
     }
 
     public void healRatio(float ratio)
@@ -335,5 +339,13 @@ public class Damageable : MonoBehaviour
     {
         Debug.Log("Added " + additionalHP+" hp");
         maxHP += additionalHP;
+    }
+
+    public void setInvincible(bool v)
+    {
+        if (v)
+            isInvincible++;
+        else
+            isInvincible--;
     }
 }

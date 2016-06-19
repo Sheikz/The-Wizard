@@ -26,5 +26,15 @@ public class EquipableItem : Item
 		itemStats = new EquipableItemStats(level);
 		spriteRenderer.sprite = itemStats.sprite;
 		spriteRenderer.enabled = true;
+        instantiateAura();
 	}
+
+    void instantiateAura()
+    {
+        GameObject auraToInstantiate = ItemManager.instance.itemAuras[(int)itemStats.rarity];
+        if (!auraToInstantiate)
+            return;
+
+        (Instantiate(auraToInstantiate, transform.position, Quaternion.identity) as GameObject).transform.SetParent(transform);
+    }
 }

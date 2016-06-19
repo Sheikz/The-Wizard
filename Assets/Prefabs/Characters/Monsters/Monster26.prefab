@@ -114,10 +114,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useMana: 0
   maxMana: 0
-  manaRegenPerSecond: 0
+  baseManaRegen: 0
+  baseCritChance: 0
   spellList:
   - {fileID: 114000010591845390, guid: b4ff12cc72c68c143807b41559f89200, type: 2}
   - {fileID: 114000012935239900, guid: dfa76658dd5b0314384e096106c82b78, type: 2}
+  isHero: 0
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -134,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
+  alwaysVisible: 0
 --- !u!114 &11426302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,6 +178,7 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
+  destructionAnimation: {fileID: 0}
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
@@ -198,7 +202,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   circleCollider: {fileID: 0}
   canAct: 1
-  isRooted: 0
   isFlying: 0
   idleChance: 0.3
   idleTime:
@@ -214,7 +217,8 @@ MonoBehaviour:
     maximum: 0.5
   isGhost: 0
   deathAnimationTime: 3
-  alliesLayer:
+  computePathToTargetCooldown: 1
+  obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
 --- !u!114 &11467906
@@ -234,7 +238,6 @@ MonoBehaviour:
   cooldownModifier: 2
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 0.5
-  difficultyModifier: 1.5
 --- !u!212 &21251822
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -260,7 +263,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -635551827
+  m_SortingLayerID: -761238155
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c8d768a5ee4501e4bb35c0128e7f3915, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
