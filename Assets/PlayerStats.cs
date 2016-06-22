@@ -18,6 +18,10 @@ public class PlayerStats : CharacterStats
     public float speedSkillBonus = 0f;
     private Inventory inventory;
     public bool hasAllPerks = false;
+    [HideInInspector]
+    public bool[] elementUnlocked;
+    [HideInInspector]
+    public bool[] spellTypeUnlocked;
 
     new void Awake()
     {
@@ -34,6 +38,12 @@ public class PlayerStats : CharacterStats
         hero = GetComponent<SpellCaster>();
         pointsToAllocate = new int[numberOfTypes];
         pointsToAllocate[(int)SpellType.Primary] = 1;   // The hero stats with 1 point to allocate in the primary spells
+        elementUnlocked = new bool[Enum.GetValues(typeof(MagicElement)).Length];
+        elementUnlocked[(int)MagicElement.Fire] = true;
+        elementUnlocked[(int)MagicElement.Arcane] = true;
+        elementUnlocked[(int)MagicElement.Ice] = true;
+        spellTypeUnlocked = new bool[Enum.GetValues(typeof(SpellType)).Length];
+        spellTypeUnlocked[(int)SpellType.Primary] = true;
     }
 
     public float getMastery(MagicElement school)
@@ -101,7 +111,29 @@ public class PlayerStats : CharacterStats
         if (level != 1 && (level - 1) % 5 == 0)
             pointsToAllocate[(int)SpellType.Ultimate2]++;
 
+        if (level >= 2)
+            spellTypeUnlocked[(int)SpellType.Secondary] = true;
+
+        if (level >= 4)
+            spellTypeUnlocked[(int)SpellType.Defensive] = true;
+
+        if (level >= 5)
+            spellTypeUnlocked[(int)SpellType.Ultimate1] = true;
+
+        if (level >= 6)
+            spellTypeUnlocked[(int)SpellType.Ultimate2] = true;
+
+        if (level >= 7)
+        {
+            elementUnlocked[(int)MagicElement.Air] = true;
+            elementUnlocked[(int)MagicElement.Light] = true;
+            elementUnlocked[(int)MagicElement.Shadow] = true;
+            elementUnlocked[(int)MagicElement.Earth] = true;
+        }
+
+
         UIManager.instance.spellWindowByType.refresh();
+        UIManager.instance.spellWindowBySet.refresh();
         UIManager.instance.refreshUI();
         SoundManager.instance.playSound("LevelUp");
     }

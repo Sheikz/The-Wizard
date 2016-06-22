@@ -14,6 +14,7 @@ public class SpellBookSpell : MonoBehaviour
     private PlayerStats heroStats;
     [HideInInspector]
     public SpellController containedSpell;
+    private Color spellColor;
 
     private SpellBook spellBook;
 
@@ -25,6 +26,7 @@ public class SpellBookSpell : MonoBehaviour
         newSpell.transform.localPosition = Vector3.zero;
         spellImage = newSpell.GetComponent<Image>();
         spellImage.sprite = spell.icon;
+        spellColor = spellImage.color;
         hero = GameManager.instance.hero.GetComponent<SpellCaster>();
         heroStats = hero.GetComponent<PlayerStats>();
         spellBook = UIManager.instance.spellBook;
@@ -65,6 +67,8 @@ public class SpellBookSpell : MonoBehaviour
         refreshSpellLevel();
         UIManager.instance.spellWindowByType.activateHelpMessage(false);
         UIManager.instance.spellWindowByType.refresh();
+        UIManager.instance.spellWindowBySet.activateHelpMessage(false);
+        UIManager.instance.spellWindowBySet.refresh();
         UIManager.instance.refreshUI();
     }
 
@@ -85,6 +89,34 @@ public class SpellBookSpell : MonoBehaviour
     public void showButton(bool value)
     {
         levelUpButton.gameObject.SetActive(value);
+    }
+
+    public void refresh(PlayerStats heroStats)
+    {
+        int spellSet = (int)containedSpell.spellSet;
+        int spellElement = (int)containedSpell.magicElement;
+        int spellType = (int)containedSpell.spellType;
+        int spellLevel = heroStats.spellLevels[spellSet, spellElement, spellType];
+        int pointsToAllocate = heroStats.pointsToAllocate[spellType];
+        if (!heroStats.elementUnlocked[spellElement] || !heroStats.spellTypeUnlocked[spellType])
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        gameObject.SetActive(true);
+
+        // If we have points to allocate, or if the spell is already known, make it visible
+        if (pointsToAllocate > 0 || spellLevel > 0)
+            spellColor.a = 1f;
+        else        // Else, if should be shadowed
+            spellColor.a = 0.5f;
+
+        if (spellLevel >= 1)
+            showButton(false);
+        else if (pointsToAllocate > 0)
+            showButton(true);
+        else
+            showButton(false);
     }
 
     

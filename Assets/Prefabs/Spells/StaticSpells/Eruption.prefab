@@ -204,12 +204,13 @@ MonoBehaviour:
   icon: {fileID: 21300148, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 4
   magicElement: 2
-  spellSet: 1
+  spellSet: 0
   damage: 400
   lightIntensity: 2
   duration: 2
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -220,6 +221,8 @@ MonoBehaviour:
   delayBeforeDamage: 1
   colliderDuration: 0
   automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
   durationLeft: 0
 --- !u!114 &114000013328371658
 MonoBehaviour:

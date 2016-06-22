@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
 	public GameObject exitMenu;
 	public SpellBook spellBook;
 	public SpellWindowByType spellWindowByType;
+    public SpellWindowBySet spellWindowBySet;
 	public CharacterWindow characterWindow;
 	public FPSDisplay fpsDisplay;
 	public CastingBar castingBar;
@@ -58,7 +59,9 @@ public class UIManager : MonoBehaviour
 		spellBook.close();
 		spellWindowByType.initialize();
 		spellWindowByType.close();
-		linkIcons();
+        spellWindowBySet.initialize();
+        spellWindowBySet.close();
+        linkIcons();
 		refreshIconsDescription();
 		characterWindow.initialize();
 	}
@@ -90,6 +93,7 @@ public class UIManager : MonoBehaviour
 	{
 		spellBook.close();
 		spellWindowByType.close();
+        spellWindowBySet.close();
 		controlsWindow.SetActive(false);
 		graphicsWindow.SetActive(false);
 		soundsWindow.SetActive(false);

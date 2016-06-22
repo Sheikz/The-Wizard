@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManager.instance.setupUI();
-        UIManager.instance.spellWindowByType.open();
+        //UIManager.instance.spellWindowByType.open();
+        UIManager.instance.spellWindowBySet.open();
     }
 
     public void revealMap()

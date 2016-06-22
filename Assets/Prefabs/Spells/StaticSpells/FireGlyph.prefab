@@ -186,6 +186,8 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!114 &11471256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,22 +211,26 @@ MonoBehaviour:
   icon: {fileID: 21300040, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 3
   magicElement: 2
-  spellSet: 0
+  spellSet: 1
   damage: 200
   lightIntensity: 0
   duration: 10
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  collidesWithWalls: 1
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   delayBeforeDamage: 1
   colliderDuration: 0
-  damageOverTime: 0
-  affectedObjects: []
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
+  durationLeft: 0
 --- !u!198 &19837070
 ParticleSystem:
   m_ObjectHideFlags: 1

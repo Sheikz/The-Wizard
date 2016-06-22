@@ -87,7 +87,7 @@ public class PlayerController : MovingCharacter
 			UIManager.instance.switchMenu();
 
         if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
-            UIManager.instance.spellWindowByType.open();
+            UIManager.instance.spellWindowBySet.open();
 
         if (InputManager.instance.IsKeyDown(InputManager.Command.CharacterWindow))
             UIManager.instance.characterWindow.open();

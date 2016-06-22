@@ -30,6 +30,7 @@ public abstract class MovingCharacter : MonoBehaviour
     private float spinningSpeed = 10f;
     private float fallingDuration = 3f;
     protected StatusEffectReceiver statusEffectReceiver;
+    private static float AnimSpeedToMoveSpeedRatio = 5f;    // The movement speed that corresponds to an animator speed of 1
 
     // Use this for initialization
     protected void Awake()
@@ -63,6 +64,7 @@ public abstract class MovingCharacter : MonoBehaviour
 
             anim.SetFloat("DirectionX", direction.x);
             anim.SetFloat("DirectionY", direction.y);
+            anim.speed = movingSpeed / AnimSpeedToMoveSpeedRatio;
         }
     }
 

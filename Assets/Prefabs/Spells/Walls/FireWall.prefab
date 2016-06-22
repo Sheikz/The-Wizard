@@ -7262,21 +7262,25 @@ MonoBehaviour:
   icon: {fileID: 21300042, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 3
   magicElement: 2
-  spellSet: 1
+  spellSet: 0
   damage: 50
   lightIntensity: 0
   duration: 5
   collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0
   colliderDuration: 0
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
   durationLeft: 0
   length: 10
 --- !u!114 &114000011505213748
@@ -7290,5 +7294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.25

@@ -8,16 +8,17 @@ public class WorldViewer : MonoBehaviour
 
     void FixedUpdate ()
     {
-        closeMonsters = Physics2D.OverlapCircleAll(transform.position, visionDistance, GameManager.instance.layerManager.monsterLayer);
+        closeMonsters = Physics2D.OverlapCircleAll(transform.position, visionDistance);
         foreach (Collider2D collider in closeMonsters)
         {
-            GameObject monster = collider.gameObject;
-            RaycastHit2D hit = Physics2D.Linecast(transform.position, monster.transform.position, GameManager.instance.layerManager.heroVisionLayer);
-            if (!hit)
+            VisibleUnit unit = collider.gameObject.GetComponent<VisibleUnit>();
+            if (!unit || unit.isVisible)
+                continue;
+
+            RaycastHit2D hit = Physics2D.Linecast(transform.position, unit.transform.position, GameManager.instance.layerManager.heroVisionLayer);
+            if (!hit || hit.collider.gameObject == unit.gameObject)
             {
-                VisibleUnit unit = monster.GetComponent<VisibleUnit>();
-                if (unit)
-                    unit.setVisible();
+                unit.setVisible();
             }
         }
 	}

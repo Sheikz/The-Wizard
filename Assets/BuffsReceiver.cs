@@ -17,7 +17,7 @@ public class BuffsReceiver : MonoBehaviour
     {
         bool shouldRefresh = false;
 
-        for (int i = activeBuffs.Count -1; i >= 0; i--)
+        for (int i = activeBuffs.Count-1; i >= 0; i--)
         {
             if (!activeBuffs[i].timedBuff)
                 continue;
@@ -36,10 +36,15 @@ public class BuffsReceiver : MonoBehaviour
 
     public void addBuff(Buff buff)
     {
-        if (!containsBuff(buff))
+        Buff containedBuff = getBuff(buff);
+        if (containedBuff == null)
         {
             activeBuffs.Add(buff);
             UIManager.instance.buffBar.addBuff(buff);
+        }
+        else if (buff.timedBuff && buff.timeLeft > containedBuff.timeLeft)
+        {
+            containedBuff.timeLeft = buff.timeLeft; // Refresh the duration
         }
         refreshBuffs();
     }
@@ -65,6 +70,18 @@ public class BuffsReceiver : MonoBehaviour
                 return true;
         }
         return false;
+    }
+
+    private Buff getBuff(Buff b)
+    {
+        foreach (Buff buff in activeBuffs)
+        {
+            if (b.name == buff.name)
+            {
+                return buff;
+            }
+        }
+        return null;
     }
 
     private void refreshBuffs()

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class VisibleUnit : VisibleObject
 {
+    [Tooltip("Is this unit always visible?")]
     public bool alwaysVisible = false;
-    private bool isVisible = false;
+    [Tooltip("Need to be seen once and then is always visible")]
+    public bool needToBeSeenOnce = false;
+    public bool isVisible = false;
 	private bool hasBeenSeenThisFrame = false;
     private Damageable dmg;
 
@@ -20,10 +24,13 @@ public class VisibleUnit : VisibleObject
         if (alwaysVisible)
             return;
 
+        if (isVisible && needToBeSeenOnce)
+            return;
+
         if (dmg && dmg.isDead)
             return;
 
-		if (!isVisible && hasBeenSeenThisFrame)
+        if (!isVisible && hasBeenSeenThisFrame)
 		{
 			setEnabled(true);
 			isVisible = true;
@@ -37,8 +44,10 @@ public class VisibleUnit : VisibleObject
 		hasBeenSeenThisFrame = false;
 	}
 
-	public override void setVisible()
+    public override void setVisible()
 	{
 		hasBeenSeenThisFrame = true;
-	}
+        setEnabled(true);
+        isVisible = true;
+    }
 }

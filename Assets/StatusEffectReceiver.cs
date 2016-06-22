@@ -122,8 +122,6 @@ public class StatusEffectReceiver : MonoBehaviour
         else
         {
             freezeEffects.Add(moveSpeedPercent, 1);
-            if (moveSpeedPercent != 0)
-                anim.speed *= moveSpeedPercent;
         }
 
         yield return new WaitForSeconds(duration);
@@ -132,8 +130,6 @@ public class StatusEffectReceiver : MonoBehaviour
         if (freezeEffects[moveSpeedPercent] == 0)
         {
             freezeEffects.Remove(moveSpeedPercent);
-            if (moveSpeedPercent != 0)
-                anim.speed /= moveSpeedPercent;
         }
     }
 

@@ -17,24 +17,23 @@ public class ToAllocateReminder : MonoBehaviour
     public void refresh()
     {
         if (!heroStats)
-        {
             heroStats = GameManager.instance.hero.GetComponent<PlayerStats>();
-        }
+
+        if (!heroStats)
+            return;
+
+        int nbr;
+        if (pointsToAllocate == PointsToAllocate.All)
+            nbr = heroStats.getTotalToAllocate();
+        else
+            nbr = heroStats.pointsToAllocate[(int)pointsToAllocate];
+
+        if (nbr == 0)
+            gameObject.SetActive(false);
         else
         {
-            int nbr;
-            if (pointsToAllocate == PointsToAllocate.All)
-                nbr = heroStats.getTotalToAllocate();
-            else
-                nbr = heroStats.pointsToAllocate[(int)pointsToAllocate];
-
-            if (nbr == 0)
-                gameObject.SetActive(false);
-            else
-            {
-                gameObject.SetActive(true);
-                text.text = nbr.ToString();
-            }
+            gameObject.SetActive(true);
+            text.text = nbr.ToString();
         }
     }
 }

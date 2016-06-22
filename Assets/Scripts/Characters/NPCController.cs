@@ -77,6 +77,8 @@ public class NPCController : MovingCharacter
         hasSupportSpells = spellCaster.hasSupportSpells();
         if (hasSupportSpells)
             InvokeRepeating("checkForNearbyAllies", 0, 1f);
+
+        startWander();
     }
 
     internal void activate(bool v)
@@ -498,6 +500,9 @@ public class NPCController : MovingCharacter
 
     protected bool computePathToGoal()
     {
+        if (gridMap == null)
+            return false;
+
         path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(goal), this);
         if (path == null)
         {
