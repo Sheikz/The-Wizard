@@ -6,14 +6,10 @@ using UnityEngine.UI;
 
 public class BuffIcon : MonoBehaviour 
 {
-    public string buffName;
-    public string description;
-    public float timeLeft;
-
     public Image buffIconImage;
     public Text timeLeftText;
 
-    private Buff buff;
+    public Buff buff;
     private HoveringToolTip tooltip;
 
     void Awake()
@@ -31,22 +27,28 @@ public class BuffIcon : MonoBehaviour
             timeLeftText.enabled = false;
     }
 
-    void FixedUpdate()
+    internal void refresh(Buff b)
     {
-        if (buff == null)
-            return;
+        enable(true);
 
-        if (!buff.timedBuff)    // Should no show the time left
+        if (buff.icon == b.icon &&
+            buff.name == b.name &&
+            buff.description == b.description)
         {
-            if (timeLeftText.enabled)
-                timeLeftText.enabled = false;
-            return;
+            refreshTimeLeft(b.timeLeft);
         }
+        else
+        {
+            setIcon(b);
+        }
+    }
 
-        if (!timeLeftText.enabled)
-            timeLeftText.enabled = true;
-
-        refreshTimeLeft(buff.timeLeft);
+    public void enable(bool value)
+    {
+        tooltip.gameObject.SetActive(value);
+        buffIconImage.enabled = value;
+        if (buff.timedBuff)
+            timeLeftText.enabled = value;
     }
 
     public void refreshTimeLeft(float time)

@@ -340,6 +340,8 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!114 &11496928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,7 +360,7 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0.5
-  cooldown: 0.5
+  cooldown: 1
   icon: {fileID: 21300000, guid: 10e1453c231887544824dc466ab9b71b, type: 3}
   spellType: 0
   magicElement: 0
@@ -366,14 +368,15 @@ MonoBehaviour:
   damage: 150
   lightIntensity: 0
   duration: 0
-  prerequisites:
-  - {fileID: 179058, guid: a406c30d9cf45884e80c018d3549655b, type: 2}
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  collidesWithWalls: 1
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   speed: 5
 --- !u!198 &19851134

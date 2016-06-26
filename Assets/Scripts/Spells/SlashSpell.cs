@@ -52,14 +52,14 @@ public class SlashSpell : SpellController
         if (!stats)
             return;
 
-        switch (spellName)
+        /*switch (spellName)
         {
             case "Flaming Whip":
                 activateReflect(stats.getItemPerk(ItemPerk.FireSlashReflect));
                 if (stats && stats.getItemPerk(ItemPerk.FireSlashMultiply) && canBeMultiplied)
                     StartCoroutine(multiply(transform.position, target));
                 break;
-        }
+        }*/
     }
 
     /// <summary>

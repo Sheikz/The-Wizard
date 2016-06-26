@@ -371,7 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56956b55a7692e843a7ac7888a63cf46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   explosion: {fileID: 11440398, guid: d4296930df8f80f4c9eb9713862338a3, type: 2}
+  timeBeforeTeleport: 0.5
+  cooldown: 0
 --- !u!114 &114000011237334416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 0
   delayBetweenDamage: 0
 --- !u!114 &114000011858341688
@@ -414,25 +418,26 @@ MonoBehaviour:
   spellTypeDescription: Dash Attack
   damageString: <dmg> damage
   description: Dash to a location and pierces enemies on the way
-  manaCost: 20
+  manaCost: 25
   manaCostInterval: 1
   castTime: 0
-  cooldown: 2
+  cooldown: 4
   icon: {fileID: 21300524, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 1
+  spellType: 3
   magicElement: 4
   spellSet: 0
   damage: 200
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 0
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
-  collidesWithWalls: 0
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   speed: 20
 --- !u!198 &198000010161394454

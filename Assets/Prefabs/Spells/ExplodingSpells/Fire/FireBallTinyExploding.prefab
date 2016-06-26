@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5480bc06e4301014ca91fb324790b7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: Fireball
+  spellName: Fire Ball
   spellTypeDescription: Projectile
   damageString: <dmg> damage
   description: Hurls a fireball
@@ -369,13 +369,17 @@ MonoBehaviour:
   damage: 100
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells:
+  - {fileID: 11485734, guid: b29ae118efddcc849951fd8c10b3f94d, type: 2}
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  collidesWithWalls: 1
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   speed: 5
 --- !u!114 &11497652
@@ -393,6 +397,8 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!198 &19803308
 ParticleSystem:
   m_ObjectHideFlags: 1

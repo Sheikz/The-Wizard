@@ -13,7 +13,7 @@ public class SpellAbsorbDamage : MonoBehaviour
     private Damageable emitterDmg;
     private SpellController spell;
     private BuffsReceiver bReceiver;
-    private StatusEffectReceiver statusEffectReceiver;
+    private StatusEffectReceiverOld statusEffectReceiver;
 
     void Awake()
     {
@@ -28,7 +28,7 @@ public class SpellAbsorbDamage : MonoBehaviour
         if (spell && spell.emitter)
             bReceiver = spell.emitter.GetComponent<BuffsReceiver>();
         if (spell && spell.emitter)
-            statusEffectReceiver = spell.emitter.GetComponent<StatusEffectReceiver>();
+            statusEffectReceiver = spell.emitter.GetComponent<StatusEffectReceiverOld>();
 
         dmg.baseHP = absorbDamage;
         dmg.maxHP = absorbDamage;

@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 114000012851612174}
   - 114: {fileID: 114000012413135562}
   - 114: {fileID: 114000011551687870}
-  - 114: {fileID: 114000010112870374}
+  - 114: {fileID: 114000012641599790}
   m_Layer: 9
   m_Name: SkeletonMage
   m_TagString: Enemy
@@ -100,18 +100,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010112870374
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013377882650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imunizedTo: 
 --- !u!114 &114000010287937812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,6 +226,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
   alwaysVisible: 0
+  needToBeSeenOnce: 0
+  isVisible: 0
+--- !u!114 &114000012641599790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013377882650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0
 --- !u!114 &114000012851612174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,6 +263,7 @@ MonoBehaviour:
   - {fileID: 11478892, guid: d66fd343f76ab904aae66b11669796f1, type: 2}
   - {fileID: 114000012331223702, guid: 3c627a9e9e248d34a9705f358988b2f1, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}

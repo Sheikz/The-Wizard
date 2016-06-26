@@ -196,18 +196,17 @@ MonoBehaviour:
   spellSet: 0
   damage: 100
   lightIntensity: 0
-  duration: 10
-  prerequisites: []
-  removePrerequisites: 0
+  duration: 5
+  collidesWithSpells: 0
+  collidesWithWalls: 0
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 0
   ignoredColliders: []
-  collidesWithSpells: 0
 --- !u!114 &11470454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,6 +222,8 @@ MonoBehaviour:
   destroyWhenExplodes: 0
   explodeOnTouch: 1
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!198 &19814512
 ParticleSystem:
   m_ObjectHideFlags: 1

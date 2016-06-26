@@ -31,7 +31,7 @@ GameObject:
   - 114: {fileID: 114000013605876550}
   - 114: {fileID: 114000011711165732}
   - 114: {fileID: 114000011105396134}
-  - 114: {fileID: 114000011722510670}
+  - 114: {fileID: 114000011679293960}
   m_Layer: 9
   m_Name: DevilSamouraiBoss
   m_TagString: Enemy
@@ -154,6 +154,22 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &114000011679293960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013565704970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0
 --- !u!114 &114000011711165732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,18 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
   alwaysVisible: 0
---- !u!114 &114000011722510670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013565704970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imunizedTo: 
+  needToBeSeenOnce: 0
+  isVisible: 0
 --- !u!114 &114000011811414244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +240,7 @@ MonoBehaviour:
   - {fileID: 114000010591845390, guid: b4ff12cc72c68c143807b41559f89200, type: 2}
   - {fileID: 11434694, guid: 58ea2f67ebd425f419ed2cc88cbf0544, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}

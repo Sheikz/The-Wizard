@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 0
   delayBetweenDamage: 0
 --- !u!114 &114000010421580012
@@ -218,6 +219,7 @@ MonoBehaviour:
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -227,6 +229,9 @@ MonoBehaviour:
   ignoredColliders: []
   delayBeforeDamage: 0
   colliderDuration: 0.75
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
   durationLeft: 0
 --- !u!114 &114000013860039876
 MonoBehaviour:

@@ -20,7 +20,7 @@ GameObject:
   - 114: {fileID: 11460916}
   - 114: {fileID: 11421792}
   - 114: {fileID: 11418450}
-  - 114: {fileID: 114000013424407514}
+  - 114: {fileID: 114000013723660618}
   m_Layer: 9
   m_Name: Monster29
   m_TagString: Enemy
@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.1
   alwaysVisible: 0
+  needToBeSeenOnce: 0
+  isVisible: 0
 --- !u!114 &11443630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +212,7 @@ MonoBehaviour:
   spellList:
   - {fileID: 11456274, guid: 0ddff5fadebc747c598becc1c279e398, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -462,7 +465,7 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000013424407514
+--- !u!114 &114000013723660618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -470,7 +473,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 190100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imunizedTo: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0

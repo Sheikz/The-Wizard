@@ -102,13 +102,13 @@ public class Laser : MonoBehaviour
         dmg.doDamage(spell.emitter, spell.damage);
         StartCoroutine(damageObjectCooldown(dmg));
 
-        StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+        BuffsReceiver receiver = dmg.GetComponent<BuffsReceiver>();
         if (!receiver)
             return;
 
         foreach (StatusEffect effect in statusEffects)
         {
-            effect.inflictStatus(receiver);
+            effect.applyBuff(receiver);
         }
         
     }

@@ -372,6 +372,7 @@ MonoBehaviour:
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -396,6 +397,7 @@ MonoBehaviour:
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
   automaticExplosion: 1
+  delayedExplosions: []
 --- !u!198 &19803308
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5791,10 +5793,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa386d61bfcded43a25740489f66308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   numberOfSpells: 6
   rotationSpeed: 120
   radialVelocity: 1
   attachedToCaster: 0
+  angle: 0
   canBeMultiplied: 1
   localDirection: {x: 0, y: 0, z: 0}
   activated: 1

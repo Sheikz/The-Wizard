@@ -340,6 +340,8 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!114 &11485734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,29 +353,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5480bc06e4301014ca91fb324790b7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: 
-  spellTypeDescription: 
-  damageString: 
-  description: 
-  manaCost: 0
+  spellName: Fire Ball
+  spellTypeDescription: Projectile
+  damageString: <dmg> damage
+  description: Hurls a powerful Fire Ball
+  manaCost: -5
   manaCostInterval: 1
   castTime: 0
   cooldown: 0.5
   icon: {fileID: 21300000, guid: ed101d73ef636584ea26705543b85230, type: 3}
   spellType: 0
-  magicElement: 0
+  magicElement: 2
   spellSet: 0
-  damage: 15
+  damage: 150
   lightIntensity: 0
   duration: 0
-  prerequisites:
-  - {fileID: 159222, guid: 4c47f98fb808e09469911a5db83b6942, type: 2}
-  removePrerequisites: 1
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  collidesWithWalls: 1
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   speed: 5
 --- !u!198 &19811024

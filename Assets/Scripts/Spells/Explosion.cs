@@ -22,11 +22,15 @@ public class Explosion : MonoBehaviour
     private float manaCost;
     private bool appliedHit = false;
     private string spellName;
+    private ParticleSystem partSystem;
+    [HideInInspector]
+    public SpellController spell;
 
     void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
         circleCollider.isTrigger = true;
+        partSystem = GetComponent<ParticleSystem>();
     }
 
     void Start()
@@ -63,6 +67,13 @@ public class Explosion : MonoBehaviour
         if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
             return; // Legacy Particle System can be defined as one-shot and dont need to be destroyed manually
 
+        if (partSystem)
+        {
+            if (!partSystem.IsAlive(true))
+                Destroy(gameObject);
+            return;
+        }
+
         ParticleSystem[] partSystems = GetComponentsInChildren<ParticleSystem>();
         if (partSystems.Length == 0)
         {
@@ -71,7 +82,7 @@ public class Explosion : MonoBehaviour
 
         foreach (ParticleSystem ps in partSystems)
         {
-            if (!ps.IsAlive())
+            if (!ps.IsAlive(true))
                 Destroy(ps.gameObject);
         }
     }
@@ -100,6 +111,7 @@ public class Explosion : MonoBehaviour
 
     public virtual void initialize(SpellController spell)
     {
+        this.spell = spell;
         spellName = spell.spellName;
         emitter = spell.emitter;
         damage = spell.damage;
@@ -130,13 +142,13 @@ public class Explosion : MonoBehaviour
             appliedHit = true;
             giveMana();
 
-            StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+            BuffsReceiver receiver = dmg.GetComponent<BuffsReceiver>();
             if (!receiver)
                 return;
 
             foreach (StatusEffect effect in GetComponents<StatusEffect>())
             {
-                effect.inflictStatus(receiver);
+                effect.applyBuff(receiver);
             }
         }
     }

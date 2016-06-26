@@ -36,7 +36,6 @@ GameObject:
   - 114: {fileID: 11443016}
   - 114: {fileID: 114000011002847520}
   - 114: {fileID: 114000011873066926}
-  - 114: {fileID: 114000012157314752}
   - 114: {fileID: 114000012796508824}
   m_Layer: 10
   m_Name: Hero
@@ -225,6 +224,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -642,18 +642,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackImmuneTime: 0.5
---- !u!114 &114000012157314752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imunizedTo: 
 --- !u!114 &114000012796508824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -665,6 +653,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0
 --- !u!198 &198000010749003226
 ParticleSystem:
   m_ObjectHideFlags: 1

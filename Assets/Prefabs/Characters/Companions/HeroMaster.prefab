@@ -17,6 +17,7 @@ GameObject:
   - 95: {fileID: 9541482}
   - 114: {fileID: 11497716}
   - 114: {fileID: 11458246}
+  - 114: {fileID: 114000012862872536}
   m_Layer: 10
   m_Name: HeroMaster
   m_TagString: HeroCompanion
@@ -127,6 +128,8 @@ MonoBehaviour:
   HPSkillBonus: 1
   speedSkillBonus: 0
   hasAllPerks: 0
+  elementUnlocked: 
+  spellTypeUnlocked: 
 --- !u!114 &11488976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,6 +199,7 @@ MonoBehaviour:
   - {fileID: 11477692, guid: 5ad435e4f9ff71d449736d017df61d4a, type: 2}
   - {fileID: 114000010045264550, guid: f88ce55e982ee5748943d4648ac3a785, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -278,3 +282,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 164104}
   m_IsPrefabParent: 1
+--- !u!114 &114000012862872536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0

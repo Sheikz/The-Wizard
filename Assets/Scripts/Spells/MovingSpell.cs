@@ -7,13 +7,20 @@ public class MovingSpell : SpellController
 {
 	public float speed = 5;
 
+    private SpellController spellToCast;
+
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
-        MoveSpellCaster moveCaster = GetComponent<MoveSpellCaster>();
+        applyItemPerksPreCast(emitter);
+
+        if (spellToCast == null)    // Has this spell been replaced by an upgraded version?
+            spellToCast = this;
+
+        MoveSpellCaster moveCaster = spellToCast.GetComponent<MoveSpellCaster>();
         if (moveCaster && !moveCaster.canCastSpell(emitter, target))
             return null;
 
-        MovingSpell newSpell = Instantiate(this, emitter.transform.position, Quaternion.identity) as MovingSpell;
+        MovingSpell newSpell = Instantiate(spellToCast, emitter.transform.position, Quaternion.identity) as MovingSpell;
         if (!newSpell.initialize(emitter, emitter.transform.position, target))
             return null;
 
@@ -52,6 +59,14 @@ public class MovingSpell : SpellController
         }
         return true;
 	}
+
+    private void applyItemPerksPreCast(SpellCaster caster)
+    {
+        spellToCast = null;
+        if (!caster.playerStats)
+            return;
+        spellToCast = getUpgradedSpell(caster);
+    }
 
     public void refreshSpeed()
     {

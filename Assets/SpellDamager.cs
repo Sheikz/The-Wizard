@@ -8,18 +8,26 @@ public class SpellDamager : MonoBehaviour
     public bool activated = true;
     public enum DamageType { DamageOnce, DamageOverTime, None };
     public DamageType damageType = DamageType.DamageOverTime;
-    public float delayBetweenDamage = 0f;
+    public float delayBetweenDamage = 0.25f;
+    [Tooltip("Ratio of the parent damage it should do")]
+    public float damageRatio = 1f; 
 
     private SpellController spell;
+    private Explosion explosion;
     private List<Damageable> damagedObjects;
     private DrainSpell drainSpell;
     private StatusEffect[] statusEffects;
+    private int damage;
+    private SpellCaster emitter;
 
     void Awake()
     {
         spell = GetComponent<SpellController>();
         if (!spell)
             spell = GetComponentInParent<SpellController>();
+        explosion = GetComponent<Explosion>();
+        if (!explosion)
+            explosion = GetComponentInParent<Explosion>();
 
         damagedObjects = new List<Damageable>();
         drainSpell = GetComponent<DrainSpell>();
@@ -29,10 +37,28 @@ public class SpellDamager : MonoBehaviour
     void Start()
     {
         applyLayer();
+        if (spell)
+        {
+            damage = Mathf.CeilToInt(spell.damage * damageRatio);
+            emitter = spell.emitter;
+        }
+        else if (explosion)
+        {
+            damage = Mathf.CeilToInt(explosion.damage * damageRatio);
+            emitter = explosion.emitter;
+        }
+        else
+            Debug.LogError("No spell or explosion defined for " + name);
     }
 
     private void applyLayer()
     {
+        if (!spell && explosion)
+            gameObject.layer = explosion.gameObject.layer;
+
+        if (!spell)
+            return;
+
         if (spell.collidesWithBothParties)
         {
             gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
@@ -62,7 +88,7 @@ public class SpellDamager : MonoBehaviour
         if (!dmg)
             return;
 
-        if (spell.emitter && other.gameObject == spell.emitter.gameObject)
+        if (emitter && other.gameObject == emitter.gameObject)
             return;
 
         applyDamage(dmg);
@@ -73,19 +99,19 @@ public class SpellDamager : MonoBehaviour
         if (damagedObjects.Contains(dmg))
             return;
 
-        dmg.doDamage(this, spell.emitter, spell.damage);
+        dmg.doDamage(this, emitter, damage);
         if (drainSpell)
-            drainSpell.absorbDamage(spell.damage);
+            drainSpell.absorbDamage(damage);
 
         StartCoroutine(damageObject(dmg));
 
-        StatusEffectReceiver receiver = dmg.GetComponent<StatusEffectReceiver>();
+        BuffsReceiver receiver = dmg.GetComponent<BuffsReceiver>();
         if (!receiver)
             return;
 
         foreach (StatusEffect effect in statusEffects)
         {
-            effect.inflictStatus(receiver);
+            effect.applyBuff(receiver);
         }
     }
 

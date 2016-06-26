@@ -14,7 +14,7 @@ public class SpellBookSpell : MonoBehaviour
     private PlayerStats heroStats;
     [HideInInspector]
     public SpellController containedSpell;
-    private Color spellColor;
+    private Image imageBackground;
 
     private SpellBook spellBook;
 
@@ -26,7 +26,7 @@ public class SpellBookSpell : MonoBehaviour
         newSpell.transform.localPosition = Vector3.zero;
         spellImage = newSpell.GetComponent<Image>();
         spellImage.sprite = spell.icon;
-        spellColor = spellImage.color;
+        imageBackground = GetComponent<Image>();
         hero = GameManager.instance.hero.GetComponent<SpellCaster>();
         heroStats = hero.GetComponent<PlayerStats>();
         spellBook = UIManager.instance.spellBook;
@@ -107,9 +107,15 @@ public class SpellBookSpell : MonoBehaviour
 
         // If we have points to allocate, or if the spell is already known, make it visible
         if (pointsToAllocate > 0 || spellLevel > 0)
-            spellColor.a = 1f;
+        {
+            spellImage.color = Color.white;
+            imageBackground.color = Color.white;
+        }
         else        // Else, if should be shadowed
-            spellColor.a = 0.5f;
+        {
+            spellImage.color = Color.grey;
+            imageBackground.color = Color.grey;
+        }
 
         if (spellLevel >= 1)
             showButton(false);

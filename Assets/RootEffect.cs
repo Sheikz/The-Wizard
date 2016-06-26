@@ -5,13 +5,18 @@ using System;
 
 public class RootEffect : StatusEffect
 {
-    public override void inflictStatus(StatusEffectReceiver dmg)
-    {
-        StaticSpell staticSpell = GetComponent<StaticSpell>();
-        float duration = 0;
-        if (staticSpell)
-            duration = staticSpell.durationLeft;
+    public float duration;
 
-        dmg.applyRoot(duration);
+    public override void applyBuff(BuffsReceiver receiver)
+    {
+        SpellController spell = GetComponent<SpellController>();
+
+        Buff newBuff = new Buff(BuffType.Root, duration);
+        if (spell && spell.icon)
+            newBuff.icon = spell.icon;
+        if (spell && spell.spellName != "")
+            newBuff.name = spell.spellName;
+
+        receiver.addBuff(newBuff);
     }
 }

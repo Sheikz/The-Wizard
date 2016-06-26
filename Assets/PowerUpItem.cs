@@ -24,7 +24,6 @@ public class PowerUpItem : Item
         buff.description = "Increase damage done by " + powerUpBuff.element.ToString() + " spells by " 
             + "<color=orange>"+Mathf.RoundToInt(((powerUpBuff.multiplier - 1) * 100)) + "%</color>";
         buff.timeLeft = powerUpBuff.duration;
-        buff.timedBuff = true;
         buff.icon = SpellManager.instance.elementIcons[(int)powerUpBuff.element];
     }
 

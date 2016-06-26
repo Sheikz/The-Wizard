@@ -167,6 +167,7 @@ MonoBehaviour:
   activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!114 &114000011305481322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,11 +195,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buff:
     name: Sanctuary
+    buffType: 0
     description: Reduces incoming damage by 50%
     icon: {fileID: 21300860, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
+    colorMask: {r: 1, g: 1, b: 1, a: 1}
     timedBuff: 0
     timeLeft: 0
-    damageReduction: 0.5
+    damageMultiplier: 1
+    incomingDamageMultiplier: 0.5
+    speedMultiplier: 1
+    stun: 0
 --- !u!114 &114000013216502692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,17 +224,18 @@ MonoBehaviour:
   manaCost: 25
   manaCostInterval: 1
   castTime: 0
-  cooldown: 15
+  cooldown: 10
   icon: {fileID: 21300860, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 2
   magicElement: 0
   spellSet: 0
   damage: 30
   lightIntensity: 0
-  duration: 10
+  duration: 5
   collidesWithSpells: 0
   collidesWithWalls: 1
   collidesWithBothParties: 1
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

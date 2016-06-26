@@ -28,7 +28,7 @@ public abstract class VisibleObject : MonoBehaviour
 
     protected void setEnabled(bool value)
     {
-        if (spriteRenderers.Length == 0)
+        if (spriteRenderers == null || spriteRenderers.Length == 0)
             return;
 
         if (HPBar == null)

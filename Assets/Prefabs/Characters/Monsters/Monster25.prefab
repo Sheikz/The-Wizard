@@ -30,7 +30,7 @@ GameObject:
   - 95: {fileID: 95000013929894918}
   - 114: {fileID: 114000013010705198}
   - 114: {fileID: 114000013145988656}
-  - 114: {fileID: 114000010413113196}
+  - 114: {fileID: 114000011830980442}
   m_Layer: 9
   m_Name: Monster25
   m_TagString: Enemy
@@ -111,18 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shouldDropItems: 1
---- !u!114 &114000010413113196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011065246380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4347ef3c029c66340b26bf9560a87359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imunizedTo: 
 --- !u!114 &114000010622783970
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +160,22 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &114000011830980442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011065246380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0
 --- !u!114 &114000013010705198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +195,7 @@ MonoBehaviour:
   - {fileID: 114000011243822958, guid: 6182e4428d4e1dc47b2075e40505f200, type: 2}
   - {fileID: 114000010469189860, guid: 5b0558da1c9e99d40b5743dc6d452c30, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -209,7 +214,7 @@ MonoBehaviour:
   level: 1
   DamageMultiplierPerLevel: 1.1
   HPMultiplierPerLevel: 1.1
-  cooldownModifier: 2
+  cooldownModifier: 1
   dungeonLevelMultiplier: 1.2
   monsterDamageMultiplier: 1
 --- !u!114 &114000013211329196

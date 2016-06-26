@@ -74,7 +74,7 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0.25
-  cooldown: 1
+  cooldown: 2
   icon: {fileID: 21300174, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 0
   magicElement: 0
@@ -82,18 +82,18 @@ MonoBehaviour:
   damage: 100
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
-  startSpeed: 8
-  endSpeed: 2
+  startSpeedRatio: 2
+  endSpeedRatio: 0.2
   dashTime: 0.5
   minimumDistance: 4
 --- !u!114 &114000014172421662
@@ -107,5 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 0
   delayBetweenDamage: 0

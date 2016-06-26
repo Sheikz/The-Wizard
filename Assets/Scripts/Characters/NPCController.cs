@@ -192,7 +192,7 @@ public class NPCController : MovingCharacter
         if (!canMove)
             return;
 
-        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+        if (buffReceiver && buffReceiver.isStunned)
             return;
 
         if (hasReached(goal))
@@ -250,7 +250,7 @@ public class NPCController : MovingCharacter
 
     void doChase()
     {
-        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+        if (buffReceiver && buffReceiver.isStunned)
             return;
 
         if (!targetOpponent || targetOpponent.isDead)

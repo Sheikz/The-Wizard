@@ -21,12 +21,14 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 	public MagicElement magicElement;
 	public SpellSet spellSet = SpellSet.SpellSet1;
 	public int damage = 10;
-	public SpellIntensity lightIntensity = SpellIntensity.Tiny;
+    public SpellIntensity lightIntensity = SpellIntensity.Tiny;
+
     public float duration = 0f;
     public bool collidesWithSpells = false;
     public bool collidesWithWalls = true;
     [Tooltip("Collides with monsters and hero")]
     public bool collidesWithBothParties = false;
+    public SpellController[] upgradedSpells;
 
     protected Rigidbody2D rb;
 	protected CircleCollider2D circleCollider;
@@ -46,7 +48,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     protected ChainSpell chainSpell;
     protected SpellDamager spellDamager;
     protected HealArea healArea;
-    protected ParticleSystem particleSystem;
+    new protected ParticleSystem particleSystem;
     
 	[HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
@@ -100,6 +102,9 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
                 if (healArea) healArea.activated = stats.getItemPerk(ItemPerk.SanctuaryHeal) ? true : false;
                 if (spellDamager) spellDamager.activated = stats.getItemPerk(ItemPerk.SanctuaryDamage) ? true : false;
                 break;
+            case "ChronoSphere":
+                if (spellDamager) spellDamager.activated = stats.getItemPerk(ItemPerk.ChronosphereDamage) ? true : false;
+                break;
         }
     }
 
@@ -126,7 +131,29 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		}
 	}
 
-	protected IEnumerator destroyAfterSeconds(float seconds)
+    internal float getCooldown(SpellCaster spellCaster)
+    {
+        if (!spellCaster.playerStats)
+            return cooldown;
+
+        if (spellName == ItemPerk.IceSlideNoCD.getSpellName() && spellCaster.playerStats.getItemPerk(ItemPerk.IceSlideNoCD))
+            return 0.5f;
+
+        return cooldown;
+    }
+
+    internal float getCastTime(SpellCaster spellCaster)
+    {
+        if (!spellCaster.playerStats)
+            return castTime;
+
+        if (spellName == ItemPerk.EnergyBoltInstant.getSpellName() && spellCaster.playerStats.getItemPerk(ItemPerk.EnergyBoltInstant))
+            return 0;
+
+        return castTime;
+    }
+
+    protected IEnumerator destroyAfterSeconds(float seconds)
 	{
         if (seconds == 0)
             yield break;
@@ -239,6 +266,24 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         return true;
     }
 
+    /// <summary>
+    /// Check if the spell is upgraded by a perk and return the correct one. Return itself if not
+    /// </summary>
+    /// <param name="caster"></param>
+    /// <returns></returns>
+    internal SpellController getUpgradedSpell(SpellCaster caster)
+    {
+        if (!caster.playerStats)
+            return this;
+
+        if (spellName == ItemPerk.FireBallUpgrade.getSpellName() && caster.playerStats.getItemPerk(ItemPerk.FireBallUpgrade))
+        {
+            if (upgradedSpells.Length > 0 && upgradedSpells[0])
+                return upgradedSpells[0];
+        }
+        return this;
+    }
+
     protected void checkIfAlive()
 	{
 		if (transform.GetComponentsInChildren<ParticleEmitter>().Length > 0)
@@ -247,7 +292,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         if (particleSystem)
         {
             if (!particleSystem.IsAlive(true))
-                Destroy(gameObject);
+                StartCoroutine(fadeLights(fadeLightsDuration));
             return;
         }
 

@@ -1,11 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class StunEffect : StatusEffect
 {
     public float stunDuration;
 
-    public override void inflictStatus(StatusEffectReceiver dmg)
+    public override void applyBuff(BuffsReceiver receiver)
     {
-        dmg.stunFor(stunDuration);
+        Buff newBuff = new Buff(BuffType.Stun, stunDuration);
+        SpellController spell = GetComponent<SpellController>();
+        if (spell)
+        {
+            newBuff.icon = spell.icon;
+            newBuff.name = spell.spellName;
+        }
+
+        receiver.addBuff(newBuff);
     }
 }

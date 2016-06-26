@@ -22,8 +22,10 @@ public class Tooltip : MonoBehaviour
         playerStats = GameManager.instance.hero.GetComponent<PlayerStats>();
     }
 
-    private string parseDescription(SpellController spell, int damage)
+    private string parseDescription(SpellController spell, SpellCaster caster)
     {
+        spell = spell.getUpgradedSpell(caster);
+        int damage = spell.getDamage(caster);
         string result = "";
         string name = spell.spellName;
         if (name == "")
@@ -38,13 +40,13 @@ public class Tooltip : MonoBehaviour
         else
             result += "\nBuild up <color=magenta>" + (-spell.manaCost) + "</color> mana per hit";
 
-        if (spell.castTime <= 0)
+        if (spell.getCastTime(caster) <= 0)
             result += "\nInstant cast";
         else
-            result += "\nCast time: <color=lime>" + spell.castTime + "</color> sec";
+            result += "\nCast time: <color=lime>" + spell.getCastTime(caster) + "</color> sec";
 
-        if (spell.cooldown > 0)
-            result += "\nCooldown: <color=orange>" + spell.cooldown +"</color> sec";
+        if (spell.getCooldown(caster) > 0)
+            result += "\nCooldown: <color=orange>" + spell.getCooldown(caster) +"</color> sec";
         if (spell.duration > 0)
             result += "\nDuration: <color=orange>" + spell.duration + "</color> sec";
         result += "\n" + spell.spellTypeDescription;
@@ -74,8 +76,8 @@ public class Tooltip : MonoBehaviour
             result = result.Replace("<timeMultiplier>", "<color=magenta>"+((1-slowTime.timeMultiplier)*100).ToString() + "%</color>");
 
         BuffArea buffArea = spell.GetComponent<BuffArea>();
-        if (buffArea && buffArea.buff.damageReduction > 0)
-            result = result.Replace("<damagereduction>", "<color=orange>" + buffArea.buff.damageReduction * 100 + "%</color>");
+        if (buffArea && buffArea.buff.incomingDamageMultiplier > 0)
+            result = result.Replace("<damagereduction>", "<color=orange>" + (1-buffArea.buff.incomingDamageMultiplier) * 100 + "%</color>");
         
         ExplodingSpell explodingSpell = spell.GetComponent<ExplodingSpell>();
         if (explodingSpell && explodingSpell.delayedExplosions.Length > 0)
@@ -192,8 +194,7 @@ public class Tooltip : MonoBehaviour
     /// <param name="containedSpell"></param>
     public void refresh(SpellCaster hero, SpellController containedSpell)
     {
-        int damage = containedSpell.getDamage(hero);
-        tooltipText.text = parseDescription(containedSpell, damage);
+        tooltipText.text = parseDescription(containedSpell, hero);
         StartCoroutine(fixPosition());
     }
 

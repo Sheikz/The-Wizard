@@ -78,7 +78,7 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 3
+  cooldown: 6
   icon: {fileID: 0}
   spellType: 0
   magicElement: 0
@@ -86,15 +86,15 @@ MonoBehaviour:
   damage: 10
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   teleport: {fileID: 11494182, guid: bd1714b9a5fa94d00b3bf8c10ad48ce5, type: 2}
   distanceToTarget: 1

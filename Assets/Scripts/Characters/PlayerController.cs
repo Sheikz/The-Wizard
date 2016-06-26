@@ -52,7 +52,7 @@ public class PlayerController : MovingCharacter
         updateSortingOrder();
         if (!canMove || isFalling)
 			return;
-        if (statusEffectReceiver.isStunned)
+        if (buffReceiver.isStunned)
             return;
         
 		rb.velocity = movement;

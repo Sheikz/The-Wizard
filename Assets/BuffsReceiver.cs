@@ -5,8 +5,15 @@ using System;
 
 public class BuffsReceiver : MonoBehaviour 
 {
-    private List<Buff> activeBuffs;
-    private float damageReduction = 1;
+    public List<Buff> activeBuffs;
+    [HideInInspector]
+    public float incomingDamageMultiplier = 1;
+    [HideInInspector]
+    public float damageMultiplier = 1;
+    [HideInInspector]
+    public float speedMultiplier = 1f;
+    [HideInInspector]
+    public bool isStunned = false;
 
     void Awake()
     {
@@ -17,14 +24,14 @@ public class BuffsReceiver : MonoBehaviour
     {
         bool shouldRefresh = false;
 
-        for (int i = activeBuffs.Count-1; i >= 0; i--)
+        for (int i = activeBuffs.Count - 1; i >= 0; i--)
         {
             if (!activeBuffs[i].timedBuff)
                 continue;
 
             if (activeBuffs[i].timeLeft <= 0)
             {
-                removeBuff(activeBuffs[i]);
+                activeBuffs.RemoveAt(i);
                 shouldRefresh = true;
                 continue;
             }
@@ -34,67 +41,58 @@ public class BuffsReceiver : MonoBehaviour
             refreshBuffs();
     }
 
+    internal List<Buff> getBuffList()
+    {
+        return activeBuffs;
+    }
+
     public void addBuff(Buff buff)
     {
-        Buff containedBuff = getBuff(buff);
-        if (containedBuff == null)
+        for (int i = activeBuffs.Count-1; i >= 0; i--)
         {
-            activeBuffs.Add(buff);
-            UIManager.instance.buffBar.addBuff(buff);
+            if (activeBuffs[i] == buff)
+            {
+                if (buff.timedBuff && buff.timeLeft >= activeBuffs[i].timeLeft)
+                {
+                    activeBuffs[i].timeLeft = buff.timeLeft;    // Refreshing the duration if it's the same buff
+                    return;
+                }
+            }
         }
-        else if (buff.timedBuff && buff.timeLeft > containedBuff.timeLeft)
-        {
-            containedBuff.timeLeft = buff.timeLeft; // Refresh the duration
-        }
+        activeBuffs.Add(buff);
         refreshBuffs();
     }
 
     public void removeBuff(Buff buff)
     {
-        for (int i = activeBuffs.Count - 1; i >= 0; i--)
+        for (int i=activeBuffs.Count -1; i >= 0; i--)
         {
-            if (activeBuffs[i].name == buff.name)
-            {
+            if (activeBuffs[i] == buff)
                 activeBuffs.RemoveAt(i);
-                UIManager.instance.buffBar.removeBuff(buff);
-            }
         }
         refreshBuffs();
     }
 
-    private bool containsBuff(Buff b)
-    {
-        foreach (Buff buff in activeBuffs)
-        {
-            if (b.name == buff.name)
-                return true;
-        }
-        return false;
-    }
-
-    private Buff getBuff(Buff b)
-    {
-        foreach (Buff buff in activeBuffs)
-        {
-            if (b.name == buff.name)
-            {
-                return buff;
-            }
-        }
-        return null;
-    }
-
     private void refreshBuffs()
     {
-        damageReduction = 1; // 1 means no damage reduction, 0 means 100% damage reduction
+        incomingDamageMultiplier = 1; // 1 means no damage reduction, 0 means 100% damage reduction, 1.5 means +50% incoming damage
+        damageMultiplier = 1f;
+        speedMultiplier = 1f;
+        isStunned = false;
         foreach (Buff buff in activeBuffs)
         {
-            damageReduction *= (1 - buff.damageReduction);
+            if (buff.stun)
+                isStunned = true;
+
+            incomingDamageMultiplier *= buff.incomingDamageMultiplier;
+            damageMultiplier *= buff.damageMultiplier;
+            speedMultiplier *= buff.speedMultiplier;
         }
     }
 
-    internal float getDamageReduction()
+    internal void stunFor(float fallingDuration)
     {
-        return damageReduction;
+        Buff newBuff = new Buff(BuffType.Stun, fallingDuration);
+        addBuff(newBuff);
     }
 }

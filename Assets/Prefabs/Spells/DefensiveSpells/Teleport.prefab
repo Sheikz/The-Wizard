@@ -47,7 +47,7 @@ MonoBehaviour:
   manaCost: 30
   manaCostInterval: 1
   castTime: 0
-  cooldown: 3
+  cooldown: 6
   icon: {fileID: 21300496, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 2
   magicElement: 3
@@ -55,14 +55,15 @@ MonoBehaviour:
   damage: 10
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
-  collidesWithWalls: 1
+  moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   teleportAnimation: {fileID: 164774, guid: 989e92436e7776a40a336daab46e6e50, type: 2}
 --- !u!1001 &100100000

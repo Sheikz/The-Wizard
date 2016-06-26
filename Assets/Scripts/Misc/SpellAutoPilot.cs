@@ -78,10 +78,7 @@ public class SpellAutoPilot : AutoPilot
             return;
 
         if (closestDmg && !closestDmg.isDead)
-        {
-            Debug.Log(gameObject.name + " from " + spell.emitter + " locking on " + closestDmg.name);
             lockToObject(closestDmg.transform);
-        }
     }
 
     Damageable getClosest(RaycastHit2D[] hits)
@@ -110,7 +107,6 @@ public class SpellAutoPilot : AutoPilot
                 result = dmg;
             }
         }
-
         return result;
     }
 

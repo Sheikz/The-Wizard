@@ -93,6 +93,7 @@ GameObject:
   - 114: {fileID: 114000013394407784}
   - 114: {fileID: 114000010876004598}
   - 114: {fileID: 114000011677033680}
+  - 114: {fileID: 114000010151795556}
   m_Layer: 0
   m_Name: ChronoSphere
   m_TagString: NoExplosion
@@ -183,6 +184,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.2
+--- !u!114 &114000010151795556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013946986398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  damageType: 1
+  delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!114 &114000010876004598
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,26 +241,31 @@ MonoBehaviour:
   manaCost: 36
   manaCostInterval: 1
   castTime: 0
-  cooldown: 8
+  cooldown: 10
   icon: {fileID: 21300336, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 4
   magicElement: 3
   spellSet: 0
-  damage: 0
+  damage: 20
   lightIntensity: 0
   duration: 5
   collidesWithSpells: 1
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0
   colliderDuration: 0
-  affectedObjects: []
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
+  durationLeft: 0
 --- !u!198 &198000010391805080
 ParticleSystem:
   m_ObjectHideFlags: 1

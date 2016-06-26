@@ -24,7 +24,7 @@ GameObject:
   - 58: {fileID: 58000010942321642}
   - 114: {fileID: 114000010032630992}
   - 114: {fileID: 114000014026536686}
-  - 114: {fileID: 114000013342907396}
+  - 114: {fileID: 114000012701401824}
   m_Layer: 0
   m_Name: Entangle
   m_TagString: Untagged
@@ -266,25 +266,30 @@ MonoBehaviour:
   castTime: 1
   cooldown: 5
   icon: {fileID: 21300014, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 3
+  spellType: 4
   magicElement: 5
   spellSet: 0
   damage: 25
   lightIntensity: 0
-  duration: 3
+  duration: 2
   collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   delayBeforeDamage: 0
   colliderDuration: 0
+  automaticDestroy: 1
+  needLineOfSight: 1
+  createdAtCasterPosition: 0
   durationLeft: 0
---- !u!114 &114000013342907396
+--- !u!114 &114000012701401824
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -292,9 +297,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010212237824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e24cdc88a3a264438ced1e7f27fa7af, type: 3}
+  m_Script: {fileID: 11500000, guid: fbb8ecf877e3df046bb00f6d7415c382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buff:
+    name: Entangle
+    buffType: 4
+    description: Rooted
+    icon: {fileID: 21300014, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
+    colorMask: {r: 1, g: 1, b: 1, a: 1}
+    timedBuff: 0
+    timeLeft: 0
+    damageMultiplier: 1
+    incomingDamageMultiplier: 1
+    speedMultiplier: 0
+    stun: 0
 --- !u!114 &114000013387030898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,8 +335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!198 &198000010678736516
 ParticleSystem:
   m_ObjectHideFlags: 1

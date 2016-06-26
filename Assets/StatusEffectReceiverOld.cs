@@ -2,9 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
-public class StatusEffectReceiver : MonoBehaviour 
+public class StatusEffectReceiverOld : MonoBehaviour 
 {
     public bool[] imunizedTo;
 
@@ -12,6 +11,7 @@ public class StatusEffectReceiver : MonoBehaviour
     private Dictionary<float, int> freezeEffects;
     private int colorMaskSemaphore = 0;
     private int stunSemaphore = 0;
+
     private Color lastColorApplied;
     private Animator anim;
     private Rigidbody2D rb;
@@ -124,7 +124,8 @@ public class StatusEffectReceiver : MonoBehaviour
             freezeEffects.Add(moveSpeedPercent, 1);
         }
 
-        yield return new WaitForSeconds(duration);
+        if (!isImunizedTo(StatusEffectType.Slow))
+            yield return new WaitForSeconds(duration);
 
         freezeEffects[moveSpeedPercent]--;
         if (freezeEffects[moveSpeedPercent] == 0)
@@ -172,9 +173,13 @@ public class StatusEffectReceiver : MonoBehaviour
             rb.velocity = Vector2.zero;
 
         yield return new WaitForSeconds(stunDuration);
+
         stunSemaphore--;
-        if (stunSemaphore == 0)
+        if (stunSemaphore <= 0)
+        {
+            stunSemaphore = 0;
             anim.speed = 1;
+        }
     }
 
     public bool isStunned
@@ -186,6 +191,11 @@ public class StatusEffectReceiver : MonoBehaviour
             else
                 return false;
         }
+    }
+
+    internal void removeAllDebuffs()
+    {
+        throw new NotImplementedException();
     }
 
     public void applyColorMask(Color color, float duration)

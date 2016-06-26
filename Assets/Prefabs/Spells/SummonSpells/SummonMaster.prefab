@@ -47,16 +47,17 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 60
+  cooldown: 0.5
   icon: {fileID: 21300000, guid: bb08a66719ef76b42a87b63732af93ec, type: 3}
   spellType: 4
   magicElement: 0
-  spellSet: 0
+  spellSet: 1
   damage: 10
   lightIntensity: 0
   duration: 15
   collidesWithSpells: 0
   collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

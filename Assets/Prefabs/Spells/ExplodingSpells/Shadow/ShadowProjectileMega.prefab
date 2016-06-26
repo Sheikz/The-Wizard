@@ -560,7 +560,7 @@ MonoBehaviour:
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
-  cooldown: 2
+  cooldown: 3
   icon: {fileID: 21300000, guid: a477b444dfaf9b44992cca6e7ea89108, type: 3}
   spellType: 3
   magicElement: 0
@@ -569,13 +569,14 @@ MonoBehaviour:
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
 --- !u!114 &11479992
@@ -594,6 +595,7 @@ MonoBehaviour:
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
   automaticExplosion: 1
+  delayedExplosions: []
 --- !u!114 &11493444
 MonoBehaviour:
   m_ObjectHideFlags: 1

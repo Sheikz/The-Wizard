@@ -19,6 +19,7 @@ GameObject:
   - 114: {fileID: 11453140}
   - 114: {fileID: 11407258}
   - 114: {fileID: 11465814}
+  - 114: {fileID: 114000010233500600}
   m_Layer: 15
   m_Name: Boss1
   m_TagString: Enemy
@@ -100,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressiveApparitionTime: 0.5
   alwaysVisible: 0
+  needToBeSeenOnce: 0
+  isVisible: 0
 --- !u!114 &11417960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +145,7 @@ MonoBehaviour:
   - {fileID: 11436048, guid: 783c6e8bf1a3b544d9426d5adb91342d, type: 2}
   - {fileID: 11427560, guid: a2cee7d6ea8b06846b4d970b1edcc2d0, type: 2}
   isHero: 0
+  playerStats: {fileID: 0}
   isMonster: 0
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
@@ -294,3 +298,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 108374}
   m_IsPrefabParent: 1
+--- !u!114 &114000010233500600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e13848bb0974a4fa07978547d9a4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeBuffs: []
+  incomingDamageMultiplier: 1
+  damageMultiplier: 1
+  speedMultiplier: 1
+  isStunned: 0

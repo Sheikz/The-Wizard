@@ -360,6 +360,8 @@ MonoBehaviour:
   destroyWhenExplodes: 1
   explodeOnTouch: 0
   delayBetweenExplosions: 0.5
+  automaticExplosion: 1
+  delayedExplosions: []
 --- !u!114 &11480998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,13 +374,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 1
+  searchNewTargetIfDead: 1
   slowMode: 0
   rotatingStep: 0.5
   velocityIfStopped: 3
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
+  state: 0
   detectionRadius: 3
   detectionDistance: 3
+  explodeOnlyOnTarget: 0
 --- !u!114 &11483698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,23 +402,23 @@ MonoBehaviour:
   manaCost: 30
   manaCostInterval: 1
   castTime: 0.2
-  cooldown: 1
+  cooldown: 0.5
   icon: {fileID: 21300576, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 3
   magicElement: 1
-  spellSet: 0
+  spellSet: 1
   damage: 60
   lightIntensity: 0
   duration: 0
-  prerequisites: []
-  removePrerequisites: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 10
 --- !u!114 &11491246
@@ -429,6 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chainRadius: 3
   numberOfBounces: 5
+  activated: 0
 --- !u!198 &19819052
 ParticleSystem:
   m_ObjectHideFlags: 1

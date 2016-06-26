@@ -324,26 +324,28 @@ MonoBehaviour:
   manaCost: 20
   manaCostInterval: 1
   castTime: 0.5
-  cooldown: 0.2
+  cooldown: 3
   icon: {fileID: 21300398, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 1
+  spellType: 3
   magicElement: 3
   spellSet: 0
   damage: 200
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
   speed: 5
   explosion: {fileID: 198928, guid: aa786cdc685a11843bbf5188d71e7f7d, type: 2}
   pierceCausesExplosion: 1
+  destroyIfFinished: 0
 --- !u!114 &114000013671934406
 MonoBehaviour:
   m_ObjectHideFlags: 1

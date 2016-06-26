@@ -23,6 +23,8 @@ public class SpellCaster : MonoBehaviour
 
 	private bool isCasting = false;
     private CharacterStats characterStats;
+    [HideInInspector]
+    public PlayerStats playerStats;
 	[HideInInspector]
 	public bool isMonster;
 	private List<Companion> companionList;
@@ -38,7 +40,7 @@ public class SpellCaster : MonoBehaviour
 	public Transform targetOpponent;
     [HideInInspector]
     public Transform targetAlly;
-    private StatusEffectReceiver statusEffectReceiver;
+    private BuffsReceiver buffReceiver;
     private float itemManaRegen;
     private int itemCritChance;
 
@@ -50,7 +52,8 @@ public class SpellCaster : MonoBehaviour
 		characterStats = GetComponent<CharacterStats>();
 		movingCharacter = GetComponent<MovingCharacter>();
 		anim = GetComponent<Animator>();
-        statusEffectReceiver = GetComponent<StatusEffectReceiver>();
+        buffReceiver = GetComponent<BuffsReceiver>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
 	// Use this for initialization
@@ -163,7 +166,7 @@ public class SpellCaster : MonoBehaviour
 		isOnCoolDown[spellIndex] = true;
 		float cdModifier = characterStats ? characterStats.cooldownModifier : 1;
 		if (cooldown == 0)
-		cooldown = spellList[spellIndex].GetComponent<SpellController>().cooldown * cdModifier;
+		cooldown = spellList[spellIndex].GetComponent<SpellController>().getCooldown(this) * cdModifier;
 		if (isHero)
 		{
 			float startingTime = Time.time;
@@ -212,7 +215,7 @@ public class SpellCaster : MonoBehaviour
 		if (movingCharacter && !movingCharacter.canAct)
 			return;
 
-        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+        if (buffReceiver && buffReceiver.isStunned)
             return;
 
 		if (!spellList[spellIndex])
@@ -262,7 +265,9 @@ public class SpellCaster : MonoBehaviour
 	{
         if (anim)
             anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
-		if (spell.castTime > 0)
+
+        float castTime = spell.getCastTime(this);
+		if (castTime > 0)
 		{
             if (anim)
                 anim.SetTrigger("PrepareAttack");
@@ -271,9 +276,9 @@ public class SpellCaster : MonoBehaviour
 			float startingTime = Time.time;
 			if (movingCharacter)
 				movingCharacter.enableMovement(false);
-			while (Time.time - startingTime < spell.castTime)
+			while (Time.time - startingTime < castTime)
 			{
-				if (statusEffectReceiver && statusEffectReceiver.isStunned)  // If the character is stunned while casting, it should stop the cast
+				if (buffReceiver && buffReceiver.isStunned)  // If the character is stunned while casting, it should stop the cast
 				{
 					isCasting = false;
 					if (!castingBar)
@@ -284,7 +289,7 @@ public class SpellCaster : MonoBehaviour
 					yield break;
 				}
 
-				setCastBarRatio((Time.time - startingTime) / spell.castTime);
+				setCastBarRatio((Time.time - startingTime) / castTime);
                 if (isHero)
                 {
                     targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

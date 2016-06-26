@@ -141,7 +141,7 @@ public class Damageable : MonoBehaviour
         // Apply buff damage reduction
         if (buffReceiver)
         {
-            damage = Mathf.RoundToInt(damage * buffReceiver.getDamageReduction());
+            damage = Mathf.RoundToInt(damage * buffReceiver.incomingDamageMultiplier);
         }
 
         dmgText.GetComponent<FloatingText>().initialize(gameObject, damage);

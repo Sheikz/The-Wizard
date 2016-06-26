@@ -10,6 +10,8 @@ public class ShieldSpell : SpellController
         base.Start();
         if (duration > 0)
             StartCoroutine(destroyAfterSeconds(duration));
+        else
+            Destroy(gameObject);
 
         applyLayer();
     }

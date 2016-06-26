@@ -29,7 +29,8 @@ public abstract class MovingCharacter : MonoBehaviour
     public bool isFlying = false;
     private float spinningSpeed = 10f;
     private float fallingDuration = 3f;
-    protected StatusEffectReceiver statusEffectReceiver;
+    protected StatusEffectReceiverOld statusEffectReceiver;
+    protected BuffsReceiver buffReceiver;
     private static float AnimSpeedToMoveSpeedRatio = 5f;    // The movement speed that corresponds to an animator speed of 1
 
     // Use this for initialization
@@ -39,7 +40,8 @@ public abstract class MovingCharacter : MonoBehaviour
         anim = GetComponent<Animator>();
         circleCollider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        statusEffectReceiver = GetComponent<StatusEffectReceiver>();
+        statusEffectReceiver = GetComponent<StatusEffectReceiverOld>();
+        buffReceiver = GetComponent<BuffsReceiver>();
         speed = baseSpeed;
     }
 
@@ -50,7 +52,7 @@ public abstract class MovingCharacter : MonoBehaviour
 
     protected void updateAnimations()
     {
-        if (statusEffectReceiver && statusEffectReceiver.isStunned)
+        if (buffReceiver && buffReceiver.isStunned)
             return;
 
         if (anim)
@@ -83,7 +85,8 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!isFalling)
         {
             StartCoroutine(fallAnimation(spinningSpeed, fallingDuration, damageRatio));
-            statusEffectReceiver.stunFor(fallingDuration);
+            if (buffReceiver)
+                buffReceiver.stunFor(fallingDuration);
         }
         isFalling = true;
     }
@@ -162,9 +165,9 @@ public abstract class MovingCharacter : MonoBehaviour
     {
         get
         {
-            if (statusEffectReceiver)
+            if (buffReceiver)
             {
-                return speed * statusEffectReceiver.getMoveSpeedPercent();
+                return speed * buffReceiver.speedMultiplier;
             }
             else
                 return speed;
