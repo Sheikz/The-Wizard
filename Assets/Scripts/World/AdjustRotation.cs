@@ -7,4 +7,9 @@ public class AdjustRotation : MonoBehaviour
 	{
 		transform.rotation = Quaternion.identity;
 	}
+
+    void OnEnable()
+    {
+        transform.rotation = Quaternion.identity;
+    }
 }

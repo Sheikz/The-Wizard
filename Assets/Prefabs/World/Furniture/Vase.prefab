@@ -143,9 +143,11 @@ MonoBehaviour:
   isHealable: 0
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
-  showHPBar: 1
+  showHPBar: 0
   destructionAnimation: {fileID: 1000012686416224, guid: 373568901577de646961cb416330e978,
     type: 2}
+  outOfCombatRegen: 5
+  timeToLeaveCombat: 5
   maxHP: 0
   currentHP: 0
   onDamageCooldown: 0

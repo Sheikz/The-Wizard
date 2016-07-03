@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010261401324}
   - 198: {fileID: 198000012418284828}
   - 199: {fileID: 199000012098848442}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: BigSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 4: {fileID: 4000010383684548}
   - 198: {fileID: 198000013860342748}
   - 199: {fileID: 199000012882584674}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - 4: {fileID: 4000011883667222}
   - 198: {fileID: 198000010303628122}
   - 199: {fileID: 199000012598467652}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - 4: {fileID: 4000010760676532}
   - 198: {fileID: 198000014008396996}
   - 199: {fileID: 199000012654693086}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,8 @@ GameObject:
   - 4: {fileID: 4000010681348620}
   - 58: {fileID: 58000010608117760}
   - 114: {fileID: 114000013045167776}
-  m_Layer: 0
+  - 50: {fileID: 50000013786849280}
+  m_Layer: 18
   m_Name: FrostPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000013258271064}
   - 108: {fileID: 108000010004791568}
   - 114: {fileID: 114000011119072078}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +197,23 @@ Transform:
   m_Father: {fileID: 4000010681348620}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000013786849280
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013061158864}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &58000010608117760
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -209,7 +227,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.35
 --- !u!108 &108000010004791568
 Light:
   m_ObjectHideFlags: 1
@@ -271,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePickedUp: 1
+  autoPickup: 1
   level: 1
   powerUpBuff:
     element: 4

@@ -55,30 +55,14 @@ public class StatsInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             case InventoryStats.MoveSpeed:
                 text.text = "Move Speed : <color=orange>" + value + "</color>";
                 break;
+            case InventoryStats.CriticalStrikeChance:
+                text.text = "Critical Chance : <color=orange>" + value + "</color>%";
+                break;
+            case InventoryStats.EnergyRegen:
+                text.text = "Energy Regen : <color=magenta>" + value + "</color>/sec";
+                break;
             case InventoryStats.Gold:
                 text.text = "Gold : <color=yellow>" + value + "</color>";
-                break;
-        }
-    }
-
-    internal void refresh(float value)
-    {
-        if (text == null)
-            text = GetComponent<Text>();
-        this.fvalue = value;
-        switch (stats)
-        {
-            case InventoryStats.Power:
-                text.text = "Power : <color=magenta>" + fvalue + "</color>";
-                break;
-            case InventoryStats.HP:
-                text.text = "HP : <color=green>" + fvalue + "</color>";
-                break;
-            case InventoryStats.MoveSpeed:
-                text.text = "Move Speed : <color=orange>" + fvalue + "</color>";
-                break;
-            case InventoryStats.Gold:
-                text.text = "Gold : <color=yellow>" + fvalue + "</color>";
                 break;
         }
     }

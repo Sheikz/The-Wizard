@@ -6,6 +6,7 @@ using System;
 public abstract class Item : MonoBehaviour
 {
     public bool canBePickedUp = true;
+    public bool autoPickup = false;
 
     [HideInInspector]
     public int level = 1;
@@ -18,6 +19,12 @@ public abstract class Item : MonoBehaviour
     {
         gameObject.layer = LayerMask.NameToLayer("Item");
         GetComponent<Collider2D>().isTrigger = false;
+    }
+
+    protected void Start()
+    {
+        if (GameManager.instance.map)
+            transform.SetParent(GameManager.instance.map.itemHolder);
     }
 
     public virtual void initialize(CharacterStats looter)

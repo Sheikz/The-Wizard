@@ -21,7 +21,8 @@ GameObject:
   - 4: {fileID: 4000011086324144}
   - 58: {fileID: 58000012318153156}
   - 114: {fileID: 114000013894491416}
-  m_Layer: 0
+  - 50: {fileID: 50000012175264642}
+  m_Layer: 18
   m_Name: LightPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000011107831270}
   - 198: {fileID: 198000012319529198}
   - 199: {fileID: 199000014046555010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000011709486362}
   - 198: {fileID: 198000012382052376}
   - 199: {fileID: 199000012762162482}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: BigSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000012940047424}
   - 198: {fileID: 198000013901584564}
   - 199: {fileID: 199000010359056136}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000010488710658}
   - 108: {fileID: 108000012358026294}
   - 114: {fileID: 114000013505981368}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000012328955132}
   - 198: {fileID: 198000011611099556}
   - 199: {fileID: 199000012421627822}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +197,23 @@ Transform:
   m_Father: {fileID: 4000011086324144}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000012175264642
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010200449240}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &58000012318153156
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -209,7 +227,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.35
 --- !u!108 &108000012358026294
 Light:
   m_ObjectHideFlags: 1
@@ -271,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePickedUp: 1
+  autoPickup: 1
   level: 1
   powerUpBuff:
     element: 0

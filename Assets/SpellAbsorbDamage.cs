@@ -13,7 +13,6 @@ public class SpellAbsorbDamage : MonoBehaviour
     private Damageable emitterDmg;
     private SpellController spell;
     private BuffsReceiver bReceiver;
-    private StatusEffectReceiverOld statusEffectReceiver;
 
     void Awake()
     {
@@ -27,16 +26,12 @@ public class SpellAbsorbDamage : MonoBehaviour
             emitterDmg = spell.emitter.GetComponent<Damageable>();
         if (spell && spell.emitter)
             bReceiver = spell.emitter.GetComponent<BuffsReceiver>();
-        if (spell && spell.emitter)
-            statusEffectReceiver = spell.emitter.GetComponent<StatusEffectReceiverOld>();
 
         dmg.baseHP = absorbDamage;
         dmg.maxHP = absorbDamage;
         dmg.currentHP = absorbDamage;
         if (emitterDmg)
             emitterDmg.setInvincible(true);
-        if (statusEffectReceiver)
-            statusEffectReceiver.setImunized(true);
 
         applyBuff();
     }
@@ -60,8 +55,6 @@ public class SpellAbsorbDamage : MonoBehaviour
             emitterDmg.setInvincible(false);
         if (bReceiver)
             bReceiver.removeBuff(buff);
-        if (statusEffectReceiver)
-            statusEffectReceiver.setImunized(false);
 
         if (explosion && spell)
         {

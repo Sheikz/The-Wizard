@@ -33,7 +33,9 @@ public class RoomBasedMapGenerator : MonoBehaviour
     [HideInInspector]
     public Transform monsterHolder;
     [HideInInspector]
-    private Transform furnitureHolder;
+    public Transform furnitureHolder;
+    [HideInInspector]
+    public Transform itemHolder;
     public int mapTheme;
     private int decoCount = 0;
 
@@ -54,6 +56,8 @@ public class RoomBasedMapGenerator : MonoBehaviour
         liaisonHolder.transform.SetParent(transform);
         furnitureHolder = new GameObject("Furniture").transform;
         furnitureHolder.SetParent(transform);
+        itemHolder = new GameObject("Items").transform;
+        itemHolder.SetParent(transform);
 
         spellHolder = new GameObject("Spells").transform;
 
@@ -310,7 +314,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
         }
         Room newRoom = (Instantiate(room, position, Quaternion.identity) as GameObject).GetComponent<Room>();
         newRoom.randomize();
-        newRoom.refreshWalls();
+        newRoom.refresh();
         newRoom.transform.rotation = rot;
         newRoom.transform.SetParent(transform);
 

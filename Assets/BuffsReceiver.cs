@@ -15,14 +15,23 @@ public class BuffsReceiver : MonoBehaviour
     [HideInInspector]
     public bool isStunned = false;
 
+    private bool[] imunizedTo;
+    private Color colorMask = Color.white;
+    private SpriteRenderer spr;
+
     void Awake()
     {
         activeBuffs = new List<Buff>();
+        spr = GetComponent<SpriteRenderer>();
+        imunizedTo = new bool[Enum.GetValues(typeof(BuffType)).Length];
+        for (int i = 0; i < imunizedTo.Length; i++)
+            imunizedTo[i] = false;
     }
 
     void FixedUpdate()
     {
         bool shouldRefresh = false;
+        bool refreshColor = false;
 
         for (int i = activeBuffs.Count - 1; i >= 0; i--)
         {
@@ -31,6 +40,8 @@ public class BuffsReceiver : MonoBehaviour
 
             if (activeBuffs[i].timeLeft <= 0)
             {
+                if (activeBuffs[i].colorMask != Color.white)
+                    refreshColor = true;
                 activeBuffs.RemoveAt(i);
                 shouldRefresh = true;
                 continue;
@@ -38,7 +49,7 @@ public class BuffsReceiver : MonoBehaviour
             activeBuffs[i].timeLeft -= Time.fixedDeltaTime;
         }
         if (shouldRefresh)
-            refreshBuffs();
+            refreshBuffs(refreshColor);
     }
 
     internal List<Buff> getBuffList()
@@ -48,6 +59,9 @@ public class BuffsReceiver : MonoBehaviour
 
     public void addBuff(Buff buff)
     {
+        if (imunizedTo[(int)buff.buffType]) // Don't add the buff if I'm immune
+            return;
+
         for (int i = activeBuffs.Count-1; i >= 0; i--)
         {
             if (activeBuffs[i] == buff)
@@ -59,6 +73,7 @@ public class BuffsReceiver : MonoBehaviour
                 }
             }
         }
+        applyColor(buff);
         activeBuffs.Add(buff);
         refreshBuffs();
     }
@@ -70,29 +85,72 @@ public class BuffsReceiver : MonoBehaviour
             if (activeBuffs[i] == buff)
                 activeBuffs.RemoveAt(i);
         }
-        refreshBuffs();
+        refreshBuffs(buff.colorMask != Color.white);    // If this buff was applying a color mask, need to 
     }
 
-    private void refreshBuffs()
+    private void refreshBuffs(bool refreshColor = false)
     {
+        float longestColorTimeleft = -1f;
+        Color colorWithLongestTimeLeft = Color.white;
         incomingDamageMultiplier = 1; // 1 means no damage reduction, 0 means 100% damage reduction, 1.5 means +50% incoming damage
         damageMultiplier = 1f;
-        speedMultiplier = 1f;
+        float speedDebuffMultiplier = 1f;
+        float speedBuffMultiplier = 1f;
         isStunned = false;
         foreach (Buff buff in activeBuffs)
         {
             if (buff.stun)
                 isStunned = true;
-
+            if (refreshColor)   // If the color has to be refreshed, check if there is another buff currently applied that has a color mask.
+            {
+                if (buff.colorMask != colorWithLongestTimeLeft && buff.timeLeft >= longestColorTimeleft)    // Take the one with the most time left
+                {
+                    colorWithLongestTimeLeft = buff.colorMask;
+                    longestColorTimeleft = buff.timeLeft;
+                }
+            }
             incomingDamageMultiplier *= buff.incomingDamageMultiplier;
             damageMultiplier *= buff.damageMultiplier;
-            speedMultiplier *= buff.speedMultiplier;
+            if (buff.buffType != BuffType.Buff && buff.speedMultiplier <= speedDebuffMultiplier)        // Taking the biggest slow debuff into account
+                speedDebuffMultiplier = buff.speedMultiplier;
+            if (buff.buffType == BuffType.Buff && buff.speedMultiplier >= speedBuffMultiplier)          // And the biggest speed boost
+                speedBuffMultiplier = buff.speedMultiplier;
         }
+        speedMultiplier = speedDebuffMultiplier * speedBuffMultiplier;
+        if (refreshColor)
+            spr.color = colorWithLongestTimeLeft;
     }
 
-    internal void stunFor(float fallingDuration)
+    void applyColor(Buff buff)
     {
-        Buff newBuff = new Buff(BuffType.Stun, fallingDuration);
+        if (buff.colorMask != Color.white)
+            spr.color = buff.colorMask;
+    }
+
+    internal void stunFor(float duration)
+    {
+        Buff newBuff = new Buff(BuffType.Stun, duration);
         addBuff(newBuff);
     }
+
+    internal void removeAllDebuffs()
+    {
+        for (int i=activeBuffs.Count-1; i >= 0; i--)
+        {
+            if (activeBuffs[i].buffType != BuffType.Buff)   // It's a debuff
+            {
+                activeBuffs.RemoveAt(i);
+            }
+        }
+        refreshBuffs();
+    }
+
+    internal void setImunizedDebuffs(bool v)
+    {
+        for (int i = 0; i < imunizedTo.Length; i++)
+            imunizedTo[i] = v;
+
+        imunizedTo[(int)BuffType.Buff] = false; // Never immune to buffs
+    }
+
 }

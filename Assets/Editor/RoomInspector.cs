@@ -12,7 +12,7 @@ public class RoomInspector : Editor
         if (GUILayout.Button("Refresh"))
         {
             SquareRoom room = (SquareRoom)target;
-            room.refreshWalls();
+            room.refresh();
         }
     }
 }

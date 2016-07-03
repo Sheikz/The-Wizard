@@ -34,13 +34,14 @@ public class SpraySpell : ChannelSpell
         currentSpray.applyChannelPerks();
     }
 
-    internal override void update(Vector3 targetPosition)
+    internal override bool update(Vector3 targetPosition)
     {
         if (currentSpray)
             currentSpray.refresh(currentSpray.emitter, currentSpray.emitter.transform.position, targetPosition);
 
         if (currentSpray && currentSpray.emitter)
-            currentSpray.emitter.payChannelMana(manaCost, manaCostInterval);
+            return currentSpray.emitter.payChannelMana(manaCost, manaCostInterval);
+        return true;
     }
 
     // Use this for initialization

@@ -16,12 +16,15 @@ public class PlayerController : MovingCharacter
 	private Vector3 wayPoint;           // Position to respawn after falling into a hole
 	private Vector3 target;
 	private List<int> spellCasted;
+    private ItemLooter itemLooter;
+    private bool autoMove = false;
 
 	new void Awake()
 	{
 		base.Awake();
 		spellCaster = GetComponent<SpellCaster>();
 		damageable = GetComponent<Damageable>();
+        itemLooter = GetComponentInChildren<ItemLooter>();
 		spellCasted = new List<int>();
 	}
 
@@ -44,9 +47,20 @@ public class PlayerController : MovingCharacter
 
 		float inputX = InputManager.instance.getHorizontalInput();
 		float inputY = InputManager.instance.getVerticalInput();
+        if (inputX != 0 || inputY != 0)
+            autoMove = false;
+
+        if (autoMove)
+        {
+            direction = movement;
+            updateAnimations();
+            updateSortingOrder();
+            return;
+        }
+
 		movement = new Vector2(inputX, inputY).normalized * movingSpeed;
-		if (movement != Vector2.zero)
-			direction = movement;
+        if (movement != Vector2.zero)
+            direction = movement;
 
 		updateAnimations();
         updateSortingOrder();
@@ -54,42 +68,48 @@ public class PlayerController : MovingCharacter
 			return;
         if (buffReceiver.isStunned)
             return;
-        
+
 		rb.velocity = movement;
 	}
 
-	// Update is called once per frame
-	void Update()
+    // Update is called once per frame
+    void Update()
 	{
         if (damageable.isDead)
             return;
 
         spellCasted.Clear();
-		if (InputManager.instance.IsKeyPressed(InputManager.Command.PrimarySpell))
+        if (InputManager.instance.IsCommandDown(InputManager.Command.PrimarySpell))
+        {
+            if (InputManager.instance.isMouseHoveringItem && InputManager.instance.hoveringOverItem)
+                itemLooter.pickup(InputManager.instance.hoveringOverItem);
+        }
+		if (InputManager.instance.IsCommandPressed(InputManager.Command.PrimarySpell))
 		{
-			if (!EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
+			if (!EventSystem.current.IsPointerOverGameObject()
+                && !InputManager.instance.isMouseHoveringItem) // If clicking on UI or hovering over item
 				spellCasted.Add(0);
 		}
 
-		if (InputManager.instance.IsKeyPressed(InputManager.Command.SecondarySpell))
+		if (InputManager.instance.IsCommandPressed(InputManager.Command.SecondarySpell))
 			spellCasted.Add(1);
 
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.DefensiveSpell))
+        if (InputManager.instance.IsCommandPressed(InputManager.Command.DefensiveSpell))
 			spellCasted.Add(2);
 
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate1))
+        if (InputManager.instance.IsCommandPressed(InputManager.Command.Ultimate1))
 			spellCasted.Add(3);
 
-        if (InputManager.instance.IsKeyPressed(InputManager.Command.Ultimate2))
+        if (InputManager.instance.IsCommandPressed(InputManager.Command.Ultimate2))
 			spellCasted.Add(4);
 
         if (Input.GetButtonDown("Cancel"))
 			UIManager.instance.switchMenu();
 
-        if (InputManager.instance.IsKeyDown(InputManager.Command.SpellBook))
+        if (InputManager.instance.IsCommandDown(InputManager.Command.SpellBook))
             UIManager.instance.spellWindowBySet.open();
 
-        if (InputManager.instance.IsKeyDown(InputManager.Command.CharacterWindow))
+        if (InputManager.instance.IsCommandDown(InputManager.Command.CharacterWindow))
             UIManager.instance.characterWindow.open();
 
         if (spellCasted.Count > 0)
@@ -100,12 +120,38 @@ public class PlayerController : MovingCharacter
 
 		foreach (int spell in spellCasted)
 		{
+            autoMove = false;
+
 			if (spellCaster)
 				spellCaster.castSpell(spell, target);
 		}
     }
 
-	public override void receivesDamage()
+    internal IEnumerator moveToItemAndPickup(Item item, ItemLooter itemLooter)
+    {
+        autoMove = true;
+        movement = (item.transform.position - itemLooter.transform.position).normalized * movingSpeed;
+        rb.velocity = movement;
+        while (((transform.position - item.transform.position).sqrMagnitude >= itemLooter.lootDistance * itemLooter.lootDistance))
+        {
+            if (!canAct || !canMove || isFalling || buffReceiver.isStunned)
+                autoMove = false;
+            if (!autoMove)
+            {
+                yield break;
+            }
+            movement = (item.transform.position - itemLooter.transform.position).normalized * movingSpeed;
+            rb.velocity = movement;
+
+            yield return null;
+        }
+        rb.velocity = Vector2.zero;
+        movement = Vector2.zero;
+        item.pullToSelf(itemLooter);
+    }
+
+
+    public override void receivesDamage()
 	{
 		if (UIManager.instance.screenMask.active)
 			StartCoroutine(enableScreenMaskForOneFrame());

@@ -57,15 +57,16 @@ public class GridMap
         height = Mathf.RoundToInt(floorY.maximum) - offset.y + 1;
         grid = new Tile[height, width];
 
-        for (int x = 0; x < width; x ++)
+        for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y ++)
+            for (int y = 0; y < height; y++)
             {
                 grid[y, x] = new Tile(x + offset.x, y + offset.y, TileType.Wall, this);
                 grid[y, x].distanceToClosestBlocking = getDistanceToClosestObject(new Vector3(x + offset.x, y + offset.y, 0), GameManager.instance.layerManager.blockingLayer);
                 grid[y, x].distanceToClosestHighBlocking = getDistanceToClosestObject(new Vector3(x + offset.x, y + offset.y, 0), GameManager.instance.layerManager.highBlockingLayer);
             }
         }
+
         foreach (GameObject floor in floorTiles) // Put the floors
         {
             meshCreator = floor.GetComponent<MeshCreator>();
@@ -138,6 +139,18 @@ public class GridMap
         pathFinder = new AStarPathFinder(this);
     }
 
+    public void upgradeGridDistances()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                grid[y, x].distanceToClosestBlocking = getDistanceToClosestObject(new Vector3(x + offset.x, y + offset.y, 0), GameManager.instance.layerManager.blockingLayer);
+                grid[y, x].distanceToClosestHighBlocking = getDistanceToClosestObject(new Vector3(x + offset.x, y + offset.y, 0), GameManager.instance.layerManager.highBlockingLayer);
+            }
+        }
+    }
+
     /// <summary>
     /// Check the distance around the tile to see if blocking objects are nearby
     /// </summary>
@@ -145,13 +158,13 @@ public class GridMap
     /// <returns></returns>
     private float getDistanceToClosestObject(Vector3 point, LayerMask layer)
     {
-        float[] radiusToTest = new float[] { 0.1f, 0.9f, 1.6f, 2.4f };
+        float[] radiusToTest = new float[] { 0.1f, 0.45f, 0.9f, 1.35f, 1.80f, 2.25f };
         foreach (float radius in radiusToTest)
         {
             if (Physics2D.OverlapCircle(point, radius, layer))
                 return radius;
         }
-        return Mathf.Infinity;
+        return 2.25f;
     }
 
     public List<Tile> getTilesOfType(TileType type)

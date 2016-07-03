@@ -25,6 +25,7 @@ public class BossEvent : RoomEvent
 
     public override void playerExitedRoom(PlayerController player)
     {
+        startEvent();
         room.openEntrance(true);
         spawner.clearMonsters();
         SoundManager.instance.playDungeonMusic();
@@ -32,6 +33,7 @@ public class BossEvent : RoomEvent
 
     public override void monsterDied(NPCController mc)
     {
+        endEvent();
         room.openEntrance(true);
         room.openExits(true);
         eventFinished = true;

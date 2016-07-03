@@ -43,6 +43,7 @@ public class SpellCaster : MonoBehaviour
     private BuffsReceiver buffReceiver;
     private float itemManaRegen;
     private int itemCritChance;
+    private Damageable dmg;
 
     private List<PowerUpBuff> activeBuffs;
     private bool payChannelManaOnCooldown = false;
@@ -54,6 +55,7 @@ public class SpellCaster : MonoBehaviour
 		anim = GetComponent<Animator>();
         buffReceiver = GetComponent<BuffsReceiver>();
         playerStats = GetComponent<PlayerStats>();
+        dmg = GetComponent<Damageable>();
     }
 
 	// Use this for initialization
@@ -93,7 +95,7 @@ public class SpellCaster : MonoBehaviour
 			mana = maxMana;
 	}
 
-    private float getManaRegen()
+    public float getManaRegen()
     {
         return baseManaRegen + itemManaRegen;
     }
@@ -314,10 +316,9 @@ public class SpellCaster : MonoBehaviour
             }
 		}
 
-		if (spell.castSpell(this, targetPosition))
+		if (spell.castSpell(this, targetPosition) && payMana(spell.manaCost))
 		{
 			StartCoroutine(startCooldown(index));  // Start the cooldown only if the spell has been launched
-			payMana(spell.manaCost);
             if (anim)
                 anim.SetTrigger("Attack");
             updateFacingDirection(targetPosition);
@@ -359,7 +360,7 @@ public class SpellCaster : MonoBehaviour
             anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
         }
 
-        while (InputManager.instance.IsKeyPressed(spell.spellType))
+        while (InputManager.instance.IsSpellPressed(spell.spellType))
 		{
 			if (stage < maxStage)
 			{
@@ -412,8 +413,6 @@ public class SpellCaster : MonoBehaviour
     {
         float chargingTime = 0;
         isCasting = true;
-        //if (movingCharacter)
-        //    movingCharacter.enableMovement(false);
 
         if (anim)
         {
@@ -425,14 +424,15 @@ public class SpellCaster : MonoBehaviour
         targetPosition.z = 0;    // fix because camera see point at z = -5
 
         spell.castSpell(this, targetPosition);
-        while (InputManager.instance.IsKeyPressed(spell.spellType))
+        while (InputManager.instance.IsSpellPressed(spell.spellType))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition.z = 0;    // fix because camera see point at z = -5
 
             updateFacingDirection(targetPosition);
 
-            spell.update(targetPosition);
+            if (!spell.update(targetPosition))
+                break;
 
             chargingTime += Time.deltaTime;
 
@@ -464,13 +464,21 @@ public class SpellCaster : MonoBehaviour
             movingCharacter.direction = castDirection;
     }
 
-    internal void payChannelMana(float manaCost, float payManaInterval)
+    /// <summary>
+    /// return true if the pays has been processed. False if not enough mana
+    /// </summary>
+    /// <param name="manaCost"></param>
+    /// <param name="payManaInterval"></param>
+    /// <returns></returns>
+    internal bool payChannelMana(float manaCost, float payManaInterval)
     {
         if (payChannelManaOnCooldown)
-            return;
+            return true;
 
-        payMana(manaCost);
+        if (!payMana(manaCost))
+            return false;
         StartCoroutine(startChannelManaCooldown(payManaInterval));
+        return true;
     }
 
     IEnumerator startChannelManaCooldown(float payManaInterval)
@@ -492,13 +500,23 @@ public class SpellCaster : MonoBehaviour
 		castingBar.setRatio(ratio);
 	}
 
-	private void payMana(float manaCost)
+    public bool hasEnoughMana(float manaCost)
+    {
+        return (manaCost <= mana);
+    }
+
+	private bool payMana(float manaCost)
 	{
+        if (!useMana)
+            return true;
+        if (manaCost > mana)
+            return false;
 		if (manaCost <= 0)
-			return;
+			return true;
 
 		mana -= manaCost;
 		mana = Mathf.Clamp(mana, 0, maxMana);
+        return true;
 	}
 
 	internal void giveMana(float manaCost)

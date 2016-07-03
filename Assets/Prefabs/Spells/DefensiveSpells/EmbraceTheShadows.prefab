@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000012484237118}
   - 114: {fileID: 114000011419491112}
   - 114: {fileID: 114000010688155326}
+  - 114: {fileID: 114000014042219646}
   m_Layer: 0
   m_Name: EmbraceTheShadows
   m_TagString: Untagged
@@ -144,9 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellName: Embrace the Shadows
-  spellTypeDescription: 
-  damageString: 
-  description: 
+  spellTypeDescription: Shield
+  damageString: <dmg> damage/sec
+  description: Becomes One with the shadows.<n>Removes impairing debuff and become
+    invincible.<n>Damages enemies by going through them
   manaCost: 0
   manaCostInterval: 1
   castTime: 0
@@ -180,7 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28837a0bd9a12f4aa95a2f32ec608c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorMask: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114000012484237118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,3 +197,26 @@ MonoBehaviour:
   damageType: 1
   delayBetweenDamage: 0.25
   damageRatio: 1
+--- !u!114 &114000014042219646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012670531160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de56bc52c674ed2429854fbbfc298c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buff:
+    name: Embrace The Shadows
+    buffType: 0
+    description: Invincible, damages enemies by passing through
+    icon: {fileID: 0}
+    colorMask: {r: 0, g: 0, b: 0, a: 1}
+    timedBuff: 1
+    timeLeft: 0
+    damageMultiplier: 1
+    incomingDamageMultiplier: 1
+    speedMultiplier: 1
+    stun: 0

@@ -13,10 +13,12 @@ public class Damageable : MonoBehaviour
     public Material flashingMaterial;
     public bool showHPBar = true;
     public GameObject destructionAnimation;
+    public int outOfCombatRegen = 0;
+    public float timeToLeaveCombat = 5f;
 
     private GameObject floatingText;
     public int maxHP;
-    public int currentHP;
+    public float currentHP;
     public bool onDamageCooldown = false;
     public int isInvincible = 0;    // Semaphore instead of bool to manage multiple sources of invincibility
     private GameObject healingAnimation;
@@ -31,6 +33,8 @@ public class Damageable : MonoBehaviour
     private List<SpellDamager> spellDamagers;
     private BuffsReceiver buffReceiver;
     private SpellAbsorbDamage spellAbsorbDamage;
+    public bool inCombat = false;
+    public float timeleftInCombat = 0f;
 
     void Awake()
     {
@@ -49,11 +53,41 @@ public class Damageable : MonoBehaviour
         maxHP = baseHP;
         currentHP = maxHP;
         isDead = false;
+        StartCoroutine(regenHP());
     }
-    
+
+    void FixedUpdate()
+    {
+        if (timeleftInCombat <= 0)
+            return;
+
+        timeleftInCombat -= Time.fixedDeltaTime;
+
+        if (timeleftInCombat <= 0)
+        {
+            timeleftInCombat = 0f;
+            inCombat = false;
+        }
+    }
+
+    private IEnumerator regenHP()
+    {
+        while (true)
+        {
+            if (!inCombat && outOfCombatRegen > 0)
+            {
+                currentHP += (outOfCombatRegen / 100f * maxHP) /4f;
+                if (currentHP >= maxHP)
+                    currentHP = maxHP;
+                refreshHPBar();
+            }
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
+
     public int getHP()
     {
-        return currentHP;
+        return Mathf.RoundToInt(currentHP);
     }
 
     public void doDamage(SpellCaster emitter, int damage)
@@ -217,7 +251,7 @@ public class Damageable : MonoBehaviour
         if (isDead)
             return 0;
 
-        return maxHP - currentHP;
+        return maxHP - Mathf.RoundToInt(currentHP);
     }
 
     /// <summary>
@@ -347,5 +381,11 @@ public class Damageable : MonoBehaviour
             isInvincible++;
         else
             isInvincible--;
+    }
+
+    public void setInCombat(bool value)
+    {
+        inCombat = value;
+        timeleftInCombat = value ? timeToLeaveCombat : 0f;
     }
 }

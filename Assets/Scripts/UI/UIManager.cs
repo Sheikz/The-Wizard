@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 
 	public Canvas canvas;
 	public GameObject floatingText;
+    public GameObject floatingTextWithBackground;
 	public GameObject floatingTextHolder;
 	public ScreenMaskController screenMask;
 	public GameObject centerText;

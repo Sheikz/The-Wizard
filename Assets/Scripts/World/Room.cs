@@ -52,7 +52,7 @@ public class Room : MonoBehaviour, IComparable<Room>
         return roomEdge.GetComponents<BoxCollider2D>();
     }
 
-    public void refreshWalls()
+    public void refresh()
     {
         float now = Time.realtimeSinceStartup;
         Pillar[] pillars = GetComponentsInChildren<Pillar>();
@@ -75,6 +75,11 @@ public class Room : MonoBehaviour, IComparable<Room>
         foreach (AdjustTheme adjustTheme in GetComponentsInChildren<AdjustTheme>())
         {
             adjustTheme.refresh();
+        }
+
+        foreach (RandomFurniture furniture in GetComponentsInChildren<RandomFurniture>())
+        {
+            furniture.instantiate();
         }
 
         timeSpentRefreshingRoom += (Time.realtimeSinceStartup - now);

@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 using System;
 
 public enum ToolTipType { Spell, Item, Buff, Manual };
+public enum ToolTipScope { GUI, World };
 
 public class HoveringToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public ToolTipScope scope = ToolTipScope.GUI;
     public string text;
 
     private ToolTipType tooltipType;
@@ -35,7 +37,29 @@ public class HoveringToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExit
         tooltipType = ToolTipType.Buff;
     }
 
+    void OnMouseEnter()
+    {
+        showTooltip();
+    }
+
+    void OnMouseExit()
+    {
+        hideTooltip();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (scope == ToolTipScope.GUI)
+            showTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (scope == ToolTipScope.GUI)
+            hideTooltip();
+    }
+
+    void showTooltip()
     {
         if (tooltipType == ToolTipType.Spell && !containedSpell)
             return;
@@ -54,6 +78,14 @@ public class HoveringToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    void hideTooltip()
+    {
+        if (tooltip)
+        {
+            tooltip.gameObject.SetActive(false);
+        }
+    }
+
     private void refreshToolTip()
     {
         if (text != "") // Forcing text to this
@@ -66,11 +98,5 @@ public class HoveringToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (tooltip)
-        {
-            tooltip.gameObject.SetActive(false);
-        }
-    }
+
 }

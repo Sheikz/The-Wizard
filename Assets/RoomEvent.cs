@@ -4,6 +4,7 @@ using System;
 
 public abstract class RoomEvent : MonoBehaviour
 {
+    public GameObject[] spawnAfterEvent;
     public abstract void playerEnteredRoom(PlayerController player);
     public abstract void playerExitedRoom(PlayerController player);
     public abstract void monsterDied(NPCController mc);
@@ -15,6 +16,14 @@ public abstract class RoomEvent : MonoBehaviour
     protected void Awake()
     {
         room = GetComponent<Room>();
+    }
+
+    void Start()
+    {
+        foreach (GameObject obj in spawnAfterEvent)
+        {
+            obj.SetActive(false);
+        }
     }
 
     virtual public void initialize()
@@ -32,6 +41,19 @@ public abstract class RoomEvent : MonoBehaviour
                 if (box2d.bounds.Contains(tile.position()))
                     roomTiles.Add(tile);
             }
+        }
+    }
+
+    protected void startEvent()
+    {
+
+    }
+
+    protected void endEvent()
+    {
+        foreach (GameObject obj in spawnAfterEvent)
+        {
+            obj.SetActive(true);
         }
     }
 }

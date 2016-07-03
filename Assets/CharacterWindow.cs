@@ -14,8 +14,9 @@ public class CharacterWindow : MonoBehaviour
     private Damageable damageable;
     private List<Tooltip> tooltips;
     private MovingCharacter movingChar;
+    private SpellCaster heroCaster;
 
-    private enum Stats { Power, MaxHP, MoveSpeed, Gold };
+    private enum Stats { Power, MaxHP, MoveSpeed, Gold, CriticalStrike, EnergyRegen };
 
     public void initialize()
     {
@@ -34,7 +35,8 @@ public class CharacterWindow : MonoBehaviour
         statsInfo[(int)Stats.MaxHP] = statsBreakdown.Find("MaxHP").GetComponent<StatsInfo>();
         statsInfo[(int)Stats.MoveSpeed] = statsBreakdown.Find("MoveSpeed").GetComponent<StatsInfo>();
         statsInfo[(int)Stats.Gold] = statsBreakdown.Find("Gold").GetComponent<StatsInfo>();
-
+        statsInfo[(int)Stats.CriticalStrike] = statsBreakdown.Find("CritChance").GetComponent<StatsInfo>();
+        statsInfo[(int)Stats.EnergyRegen] = statsBreakdown.Find("EnergyRegen").GetComponent<StatsInfo>();
     }
 
     public void open()
@@ -71,10 +73,14 @@ public class CharacterWindow : MonoBehaviour
             inventory = GameManager.instance.hero.GetComponent<Inventory>();
         if (movingChar == null)
             movingChar = GameManager.instance.hero.GetComponent<MovingCharacter>();
+        if (heroCaster == null)
+            heroCaster = GameManager.instance.hero.GetComponent<SpellCaster>();
 
         statsInfo[(int)Stats.Gold].refresh(inventory.goldAmount);
         statsInfo[(int)Stats.Power].refresh(inventory.getPower());
-        statsInfo[(int)Stats.MoveSpeed].refresh(movingChar.movingSpeed);
+        statsInfo[(int)Stats.MoveSpeed].refresh(Mathf.RoundToInt(movingChar.movingSpeed));
+        statsInfo[(int)Stats.CriticalStrike].refresh(heroCaster.getCritChance());
+        statsInfo[(int)Stats.EnergyRegen].refresh(Mathf.RoundToInt(heroCaster.getManaRegen()));
         if (damageable == null)
             damageable = inventory.GetComponent<Damageable>();
         if (damageable)

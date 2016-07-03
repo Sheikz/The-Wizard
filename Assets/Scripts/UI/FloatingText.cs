@@ -13,6 +13,7 @@ public class FloatingText : MonoBehaviour
     public Countf randomVerticalOffset;
 
     private Text text;
+    private Image img;
 	private RectTransform rectTransform;
 	private Vector3 speedOffset;
 	private GameObject parent;
@@ -23,14 +24,24 @@ public class FloatingText : MonoBehaviour
 
     void Awake()
 	{
-		text = GetComponent<Text>();
+		text = GetComponentInChildren<Text>();
+        img = GetComponentInChildren<Image>();
 		transform.SetParent(UIManager.instance.floatingTextHolder.transform);
 		rectTransform = GetComponent<RectTransform>();
 		speedOffset = Vector3.zero;
         horizontalOffset = randomHorizontalOffset.getRandom();
         verticalOffset = randomVerticalOffset.getRandom();
-        StartCoroutine(fadeAfterSeconds(duration));
+        if (duration > 0)
+            StartCoroutine(fadeAfterSeconds(duration));
 	}
+
+    internal void show(bool v)
+    {
+        if (text)
+            text.enabled = v;
+        if (img)
+            img.enabled = v;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -57,7 +68,16 @@ public class FloatingText : MonoBehaviour
         text.text = t;
         this.parent = parent;
         parentPosition = parent.transform.position;
-        parentRadius = parent.GetComponent<CircleCollider2D>().radius;
+        CircleCollider2D circleCol = parent.GetComponent<CircleCollider2D>();
+        if (circleCol)
+        {
+            parentRadius = circleCol.radius;
+            return;
+        }
+        BoxCollider2D boxCol = parent.GetComponent<BoxCollider2D>();
+        if (boxCol)
+            parentRadius = Mathf.Max(boxCol.size.x + Mathf.Abs(boxCol.offset.x), boxCol.size.y + Mathf.Abs(boxCol.offset.y));
+
     }
 
     /// <summary>
@@ -119,4 +139,9 @@ public class FloatingText : MonoBehaviour
 	{
 		text.color = color;
 	}
+
+    public void setText(String t)
+    {
+        text.text = t;
+    }
 }

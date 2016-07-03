@@ -60,12 +60,13 @@ MonoBehaviour:
   spellType: 1
   magicElement: 2
   spellSet: 0
-  damage: 50
+  damage: 75
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 0
   collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -415,6 +416,7 @@ MonoBehaviour:
   activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!114 &114000012054854446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,6 +431,7 @@ MonoBehaviour:
   activated: 1
   damageType: 1
   delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!114 &114000014032519388
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -60,12 +60,15 @@ public class ChannelSpell : SpellController
             Destroy(currentChannel.gameObject);
     }
 
-    internal virtual void update(Vector3 targetPosition)
+    internal virtual bool update(Vector3 targetPosition)
     {
         if (currentChannel)
             currentChannel.refresh(targetPosition);
 
         if (currentChannel && currentChannel.emitter)
-            currentChannel.emitter.payChannelMana(manaCost, manaCostInterval);
+        {
+            return currentChannel.emitter.payChannelMana(manaCost, manaCostInterval);
+        }
+        return true;
     }
 }

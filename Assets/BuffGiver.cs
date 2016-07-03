@@ -2,18 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RemoveStatusEffects : MonoBehaviour 
+public class BuffGiver : MonoBehaviour 
 {
+    public Buff buff;
+
     private BuffsReceiver buffReceiver;
+    private SpellController spell;
+
+    void Awake()
+    {
+        spell = GetComponent<SpellController>();
+    }
 
     void Start()
     {
         buffReceiver = GetComponentInParent<BuffsReceiver>();
+        applyBuff();
+    }
+
+    void applyBuff()
+    {
         if (!buffReceiver)
             return;
 
-        buffReceiver.removeAllDebuffs();
-        buffReceiver.setImunizedDebuffs(true);
+        buff.timeLeft = spell.duration;
+        buff.icon = spell.icon;
+        buffReceiver.addBuff(buff);
     }
 
     void OnDestroy()
@@ -22,6 +36,6 @@ public class RemoveStatusEffects : MonoBehaviour
             return;
 
         if (buffReceiver)
-            buffReceiver.setImunizedDebuffs(false);
+            buffReceiver.removeBuff(buff);
     }
 }

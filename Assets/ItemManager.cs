@@ -70,6 +70,8 @@ public class ItemManager : MonoBehaviour
     public List<ItemWithDropChance> monsterItems;
     public float[] rarityChance;
     public GameObject[] itemAuras;
+    public List<GameObject> treasureContents;
+    public static Color[] rarityColors = { Color.white, Color.blue, Color.magenta, new Color(255, 165, 0) }; // rarity Colors
 
     [System.Serializable]
 	public class SpriteArray
@@ -91,4 +93,9 @@ public class ItemManager : MonoBehaviour
 	{
 		return Utils.pickRandom(itemSprites[(int)slot].items);
 	}
+
+    internal List<GameObject> getTreasureContents()
+    {
+        return treasureContents;
+    }
 }

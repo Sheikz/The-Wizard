@@ -20,7 +20,7 @@ public abstract class AutoPilot : MonoBehaviour
     protected Rigidbody2D rigidBody;
     [HideInInspector]
     public PilotState state;
-    
+    private Damageable dmgTarget;    
 
     protected void Awake()
     {
@@ -34,7 +34,7 @@ public abstract class AutoPilot : MonoBehaviour
     /// <param name="endState"></param>
     protected void steerToTarget(Transform obj, PilotState endState)
     {
-        if (obj == null)
+        if (dmgTarget && dmgTarget.isDead || obj == null)
         {
             state = endState;
             return;
@@ -67,6 +67,7 @@ public abstract class AutoPilot : MonoBehaviour
     public void lockToObject(Transform obj)
     {
         targetObject = obj;
+        dmgTarget = obj.GetComponent<Damageable>();
         state = PilotState.LockedToObject;
     }
 

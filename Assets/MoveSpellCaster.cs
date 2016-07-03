@@ -49,7 +49,7 @@ public class MoveSpellCaster : MonoBehaviour
         if (type != MoveSpellCasterType.Teleport)
             return;
 
-        if (InputManager.instance.IsKeyDown((InputManager.Command)spell.spellType))
+        if (InputManager.instance.IsCommandDown((InputManager.Command)spell.spellType))
             TeleportToLocation();
 
     }

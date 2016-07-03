@@ -6,21 +6,24 @@ using UnityEngine.EventSystems;
 public class ConfigControlButton : MonoBehaviour
 {
     public InputManager.Command command;
+    public InputManager.KeyType keyType;
     private enum ConfigControlButtonState {Nothing, WaitingForInput };
 
     private Text text;
+
     private ConfigControlButtonState state = ConfigControlButtonState.Nothing;
     private ControlsWindow controlWindow;
 
     void Awake()
     {
         text = GetComponent<Text>();
+
         controlWindow = GetComponentInParent<ControlsWindow>();
     }
 
     void Start()
     {
-        text.text = command.ToString() + " : " + InputManager.instance.getKey(command).ToString();
+        text.text = InputManager.instance.getKey(command, keyType).ToString();
         refresh();
     }
 
@@ -40,7 +43,7 @@ public class ConfigControlButton : MonoBehaviour
                     continue;
                 if (InputManager.instance.forbiddenCombination(command, key))
                     continue;
-                InputManager.instance.setCommand(command, key);
+                InputManager.instance.setCommand(command, key, keyType);
                 state = ConfigControlButtonState.Nothing;
                 controlWindow.refresh();
                 text.color = Color.white;
@@ -52,7 +55,7 @@ public class ConfigControlButton : MonoBehaviour
     public void refresh()
     {
         if (text)
-            text.text = command.ToString() + " : " + InputManager.instance.getIconDescription(command);
+            text.text = InputManager.instance.getIconDescription(command, keyType);
     }
 
     public void onClick()

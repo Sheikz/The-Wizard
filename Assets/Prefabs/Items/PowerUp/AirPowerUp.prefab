@@ -21,7 +21,8 @@ GameObject:
   - 4: {fileID: 4000011415033616}
   - 58: {fileID: 58000010841319108}
   - 114: {fileID: 114000011580266460}
-  m_Layer: 0
+  - 50: {fileID: 50000011569237662}
+  m_Layer: 18
   m_Name: AirPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000012174665128}
   - 198: {fileID: 198000011778808026}
   - 199: {fileID: 199000014204248776}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000012798046530}
   - 198: {fileID: 198000013152688870}
   - 199: {fileID: 199000012163135878}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +73,7 @@ GameObject:
   - 4: {fileID: 4000010387614584}
   - 198: {fileID: 198000011788558536}
   - 199: {fileID: 199000012162209158}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +90,7 @@ GameObject:
   - 4: {fileID: 4000011493798586}
   - 108: {fileID: 108000010836410272}
   - 114: {fileID: 114000011799675122}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +107,7 @@ GameObject:
   - 4: {fileID: 4000012131641978}
   - 198: {fileID: 198000012885185764}
   - 199: {fileID: 199000012148854168}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: BigSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +124,7 @@ GameObject:
   - 4: {fileID: 4000012213637604}
   - 198: {fileID: 198000012772573490}
   - 199: {fileID: 199000012167911868}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Bolts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +228,23 @@ Transform:
   m_Father: {fileID: 4000011415033616}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50000011569237662
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011273489658}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!58 &58000010841319108
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -240,7 +258,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.35
 --- !u!108 &108000010836410272
 Light:
   m_ObjectHideFlags: 1
@@ -286,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePickedUp: 1
+  autoPickup: 1
   level: 1
   powerUpBuff:
     element: 1

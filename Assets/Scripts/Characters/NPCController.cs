@@ -260,6 +260,7 @@ public class NPCController : MovingCharacter
             return;
         }
 
+        targetOpponent.setInCombat(true);
         lineToTarget = targetOpponent.transform.position - transform.position;
         distanceToTarget = lineToTarget.magnitude;
 
@@ -379,7 +380,7 @@ public class NPCController : MovingCharacter
         StartCoroutine(computePathToTargetStartCooldown());
         if (!computePathTo(targetOpponent.transform.position))  // If no path if found, apply strafe and return
         {
-            applyStrafe();
+            startWander();
             return;
         }
         if (path != null && path.Count > 0)

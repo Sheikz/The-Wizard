@@ -7,10 +7,10 @@ public class RandomFurniture : MonoBehaviour
 {
 	void Start() 
 	{
-        instantiateRandomFurniture();
+        //instantiateRandomFurniture();
 	}
 
-    void instantiateRandomFurniture()
+    public void instantiate()
     {
         List<ItemWithDropChance> validFurnitures = new List<ItemWithDropChance>();
 

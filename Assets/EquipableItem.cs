@@ -4,14 +4,16 @@ using System.Collections;
 [RequireComponent(typeof(SpriteRenderer))]
 public class EquipableItem : Item 
 {
-	private EquipableItemStats itemStats;
+    [HideInInspector]
+	public EquipableItemStats itemStats;
 	private SpriteRenderer spriteRenderer;
+    private TextOnMouseOver mOver;
 
 	public override void isPickedUpBy (Inventory looter)
 	{
 		looter.addItem (itemStats);
         SoundManager.instance.playSound("GetTreasure");
-		Destroy (gameObject);
+        Destroy(gameObject);
 	}
 
 	new void Awake()
@@ -19,7 +21,7 @@ public class EquipableItem : Item
         base.Awake();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.enabled = false;
-	}
+    }
 
 	void Start()
 	{

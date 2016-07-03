@@ -222,21 +222,22 @@ MonoBehaviour:
   spellName: Water Pump
   spellTypeDescription: Canalized Spell
   damageString: <dmg> damage/second
-  description: Launches water upon enemies
-  manaCost: 0
-  manaCostInterval: 1
+  description: Launches water upon enemies.<n>Can move while casting
+  manaCost: 2
+  manaCostInterval: 0.1
   castTime: 0
   cooldown: 0.2
   icon: {fileID: 21300600, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
-  spellType: 0
+  spellType: 1
   magicElement: 4
-  spellSet: 1
-  damage: 20
+  spellSet: 0
+  damage: 40
   lightIntensity: 0
   duration: 0
   collidesWithSpells: 0
   collidesWithWalls: 1
   collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
@@ -245,6 +246,7 @@ MonoBehaviour:
   moveSpellCaster: {fileID: 0}
   ignoredColliders: []
   canMoveWhileCasting: 1
+  lookToCursor: 1
 --- !u!114 &114000013807491798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 1
   damageType: 1
-  delayBetweenDamage: 0.2
+  delayBetweenDamage: 0.25
+  damageRatio: 1
 --- !u!198 &198000010626337856
 ParticleSystem:
   m_ObjectHideFlags: 1
