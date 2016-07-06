@@ -18,6 +18,8 @@ public class Buff
     public float incomingDamageMultiplier = 1f;
     public float speedMultiplier = 1f;
     public bool stun = false;
+    public bool removable = true;   // Can this buff be removed?
+    public bool resistable = true;  // Can this buff be resisted?
 
     public Buff()
     {

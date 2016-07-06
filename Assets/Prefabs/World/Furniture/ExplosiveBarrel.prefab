@@ -27,7 +27,8 @@ GameObject:
   - 114: {fileID: 114000011268537398}
   - 61: {fileID: 61000010185801002}
   - 114: {fileID: 114000013660272986}
-  m_Layer: 8
+  - 114: {fileID: 114000011559906598}
+  m_Layer: 25
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,6 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea1d512c7f9bfc47bcac4c9e6445a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000011559906598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011475895526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a801d0f6bce3074ba615cdf74141064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 11442644, guid: 577fb47a0925f804f9bfeb4a0d8448ca, type: 2}
+  damageRatio: 0.2
 --- !u!114 &114000011669336336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,20 +114,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
+  baseHP: 1
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
   showHPBar: 0
-  destructionAnimation: {fileID: 161126, guid: 577fb47a0925f804f9bfeb4a0d8448ca, type: 2}
+  destructionAnimation:
+  - {fileID: 1000011126055682, guid: 0c30ec5ac3026c8469ec0a9b855c99be, type: 2}
   outOfCombatRegen: 5
   timeToLeaveCombat: 5
+  isUnit: 0
   maxHP: 0
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
   isDead: 0
+  inCombat: 0
+  timeleftInCombat: 0
 --- !u!114 &114000012787093690
 MonoBehaviour:
   m_ObjectHideFlags: 1

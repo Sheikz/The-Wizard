@@ -85,8 +85,11 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!isFalling)
         {
             StartCoroutine(fallAnimation(spinningSpeed, fallingDuration, damageRatio));
+            Buff newBuff = new Buff(BuffType.Stun, fallingDuration);
+            newBuff.removable = false;
+            newBuff.resistable = false;
             if (buffReceiver)
-                buffReceiver.stunFor(fallingDuration);
+                buffReceiver.addBuff(newBuff);
         }
         isFalling = true;
     }
@@ -101,7 +104,6 @@ public abstract class MovingCharacter : MonoBehaviour
         if (!value)
         {
             rb.velocity = Vector3.zero;
-            //movement = Vector2.zero;
         }
     }
 

@@ -27,7 +27,7 @@ GameObject:
   - 114: {fileID: 114000011847079818}
   - 58: {fileID: 58000013022064168}
   - 114: {fileID: 114000010612552546}
-  m_Layer: 8
+  m_Layer: 25
   m_Name: Vase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,21 +138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d49ea98f2b534d40a8f5b8e01df180b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHP: 100
+  baseHP: 1
   invincibilityTime: 0.1
   isHealable: 0
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
   showHPBar: 0
-  destructionAnimation: {fileID: 1000012686416224, guid: 373568901577de646961cb416330e978,
-    type: 2}
+  destructionAnimation:
+  - {fileID: 1000012686416224, guid: 373568901577de646961cb416330e978, type: 2}
   outOfCombatRegen: 5
   timeToLeaveCombat: 5
+  isUnit: 0
   maxHP: 0
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
   isDead: 0
+  inCombat: 0
+  timeleftInCombat: 0
 --- !u!212 &212000011778668300
 SpriteRenderer:
   m_ObjectHideFlags: 1

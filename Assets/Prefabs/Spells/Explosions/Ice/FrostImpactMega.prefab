@@ -113,6 +113,7 @@ GameObject:
   - 58: {fileID: 5821016}
   - 114: {fileID: 11402742}
   - 114: {fileID: 11483974}
+  - 114: {fileID: 114000013040893270}
   m_Layer: 12
   m_Name: FrostImpactMega
   m_TagString: Untagged
@@ -353,8 +354,10 @@ MonoBehaviour:
   explosionTime: 0
   lightFadeDuration: 0.5
   hitOnce: 1
+  damageValueType: 0
   damage: 0
   emitter: {fileID: 0}
+  damageRatio: 0
   spell: {fileID: 0}
 --- !u!114 &11483974
 MonoBehaviour:
@@ -9061,3 +9064,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 169758}
   m_IsPrefabParent: 1
+--- !u!114 &114000013040893270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0

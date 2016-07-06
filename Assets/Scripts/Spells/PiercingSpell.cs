@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PiercingSpell : MovingSpell
 {
@@ -31,14 +32,13 @@ public class PiercingSpell : MovingSpell
         Damageable dmg = other.gameObject.GetComponent<Damageable>();
         if (dmg != null)
         {
+            if (dmg.isUnit)
+                giveMana();
             if (pierceCausesExplosion && (emitter != other.gameObject) && !isOnExplosionCoolDown)
             {
                 StartCoroutine(startExplosionCooldown(timeBetweenExplosions));
                 explode(false);
             }
-            else
-                dmg.doDamage(emitter, damage);
-
         }
     }
 

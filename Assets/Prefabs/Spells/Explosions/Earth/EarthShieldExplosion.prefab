@@ -24,6 +24,7 @@ GameObject:
   - 114: {fileID: 114000010689452764}
   - 198: {fileID: 198000012426149254}
   - 199: {fileID: 199000010567242668}
+  - 114: {fileID: 114000010653277534}
   m_Layer: 0
   m_Name: EarthShieldExplosion
   m_TagString: Untagged
@@ -318,6 +319,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114000010653277534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011253391042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0
 --- !u!114 &114000010689452764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,8 +352,11 @@ MonoBehaviour:
   explosionTime: 0
   lightFadeDuration: 0.5
   hitOnce: 0
+  damageValueType: 0
   damage: 0
   emitter: {fileID: 0}
+  damageRatio: 0
+  spell: {fileID: 0}
 --- !u!198 &198000010248498724
 ParticleSystem:
   m_ObjectHideFlags: 1

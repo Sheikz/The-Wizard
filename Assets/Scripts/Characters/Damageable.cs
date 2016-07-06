@@ -12,9 +12,10 @@ public class Damageable : MonoBehaviour
     public GameObject healAnimation;
     public Material flashingMaterial;
     public bool showHPBar = true;
-    public GameObject destructionAnimation;
+    public GameObject[] destructionAnimation;
     public int outOfCombatRegen = 0;
     public float timeToLeaveCombat = 5f;
+    public bool isUnit = true;  // Is this a unit of a static object
 
     private GameObject floatingText;
     public int maxHP;
@@ -30,7 +31,8 @@ public class Damageable : MonoBehaviour
     private int healEffects = 0;
     private Material originalMaterial;
     private FloatingHPBar floatingHPBar;
-    private List<SpellDamager> spellDamagers;
+    private List<Damager> damagers;
+
     private BuffsReceiver buffReceiver;
     private SpellAbsorbDamage spellAbsorbDamage;
     public bool inCombat = false;
@@ -42,7 +44,7 @@ public class Damageable : MonoBehaviour
         movingChar = GetComponent<MovingCharacter>();
         if (spriteRenderer)
             originalMaterial = spriteRenderer.material;
-        spellDamagers = new List<SpellDamager>();
+        damagers = new List<Damager>();
         buffReceiver = GetComponent<BuffsReceiver>();
         spellAbsorbDamage = GetComponent<SpellAbsorbDamage>();
     }
@@ -124,10 +126,16 @@ public class Damageable : MonoBehaviour
         if (!isDamageable(emitter))  // Am I damaging myself?
             return;
 
-        if (spellDamagers.Contains(spellDamager)) // Already damaged by this object ?
+        if (damagers.Contains(spellDamager)) // Already damaged by this object ?
             return;
 
         StartCoroutine(startDamageCooldown(spellDamager));
+
+        if (spellDamager.damageValueType == DamageValueType.Ratio)
+        {
+            inflictDamageRatio(spellDamager.relativeDamageRatio);
+            return;
+        }
 
         if (damage <= 0)
         {
@@ -138,11 +146,26 @@ public class Damageable : MonoBehaviour
         inflictDamage(emitter, damage);
     }
 
-    private IEnumerator startDamageCooldown(SpellDamager spellDamager)
+    internal void doDamageRatio(ColliderDamager source, float lifeDamageRatio)
     {
-        spellDamagers.Add(spellDamager);
+        if (isDead)
+            return;
+
+        if (isInvincible > 0)
+            return;
+
+        if (damagers.Contains(source)) // Already damaged by this object ?
+            return;
+
+        StartCoroutine(startDamageCooldown(source));
+        inflictDamageRatio(lifeDamageRatio);
+    }
+
+    private IEnumerator startDamageCooldown(Damager damager)
+    {
+        damagers.Add(damager);
         yield return new WaitForSeconds(invincibilityTime);
-        spellDamagers.Remove(spellDamager);
+        damagers.Remove(damager);
     }
 
     internal void multiplyBaseHP(float mult, int hpFromItems, bool updateCurrentHP)
@@ -165,10 +188,13 @@ public class Damageable : MonoBehaviour
         if (emitter && chance < emitter.getCritChance())
             criticalHit = true;
 
-        GameObject dmgText = Instantiate(floatingText) as GameObject;
+        GameObject dmgText = null;
+        if (floatingText)
+            dmgText = Instantiate(floatingText) as GameObject;
         if (criticalHit)
         {
-            dmgText.GetComponent<FloatingText>().setCriticalHit();
+            if (dmgText)
+                dmgText.GetComponent<FloatingText>().setCriticalHit();
             damage *= 2;
         }
 
@@ -178,7 +204,8 @@ public class Damageable : MonoBehaviour
             damage = Mathf.RoundToInt(damage * buffReceiver.incomingDamageMultiplier);
         }
 
-        dmgText.GetComponent<FloatingText>().initialize(gameObject, damage);
+        if (dmgText)
+            dmgText.GetComponent<FloatingText>().initialize(gameObject, damage);
 
         if (movingChar)
             movingChar.receivesDamage();
@@ -240,8 +267,20 @@ public class Damageable : MonoBehaviour
         if (holder)
             holder.die();
 
-        if (destructionAnimation)
-            Instantiate(destructionAnimation, transform.position, Quaternion.identity);
+        foreach (GameObject destAnimation in destructionAnimation)
+        {
+            if (destAnimation == null)
+                continue;
+            GameObject destruction = Instantiate(destAnimation, transform.position, Quaternion.identity) as GameObject;
+            if (!isUnit)
+            {
+                destruction.gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+            }
+        }
+
+        ExplodingObject obj = GetComponent<ExplodingObject>();
+        if (obj)
+            obj.explode();
             
         isDead = true;
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 
+public enum DamageValueType { Absolute, Ratio };
 [RequireComponent(typeof(CircleCollider2D))]
 public class Explosion : MonoBehaviour
 {
@@ -9,18 +10,21 @@ public class Explosion : MonoBehaviour
     public float delayBeforeExplosion;
     [Tooltip("Time the explosion does damage")]
     public float explosionTime;
+
     public float lightFadeDuration = 0.5f;
     public bool hitOnce = false;
+    public DamageValueType damageValueType = DamageValueType.Absolute;
 
     [HideInInspector]
     public int damage;
     [HideInInspector]
     public SpellCaster emitter;
+    [HideInInspector]
+    public float damageRatio;
 
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
     private float manaCost;
-    private bool appliedHit = false;
     private string spellName;
     private ParticleSystem partSystem;
     [HideInInspector]
@@ -120,6 +124,15 @@ public class Explosion : MonoBehaviour
         gameObject.layer = spell.gameObject.layer;
     }
 
+    internal void initialize(ExplodingObject explodingObject)
+    {
+        gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+        damageValueType = DamageValueType.Ratio;
+        damageRatio = explodingObject.damageRatio;
+    }
+
+
+    /*
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         if (hitOnce && appliedHit)
@@ -140,7 +153,6 @@ public class Explosion : MonoBehaviour
                 dmg.heal(-damage);
 
             appliedHit = true;
-            giveMana();
 
             BuffsReceiver receiver = dmg.GetComponent<BuffsReceiver>();
             if (!receiver)
@@ -151,7 +163,7 @@ public class Explosion : MonoBehaviour
                 effect.applyBuff(receiver);
             }
         }
-    }
+    }*/
 
     private IEnumerator enableAfterSeconds(float delay)
     {
@@ -168,14 +180,5 @@ public class Explosion : MonoBehaviour
         else
             yield return new WaitForSeconds(delay);
         circleCollider.enabled = false;
-    }
-
-    private void giveMana()
-    {
-        if (manaCost >= 0)
-            return;
-
-        if (emitter)
-            emitter.giveMana(-1 * manaCost);
     }
 }

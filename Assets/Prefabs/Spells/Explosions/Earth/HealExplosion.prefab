@@ -28,6 +28,7 @@ GameObject:
   - 4: {fileID: 446978}
   - 58: {fileID: 5868072}
   - 114: {fileID: 11473300}
+  - 114: {fileID: 114000011713148922}
   m_Layer: 12
   m_Name: HealExplosion
   m_TagString: Untagged
@@ -373,8 +374,12 @@ MonoBehaviour:
   delayBeforeExplosion: 0
   explosionTime: 0
   lightFadeDuration: 0.5
+  hitOnce: 0
+  damageValueType: 0
   damage: 20
   emitter: {fileID: 0}
+  damageRatio: 0
+  spell: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -418,3 +423,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 145300}
   m_IsPrefabParent: 1
+--- !u!114 &114000011713148922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0

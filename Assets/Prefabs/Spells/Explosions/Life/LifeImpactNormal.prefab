@@ -22,6 +22,7 @@ GameObject:
   - 82: {fileID: 82000013111402206}
   - 58: {fileID: 58000011460580112}
   - 114: {fileID: 114000013043346780}
+  - 114: {fileID: 114000010542773396}
   m_Layer: 0
   m_Name: LifeImpactNormal
   m_TagString: Untagged
@@ -411,6 +412,24 @@ Light:
   m_BounceIntensity: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114000010542773396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010461896832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0
 --- !u!114 &114000010664534784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -438,8 +457,11 @@ MonoBehaviour:
   explosionTime: 0
   lightFadeDuration: 0.5
   hitOnce: 0
+  damageValueType: 0
   damage: 0
   emitter: {fileID: 0}
+  damageRatio: 0
+  spell: {fileID: 0}
 --- !u!198 &198000010434437326
 ParticleSystem:
   m_ObjectHideFlags: 1

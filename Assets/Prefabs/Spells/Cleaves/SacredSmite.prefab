@@ -93,6 +93,7 @@ GameObject:
   - 58: {fileID: 58000010439869934}
   - 114: {fileID: 114000014283925456}
   - 114: {fileID: 114000013871886134}
+  - 114: {fileID: 114000010055535838}
   m_Layer: 0
   m_Name: SacredSmite
   m_TagString: Untagged
@@ -200,6 +201,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114000010055535838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013789057392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0
 --- !u!114 &114000013871886134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,6 +260,7 @@ MonoBehaviour:
   collidesWithSpells: 0
   collidesWithWalls: 1
   collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2

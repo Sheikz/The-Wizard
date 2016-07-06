@@ -17,6 +17,7 @@ public class Room : MonoBehaviour, IComparable<Room>
     public bool hasCarpet = false;
     public bool hasPillars = false;
     public List<GameObject> carpets;
+    public GameObject[] randomElements;
     public static float timeSpentRefreshingRoom = 0;
     public static int refreshRoomCount = 0;
 
@@ -54,6 +55,7 @@ public class Room : MonoBehaviour, IComparable<Room>
 
     public void refresh()
     {
+        randomize();
         float now = Time.realtimeSinceStartup;
         Pillar[] pillars = GetComponentsInChildren<Pillar>();
         foreach (WallCreator wc in GetComponentsInChildren<WallCreator>())
@@ -94,6 +96,10 @@ public class Room : MonoBehaviour, IComparable<Room>
 
         hasCarpet = Utils.randomBool();
         hasPillars = Utils.randomBool();
+        foreach (GameObject obj in randomElements)
+        {
+            obj.SetActive(Utils.randomBool());
+        }
     }
 
     // TODO: Need to fix this

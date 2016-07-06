@@ -15,40 +15,6 @@ public class Hole : MonoBehaviour
     {
         colliders = GetComponents<Collider2D>();
     }
-    /*
-    void Update()
-    {
-        for (int i = charactersInside.Count - 1; i >= 0; i --)
-        {
-            if (!charactersInside[i])
-            {
-                charactersInside.RemoveAt(i);
-                continue;
-            }
-            foreach (Collider2D col in colliders)
-            {
-                if (col.bounds.Contains(charactersInside[i].transform.position))
-                {
-                    if (!charactersInside[i].isFlying)
-                        charactersInside[i].startFalling(damageRatio);
-                    break;
-                }
-            }
-        }
-    }*/
-    /*
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        MovingCharacter character = collision.gameObject.GetComponent<MovingCharacter>();
-        if (!charactersInside.Contains(character))
-            charactersInside.Add(character);
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        MovingCharacter character = collision.gameObject.GetComponent<MovingCharacter>();
-        charactersInside.Remove(character);
-    }*/
 
     void OnTriggerStay2D(Collider2D collision)
     {

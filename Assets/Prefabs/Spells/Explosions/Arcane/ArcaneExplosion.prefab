@@ -44,6 +44,7 @@ GameObject:
   - 4: {fileID: 487984}
   - 58: {fileID: 5832962}
   - 114: {fileID: 11451872}
+  - 114: {fileID: 114000010182579078}
   m_Layer: 12
   m_Name: ArcaneExplosion
   m_TagString: Effect
@@ -499,8 +500,12 @@ MonoBehaviour:
   delayBeforeExplosion: 0
   explosionTime: 0
   lightFadeDuration: 0.5
+  hitOnce: 0
+  damageValueType: 0
   damage: 20
   emitter: {fileID: 0}
+  damageRatio: 0
+  spell: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -544,3 +549,21 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 169114}
   m_IsPrefabParent: 1
+--- !u!114 &114000010182579078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0

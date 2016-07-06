@@ -313,7 +313,7 @@ public class RoomBasedMapGenerator : MonoBehaviour
             Destroy(newRoomEdge.gameObject);    // The edges are no longer needed. Destroy the GameObject
         }
         Room newRoom = (Instantiate(room, position, Quaternion.identity) as GameObject).GetComponent<Room>();
-        newRoom.randomize();
+        
         newRoom.refresh();
         newRoom.transform.rotation = rot;
         newRoom.transform.SetParent(transform);

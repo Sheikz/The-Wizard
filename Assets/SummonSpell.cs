@@ -31,11 +31,16 @@ public class SummonSpell : MonoBehaviour
             }
 
             NPCController controller = newNPC.GetComponent<NPCController>();
+            if (controller)
+                controller.initialize(GameManager.instance.map);
 
-            if (!controller)
-                continue;
+            ExperienceHolder xp = newNPC.GetComponent<ExperienceHolder>();
+            if (xp)
+                xp.shouldGiveExp = false;
 
-            controller.initialize(GameManager.instance.map);
+            ItemHolder item = newNPC.GetComponent<ItemHolder>();
+            if (item)
+                item.shouldDropItems = false;
         }
     }
 }

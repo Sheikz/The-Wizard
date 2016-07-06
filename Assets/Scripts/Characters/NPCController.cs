@@ -51,6 +51,8 @@ public class NPCController : MovingCharacter
     new protected void Start()
     {
         base.Start();
+        if (gridMap == null)
+            gridMap = GameManager.instance.map.gridMap;
 
         spellCaster = GetComponent<SpellCaster>();
         if (CompareTag("Hero") || CompareTag("HeroCompanion"))
@@ -507,7 +509,7 @@ public class NPCController : MovingCharacter
         path = gridMap.getPath(new Vector2i(transform.position), new Vector2i(goal), this);
         if (path == null)
         {
-            Debug.Log(name + " no path found");
+            //Debug.Log(name + " no path found");
             setRandomTarget();
             Invoke("setNewGoal", 3f);
             return false;

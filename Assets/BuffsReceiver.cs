@@ -59,7 +59,7 @@ public class BuffsReceiver : MonoBehaviour
 
     public void addBuff(Buff buff)
     {
-        if (imunizedTo[(int)buff.buffType]) // Don't add the buff if I'm immune
+        if (buff.resistable && imunizedTo[(int)buff.buffType]) // Don't add the buff if I'm immune
             return;
 
         for (int i = activeBuffs.Count-1; i >= 0; i--)
@@ -137,7 +137,7 @@ public class BuffsReceiver : MonoBehaviour
     {
         for (int i=activeBuffs.Count-1; i >= 0; i--)
         {
-            if (activeBuffs[i].buffType != BuffType.Buff)   // It's a debuff
+            if (activeBuffs[i].buffType != BuffType.Buff && activeBuffs[i].removable)   // It's a debuff
             {
                 activeBuffs.RemoveAt(i);
             }

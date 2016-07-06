@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void createHero()
 	{
-        hero = Instantiate(heroPrefab).GetComponent<PlayerController>();
+        hero = (Instantiate(heroPrefab, new Vector3(0, 5, 0), Quaternion.identity) as GameObject).GetComponent<PlayerController>();
 		hero.name = "Hero";
 	}
 
@@ -92,7 +92,6 @@ public class GameManager : MonoBehaviour
 		yield return null;      // This is necessary because Unity destroys the objects only at the next Update()
 
         map = Instantiate(mapPrefab);
-        hero.transform.position = new Vector3(0, 5, 0);
         hero.gameObject.SetActive(true);
 
         UIManager.instance.setScreenColorOriginal();

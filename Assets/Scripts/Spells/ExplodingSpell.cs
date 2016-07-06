@@ -54,6 +54,9 @@ public class ExplodingSpell : MonoBehaviour
 
             if (explodeOnTouch || collider.bounds.Contains(transform.position))
             {
+                Damageable dmg = collider.GetComponent<Damageable>();
+                if (dmg && dmg.isUnit)
+                    spell.giveMana();
                 explode(collider);
                 return;
             }

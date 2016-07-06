@@ -56,6 +56,7 @@ GameObject:
   - 82: {fileID: 82000012490476906}
   - 58: {fileID: 58000010659853068}
   - 114: {fileID: 114000013010634120}
+  - 114: {fileID: 114000011114124224}
   m_Layer: 0
   m_Name: EarthImpactSmall
   m_TagString: Untagged
@@ -285,6 +286,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114000011114124224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011081043944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63634b4fc909d346b55459f3cd50e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 0
+  delayBetweenDamage: 0.25
+  activated: 1
+  damageRatio: 1
+  damageValueType: 0
+  damage: 0
+  relativeDamageRatio: 0
 --- !u!114 &114000013010634120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,8 +319,11 @@ MonoBehaviour:
   explosionTime: 0
   lightFadeDuration: 0.5
   hitOnce: 0
+  damageValueType: 0
   damage: 0
   emitter: {fileID: 0}
+  damageRatio: 0
+  spell: {fileID: 0}
 --- !u!198 &198000010105812782
 ParticleSystem:
   m_ObjectHideFlags: 1

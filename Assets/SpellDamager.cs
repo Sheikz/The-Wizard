@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-public class SpellDamager : MonoBehaviour
+public class SpellDamager : Damager
 {
     public bool activated = true;
-    public enum DamageType { DamageOnce, DamageOverTime, None };
-    public DamageType damageType = DamageType.DamageOverTime;
-    public float delayBetweenDamage = 0.25f;
+    
+    
     [Tooltip("Ratio of the parent damage it should do")]
-    public float damageRatio = 1f; 
+    public float damageRatio = 1f;
+    public DamageValueType damageValueType = DamageValueType.Absolute;
 
     private SpellController spell;
     private Explosion explosion;
-    private List<Damageable> damagedObjects;
+    
     private DrainSpell drainSpell;
     private StatusEffect[] statusEffects;
-    private int damage;
+    public int damage;
+    public float relativeDamageRatio;
     private SpellCaster emitter;
 
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         spell = GetComponent<SpellController>();
         if (!spell)
             spell = GetComponentInParent<SpellController>();
@@ -29,7 +31,7 @@ public class SpellDamager : MonoBehaviour
         if (!explosion)
             explosion = GetComponentInParent<Explosion>();
 
-        damagedObjects = new List<Damageable>();
+        
         drainSpell = GetComponent<DrainSpell>();
         statusEffects = GetComponentsInChildren<StatusEffect>();
     }
@@ -44,8 +46,16 @@ public class SpellDamager : MonoBehaviour
         }
         else if (explosion)
         {
-            damage = Mathf.CeilToInt(explosion.damage * damageRatio);
-            emitter = explosion.emitter;
+            if (explosion.damageValueType == DamageValueType.Ratio)
+            {
+                damageValueType = DamageValueType.Ratio;
+                relativeDamageRatio = explosion.damageRatio * damageRatio;
+            }
+            else
+            {
+                damage = Mathf.CeilToInt(explosion.damage * damageRatio);
+                emitter = explosion.emitter;
+            }
         }
         else
             Debug.LogError("No spell or explosion defined for " + name);
@@ -103,6 +113,8 @@ public class SpellDamager : MonoBehaviour
         if (drainSpell)
             drainSpell.absorbDamage(damage);
 
+        if (spell && dmg.isUnit)
+            spell.giveMana();
         StartCoroutine(damageObject(dmg));
 
         BuffsReceiver receiver = dmg.GetComponent<BuffsReceiver>();
@@ -113,16 +125,6 @@ public class SpellDamager : MonoBehaviour
         {
             effect.applyBuff(receiver);
         }
-    }
-
-    IEnumerator damageObject(Damageable dmg)
-    {
-        damagedObjects.Add(dmg);
-        if (damageType == DamageType.DamageOnce)
-            yield break;
-
-        yield return new WaitForSeconds(delayBetweenDamage);
-        damagedObjects.Remove(dmg);
     }
 
     /// <summary>

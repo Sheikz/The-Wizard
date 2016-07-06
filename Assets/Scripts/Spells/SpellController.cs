@@ -49,8 +49,9 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     protected SpellDamager spellDamager;
     protected HealArea healArea;
     new protected ParticleSystem particleSystem;
-    
-	[HideInInspector]
+    private bool hasGivenMana = false;
+
+    [HideInInspector]
 	public List<Collider2D> ignoredColliders;   // List of colliders that should be ignored
 
     protected void Awake()
@@ -340,5 +341,17 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     {
         if (SoundManager.instance)
             SoundManager.instance.stopSoundFromMe(gameObject);
+    }
+
+    public void giveMana()
+    {
+        if (hasGivenMana)
+            return;
+
+        if (manaCost >= 0)
+            return;
+
+        emitter.giveMana(-1 * manaCost);
+        hasGivenMana = true;
     }
 }

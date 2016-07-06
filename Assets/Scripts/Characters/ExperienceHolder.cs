@@ -4,6 +4,7 @@ using System.Collections;
 public class ExperienceHolder : MonoBehaviour {
 
     public int experience;
+    public bool shouldGiveExp = true;
 
     private GameObject floatingText;
 
@@ -14,6 +15,9 @@ public class ExperienceHolder : MonoBehaviour {
 
     public void die(GameObject killer)
     {
+        if (!shouldGiveExp)
+            return;
+
         if (!killer)    // If the killer is dead, no need to give xp
             return;
         ExperienceReceiver xpReceiver = killer.GetComponent<ExperienceReceiver>();
