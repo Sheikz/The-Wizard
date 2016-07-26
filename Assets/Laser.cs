@@ -9,6 +9,7 @@ public class Laser : MonoBehaviour
     public float delayBetweenExplosions = 0.5f;
     public float delayBetweenDamage = 0.25f;
     public float distance = 10f;
+    public Material material;
     private LineRenderer lineRenderer;
 
     private Vector2 offset = new Vector2(0, 0);
@@ -23,9 +24,11 @@ public class Laser : MonoBehaviour
 
     void Awake()
     {
+        Material newMat = Instantiate(material);
         lineRenderer = GetComponent<LineRenderer>();
         Vector2 scale = new Vector2(0.2f, 1);
-        lineRenderer.sharedMaterial.SetTextureScale("_MainTex", scale);
+        lineRenderer.material = newMat;
+        lineRenderer.material.SetTextureScale("_MainTex", scale);
         lineRenderer.sortingLayerName = "BelowSpells";
         spell = GetComponent<SpellController>();
         damagedObjects = new List<Damageable>();
@@ -37,7 +40,7 @@ public class Laser : MonoBehaviour
         offset.x += 0.03f;
         offset.x %= 1f;
 
-        lineRenderer.sharedMaterial.SetTextureOffset("_MainTex", offset);
+        lineRenderer.material.SetTextureOffset("_MainTex", offset);
         refreshExplosion();
     }
 

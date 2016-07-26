@@ -12,6 +12,9 @@ public class RandomFurniture : MonoBehaviour
 
     public void instantiate()
     {
+        if (Application.isEditor)
+            return;
+
         List<ItemWithDropChance> validFurnitures = new List<ItemWithDropChance>();
 
         foreach (ItemWithDropChance furnitureToTest in WorldManager.instance.furnitures)
@@ -38,13 +41,17 @@ public class RandomFurniture : MonoBehaviour
         {
             Vector2 boxCenter = (Vector2)(transform.position + col.transform.localPosition) + col.offset;
             if (Physics2D.OverlapBoxNonAlloc(boxCenter, col.size, 0, null, layerMask) > 0)  // Check if one of the colliders intersect with something
+            {
                 return false;
+            }
         }
         foreach (CircleCollider2D col in circleColliders)
         {
             Vector2 circleCenter = (Vector2)(transform.position + col.transform.localPosition) + col.offset;
             if (Physics2D.OverlapCircleNonAlloc(circleCenter, col.radius, null, layerMask) > 0)
+            {
                 return false;
+            }
         }
         return true;
     }

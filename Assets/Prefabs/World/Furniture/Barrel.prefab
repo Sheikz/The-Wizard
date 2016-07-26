@@ -26,6 +26,7 @@ GameObject:
   - 114: {fileID: 114000010701143988}
   - 61: {fileID: 61000011440909556}
   - 114: {fileID: 114000014224485216}
+  - 114: {fileID: 114000013150043366}
   m_Layer: 25
   m_Name: Barrel
   m_TagString: Untagged
@@ -111,6 +112,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4688f0b54285dc4d8e292fd9d84497e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013150043366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012259763010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d54ce877e881e648837dcad42864fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000014224485216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,6 +138,7 @@ MonoBehaviour:
   alwaysVisible: 0
   needToBeSeenOnce: 1
   isVisible: 0
+  parentRoom: {fileID: 0}
 --- !u!212 &212000012783917864
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ public class SpellManager : MonoBehaviour
     public GameObject[] auraPrefabs;
     public GameObject[] auraActivatePrefabs;
     public GameObject[] auraDisablePrefabs;
+    public SpellWarning spellWarning;
     public Sprite[] elementIcons;
     public Sprite freezeDebuffIcon;
     public Color freezeColorMask;

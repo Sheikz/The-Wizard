@@ -23,8 +23,9 @@ public class EquipableItem : Item
 		spriteRenderer.enabled = false;
     }
 
-	void Start()
+	new void Start()
 	{
+        base.Start();
 		itemStats = new EquipableItemStats(level);
 		spriteRenderer.sprite = itemStats.sprite;
 		spriteRenderer.enabled = true;

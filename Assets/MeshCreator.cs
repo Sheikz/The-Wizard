@@ -103,7 +103,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
                 name = "Hole";
-                gameObject.layer = LayerMask.NameToLayer("Obstacles");
+                gameObject.layer = LayerManager.instance.obstaclesLayerInt;
                 meshRenderer.sortingOrder = 3;
                 meshRenderer.sortingLayerName = "Floor";
                 break;
@@ -202,9 +202,9 @@ public class MeshCreator : MonoBehaviour
                 tag = "Wall";
                 name = "Wall";
                 if (blockingLow)
-                    gameObject.layer = LayerMask.NameToLayer("BlockingLow");
+                    gameObject.layer = LayerManager.instance.blockingLowInt;
                 else
-                    gameObject.layer = LayerMask.NameToLayer("BlockingLayer");
+                    gameObject.layer = LayerManager.instance.blockingLayerInt;
                 meshRenderer.sortingOrder = 0;
                 meshRenderer.sortingLayerName = "Walls";
                 break;
@@ -346,6 +346,7 @@ public class MeshCreator : MonoBehaviour
                 rumbles.transform.SetParent(transform);
                 rumbles.transform.localPosition = new Vector3(x, 0, 0) + new Vector3(0.5f, 0.5f, 0);
                 rumbles.transform.rotation = transform.rotation;
+                rumbles.layer = LayerManager.instance.blockingLowInt;
             }
             else if (wallType == 1) // Pillar in-wall
             {
@@ -404,6 +405,7 @@ public class MeshCreator : MonoBehaviour
         }
         if (meshType == MeshType.Wall)
         {
+            hasCollider = true;
             size.y = 2; // Forcing the height to 2 as it is mandatory for our wall tileset
         }
         else if (meshType == MeshType.WallCorner)
@@ -411,7 +413,6 @@ public class MeshCreator : MonoBehaviour
             size.x = 2;
             size.y = 2;
             hasCollider = true;
-            gameObject.layer = LayerMask.NameToLayer("BlockingLayer");
         }
 
         int numTiles = size.x * size.y;

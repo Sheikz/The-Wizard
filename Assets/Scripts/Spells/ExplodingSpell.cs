@@ -135,11 +135,11 @@ public class ExplodingSpell : MonoBehaviour
         if (spell.ignoredColliders.Contains(other))
             return;
 
-        if (!spell.collidesWithWalls && other.gameObject.layer == LayerMask.NameToLayer("BlockingLayer"))
+        if (!spell.collidesWithWalls && other.gameObject.layer == LayerManager.instance.blockingLayerInt)
             return;
 
         if (spell.collidesWithSpells &&
-            (other.gameObject.layer == LayerMask.NameToLayer("Spells") || other.gameObject.layer == LayerMask.NameToLayer("MonsterSpells")))
+            (other.gameObject.layer == LayerManager.instance.spellsLayerInt || other.gameObject.layer == LayerManager.instance.monsterSpellsInt))
             return;
 
         if (other.CompareTag("NoExplosion")) // Dont explose when colliding sphere

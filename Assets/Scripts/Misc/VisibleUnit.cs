@@ -12,10 +12,18 @@ public class VisibleUnit : VisibleObject
     public bool isVisible = false;
 	private bool hasBeenSeenThisFrame = false;
     private Damageable dmg;
+    public VisibleRoom parentRoom;
 
     void Awake()
     {
         dmg = GetComponent<Damageable>();
+    }
+
+    void Start()
+    {
+        Room room = GetComponentInParent<Room>();
+        if (room)
+            parentRoom = room.visibleRoom;
     }
 
 	// Update is called once per frame
@@ -46,6 +54,9 @@ public class VisibleUnit : VisibleObject
 
     public override void setVisible()
 	{
+        if (parentRoom && !parentRoom.isRevealed)
+            return;
+
 		hasBeenSeenThisFrame = true;
         setEnabled(true);
         isVisible = true;

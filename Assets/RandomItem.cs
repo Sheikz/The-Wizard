@@ -28,7 +28,7 @@ public class RandomItem : Item
             newItem.initialize(looterStats);
     }
 
-    void Start()
+    new void Start()
     {
         dropItem();
         Destroy(gameObject);

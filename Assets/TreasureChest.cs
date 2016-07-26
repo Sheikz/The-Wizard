@@ -20,7 +20,7 @@ public class TreasureChest : MonoBehaviour
         {
             Instantiate(treasureContent, transform.position, Quaternion.identity);
         }
-        SoundManager.instance.playSound("ClickEsc");
+        SoundManager.instance.playSound("OpenChest");
         GameObject openChest = Instantiate(openChestPrefab, transform.position, Quaternion.identity) as GameObject;
         openChest.transform.SetParent(GameManager.instance.map.furnitureHolder);
         Destroy(transform.parent.gameObject);

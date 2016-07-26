@@ -17,12 +17,12 @@ public abstract class Item : MonoBehaviour
 
     protected void Awake()
     {
-        gameObject.layer = LayerMask.NameToLayer("Item");
         GetComponent<Collider2D>().isTrigger = false;
     }
 
     protected void Start()
     {
+        gameObject.layer = LayerManager.instance.itemLayersInt;
         if (GameManager.instance.map)
             transform.SetParent(GameManager.instance.map.itemHolder);
     }

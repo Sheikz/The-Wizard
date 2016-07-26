@@ -45,6 +45,8 @@ public class Buff
             case BuffType.Freeze:
             case BuffType.Slow:
                 this.speedMultiplier = speedMultiplier;
+                if (speedMultiplier == 0f)
+                    this.stun = true;
                 this.name = "Slow";
                 this.icon = SpellManager.instance.slowDebuffIcon;
                 this.description = "Slowed by " + (1 - this.speedMultiplier)*100 + "%";

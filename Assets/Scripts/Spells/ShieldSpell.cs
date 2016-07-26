@@ -26,17 +26,17 @@ public class ShieldSpell : SpellController
         if (emitter.isMonster)
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerMask.NameToLayer("MonsterShield");
+                gameObject.layer = LayerManager.instance.monsterShieldLayerInt;
             else
-                gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
+                gameObject.layer = LayerManager.instance.monsterSpellsInt;
             enemyLayer = GameManager.instance.layerManager.heroLayer;
         }
         else
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerMask.NameToLayer("HeroShield");
+                gameObject.layer = LayerManager.instance.heroShieldLayerInt;
             else
-                gameObject.layer = LayerMask.NameToLayer("Spells");
+                gameObject.layer = LayerManager.instance.spellsLayerInt;
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
         }
     }

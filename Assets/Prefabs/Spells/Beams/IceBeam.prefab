@@ -58,6 +58,7 @@ MonoBehaviour:
   delayBetweenExplosions: 0.25
   delayBetweenDamage: 0.1
   distance: 10
+  material: {fileID: 2100000, guid: 21e7528f4f08ea940af5790669580f9b, type: 2}
 --- !u!114 &114000010245229430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,7 +88,7 @@ MonoBehaviour:
   spellTypeDescription: Channel
   damageString: <dmg> damage/sec
   description: Channel an Ice Beam \nSlow enemies
-  manaCost: 1
+  manaCost: 0
   manaCostInterval: 0.05
   castTime: 0
   cooldown: 0.5
@@ -97,16 +98,20 @@ MonoBehaviour:
   spellSet: 1
   damage: 40
   lightIntensity: 0
+  hasSpellWarning: 0
   duration: 0
   collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
-  collidesWithWalls: 1
   ignoredColliders: []
+  canMoveWhileCasting: 0
 --- !u!120 &120000012399334016
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -119,7 +124,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 064f47f883c107c42be538404a57bafe, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}

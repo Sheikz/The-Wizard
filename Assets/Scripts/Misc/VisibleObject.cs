@@ -64,13 +64,17 @@ public abstract class VisibleObject : MonoBehaviour
     {
         rdr.enabled = true;
         float startingTime = Time.time;
+        Color newColor;
         while (Time.time - startingTime < duration)
         {
-            Color newColor = rdr.color;
+            newColor = rdr.color;
             newColor.a = Mathf.Lerp(0, 1, (Time.time - startingTime) / duration);
             rdr.color = newColor;
             yield return null;
         }
+        newColor = rdr.color;
+        newColor.a = 1f;
+        rdr.color = newColor;
         rdr.enabled = true;
     }
 
@@ -85,13 +89,17 @@ public abstract class VisibleObject : MonoBehaviour
     private IEnumerator disappearAfterSeconds(float duration, SpriteRenderer rdr)
     {
         float startingTime = Time.time;
+        Color newColor;
         while (Time.time - startingTime < duration)
         {
-            Color newColor = rdr.color;
+            newColor = rdr.color;
             newColor.a = Mathf.Lerp(1, 0, (Time.time - startingTime) / duration);
             rdr.color = newColor;
             yield return null;
         }
+        newColor = rdr.color;
+        newColor.a = 0f;
+        rdr.color = newColor;
         rdr.enabled = false;
     }
 }

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public RoomBasedMapGenerator map;
     private float savedTimeScale = 1.0f;
     public float difficulty = 1.0f;
+    new public CameraController camera;
 
     void Awake ()
 	{
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         createHero();
         map = Instantiate(mapPrefab);
+        Instantiate(layerManager);
         levelNumber = 1;
 	}
 

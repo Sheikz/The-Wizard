@@ -4,12 +4,12 @@ using System.Collections.Generic;
 public class WorldViewer : MonoBehaviour
 {
     public float visionDistance = 20f;
-    private Collider2D[] closeMonsters;
+    private Collider2D[] closeUnits;
 
     void FixedUpdate ()
     {
-        closeMonsters = Physics2D.OverlapCircleAll(transform.position, visionDistance);
-        foreach (Collider2D collider in closeMonsters)
+        closeUnits = Physics2D.OverlapCircleAll(transform.position, visionDistance);
+        foreach (Collider2D collider in closeUnits)
         {
             VisibleUnit unit = collider.gameObject.GetComponent<VisibleUnit>();
             if (!unit || unit.isVisible)
@@ -25,10 +25,10 @@ public class WorldViewer : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (closeMonsters == null)
+        if (closeUnits == null)
             return;
 
-        foreach (Collider2D collider in closeMonsters)
+        foreach (Collider2D collider in closeUnits)
         {
             if (!collider)
                 continue;

@@ -265,6 +265,7 @@ public class SpellCaster : MonoBehaviour
     /// <returns></returns>
     private IEnumerator castingSpellRoutine(SpellController spell, int index, Vector3 targetPosition)
 	{
+        SpellWarning spellWarn;
         if (anim)
             anim.SetInteger("AttackType", Random.Range(0, 2) + 1);  // Randomizing the attack type
 
@@ -273,6 +274,11 @@ public class SpellCaster : MonoBehaviour
 		{
             if (anim)
                 anim.SetTrigger("PrepareAttack");
+            if (spell.hasSpellWarning && isMonster)
+            {
+                spellWarn = Instantiate(SpellManager.instance.spellWarning, transform.position, Quaternion.identity) as SpellWarning;
+                spellWarn.init(spell, this);
+            }
 
 			isCasting = true;
 			float startingTime = Time.time;
@@ -533,7 +539,7 @@ public class SpellCaster : MonoBehaviour
 		targetOpponent = target.transform;
 		for (int i = 0; i < spellList.Length; i++)
 		{
-            if (spellList[i].damage >= 0)
+            if (spellList[i].damage >= 0 && spellList[i].shouldCastSpell(this, target))
 			    castSpell(i, target.transform.position);
 		}
 	}

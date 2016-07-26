@@ -6,20 +6,21 @@ using System;
 public class SpellDamager : Damager
 {
     public bool activated = true;
-    
-    
+
+
     [Tooltip("Ratio of the parent damage it should do")]
     public float damageRatio = 1f;
     public DamageValueType damageValueType = DamageValueType.Absolute;
 
     private SpellController spell;
     private Explosion explosion;
-    
+
     private DrainSpell drainSpell;
     private StatusEffect[] statusEffects;
     public int damage;
     public float relativeDamageRatio;
     private SpellCaster emitter;
+    private bool initialized = false;
 
     new void Awake()
     {
@@ -31,12 +32,17 @@ public class SpellDamager : Damager
         if (!explosion)
             explosion = GetComponentInParent<Explosion>();
 
-        
+
         drainSpell = GetComponent<DrainSpell>();
         statusEffects = GetComponentsInChildren<StatusEffect>();
     }
 
     void Start()
+    {
+        initialize();
+    }
+
+    void initialize()
     {
         applyLayer();
         if (spell)
@@ -59,6 +65,8 @@ public class SpellDamager : Damager
         }
         else
             Debug.LogError("No spell or explosion defined for " + name);
+
+        initialized = true;
     }
 
     private void applyLayer()
@@ -71,7 +79,7 @@ public class SpellDamager : Damager
 
         if (spell.collidesWithBothParties)
         {
-            gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+            gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
         }
         else if (spell.emitter == null)
         {
@@ -80,15 +88,28 @@ public class SpellDamager : Damager
         }
         else if (spell.emitter.isMonster)
         {
-            gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
+            gameObject.layer = LayerManager.instance.monsterSpellsInt;
         }
         else
-            gameObject.layer = LayerMask.NameToLayer("Spells");
+            gameObject.layer = LayerManager.instance.spellsLayerInt;
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        trigger(collision);
+    }
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        trigger(collision);
+    }
+
+    void trigger(Collider2D other)
     {
         if (!activated)
+            return;
+
+        if (!initialized)
             return;
 
         if (damageType == DamageType.None)

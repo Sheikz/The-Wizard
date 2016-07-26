@@ -12,8 +12,9 @@ public class SpellHolder : Item
     private SpellController spell;
     private SpriteRenderer spr;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         hero = GameManager.instance.hero.GetComponent<SpellCaster>();
 
         spr = GetComponent<SpriteRenderer>();

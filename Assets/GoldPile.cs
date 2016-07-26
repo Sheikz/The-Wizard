@@ -5,8 +5,9 @@ public class GoldPile : Item
 {
     public int amount;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         amount = (100 * level) + Random.Range(-75 * level, 75 * level);
     }
 

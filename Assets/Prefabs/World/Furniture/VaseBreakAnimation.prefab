@@ -23,6 +23,7 @@ GameObject:
   - 95: {fileID: 95000012001238922}
   - 114: {fileID: 114000012020642696}
   - 114: {fileID: 114000014057147744}
+  - 114: {fileID: 114000010484996948}
   m_Layer: 0
   m_Name: VaseBreakAnimation
   m_TagString: Untagged
@@ -60,6 +61,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010484996948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012686416224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab55030c7b49ac4c8fdaf0e4bea3b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!114 &114000012020642696
 MonoBehaviour:
   m_ObjectHideFlags: 1

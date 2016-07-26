@@ -126,7 +126,7 @@ public class Explosion : MonoBehaviour
 
     internal void initialize(ExplodingObject explodingObject)
     {
-        gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+        
         damageValueType = DamageValueType.Ratio;
         damageRatio = explodingObject.damageRatio;
     }

@@ -17,8 +17,9 @@ public class PowerUpItem : Item
 
     private Buff buff;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         buff = new Buff();
         buff.name = powerUpBuff.name;
         buff.description = "Increase damage done by " + powerUpBuff.element.ToString() + " spells by " 

@@ -57,9 +57,9 @@ public class SpellDeflector : MonoBehaviour
             otherSpell.transform.Rotate(0, 0, 180 - deviation);
             otherSpell.emitter = emitter;
             if (emitter.isMonster)
-                otherSpell.gameObject.layer = LayerMask.NameToLayer("MonsterSpells");
+                otherSpell.gameObject.layer = LayerManager.instance.monsterSpellsInt;
             else
-                otherSpell.gameObject.layer = LayerMask.NameToLayer("Spells");
+                otherSpell.gameObject.layer = LayerManager.instance.spellsLayerInt;
 
             UIManager.instance.createFloatingText("Deflect!",
                 UIManager.instance.elementColors[(int)spell.magicElement],

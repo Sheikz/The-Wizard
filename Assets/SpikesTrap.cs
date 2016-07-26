@@ -8,14 +8,12 @@ public class SpikesTrap : Trap
     public bool up = false;
     public float changeFrequency = 5;
 
-    private SpriteRenderer withoutSpikes;
-    private SpriteRenderer withSpikes;
+    private SpriteRenderer rdr;
     private Collider2D col;
 
     void Awake()
     {
-        withSpikes = transform.Find("Spikes").GetComponent<SpriteRenderer>();
-        withoutSpikes = GetComponent<SpriteRenderer>();
+        rdr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
     }
 
@@ -37,8 +35,7 @@ public class SpikesTrap : Trap
 
     public void refresh()
     {
-        withSpikes.enabled = up;
-        withoutSpikes.enabled = !up;
+        rdr.sprite = up ? WorldManager.instance.spikesUp : WorldManager.instance.spikesDown;
         col.enabled = up;
     }
 }

@@ -12,7 +12,10 @@ public class StaticSpell : SpellController
     public bool automaticDestroy = true;
     public bool needLineOfSight = true;
     public bool createdAtCasterPosition = false;
-    
+
+    public static float IceNovaRadius = 2.5f;
+    public static float IceNovaWarningSize = 7f;
+
     [HideInInspector]
     public float durationLeft;
 
@@ -66,7 +69,7 @@ public class StaticSpell : SpellController
         //StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
         durationLeft = duration;
         if (collidesWithBothParties)
-            gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+            gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
     }
 
     protected void FixedUpdate()
@@ -97,5 +100,15 @@ public class StaticSpell : SpellController
 
         yield return new WaitForSeconds(seconds);
         circleCollider.enabled = false;
+    }
+
+    public override bool shouldCastSpell(SpellCaster spellCaster, Damageable target)
+    {
+        switch (spellName)
+        {
+            case "Ice Nova":
+                return (hasEnemiesAround(spellCaster, StaticSpell.IceNovaRadius));
+        }
+        return true;
     }
 }

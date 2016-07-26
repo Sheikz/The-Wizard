@@ -274,7 +274,7 @@ public class Damageable : MonoBehaviour
             GameObject destruction = Instantiate(destAnimation, transform.position, Quaternion.identity) as GameObject;
             if (!isUnit)
             {
-                destruction.gameObject.layer = LayerMask.NameToLayer("MonstersAndHero");
+                destruction.gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
             }
         }
 

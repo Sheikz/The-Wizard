@@ -78,7 +78,7 @@ public class BoomerangSpell : MovingSpell
 
     public void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("BlockingLayer"))
+        if (collision.gameObject.layer != LayerManager.instance.blockingLayerInt)
             return;
 
         if (!collision.bounds.Contains(transform.position))

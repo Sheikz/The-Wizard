@@ -9,13 +9,16 @@ public class VisibleRoom : MonoBehaviour
 
     private SpriteRenderer[] spriteRenderers;
     private MeshRenderer[] meshRenderers;
-    private bool isRevealed = false;
+    [HideInInspector]
+    public bool isRevealed = false;
 
     private List<VisibleRoom> linkedRooms;
+    private Room parentRoom;
 
     void Awake()
     {
         linkedRooms = new List<VisibleRoom>();
+        parentRoom = GetComponentInParent<Room>();
     }
 
     void Start()
@@ -25,10 +28,10 @@ public class VisibleRoom : MonoBehaviour
 
     public void setVisible(bool value)
     {
-        if (transform.parent.GetComponent<Room>() != null)
+        if (parentRoom)
         {
-            spriteRenderers = transform.parent.transform.GetComponentsInChildren<SpriteRenderer>();
-            meshRenderers = transform.parent.transform.GetComponentsInChildren<MeshRenderer>();
+            spriteRenderers = parentRoom.GetComponentsInChildren<SpriteRenderer>();
+            meshRenderers = parentRoom.GetComponentsInChildren<MeshRenderer>();
         }
         else
         {
@@ -70,6 +73,8 @@ public class VisibleRoom : MonoBehaviour
         {
             vr.setVisible(value);
         }
+        if (parentRoom && value)
+            parentRoom.revealContents();
     }
 
     public void linkTo(VisibleRoom room)

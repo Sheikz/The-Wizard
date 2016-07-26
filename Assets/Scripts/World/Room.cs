@@ -89,6 +89,14 @@ public class Room : MonoBehaviour, IComparable<Room>
         //combineMeshes();
     }
 
+    internal void revealContents()
+    {
+        foreach (VisibleUnit unit in GetComponentsInChildren<VisibleUnit>())
+        {
+            unit.setVisible();
+        }
+    }
+
     public void randomize()
     {
         if (!randomized)

@@ -117,7 +117,7 @@ public class BuffsReceiver : MonoBehaviour
                 speedBuffMultiplier = buff.speedMultiplier;
         }
         speedMultiplier = speedDebuffMultiplier * speedBuffMultiplier;
-        if (refreshColor)
+        if (refreshColor && spr)
             spr.color = colorWithLongestTimeLeft;
     }
 
