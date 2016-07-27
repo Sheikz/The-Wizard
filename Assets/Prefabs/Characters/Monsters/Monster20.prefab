@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 50
+  shouldGiveExp: 1
 --- !u!114 &11461294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,12 +181,18 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
-  destructionAnimation: {fileID: 0}
+  destructionAnimation:
+  - {fileID: 0}
+  outOfCombatRegen: 0
+  timeToLeaveCombat: 5
+  isUnit: 1
   maxHP: 400
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
   isDead: 0
+  inCombat: 0
+  timeleftInCombat: 0
 --- !u!114 &11470894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,6 +208,7 @@ MonoBehaviour:
   alwaysVisible: 0
   needToBeSeenOnce: 0
   isVisible: 0
+  parentRoom: {fileID: 0}
 --- !u!114 &11485602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,7 +226,7 @@ MonoBehaviour:
   baseCritChance: 0
   spellList:
   - {fileID: 11404826, guid: af7fe0293495c3d408d4c7e515834bc6, type: 2}
-  - {fileID: 11462106, guid: da10079c46e17d941833673863317e1d, type: 2}
+  - {fileID: 114000013694402994, guid: e4fdec0f84e6a0e4d93d82c88203ef08, type: 2}
   isHero: 0
   playerStats: {fileID: 0}
   isMonster: 0

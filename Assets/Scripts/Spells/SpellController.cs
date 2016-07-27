@@ -43,12 +43,14 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
     public Vector3 target;
     [HideInInspector]
     public MoveSpellCaster moveSpellCaster;
-    protected PlayerStats stats;
+    [HideInInspector]
+    public PlayerStats stats;
     protected SpellAutoPilot autoPilot;
     protected MultipleSpells multiSpells;
     protected ChainSpell chainSpell;
     protected SpellDamager spellDamager;
     protected HealArea healArea;
+    protected ExplodingSpell explodingSpell;
     new protected ParticleSystem particleSystem;
     private bool hasGivenMana = false;
 
@@ -62,6 +64,7 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 		if (circleCollider)
 			circleCollider.isTrigger = true;
 		ignoredColliders = new List<Collider2D>();
+        explodingSpell = GetComponent<ExplodingSpell>();
         autoPilot = GetComponent<SpellAutoPilot>();
         multiSpells = GetComponent<MultipleSpells>();
         chainSpell = GetComponent<ChainSpell>();

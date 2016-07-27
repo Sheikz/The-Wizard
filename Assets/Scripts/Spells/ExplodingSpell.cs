@@ -14,6 +14,7 @@ public class ExplodingSpell : MonoBehaviour
     public float delayBetweenExplosions = 0.5f;
     public bool automaticExplosion = true;
     public float[] delayedExplosions;
+    public bool piercesEnemies = false;
 
     private List<Collider2D> affectedObjects;
     private SpellController spell;
@@ -34,8 +35,30 @@ public class ExplodingSpell : MonoBehaviour
 
     void Start()
     {
+        applyExplodingSpellPerks();
         if (delayedExplosions.Length > 0)
             StartCoroutine(delayedExplosionRoutine());
+    }
+
+    private void applyExplodingSpellPerks()
+    {
+        if (!spell.stats)
+            return;
+
+        switch (spell.spellName)
+        {
+            case "Arcane Disc":
+                piercesEnemies = spell.stats.getItemPerk(ItemPerk.ArcaneDiscPierces) ? true : false;
+                break;
+            case "Unstable Charge":
+                if (spell.stats.getItemPerk(ItemPerk.UnstableChargeTwice))
+                {
+                    delayedExplosions = new float[2];
+                    delayedExplosions[0] = 2;
+                    delayedExplosions[1] = 1;
+                }
+                break;
+        }
     }
 
     void FixedUpdate()
@@ -57,6 +80,12 @@ public class ExplodingSpell : MonoBehaviour
                 Damageable dmg = collider.GetComponent<Damageable>();
                 if (dmg && dmg.isUnit)
                     spell.giveMana();
+
+                if (dmg && piercesEnemies)
+                    destroyWhenExplodes = false;
+                else
+                    destroyWhenExplodes = true;
+
                 explode(collider);
                 return;
             }

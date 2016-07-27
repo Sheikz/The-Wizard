@@ -45,6 +45,7 @@ public class StaticSpell : SpellController
     {
         transform.position = target;
         this.emitter = emitter;
+        stats = emitter.GetComponent<PlayerStats>();
 
         foreach (ParticleSystem partSystem in GetComponentsInChildren<ParticleSystem>())
         {

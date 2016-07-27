@@ -53,7 +53,10 @@ public abstract class MovingCharacter : MonoBehaviour
     protected void updateAnimations()
     {
         if (buffReceiver && buffReceiver.isStunned)
+        {
+            anim.speed = 0;
             return;
+        }
 
         if (anim)
         {

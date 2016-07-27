@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public enum ItemPerk
 {
-    //FireSlashReflect, FireSlashMultiply,
     FireBallUpgrade, EnergyBoltAimBot,
     EnergyBoltInstant, IceSlideNoCD,
     IceShardMultiply, SparkBounce, DragonBreathMove,
     IceBeamMove, SanctuaryHeal, SanctuaryDamage,
     DoomrangHeal, DoomrangDamageTwice,
-    ChronosphereDamage
+    ChronosphereDamage, ArcaneDiscPierces,
+    UnstableChargeTwice
 };
 
 public static class ItemPerkExtensions
@@ -19,8 +19,6 @@ public static class ItemPerkExtensions
     {
         switch (perk)
         {
-            //case ItemPerk.FireSlashMultiply: return "Flaming Whip launches 3 slashes";
-            //case ItemPerk.FireSlashReflect: return "Flaming Whip reflects incoming projectiles";
             case ItemPerk.FireBallUpgrade: return perk.getSpellName() + " is bigger and does 100% more damage";
             case ItemPerk.EnergyBoltAimBot: return "Energy Bolt auto-aims at enemies";
             case ItemPerk.EnergyBoltInstant: return perk.getSpellName()+" has no cast time";
@@ -34,6 +32,8 @@ public static class ItemPerkExtensions
             case ItemPerk.DoomrangHeal: return perk.getSpellName() + " heals for 5% of damage done";
             case ItemPerk.DoomrangDamageTwice: return perk.getSpellName() + " damages enemies when going and returning";
             case ItemPerk.ChronosphereDamage: return perk.getSpellName() + " damage enemies inside";
+            case ItemPerk.ArcaneDiscPierces: return perk.getSpellName() + " pierces enemies";
+            case ItemPerk.UnstableChargeTwice: return perk.getSpellName() + " explodes twice";
         }
         return "Not implemented";
     }
@@ -42,8 +42,6 @@ public static class ItemPerkExtensions
     {
         switch (perk)
         {
-            //case ItemPerk.FireSlashMultiply: return "Flaming Whip";
-            //case ItemPerk.FireSlashReflect: return "Flaming Whip";
             case ItemPerk.FireBallUpgrade: return "Fire Ball";
             case ItemPerk.EnergyBoltAimBot: return "Energy Bolt";
             case ItemPerk.EnergyBoltInstant: return "Energy Bolt";  // TODO
@@ -57,6 +55,8 @@ public static class ItemPerkExtensions
             case ItemPerk.DoomrangHeal: return "Doomrang";
             case ItemPerk.DoomrangDamageTwice: return "Doomrang";
             case ItemPerk.ChronosphereDamage: return "ChronoSphere";
+            case ItemPerk.ArcaneDiscPierces: return "Arcane Disc";
+            case ItemPerk.UnstableChargeTwice: return "Unstable Charge";
         }
         return "Not implemented";
     }

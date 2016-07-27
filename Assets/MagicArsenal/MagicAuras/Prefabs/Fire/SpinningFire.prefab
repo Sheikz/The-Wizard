@@ -27,9 +27,8 @@ GameObject:
   - 4: {fileID: 472000}
   - 198: {fileID: 19899404}
   - 199: {fileID: 19962732}
-  - 114: {fileID: 11480178}
   m_Layer: 0
-  m_Name: SpinningFire
+  m_Name: SpinningFire (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,8 +92,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157646}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 10, y: 0.22, z: -19}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.537349, y: 17.333086, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 472000}
@@ -109,7 +108,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106272}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -162,18 +161,6 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f29d63276aff0d4f9a92f67bee2ce92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mprSpeed: 1.75
---- !u!114 &11480178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106272}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f29d63276aff0d4f9a92f67bee2ce92, type: 3}
@@ -398,7 +385,7 @@ ParticleSystem:
         rgba: 4278199807
       minMaxState: 0
     startSize:
-      scalar: 0.35
+      scalar: 0.25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2154,7 +2141,7 @@ ParticleSystem:
         rgba: 3288334335
       minMaxState: 0
     startSize:
-      scalar: 3.7
+      scalar: 2.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2170,7 +2157,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.9189189
+          value: 0.8
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4095,7 +4082,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     randomizeRotationDirection: 0
-    gravityModifier: -1.2
+    gravityModifier: -0.5
     maxNumParticles: 1000
     size3D: 0
     rotation3D: 0
@@ -5651,7 +5638,7 @@ ParticleSystem:
         rgba: 654340095
       minMaxState: 0
     startSize:
-      scalar: 0.35
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7615,7 +7602,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 7
-    radius: 1
+    radius: 0.75
     angle: 5
     length: 5
     boxX: 1
@@ -7636,7 +7623,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 70
+      scalar: 35
       maxCurve:
         serializedVersion: 2
         m_Curve:
