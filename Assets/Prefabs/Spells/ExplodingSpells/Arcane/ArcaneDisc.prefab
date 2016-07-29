@@ -347,6 +347,7 @@ MonoBehaviour:
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
+  stats: {fileID: 0}
   ignoredColliders: []
   speed: 5
 --- !u!114 &114000011576699348
@@ -586,7 +587,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 3.5
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
