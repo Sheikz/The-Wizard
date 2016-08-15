@@ -106,10 +106,10 @@ public class PlayerController : MovingCharacter
         if (Input.GetButtonDown("Cancel"))
 			UIManager.instance.switchMenu();
 
-        if (InputManager.instance.IsCommandDown(InputManager.Command.SpellBook))
+        if (InputManager.instance.IsCommandDown(InputManager.Command.SpellBook) && !UIManager.instance.controlsWindow.isOpen)
             UIManager.instance.spellWindowBySet.open();
 
-        if (InputManager.instance.IsCommandDown(InputManager.Command.CharacterWindow))
+        if (InputManager.instance.IsCommandDown(InputManager.Command.CharacterWindow) && !UIManager.instance.controlsWindow.isOpen)
             UIManager.instance.characterWindow.open();
 
         if (spellCasted.Count > 0)

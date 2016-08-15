@@ -34,7 +34,6 @@ public class Damageable : MonoBehaviour
     private List<Damager> damagers;
 
     private BuffsReceiver buffReceiver;
-    private SpellAbsorbDamage spellAbsorbDamage;
     public bool inCombat = false;
     public float timeleftInCombat = 0f;
 
@@ -46,7 +45,6 @@ public class Damageable : MonoBehaviour
             originalMaterial = spriteRenderer.material;
         damagers = new List<Damager>();
         buffReceiver = GetComponent<BuffsReceiver>();
-        spellAbsorbDamage = GetComponent<SpellAbsorbDamage>();
     }
 
     void Start()

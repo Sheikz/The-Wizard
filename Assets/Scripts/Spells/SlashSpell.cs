@@ -4,7 +4,6 @@ using System;
 
 public class SlashSpell : SpellController
 {
-    private bool canBeMultiplied = true;
 
     [Serializable]
     public class ColliderWithStartTime
@@ -74,12 +73,10 @@ public class SlashSpell : SpellController
 
         yield return new WaitForSeconds(0.2f);
         SlashSpell newSpell1 = Instantiate(this);
-        newSpell1.canBeMultiplied = false;
         newSpell1.initialize(emitter, position1, farTarget);
 
         yield return new WaitForSeconds(0.2f);
         SlashSpell newSpell2 = Instantiate(this);
-        newSpell2.canBeMultiplied = false;
         newSpell2.initialize(emitter, position2, farTarget);
     }
 

@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 	public CastingBar castingBar;
 	public FloatingHPBar floatingHPBar;
 	public ToAllocateReminder toAllocateReminder;
-	public GameObject controlsWindow;
+	public ControlsWindow controlsWindow;
 	public GameObject graphicsWindow;
 	public GameObject soundsWindow;
 	public Tooltip tooltipPrefab;
@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
 	{
 		closeWindows();
 		if (!value)
-			controlsWindow.SetActive(false);
+			controlsWindow.gameObject.SetActive(false);
 
 		exitMenu.SetActive(value);
 		GameManager.instance.setPause(value);
@@ -95,7 +95,7 @@ public class UIManager : MonoBehaviour
 		spellBook.close();
 		spellWindowByType.close();
         spellWindowBySet.close();
-		controlsWindow.SetActive(false);
+		controlsWindow.gameObject.SetActive(false);
 		graphicsWindow.SetActive(false);
 		soundsWindow.SetActive(false);
 		exitMenu.SetActive(false);
@@ -174,7 +174,7 @@ public class UIManager : MonoBehaviour
 
 	public void openControlsWindow(bool value)
 	{
-		controlsWindow.SetActive(value);
+		controlsWindow.gameObject.SetActive(value);
 	}
 
 	public void openGraphicsWindow(bool value)
@@ -189,7 +189,7 @@ public class UIManager : MonoBehaviour
 
 	public void refreshControlWindow()
 	{
-		controlsWindow.GetComponent<ControlsWindow>().refresh();
+		controlsWindow.refresh();
 	}
 
 	public void refreshUI()

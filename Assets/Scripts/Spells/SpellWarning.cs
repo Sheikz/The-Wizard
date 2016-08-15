@@ -10,7 +10,6 @@ public class SpellWarning : MonoBehaviour
     public float duration;
 
     private ParticleSystem partSystem;
-    private SpellCaster spellCaster;
     private SpellController spell;
 
     void Awake()
@@ -27,7 +26,6 @@ public class SpellWarning : MonoBehaviour
     internal void init(SpellController spell, SpellCaster spellCaster)
     {
         this.spell = spell;
-        this.spellCaster = spellCaster;
 
         setRadius();
         partSystem.startLifetime = spell.castTime;

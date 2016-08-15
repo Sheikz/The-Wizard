@@ -35,6 +35,35 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         setupDefaults();
+        getDataFromPlayerPrefs();
+        refresh();
+    }
+
+    private void getDataFromPlayerPrefs()
+    {
+        foreach (Command command in Enum.GetValues(typeof(Command)))
+        {
+            foreach (KeyType keyType in Enum.GetValues(typeof(KeyType)))
+            {
+                string key = command.ToString() + keyType.ToString();
+                if (PlayerPrefs.HasKey(key))
+                {
+                    keys[(int)command, (int)keyType] = (KeyCode)PlayerPrefs.GetInt(key);
+                }
+            }
+        }
+    }
+
+    public void saveDataToPlayerPrefs()
+    {
+        foreach (Command command in Enum.GetValues(typeof(Command)))
+        {
+            foreach (KeyType keyType in Enum.GetValues(typeof(KeyType)))
+            {
+                string key = command.ToString() + keyType.ToString();
+                PlayerPrefs.SetInt(key, (int)getKey(command, keyType));
+            }
+        }
     }
 
     /// <summary>
@@ -94,7 +123,9 @@ public class InputManager : MonoBehaviour
 
         keys[(int)Command.CharacterWindow, (int)KeyType.Primary] = KeyCode.C;
         keys[(int)Command.CharacterWindow, (int)KeyType.Alternate] = KeyCode.Keypad2;
+    }
 
+    public void refresh() {
         UIManager.instance.refreshIconsDescription();
         UIManager.instance.refreshControlWindow();
     }
@@ -186,12 +217,20 @@ public class InputManager : MonoBehaviour
             {
                 if (keys[i, j] == key)
                 {
-                    keys[i, j] = keys[(int)cmd, (int)keyType];
+                    setKey((Command)i, (KeyType)j, keys[(int)cmd, (int)keyType]);
                 }
             }
         }
-        keys[(int)cmd, (int)keyType] = key;
+        setKey(cmd, keyType, key);
         UIManager.instance.setIconDescription(cmd);
+        refresh();
+    }
+
+    void setKey(Command cmd, KeyType type, KeyCode key)
+    {
+        keys[(int)cmd, (int)type] = key;
+        string keyString = cmd.ToString() + type.ToString();
+        PlayerPrefs.SetInt(keyString, (int)key);
     }
 
     internal string getIconDescription(Command cmd, KeyType keyType = KeyType.Primary)

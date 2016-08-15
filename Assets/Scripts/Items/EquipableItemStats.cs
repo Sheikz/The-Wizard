@@ -8,6 +8,7 @@ public enum ItemSlot { Weapon, OffHand, Armor, Gloves, Boots };
 public enum InventoryStats { Power, HP, MoveSpeed, CriticalStrikeChance, EnergyRegen, Gold };
 public enum ItemRarity { Common, Rare, Epic, Legendary };
 
+[Serializable]
 public class EquipableItemStats
 {
     public int level;

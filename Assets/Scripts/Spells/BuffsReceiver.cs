@@ -16,7 +16,6 @@ public class BuffsReceiver : MonoBehaviour
     public bool isStunned = false;
 
     private bool[] imunizedTo;
-    private Color colorMask = Color.white;
     private SpriteRenderer spr;
 
     void Awake()

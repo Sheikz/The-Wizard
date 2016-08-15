@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using Random = UnityEngine.Random;
 
+[Serializable]
 public class SpellCaster : MonoBehaviour
 {
 	public bool useMana = false;
@@ -43,7 +44,6 @@ public class SpellCaster : MonoBehaviour
     private BuffsReceiver buffReceiver;
     private float itemManaRegen;
     private int itemCritChance;
-    private Damageable dmg;
 
     private List<PowerUpBuff> activeBuffs;
     private bool payChannelManaOnCooldown = false;
@@ -55,7 +55,6 @@ public class SpellCaster : MonoBehaviour
 		anim = GetComponent<Animator>();
         buffReceiver = GetComponent<BuffsReceiver>();
         playerStats = GetComponent<PlayerStats>();
-        dmg = GetComponent<Damageable>();
     }
 
 	// Use this for initialization

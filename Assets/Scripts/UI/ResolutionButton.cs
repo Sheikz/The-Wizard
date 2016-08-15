@@ -8,7 +8,7 @@ public class ResolutionButton : MonoBehaviour
     public Text fullscreenText;
     private List<Resolution> resolutions;
     private int currentResolution;
-    private bool fullscreen;
+    private bool fullscreen = false;
 
     void Awake()
     {
@@ -19,13 +19,13 @@ public class ResolutionButton : MonoBehaviour
     {
         resolutions = GraphicsManager.instance.supportedResolutions;
         currentResolution = resolutions.Count - 1;
-        fullscreen = true;
+        fullscreen = Screen.fullScreen;
         refresh();
     }
 
     void refresh()
     {
-        resolutionText.text = "Resolution " + resolutions[currentResolution].width + "x" + resolutions[currentResolution].height;
+        resolutionText.text = "Resolution " + GraphicsManager.instance.currentResolution.width + "x" + GraphicsManager.instance.currentResolution.height;
         fullscreenText.text = "Full screen : " + (fullscreen ? "On" : "Off");
     }
 
@@ -37,15 +37,15 @@ public class ResolutionButton : MonoBehaviour
         SoundManager.instance.playSound("ClickOK");
         currentResolution++;
         currentResolution = currentResolution % (resolutions.Count);
-        GraphicsManager.instance.setResolution(currentResolution, fullscreen);
+        GraphicsManager.instance.setResolution(currentResolution, Screen.fullScreen);
         refresh();
     }
 
     public void switchFullscreen()
     {
         SoundManager.instance.playSound("ClickOK");
-        Screen.fullScreen = !Screen.fullScreen;
-        fullscreen = !fullscreen;
+        GraphicsManager.instance.setFullscreen(!Screen.fullScreen);
+        fullscreen = !Screen.fullScreen;
         refresh();
     }
 }

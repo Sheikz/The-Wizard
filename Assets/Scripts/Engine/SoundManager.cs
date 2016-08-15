@@ -41,6 +41,10 @@ public class SoundManager : MonoBehaviour
     {
         if (!Application.isEditor)
             playDungeonMusic();
+        if (PlayerPrefs.HasKey("SFXVolume"))
+            volumeSFX = PlayerPrefs.GetFloat("SFXVolume");
+        if (PlayerPrefs.HasKey("MusicVolume"))
+            volumeMusic = PlayerPrefs.GetFloat("MusicVolume");
     }
 
     public float SFXVolume
@@ -49,6 +53,7 @@ public class SoundManager : MonoBehaviour
         set {
             volumeSFX = value;
             refreshVolumeSFX();
+            PlayerPrefs.SetFloat("SFXVolume", value);
         }
     }
 
@@ -59,6 +64,7 @@ public class SoundManager : MonoBehaviour
         {
             volumeMusic = value;
             refreshVolumeMusic();
+            PlayerPrefs.SetFloat("MusicVolume", value);
         }
     }
 

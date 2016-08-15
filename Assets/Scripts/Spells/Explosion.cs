@@ -24,7 +24,6 @@ public class Explosion : MonoBehaviour
 
     private CircleCollider2D circleCollider;
     private SpellIntensity intensity;
-    private float manaCost;
     private string spellName;
     private ParticleSystem partSystem;
     [HideInInspector]
@@ -120,7 +119,6 @@ public class Explosion : MonoBehaviour
         emitter = spell.emitter;
         damage = spell.damage;
         intensity = spell.lightIntensity;
-        manaCost = spell.manaCost;
         gameObject.layer = spell.gameObject.layer;
     }
 

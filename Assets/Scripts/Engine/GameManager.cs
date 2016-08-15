@@ -45,9 +45,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //loadGame();
         UIManager.instance.setupUI();
         //UIManager.instance.spellWindowByType.open();
         UIManager.instance.spellWindowBySet.open();
+    }
+
+    private void loadGame()
+    {
+        SaveGame game = SavingManager.loadGame();
+        if (game == null)
+            return;
+
+        Debug.Log("found a game to load");
+        SpellCaster caster = hero.GetComponent<SpellCaster>();
+        caster = game.caster;
     }
 
     public void revealMap()
@@ -132,6 +144,10 @@ public class GameManager : MonoBehaviour
 
 	public void exitGame()
 	{
+        //SaveGame game = new SaveGame();
+        //game.saveHero(hero.GetComponent<SpellCaster>());
+        //SavingManager.saveGame(game);
+
 		Application.Quit();
 	}
 

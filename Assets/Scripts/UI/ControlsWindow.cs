@@ -5,10 +5,28 @@ using System;
 public class ControlsWindow : MonoBehaviour
 {
     private ConfigControlButton[] configControlButtons;
+    private bool m_isOpen = false;
+    public bool isOpen {
+        get
+        {
+            return m_isOpen;
+        }
+    }
 
     void Awake()
     {
         configControlButtons = GetComponentsInChildren<ConfigControlButton>();
+    }
+
+    void OnEnable()
+    {
+        m_isOpen = true;
+    }
+
+    void OnDisable()
+    {
+        m_isOpen = false;
+        cancelInput();
     }
 
     public void cancelInput()
@@ -40,5 +58,7 @@ public class ControlsWindow : MonoBehaviour
     {
         SoundManager.instance.playSound("ClickOK");
         InputManager.instance.setupDefaults();
+        InputManager.instance.saveDataToPlayerPrefs();
+        InputManager.instance.refresh();
     }
 }
