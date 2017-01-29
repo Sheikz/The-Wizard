@@ -25,8 +25,11 @@ public class SpellAbsorbDamage : MonoBehaviour
         if (spell)
             emitterDmg = spell.emitter.GetComponent<Damageable>();
         if (spell && spell.emitter)
+        {
             bReceiver = spell.emitter.GetComponent<BuffsReceiver>();
-
+            absorbDamage = (int) (absorbDamage * spell.getMultiplier(spell.emitter));
+        }
+       
         dmg.baseHP = absorbDamage;
         dmg.maxHP = absorbDamage;
         dmg.currentHP = absorbDamage;
@@ -44,6 +47,13 @@ public class SpellAbsorbDamage : MonoBehaviour
             buff.icon = spell.icon;
             bReceiver.addBuff(buff);
         }
+    }
+
+    public int getAbsorbDamage(SpellCaster caster)
+    {
+        if (!caster)
+            return absorbDamage;
+        return (int)(absorbDamage * GetComponent<SpellController>().getMultiplier(caster));
     }
 
     void OnDestroy()

@@ -38,6 +38,13 @@ public static class Utils
         return input[Random.Range(0, input.Length)];
     }
 
+    public static int pickRandom(params int[] input)
+    {
+        if (input.Length == 0)
+            return 0;
+        return input[Random.Range(0, input.Length)];
+    }
+
     public static int pickRandomIndexWithDifferentChances(params float[] input)
     {
         if (input == null)

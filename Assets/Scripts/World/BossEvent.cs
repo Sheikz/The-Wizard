@@ -10,22 +10,20 @@ public class BossEvent : RoomEvent
 {
     public MonsterSpawner spawner;
 
-    private bool eventFinished = false;
+
 
     public override void playerEnteredRoom(PlayerController player)
     {
         if (eventFinished)
             return;
 
-        room.openEntrance(false);
-        room.openExits(false);
+        startEvent();
         spawner.spawnMonster();
         SoundManager.instance.playBossMusic();
     }
 
     public override void playerExitedRoom(PlayerController player)
     {
-        startEvent();
         room.openEntrance(true);
         spawner.clearMonsters();
         SoundManager.instance.playDungeonMusic();
@@ -34,8 +32,6 @@ public class BossEvent : RoomEvent
     public override void monsterDied(NPCController mc)
     {
         endEvent();
-        room.openEntrance(true);
-        room.openExits(true);
         eventFinished = true;
         SoundManager.instance.playDungeonMusic();
     }

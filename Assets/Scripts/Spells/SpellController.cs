@@ -180,7 +180,12 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
 
     public int getDamage(SpellCaster emitter)
     {
-        int result = damage;
+        return (int)(damage * getMultiplier(emitter));
+    }
+
+    public float getMultiplier(SpellCaster emitter)
+    {
+        float result = 1.0f;
         if (emitter == null)
         {
             Debug.LogError("Emitter not defined for " + name);
@@ -194,7 +199,6 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
             result = Mathf.RoundToInt(result * inventory.getDamageMultiplier(magicElement));
 
         result = Mathf.RoundToInt(result * emitter.getActiveBuff(magicElement));
-
         return result;
     }
 
@@ -235,33 +239,33 @@ public abstract class SpellController : MonoBehaviour, IComparable<SpellControll
         if (emitter.isMonster && damage >= 0)   // Monster offensive spell
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerManager.instance.monsterSpellCollidingWithSpellsInt;
+                gameObject.layer = LayerManager.monsterSpellCollidingWithSpellsInt;
             else
-                gameObject.layer = LayerManager.instance.monsterSpellsInt;
+                gameObject.layer = LayerManager.monsterSpellsInt;
             enemyLayer = GameManager.instance.layerManager.heroLayer;
         }
         else if (emitter.isMonster && damage < 0)   // Monster healing spell
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerManager.instance.heroSpellCollidingWithSpellsInt;
+                gameObject.layer = LayerManager.heroSpellCollidingWithSpellsInt;
             else
-                gameObject.layer = LayerManager.instance.spellsLayerInt;
+                gameObject.layer = LayerManager.spellsLayerInt;
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
         }
         else if (!emitter.isMonster && damage >= 0) // Hero offensive spell
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerManager.instance.heroSpellCollidingWithSpellsInt;
+                gameObject.layer = LayerManager.heroSpellCollidingWithSpellsInt;
             else
-                gameObject.layer = LayerManager.instance.spellsLayerInt;
+                gameObject.layer = LayerManager.spellsLayerInt;
             enemyLayer = GameManager.instance.layerManager.monsterLayer;
         }
         else // Hero defensive spell
         {
             if (collidesWithSpells)
-                gameObject.layer = LayerManager.instance.monsterSpellCollidingWithSpellsInt;
+                gameObject.layer = LayerManager.monsterSpellCollidingWithSpellsInt;
             else
-                gameObject.layer = LayerManager.instance.monsterSpellsInt;
+                gameObject.layer = LayerManager.monsterSpellsInt;
             enemyLayer = GameManager.instance.layerManager.heroLayer;
         }
     }

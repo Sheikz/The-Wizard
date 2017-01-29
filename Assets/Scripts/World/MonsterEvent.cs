@@ -17,7 +17,9 @@ public class MonsterEvent : RoomEvent
 
     public override void monsterDied(NPCController mc)
     {
-        return;
+        monsters.Remove(mc);
+        if (monsters.Count == 0)
+            endEvent();
     }
 
     public override void initialize()
@@ -35,7 +37,15 @@ public class MonsterEvent : RoomEvent
             return;
         }
         filterRoomTiles();
-        var monstersToPut = WorldManager.instance.getMonsters(this);
+        int monsterNumbers = 0;
+        switch (roomSize)
+        {
+            case RoomSize.Small: monsterNumbers = 2; break;
+            case RoomSize.Medium: monsterNumbers = 3; break;
+            case RoomSize.Large: monsterNumbers = 4; break;
+            case RoomSize.UltraLarge: monsterNumbers = 8; break;
+        }
+        var monstersToPut = WorldManager.instance.getMonsters(monsterNumbers);
         foreach (NPCController monsterPrefab in monstersToPut)
         {
             Tile tileToPutMonster = Utils.pickRandom(roomTiles);
@@ -43,30 +53,18 @@ public class MonsterEvent : RoomEvent
             //    continue;
             NPCController newMonster = Instantiate(monsterPrefab, tileToPutMonster.position(), Quaternion.identity) as NPCController;
             newMonster.transform.SetParent(room.map.monsterHolder);
-            newMonster.initialize(room.map);
+            newMonster.initialize(room);
             newMonster.activate(false);
             monsters.Add(newMonster);
         }
     }
 
-    /// <summary>
-    /// Remove the tiles which are not practicable
-    /// </summary>
-    void filterRoomTiles()
-    {
-        for (int i= roomTiles.Count -1; i >= 0; i--)
-        {
-            if ((roomTiles[i].type != TileType.Floor) ||
-                roomTiles[i].getDistanceToClosest(true) <= 0.1f)
-            {
-                roomTiles.RemoveAt(i);
-                continue;
-            }
-        }
-    }
-
     public override void playerEnteredRoom(PlayerController player)
     {
+        if (eventFinished)
+            return;
+
+        startEvent();
         foreach (NPCController monster in monsters)
         {
             if (monster)

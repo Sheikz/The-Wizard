@@ -52,7 +52,6 @@ public class MovingSpell : SpellController
                     autoPilot.lockToObject(emitter.targetOpponent.transform);
                 else if (emitter.targetAlly)
                 {
-                    Debug.Log(emitter.name + " locking on ally : " + emitter.targetAlly.name);
                     autoPilot.lockToObject(emitter.targetAlly.transform);
                 }
             }

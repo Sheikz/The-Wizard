@@ -16,12 +16,19 @@ public class ChannelSpell : SpellController
         laser = GetComponent<Laser>();
     }
 
+    public void init()
+    {
+        laser.init();
+    }
+
     public override SpellController castSpell(SpellCaster emitter, Vector3 target)
     {
         currentChannel = Instantiate(this);
         currentChannel.emitter = emitter;
-        currentChannel.refresh(target);
         currentChannel.applyChannelPerks();
+        currentChannel.init();
+
+        currentChannel.refresh(target);
         return currentChannel;
     }
 
@@ -41,6 +48,10 @@ public class ChannelSpell : SpellController
                 if (stats.getItemPerk(ItemPerk.IceBeamMove))
                     canMoveWhileCasting = true;
                 break;
+            case "Judgement":
+                if (stats.getItemPerk(ItemPerk.LightRayAdditionalRays))
+                    laser.additionalRaysPerSide = 1;
+                break;
         }
 
         MovingCharacter movingChar = emitter.GetComponent<MovingCharacter>();
@@ -56,14 +67,21 @@ public class ChannelSpell : SpellController
 
     internal virtual void stop()
     {
+        if (currentChannel && currentChannel.laser)
+            currentChannel.laser.stop();
         if (currentChannel)
             Destroy(currentChannel.gameObject);
+
+        if (laser)
+            laser.stop();
     }
 
     internal virtual bool update(Vector3 targetPosition)
     {
         if (currentChannel)
             currentChannel.refresh(targetPosition);
+        else
+            refresh(targetPosition);
 
         if (currentChannel && currentChannel.emitter)
         {

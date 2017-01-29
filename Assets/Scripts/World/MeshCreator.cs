@@ -103,7 +103,7 @@ public class MeshCreator : MonoBehaviour
                 pixels[(int)TextureItem.West] = getPixels(13, 5);
                 tag = "Hole";
                 name = "Hole";
-                gameObject.layer = LayerManager.instance.obstaclesLayerInt;
+                gameObject.layer = LayerManager.obstaclesLayerInt;
                 meshRenderer.sortingOrder = 3;
                 meshRenderer.sortingLayerName = "Floor";
                 break;
@@ -202,9 +202,9 @@ public class MeshCreator : MonoBehaviour
                 tag = "Wall";
                 name = "Wall";
                 if (blockingLow)
-                    gameObject.layer = LayerManager.instance.blockingLowInt;
+                    gameObject.layer = LayerManager.blockingLowInt;
                 else
-                    gameObject.layer = LayerManager.instance.blockingLayerInt;
+                    gameObject.layer = LayerManager.blockingLayerInt;
                 meshRenderer.sortingOrder = 0;
                 meshRenderer.sortingLayerName = "Walls";
                 break;
@@ -346,7 +346,7 @@ public class MeshCreator : MonoBehaviour
                 rumbles.transform.SetParent(transform);
                 rumbles.transform.localPosition = new Vector3(x, 0, 0) + new Vector3(0.5f, 0.5f, 0);
                 rumbles.transform.rotation = transform.rotation;
-                rumbles.layer = LayerManager.instance.blockingLowInt;
+                rumbles.layer = LayerManager.blockingLowInt;
             }
             else if (wallType == 1) // Pillar in-wall
             {

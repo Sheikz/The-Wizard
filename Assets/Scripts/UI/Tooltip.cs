@@ -24,6 +24,7 @@ public class Tooltip : MonoBehaviour
 
     private string parseDescription(SpellController spell, SpellCaster caster)
     {
+        Debug.Log("Parsing " + spell.spellName);
         spell = spell.getUpgradedSpell(caster);
         int damage = spell.getDamage(caster);
         string result = "";
@@ -82,6 +83,10 @@ public class Tooltip : MonoBehaviour
         ExplodingSpell explodingSpell = spell.GetComponent<ExplodingSpell>();
         if (explodingSpell && explodingSpell.delayedExplosions.Length > 0)
             result = result.Replace("<delay>", "<color=magenta>" + explodingSpell.delayedExplosions[0] + "</color>");
+
+        SpellAbsorbDamage absorbDamage = spell.GetComponent<SpellAbsorbDamage>();
+        if (absorbDamage)
+            result = result.Replace("<absorb>", "<color=orange>" + absorbDamage.getAbsorbDamage(caster) + "</color>");
 
         result = result.Replace("<n>", "\n");   // Put line feeds
         return result;

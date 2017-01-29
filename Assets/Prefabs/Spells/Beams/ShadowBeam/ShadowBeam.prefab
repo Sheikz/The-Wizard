@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1383478944847598}
+  m_IsPrefabParent: 1
+--- !u!1 &1383478944847598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4589293826687068}
+  - component: {fileID: 114655272180018542}
+  - component: {fileID: 114258487573150134}
+  - component: {fileID: 114954072852594458}
+  m_Layer: 0
+  m_Name: ShadowBeam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4589293826687068
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383478944847598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.548752, y: 4.4685135, z: 0.73046875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114258487573150134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383478944847598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c957a74ca8a474683606e633e73473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellName: Shadow Ray
+  spellTypeDescription: Channel
+  damageString: <dmg> damage/sec
+  description: Channel a ray of Shadow energy.<n>Damages single enemy
+  manaCost: 0
+  manaCostInterval: 0.25
+  castTime: 0
+  cooldown: 0.5
+  icon: {fileID: 21300358, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
+  spellType: 1
+  magicElement: 6
+  spellSet: 0
+  damage: 40
+  lightIntensity: 0
+  hasSpellWarning: 0
+  duration: 0
+  collidesWithSpells: 0
+  collidesWithWalls: 1
+  collidesWithBothParties: 0
+  upgradedSpells: []
+  emitter: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {x: 0, y: 0, z: 0}
+  moveSpellCaster: {fileID: 0}
+  stats: {fileID: 0}
+  ignoredColliders: []
+  canMoveWhileCasting: 0
+--- !u!114 &114655272180018542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383478944847598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7f977f19ba91f44af096a64516cfaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 1783102275529902, guid: 18fe571041dcf06478b5202d7431110e, type: 2}
+  explosion: {fileID: 114351961719874156, guid: d03cad1e5f230d74eb2a870d883d88e4,
+    type: 2}
+  hitExplosion: {fileID: 0}
+  delayBetweenDamage: 0.1
+  distance: 10
+  lineTemplate: {fileID: 120397164173320812, guid: 15b7ac327c7b829479c3c21253a4787b,
+    type: 2}
+  startDistanceOffset: 1
+  piercesEnemies: 0
+  textureScrollSpeed: 8
+  textureLengthScale: 3
+  additionalRaysPerSide: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &114954072852594458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1383478944847598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27fb72b4360c154fb572292600c0ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drainRatio: 0.1

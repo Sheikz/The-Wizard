@@ -62,17 +62,14 @@ public class WorldManager : MonoBehaviour
         name = "WorldManager";
     }
 
-    internal List<NPCController> getMonsters(MonsterEvent monsterEvent)
+    /// <summary>
+    /// Return a list of monsters randomy taken from the list of monsters
+    /// </summary>
+    /// <param name="monsterNumbers"></param>
+    /// <returns></returns>
+    internal List<NPCController> getMonsters(int monsterNumbers)
     {
         List<NPCController> result = new List<NPCController>();
-        int monsterNumbers = 0;
-        switch (monsterEvent.roomSize)
-        {
-            case RoomSize.Small: monsterNumbers = 2; break;
-            case RoomSize.Medium: monsterNumbers = 3; break;
-            case RoomSize.Large: monsterNumbers = 4; break;
-            case RoomSize.UltraLarge: monsterNumbers = 8; break;
-        }
         List<ItemWithDropChance> duplicatedList = new List<ItemWithDropChance>(monsters);
         for (int i= 0; i < monsterNumbers; i++)
         {

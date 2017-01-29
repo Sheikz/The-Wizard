@@ -12,7 +12,8 @@ public class SpellDamager : Damager
     public float damageRatio = 1f;
     public DamageValueType damageValueType = DamageValueType.Absolute;
 
-    private SpellController spell;
+    [HideInInspector]
+    public SpellController spell;
     private Explosion explosion;
 
     private DrainSpell drainSpell;
@@ -21,24 +22,37 @@ public class SpellDamager : Damager
     public float relativeDamageRatio;
     private SpellCaster emitter;
     private bool initialized = false;
+    private List<DamageListener> damageListeners;
 
     new void Awake()
     {
         base.Awake();
-        spell = GetComponent<SpellController>();
+        if (!spell)
+            spell = GetComponent<SpellController>();
         if (!spell)
             spell = GetComponentInParent<SpellController>();
         explosion = GetComponent<Explosion>();
         if (!explosion)
             explosion = GetComponentInParent<Explosion>();
 
+        damageListeners = new List<DamageListener>();
+        foreach (DamageListener d in GetComponents<DamageListener>())
+        {
+            damageListeners.Add(d);
+        }
 
         drainSpell = GetComponent<DrainSpell>();
         statusEffects = GetComponentsInChildren<StatusEffect>();
     }
 
+    public void addDamageListener(DamageListener l)
+    {
+        damageListeners.Add(l);
+    }
+
     void Start()
     {
+        
         initialize();
     }
 
@@ -79,7 +93,7 @@ public class SpellDamager : Damager
 
         if (spell.collidesWithBothParties)
         {
-            gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
+            gameObject.layer = LayerManager.monstersAndHeroLayerInt;
         }
         else if (spell.emitter == null)
         {
@@ -88,10 +102,10 @@ public class SpellDamager : Damager
         }
         else if (spell.emitter.isMonster)
         {
-            gameObject.layer = LayerManager.instance.monsterSpellsInt;
+            gameObject.layer = LayerManager.monsterSpellsInt;
         }
         else
-            gameObject.layer = LayerManager.instance.spellsLayerInt;
+            gameObject.layer = LayerManager.spellsLayerInt;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -133,6 +147,11 @@ public class SpellDamager : Damager
         dmg.doDamage(this, emitter, damage);
         if (drainSpell)
             drainSpell.absorbDamage(damage);
+
+        foreach(DamageListener d in damageListeners)
+        {
+            d.onDamage(emitter, dmg, damage);
+        }
 
         if (spell && dmg.isUnit)
             spell.giveMana();

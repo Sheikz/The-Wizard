@@ -81,11 +81,6 @@ public class ExplodingSpell : MonoBehaviour
                 if (dmg && dmg.isUnit)
                     spell.giveMana();
 
-                if (dmg && piercesEnemies)
-                    destroyWhenExplodes = false;
-                else
-                    destroyWhenExplodes = true;
-
                 explode(collider);
                 return;
             }
@@ -164,11 +159,11 @@ public class ExplodingSpell : MonoBehaviour
         if (spell.ignoredColliders.Contains(other))
             return;
 
-        if (!spell.collidesWithWalls && other.gameObject.layer == LayerManager.instance.blockingLayerInt)
+        if (!spell.collidesWithWalls && other.gameObject.layer == LayerManager.blockingLayerInt)
             return;
 
         if (spell.collidesWithSpells &&
-            (other.gameObject.layer == LayerManager.instance.spellsLayerInt || other.gameObject.layer == LayerManager.instance.monsterSpellsInt))
+            (other.gameObject.layer == LayerManager.spellsLayerInt || other.gameObject.layer == LayerManager.monsterSpellsInt))
             return;
 
         if (other.CompareTag("NoExplosion")) // Dont explose when colliding sphere

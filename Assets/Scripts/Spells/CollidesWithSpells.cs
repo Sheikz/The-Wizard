@@ -25,11 +25,11 @@ public class CollidesWithSpells : MonoBehaviour
         }
         if (spell.emitter.isMonster)
         {
-            gameObject.layer = LayerManager.instance.monsterSpellCollidingWithSpellsInt;
+            gameObject.layer = LayerManager.monsterSpellCollidingWithSpellsInt;
         }
         else
         {
-            gameObject.layer = LayerManager.instance.heroSpellCollidingWithSpellsInt;
+            gameObject.layer = LayerManager.heroSpellCollidingWithSpellsInt;
         }
     }
 }

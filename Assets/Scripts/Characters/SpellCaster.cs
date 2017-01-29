@@ -29,7 +29,7 @@ public class SpellCaster : MonoBehaviour
 	[HideInInspector]
 	public bool isMonster;
 	private List<Companion> companionList;
-	private List<CompanionController> followerList;
+	public List<CompanionController> followerList;
 	[HideInInspector]
 	public List<CircleSpell> activeCircleSpells;
 	private int maxNumberOfActiveCompanions = 3;
@@ -44,6 +44,8 @@ public class SpellCaster : MonoBehaviour
     private BuffsReceiver buffReceiver;
     private float itemManaRegen;
     private int itemCritChance;
+    [HideInInspector]
+    public LayerMask enemyLayer;
 
     private List<PowerUpBuff> activeBuffs;
     private bool payChannelManaOnCooldown = false;
@@ -57,27 +59,34 @@ public class SpellCaster : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
     }
 
-	// Use this for initialization
-	void Start ()
-	{
-		isOnCoolDown = new bool[spellList.Length];
-		resetCooldowns();
-		spellIcons = new Image[spellList.Length];
+    // Use this for initialization
+    void Start()
+    {
+        isOnCoolDown = new bool[spellList.Length];
+        resetCooldowns();
+        spellIcons = new Image[spellList.Length];
         tooltips = new HoveringToolTip[spellList.Length];
-		companionList = new List<Companion>();
-		followerList = new List<CompanionController>();
-		activeBuffs = new List<PowerUpBuff>();
-		mana = maxMana;
+        companionList = new List<Companion>();
+        followerList = new List<CompanionController>();
+        activeBuffs = new List<PowerUpBuff>();
+        mana = maxMana;
 
-		if (tag == "Hero")
-		{
-			isMonster = false;
-			isHero = true;
-		}
-		else if (tag == "HeroCompanion")
-			isMonster = false;
-		else
-			isMonster = true;
+        if (tag == "Hero")
+        {
+            isMonster = false;
+            isHero = true;
+            enemyLayer = GameManager.instance.layerManager.monsterLayer;
+        }
+        else if (tag == "HeroCompanion")
+        {
+            enemyLayer = GameManager.instance.layerManager.monsterLayer;
+            isMonster = false;
+        }
+        else
+        {
+            isMonster = true;
+            enemyLayer = GameManager.instance.layerManager.heroLayer;
+        }
 
 		if (isHero)
 		{
@@ -137,6 +146,11 @@ public class SpellCaster : MonoBehaviour
 		refreshIcons();
 		return true;
 	}
+
+    public bool hasEnoughMana(SpellController spell)
+    {
+        return (spell.manaCost <= getMana());
+    }
 
     /// <summary>
     /// Does this spellcaster have healing spells? (with negative damage)
@@ -227,7 +241,7 @@ public class SpellCaster : MonoBehaviour
 		if (isCasting)
 			return;
 
-        if (useMana && mana < spell.manaCost)
+        if (useMana && !hasEnoughMana(spell))
         {
             if (isHero)
                 SoundManager.instance.playSound("NotEnoughMana");

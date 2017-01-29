@@ -16,10 +16,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000012407773754}
-  - 114: {fileID: 114000013726108678}
+  - component: {fileID: 4000012407773754}
+  - component: {fileID: 114000013726108678}
   m_Layer: 0
   m_Name: SummonTreant
   m_TagString: Untagged
@@ -51,29 +51,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16540cf85bf30b04a84cc2d3204d75e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellName: Summon Treant
+  spellName: Call of Nature
   spellTypeDescription: Summoning
   damageString: 
   description: Summon a treant protector
-  manaCost: 0
+  manaCost: 40
   manaCostInterval: 1
-  castTime: 0
-  cooldown: 2
+  castTime: 2
+  cooldown: 60
   icon: {fileID: 21300848, guid: ab47a245860fa1e4d8e079ee86f5ef8e, type: 3}
   spellType: 3
   magicElement: 5
   spellSet: 0
   damage: 10
   lightIntensity: 0
+  hasSpellWarning: 0
   duration: 60
   collidesWithSpells: 0
   collidesWithWalls: 1
   collidesWithBothParties: 0
+  upgradedSpells: []
   emitter: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
   target: {x: 0, y: 0, z: 0}
   moveSpellCaster: {fileID: 0}
+  stats: {fileID: 0}
   ignoredColliders: []
   NPC: {fileID: 114000012346366976, guid: 3e10897b53c2b654a8109981c380e95a, type: 2}
+  maxSummonNumber: 1

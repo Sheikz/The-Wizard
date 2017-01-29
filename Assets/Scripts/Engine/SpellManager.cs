@@ -29,4 +29,13 @@ public class SpellManager : MonoBehaviour
     public Sprite slowDebuffIcon;
     public Sprite stunIcon;
 
+    public static GameObject getSpell(MagicElement element, SpellType type, SpellSet set)
+    {
+        return instance.spellList.Find(elem =>
+        {
+            SpellController spell = elem.GetComponent<SpellController>();
+            return (spell.magicElement == element && spell.spellType == type && spell.spellSet == set);
+        });
+    }
+
 }

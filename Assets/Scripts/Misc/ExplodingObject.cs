@@ -9,7 +9,7 @@ public class ExplodingObject : MonoBehaviour
 
     void Awake()
     {
-        gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
+        gameObject.layer = LayerManager.monstersAndHeroLayerInt;
     }
 
     public void explode()

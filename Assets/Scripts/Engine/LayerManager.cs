@@ -19,17 +19,17 @@ public class LayerManager : MonoBehaviour
     public LayerMask holeLayer;
     public LayerMask heroAndMonsters;
 
-    public int blockingLayerInt;
-    public int blockingLowInt;
-    public int spellsLayerInt;
-    public int monsterSpellsInt;
-    public int monsterSpellCollidingWithSpellsInt;
-    public int heroSpellCollidingWithSpellsInt;
-    public int obstaclesLayerInt;
-    public int monstersAndHeroLayerInt;
-    public int monsterShieldLayerInt;
-    public int heroShieldLayerInt;
-    public int itemLayersInt;
+    public static int blockingLayerInt;
+    public static int blockingLowInt;
+    public static int spellsLayerInt;
+    public static int monsterSpellsInt;
+    public static int monsterSpellCollidingWithSpellsInt;
+    public static int heroSpellCollidingWithSpellsInt;
+    public static int obstaclesLayerInt;
+    public static int monstersAndHeroLayerInt;
+    public static int monsterShieldLayerInt;
+    public static int heroShieldLayerInt;
+    public static int itemLayersInt;
 
     void Awake()
     {

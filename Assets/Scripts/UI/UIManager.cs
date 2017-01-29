@@ -31,12 +31,17 @@ public class UIManager : MonoBehaviour
 	public Sprite emptyIcon;
 	public InventoryItemIcon inventoryItemIcon;
     public BuffBar buffBar;
+    public InitialSpellSelection initialSpells;
 	public Color[] elementColors;
+    public Sprite[] elementIcons;
 
 	[HideInInspector]
 	public Image[] coolDownImages;
-	private Color originalScreenMaskColor;
+    private Image[] iconImages;
+    private Color originalScreenMaskColor;
 	public GameObject deathAnimation;
+    private Text centerTextText;
+    private SpellCaster hero;
 
 	void Awake()
 	{
@@ -46,6 +51,7 @@ public class UIManager : MonoBehaviour
 			Destroy(gameObject);
 
 		name = "UIManager";
+        centerTextText = centerText.GetComponent<Text>();
 	}
 
 	public void setupUI()
@@ -65,9 +71,33 @@ public class UIManager : MonoBehaviour
         linkIcons();
 		refreshIconsDescription();
 		characterWindow.initialize();
+        initialSpells.initialize();
 	}
 
-	public void switchMenu()
+    private void Update()
+    {
+        updateIconsAccordingToMana();
+    }
+
+    void updateIconsAccordingToMana()
+    {
+        if (!hero)
+            hero = GameManager.instance.hero.GetComponent<SpellCaster>();
+        if (!hero)
+            return;
+
+        for (int i=0; i < iconImages.Length; i++)
+        {
+            if (!hero.spellList[i])
+                continue;
+
+            Color c = iconImages[i].color;
+            c.a = hero.hasEnoughMana(hero.spellList[i]) ? 1.0f : 0.5f;
+            iconImages[i].color = c;
+        }
+    }
+
+    public void switchMenu()
 	{
 		SoundManager.instance.playSound("ClickEsc");
 		showMenu(!exitMenu.activeSelf);
@@ -105,11 +135,16 @@ public class UIManager : MonoBehaviour
 	private void linkIcons()
 	{
 		coolDownImages = new Image[spellIcons.Length];
+        iconImages = new Image[spellIcons.Length];
 		for (int i = 0; i < spellIcons.Length; i++)
 		{
 			coolDownImages[i] = spellIcons[i].transform.Find("CooldownFill").GetComponent<Image>();
 		}
-	}
+        for (int i = 0; i < spellIcons.Length; i++)
+        {
+            iconImages[i] = spellIcons[i].transform.Find("SpellIcon").GetComponent<Image>();
+        }
+    }
 
 	internal void setIconDescription(InputManager.Command cmd)
 	{
@@ -165,6 +200,15 @@ public class UIManager : MonoBehaviour
         FloatingText xpText = (Instantiate(floatingText) as GameObject).GetComponent<FloatingText>();
         xpText.initialize(position, text);
         xpText.setColor(color);
+    }
+
+    public void setCenterText(string text, Color? color = null)
+    {
+        if (color == null)
+            color = Color.white;
+
+        centerTextText.text = text;
+        centerText.SetActive(true);
     }
 
     public float getFPS()

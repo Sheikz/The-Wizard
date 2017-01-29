@@ -25,6 +25,7 @@ public class Damageable : MonoBehaviour
     private GameObject healingAnimation;
     private SpriteRenderer spriteRenderer;
     private MovingCharacter movingChar;
+    private NPCController npc;
 
     [HideInInspector]
     public bool isDead = false;
@@ -45,6 +46,7 @@ public class Damageable : MonoBehaviour
             originalMaterial = spriteRenderer.material;
         damagers = new List<Damager>();
         buffReceiver = GetComponent<BuffsReceiver>();
+        npc = GetComponent<NPCController>();
     }
 
     void Start()
@@ -220,6 +222,8 @@ public class Damageable : MonoBehaviour
         }
         refreshHPBar();
 
+        if (npc)
+            npc.damagedBy(emitter);
         StartCoroutine(damageCooldown(invincibilityTime)); // Make invincible
     }
 
@@ -272,7 +276,7 @@ public class Damageable : MonoBehaviour
             GameObject destruction = Instantiate(destAnimation, transform.position, Quaternion.identity) as GameObject;
             if (!isUnit)
             {
-                destruction.gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
+                destruction.gameObject.layer = LayerManager.monstersAndHeroLayerInt;
             }
         }
 

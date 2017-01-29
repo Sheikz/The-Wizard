@@ -59,7 +59,9 @@ public class StaticSpell : SpellController
         if (time == 0)
             yield break;
         yield return new WaitForSeconds(time);
-        system.loop = false;
+
+        var s = system.main;
+        s.loop = false;
     }
 
     new protected void Start()
@@ -70,7 +72,7 @@ public class StaticSpell : SpellController
         //StartCoroutine(destroyAfterSeconds(duration * 2));  // Weird fix because fireVortex tends to stay
         durationLeft = duration;
         if (collidesWithBothParties)
-            gameObject.layer = LayerManager.instance.monstersAndHeroLayerInt;
+            gameObject.layer = LayerManager.monstersAndHeroLayerInt;
     }
 
     protected void FixedUpdate()

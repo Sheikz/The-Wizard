@@ -22,7 +22,7 @@ public abstract class Item : MonoBehaviour
 
     protected void Start()
     {
-        gameObject.layer = LayerManager.instance.itemLayersInt;
+        gameObject.layer = LayerManager.itemLayersInt;
         if (GameManager.instance.map)
             transform.SetParent(GameManager.instance.map.itemHolder);
     }

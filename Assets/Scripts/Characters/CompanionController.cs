@@ -30,7 +30,6 @@ public class CompanionController : NPCController
         RaycastHit2D hit = Physics2D.Linecast(transform.position, master.transform.position, GameManager.instance.layerManager.obstacleLayer);
         if (hit)
         {
-            Debug.Log("computing path to master");
             computePathToMaster();
             return;
         }
@@ -68,6 +67,7 @@ public class CompanionController : NPCController
 
     public override void die()
     {
+        base.die();
         SpellCaster caster = master.GetComponent<SpellCaster>();
         if (caster)
             caster.removeFollower(this);
@@ -75,6 +75,7 @@ public class CompanionController : NPCController
 
     public override void receivesDamage()
     {
+        Debug.Log("receiving damage!");
     }
 
     

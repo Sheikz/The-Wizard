@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
+	// public void HideGUI()
+	// {
+		
+	// }
     public void LoadSceneProjectiles()
     {
         SceneManager.LoadScene("magic_projectiles");
@@ -57,5 +61,17 @@ public class LoadSceneOnClick : MonoBehaviour
     public void LoadSceneWalls()
     {
         SceneManager.LoadScene("magic_walls");
+    }
+	public void LoadSceneBeams()
+    {
+        SceneManager.LoadScene("magic_beams");
+    }
+	public void LoadSceneMeshGlow()
+    {
+        SceneManager.LoadScene("magic_meshglow");
+    }
+	public void LoadScenePillarBlast()
+    {
+        SceneManager.LoadScene("magic_pillarblast");
     }
 }

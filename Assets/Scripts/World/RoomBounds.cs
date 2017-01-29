@@ -17,7 +17,10 @@ public class RoomBounds : MonoBehaviour
         playersInside = new HashSet<PlayerController>();
         playersToRemove = new Stack<PlayerController>();
         roomBounds = GetComponents<BoxCollider2D>();
+        foreach (BoxCollider2D bc in roomBounds)
+            bc.isTrigger = true;
         room = GetComponentInParent<Room>();
+        gameObject.layer = LayerMask.NameToLayer("OnlyHero");
     }
 
     void Update()

@@ -20,24 +20,4 @@ public class RoomEdges : MonoBehaviour
             Debug.LogWarning(room.name +": room edges local position not equal to origin! at "+room.transform.position);
         }
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        PlayerController player = collision.GetComponent<PlayerController>();
-        if (!player)
-            return;
-
-        if (room)
-            room.playerEnteredRoom(player);
-    }
-
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        PlayerController player = collision.GetComponent<PlayerController>();
-        if (!player)
-            return;
-
-        if (room)
-            room.playerExitedRoom(player);
-    }
 }

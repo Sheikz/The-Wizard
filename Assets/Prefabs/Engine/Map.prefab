@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 402694}
-  - 114: {fileID: 11417882}
+  - component: {fileID: 402694}
+  - component: {fileID: 11417882}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -25,10 +25,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11417882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,14 +66,20 @@ MonoBehaviour:
     lootChance: 1
   - item: {fileID: 1000010263354850, guid: 437571f940b58984f9f4adb0d772ec31, type: 2}
     lootChance: 1
+  - item: {fileID: 1000014189529980, guid: ad1ab0c23ed96194e895b3e1747da3bd, type: 2}
+    lootChance: 1
+  - item: {fileID: 1572180428033156, guid: 45d253501e363874b8387722a6cf28da, type: 2}
+    lootChance: 100
   bossRoomPrefabs:
   - item: {fileID: 114406, guid: 1f0fc4dc00e2c304bbd0a3e252b17209, type: 2}
     lootChance: 1
   - item: {fileID: 1000010227893316, guid: edeecdf64a03c2c43a07f451496b5d2e, type: 2}
     lootChance: 1
+  - item: {fileID: 1377989970632418, guid: 9f8ce77a4c2ad8345a4ec409dd622dee, type: 2}
+    lootChance: 1
   bossRoom: 1
-  allowedGenerationTime: 5
-  roomNumber: 6
+  allowedGenerationTime: 1
+  roomNumber: 3
   distanceBetweenRoom: 4
   mergingChance: 0.4
   proxyObjects: []

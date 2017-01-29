@@ -39,9 +39,6 @@ public class PlayerStats : CharacterStats
         pointsToAllocate = new int[numberOfTypes];
         pointsToAllocate[(int)SpellType.Primary] = 1;   // The hero stats with 1 point to allocate in the primary spells
         elementUnlocked = new bool[Enum.GetValues(typeof(MagicElement)).Length];
-        elementUnlocked[(int)MagicElement.Fire] = true;
-        elementUnlocked[(int)MagicElement.Arcane] = true;
-        elementUnlocked[(int)MagicElement.Ice] = true;
         spellTypeUnlocked = new bool[Enum.GetValues(typeof(SpellType)).Length];
         spellTypeUnlocked[(int)SpellType.Primary] = true;
     }
@@ -122,14 +119,6 @@ public class PlayerStats : CharacterStats
 
         if (level >= 6)
             spellTypeUnlocked[(int)SpellType.Ultimate2] = true;
-
-        if (level >= 7)
-        {
-            elementUnlocked[(int)MagicElement.Air] = true;
-            elementUnlocked[(int)MagicElement.Light] = true;
-            elementUnlocked[(int)MagicElement.Shadow] = true;
-            elementUnlocked[(int)MagicElement.Earth] = true;
-        }
 
 
         UIManager.instance.spellWindowByType.refresh();

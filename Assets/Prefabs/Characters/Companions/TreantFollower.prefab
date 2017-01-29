@@ -16,19 +16,19 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000011351174506}
-  - 212: {fileID: 212000012315330106}
-  - 114: {fileID: 114000012346366976}
-  - 114: {fileID: 114000011857833132}
-  - 114: {fileID: 114000010910917042}
-  - 58: {fileID: 58000010441948720}
-  - 50: {fileID: 50000014268928180}
-  - 95: {fileID: 95000012171562838}
-  - 114: {fileID: 114000010805560186}
-  - 114: {fileID: 114000012555623536}
-  - 114: {fileID: 114000013432465152}
+  - component: {fileID: 4000011351174506}
+  - component: {fileID: 212000012315330106}
+  - component: {fileID: 114000012346366976}
+  - component: {fileID: 114000011857833132}
+  - component: {fileID: 114000010910917042}
+  - component: {fileID: 58000010441948720}
+  - component: {fileID: 50000014268928180}
+  - component: {fileID: 95000012171562838}
+  - component: {fileID: 114000010805560186}
+  - component: {fileID: 114000012555623536}
+  - component: {fileID: 114000013432465152}
   m_Layer: 10
   m_Name: TreantFollower
   m_TagString: HeroCompanion
@@ -51,17 +51,20 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50000014268928180
 Rigidbody2D:
-  serializedVersion: 2
+  serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011431491536}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_IsKinematic: 0
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 0
@@ -117,9 +120,13 @@ MonoBehaviour:
   isHero: 0
   playerStats: {fileID: 0}
   isMonster: 0
+  followerList: []
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
   targetAlly: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114000010910917042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,12 +156,18 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 2100000, guid: eb344bc0518861c4191ec8540eeaf55a, type: 2}
   showHPBar: 1
-  destructionAnimation: {fileID: 0}
-  maxHP: 1000
+  destructionAnimation:
+  - {fileID: 0}
+  outOfCombatRegen: 0
+  timeToLeaveCombat: 5
+  isUnit: 1
+  maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 1
   isDead: 0
+  inCombat: 0
+  timeleftInCombat: 0
 --- !u!114 &114000012346366976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2bb886ad8bab04d871c17223a02e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
+  baseSpeed: 1.5
   speed: 3
   direction: {x: 0, y: 0}
   rb: {fileID: 0}
@@ -239,11 +252,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -251,6 +267,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

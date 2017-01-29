@@ -16,21 +16,21 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000010282737136}
-  - 212: {fileID: 212000013233232380}
-  - 114: {fileID: 114000010553877444}
-  - 95: {fileID: 95000010791941122}
-  - 50: {fileID: 50000010094495568}
-  - 58: {fileID: 58000010461045898}
-  - 114: {fileID: 114000010465460882}
-  - 114: {fileID: 114000012484320614}
-  - 114: {fileID: 114000013483894800}
-  - 114: {fileID: 114000012422333416}
-  - 114: {fileID: 114000013480571402}
-  - 114: {fileID: 114000011607624222}
-  - 114: {fileID: 114000010776255270}
+  - component: {fileID: 4000010282737136}
+  - component: {fileID: 212000013233232380}
+  - component: {fileID: 114000010553877444}
+  - component: {fileID: 95000010791941122}
+  - component: {fileID: 50000010094495568}
+  - component: {fileID: 58000010461045898}
+  - component: {fileID: 114000010465460882}
+  - component: {fileID: 114000012484320614}
+  - component: {fileID: 114000013483894800}
+  - component: {fileID: 114000012422333416}
+  - component: {fileID: 114000013480571402}
+  - component: {fileID: 114000011607624222}
+  - component: {fileID: 114000010776255270}
   m_Layer: 9
   m_Name: Monster01
   m_TagString: Enemy
@@ -53,17 +53,20 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50000010094495568
 Rigidbody2D:
-  serializedVersion: 2
+  serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013481156612}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_IsKinematic: 0
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -116,12 +119,18 @@ MonoBehaviour:
   healAnimation: {fileID: 0}
   flashingMaterial: {fileID: 0}
   showHPBar: 1
-  destructionAnimation: {fileID: 0}
+  destructionAnimation:
+  - {fileID: 0}
+  outOfCombatRegen: 0
+  timeToLeaveCombat: 5
+  isUnit: 1
   maxHP: 500
   currentHP: 0
   onDamageCooldown: 0
   isInvincible: 0
   isDead: 0
+  inCombat: 0
+  timeleftInCombat: 0
 --- !u!114 &114000010553877444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +199,7 @@ MonoBehaviour:
   alwaysVisible: 0
   needToBeSeenOnce: 0
   isVisible: 0
+  parentRoom: {fileID: 0}
 --- !u!114 &114000012422333416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experience: 50
+  shouldGiveExp: 1
 --- !u!114 &114000012484320614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,9 +233,13 @@ MonoBehaviour:
   isHero: 0
   playerStats: {fileID: 0}
   isMonster: 0
+  followerList: []
   activeCircleSpells: []
   targetOpponent: {fileID: 0}
   targetAlly: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114000013480571402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,11 +278,14 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 32bff1d470ea63b4181bb02c516a547d, type: 2}
-  m_SubsetIndices: 
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
@@ -275,6 +293,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89

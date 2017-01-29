@@ -191,6 +191,7 @@ public class Room : MonoBehaviour, IComparable<Room>
         RoomEvent[] events = GetComponents<RoomEvent>();
         foreach (RoomEvent ev in events)
         {
+            Debug.Log("initializing " + ev.name);
             ev.initialize();
         }
 

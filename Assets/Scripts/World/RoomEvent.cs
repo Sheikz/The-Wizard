@@ -12,13 +12,14 @@ public abstract class RoomEvent : MonoBehaviour
     protected Room room;
     protected List<Tile> roomTiles;
     protected BoxCollider2D[] roomBounds;
+    protected bool eventFinished = false;
 
     protected void Awake()
     {
         room = GetComponent<Room>();
     }
 
-    void Start()
+    protected void Start()
     {
         foreach (GameObject obj in spawnAfterEvent)
         {
@@ -44,16 +45,39 @@ public abstract class RoomEvent : MonoBehaviour
         }
     }
 
-    protected void startEvent()
+    /// <summary>
+    /// Remove the tiles which are not practicable
+    /// </summary>
+    protected void filterRoomTiles()
     {
-
+        for (int i = roomTiles.Count - 1; i >= 0; i--)
+        {
+            if ((roomTiles[i].type != TileType.Floor) ||
+                roomTiles[i].getDistanceToClosest(true) <= 0.1f)
+            {
+                roomTiles.RemoveAt(i);
+                continue;
+            }
+        }
     }
 
-    protected void endEvent()
+    protected void startEvent()
     {
-        foreach (GameObject obj in spawnAfterEvent)
+        room.openEntrance(false);
+        room.openExits(false);
+    }
+
+    protected void endEvent(bool spawn = true)
+    {
+        eventFinished = true;
+        room.openEntrance(true);
+        room.openExits(true);
+        if (spawn)
         {
-            obj.SetActive(true);
+            foreach (GameObject obj in spawnAfterEvent)
+            {
+                obj.SetActive(true);
+            }
         }
     }
 }

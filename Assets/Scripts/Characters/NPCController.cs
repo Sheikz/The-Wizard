@@ -206,6 +206,20 @@ public class NPCController : MovingCharacter
         moveToTarget();
     }
 
+    internal void damagedBy(SpellCaster emitter)
+    {
+        if (state == NPCState.Chase)
+            return;
+
+        var dmg = emitter.GetComponent<Damageable>();
+        if (!dmg)
+            return;
+
+        targetOpponent = dmg;
+        spellCaster.targetOpponent = dmg.transform;
+        startChasing();
+    }
+
     /// <summary>
     /// Search for a target in the surroundings. If found, return with true
     /// </summary>
@@ -224,10 +238,7 @@ public class NPCController : MovingCharacter
 
             if (inLineOfSight(dmg))
             {
-                targetOpponent = dmg;
-                spellCaster.targetOpponent = dmg.transform;
-                startChasing();
-                UIManager.instance.createFloatingText("!", Color.yellow, gameObject);   // Put a floating "!" to show detection
+                setTarget(dmg);
                 return true;
             }
         }
@@ -239,15 +250,21 @@ public class NPCController : MovingCharacter
         if (!dmg && !dmg.isDead)
             return false;
 
-        if ((dmg.transform.position - transform.position).sqrMagnitude > visionDistance * visionDistance)
-            return false;
-
         RaycastHit2D hit = Physics2D.Linecast(transform.position, dmg.transform.position, visionLayer);
         if (!hit)
         {
             return true;
         }
         return false;
+    }
+
+    public void setTarget(Damageable dmg)
+    {
+        targetOpponent = dmg;
+        if (spellCaster && dmg)
+            spellCaster.targetOpponent = dmg.transform;
+        startChasing();
+        UIManager.instance.createFloatingText("!", Color.yellow, gameObject);   // Put a floating "!" to show detection
     }
 
     void doChase()

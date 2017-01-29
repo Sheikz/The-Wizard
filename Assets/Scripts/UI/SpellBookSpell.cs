@@ -9,12 +9,14 @@ public class SpellBookSpell : MonoBehaviour
     public Text spellLevel;
     public Image spellImage;
     public Button levelUpButton;
+    public bool levelUpWhenClicked = false;
     
     private SpellCaster hero;
     private PlayerStats heroStats;
     [HideInInspector]
     public SpellController containedSpell;
     private Image imageBackground;
+    private InitialSpellSelection initialSpellSelection;
 
     private SpellBook spellBook;
 
@@ -31,6 +33,7 @@ public class SpellBookSpell : MonoBehaviour
         heroStats = hero.GetComponent<PlayerStats>();
         spellBook = UIManager.instance.spellBook;
         HoveringToolTip tooltip = GetComponent<HoveringToolTip>();
+        initialSpellSelection = UIManager.instance.initialSpells;
         if (tooltip)
             tooltip.initialize(hero, containedSpell);
         refreshSpellLevel();
@@ -40,6 +43,12 @@ public class SpellBookSpell : MonoBehaviour
     {
         if (!containedSpell)
             return;
+
+        if (levelUpWhenClicked)
+            levelUp();
+
+        if (initialSpellSelection)
+            initialSpellSelection.chooseSpell(containedSpell);
 
         if (heroStats.spellLevels[(int)containedSpell.spellSet, (int)containedSpell.magicElement, (int)containedSpell.spellType] <= 0)
             return; // If the spell is lvl 0, don't equip it

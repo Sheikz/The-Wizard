@@ -10,7 +10,8 @@ public enum ItemPerk
     IceBeamMove, SanctuaryHeal, SanctuaryDamage,
     DoomrangHeal, DoomrangDamageTwice,
     ChronosphereDamage, ArcaneDiscPierces,
-    UnstableChargeTwice
+    UnstableChargeTwice, LightRayAdditionalRays,
+    Summon2Treants
 };
 
 public static class ItemPerkExtensions
@@ -34,6 +35,8 @@ public static class ItemPerkExtensions
             case ItemPerk.ChronosphereDamage: return perk.getSpellName() + " damage enemies inside";
             case ItemPerk.ArcaneDiscPierces: return perk.getSpellName() + " pierces enemies";
             case ItemPerk.UnstableChargeTwice: return perk.getSpellName() + " explodes twice";
+            case ItemPerk.LightRayAdditionalRays: return perk.getSpellName() + " fires 2 additional rays";
+            case ItemPerk.Summon2Treants: return perk.getSpellName() + " can summon 2 treants";
         }
         return "Not implemented";
     }
@@ -57,6 +60,8 @@ public static class ItemPerkExtensions
             case ItemPerk.ChronosphereDamage: return "ChronoSphere";
             case ItemPerk.ArcaneDiscPierces: return "Arcane Disc";
             case ItemPerk.UnstableChargeTwice: return "Unstable Charge";
+            case ItemPerk.LightRayAdditionalRays: return "Judgement";
+            case ItemPerk.Summon2Treants: return "Call of Nature";
         }
         return "Not implemented";
     }
